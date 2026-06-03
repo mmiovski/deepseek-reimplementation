@@ -6,3 +6,45 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+
+# Local data artifacts
+data/raw/*
+data/interim/*
+data/processed/*
+data/tokenized/*
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+!data/tokenized/.gitkeep
+
+# Tokenizer artifacts
+tokenizers/trained/*
+tokenizers/metadata/*
+!tokenizers/trained/.gitkeep
+!tokenizers/metadata/.gitkeep
+
+# Checkpoints and model artifacts
+checkpoints/*
+!checkpoints/.gitkeep
+
+# Results artifacts
+results/raw_logs/*
+results/metrics/*
+results/tables/*
+results/figures/*
+results/samples/*
+!results/raw_logs/.gitkeep
+!results/metrics/.gitkeep
+!results/tables/.gitkeep
+!results/figures/.gitkeep
+!results/samples/.gitkeep
+
+# OS/editor files
+.DS_Store
+.vscode/
+.idea/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
