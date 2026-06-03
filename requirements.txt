@@ -3,3 +3,5 @@ pandas
 pyyaml
 tqdm
 matplotlib
+datasets
+tokenizers
