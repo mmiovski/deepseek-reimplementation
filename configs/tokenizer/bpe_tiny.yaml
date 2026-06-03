@@ -1,0 +1,20 @@
+tokenizer:
+  name: bpe_tiny
+  type: byte_level_bpe
+  vocab_size: 8192
+  min_frequency: 2
+
+special_tokens:
+  unk_token: "<unk>"
+  bos_token: "<bos>"
+  eos_token: "<eos>"
+  pad_token: "<pad>"
+
+training:
+  input_text_files:
+    - data/processed/tinystories/train.txt
+  max_training_chars: 5000000
+
+artifacts:
+  tokenizer_json: tokenizers/trained/bpe_tiny.json
+  metadata_json: tokenizers/metadata/bpe_tiny_metadata.json

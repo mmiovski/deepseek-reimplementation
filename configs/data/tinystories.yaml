@@ -1,0 +1,24 @@
+dataset:
+  name: tinystories
+  source: huggingface
+  hf_dataset_name: roneneldan/TinyStories
+  text_field: text
+
+splits:
+  train: train
+  validation: validation
+
+paths:
+  raw_dir: data/raw/tinystories
+  interim_dir: data/interim/tinystories
+  processed_dir: data/processed/tinystories
+  tokenized_dir: data/tokenized/tinystories
+
+preprocessing:
+  normalize_newlines: true
+  strip_whitespace: true
+  min_chars: 1
+
+artifacts:
+  train_text: data/processed/tinystories/train.txt
+  validation_text: data/processed/tinystories/validation.txt
