@@ -6,8 +6,6 @@ from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
-from datasets import load_dataset
-
 from deepseek_reimpl.data.preprocess import format_lm_text, keep_text, normalize_text
 from deepseek_reimpl.utils.paths import ensure_dir, project_path
 
@@ -60,6 +58,8 @@ def load_huggingface_texts(
     max_examples: int | None = None,
 ) -> list[str]:
     """Load, normalize, and filter text examples from a Hugging Face split."""
+    from datasets import load_dataset
+
     dataset = load_dataset(hf_dataset_name, split=split)
 
     if max_examples is not None:

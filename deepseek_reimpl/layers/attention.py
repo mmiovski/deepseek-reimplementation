@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+from typing import cast
 
 import torch
 from torch import nn
@@ -60,7 +61,8 @@ class CausalSelfAttention(nn.Module):
         attn_scores = q @ k.transpose(-2, -1)
         attn_scores = attn_scores / math.sqrt(self.head_dim)
 
-        mask = self.causal_mask[:seq_len, :seq_len]
+        causal_mask = cast(torch.Tensor, self.causal_mask)
+        mask = causal_mask[:seq_len, :seq_len]
         attn_scores = attn_scores.masked_fill(~mask[None, None, :, :], float("-inf"))
 
         attn_weights = torch.softmax(attn_scores, dim=-1)
