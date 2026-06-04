@@ -46,3 +46,20 @@ def test_write_text_stream_writes_joined_text(tmp_path: Path) -> None:
 
     assert written_path == output_path
     assert output_path.read_text(encoding="utf-8") == "first\n\nsecond"
+
+
+def test_write_train_validation_test_text_artifacts(tmp_path: Path) -> None:
+    train_path = tmp_path / "train.txt"
+    validation_path = tmp_path / "validation.txt"
+    test_path = tmp_path / "test.txt"
+
+    written_train_path = write_text_stream(["train story"], train_path)
+    written_validation_path = write_text_stream(["validation story"], validation_path)
+    written_test_path = write_text_stream(["test story"], test_path)
+
+    assert written_train_path == train_path
+    assert written_validation_path == validation_path
+    assert written_test_path == test_path
+    assert train_path.read_text(encoding="utf-8") == "train story"
+    assert validation_path.read_text(encoding="utf-8") == "validation story"
+    assert test_path.read_text(encoding="utf-8") == "test story"

@@ -44,13 +44,17 @@ def test_tinystories_config_loads() -> None:
 
     require_keys(
         config,
-        {"dataset", "splits", "paths", "preprocessing", "artifacts"},
+        {"dataset", "splits", "validation_test_split", "paths", "preprocessing", "artifacts"},
         name="TinyStories data",
     )
 
     assert config["dataset"]["name"] == "tinystories"
     assert config["dataset"]["source"] == "huggingface"
     assert config["dataset"]["text_field"] == "text"
+    assert config["splits"]["train"] == "train"
+    assert config["splits"]["validation_source"] == "validation"
+    assert config["validation_test_split"]["method"] == "deterministic_ordered_fraction"
+    assert config["validation_test_split"]["validation_fraction"] == 0.5
 
     validate_relative_paths(
         config["paths"],
@@ -58,7 +62,7 @@ def test_tinystories_config_loads() -> None:
     )
     validate_relative_paths(
         config["artifacts"],
-        ("train_text", "validation_text"),
+        ("train_text", "validation_text", "test_text"),
     )
 
 

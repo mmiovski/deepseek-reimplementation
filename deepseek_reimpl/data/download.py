@@ -49,6 +49,31 @@ def write_text_stream(texts: list[str], output_path: str | Path) -> Path:
     return path
 
 
+def load_huggingface_texts(
+    *,
+    hf_dataset_name: str,
+    split: str,
+    text_field: str,
+    normalize_newlines: bool = True,
+    strip_whitespace: bool = True,
+    min_chars: int = 1,
+    max_examples: int | None = None,
+) -> list[str]:
+    """Load, normalize, and filter text examples from a Hugging Face split."""
+    dataset = load_dataset(hf_dataset_name, split=split)
+
+    if max_examples is not None:
+        dataset = dataset.select(range(min(max_examples, len(dataset))))
+
+    return iter_texts_from_records(
+        dataset,
+        text_field=text_field,
+        normalize_newlines=normalize_newlines,
+        strip_whitespace=strip_whitespace,
+        min_chars=min_chars,
+    )
+
+
 def prepare_huggingface_text_dataset(
     *,
     hf_dataset_name: str,
@@ -61,17 +86,14 @@ def prepare_huggingface_text_dataset(
     max_examples: int | None = None,
 ) -> Path:
     """Load a Hugging Face text dataset split and write a local LM text file."""
-    dataset = load_dataset(hf_dataset_name, split=split)
-
-    if max_examples is not None:
-        dataset = dataset.select(range(min(max_examples, len(dataset))))
-
-    texts = iter_texts_from_records(
-        dataset,
+    texts = load_huggingface_texts(
+        hf_dataset_name=hf_dataset_name,
+        split=split,
         text_field=text_field,
         normalize_newlines=normalize_newlines,
         strip_whitespace=strip_whitespace,
         min_chars=min_chars,
+        max_examples=max_examples,
     )
 
     return write_text_stream(texts, output_path)

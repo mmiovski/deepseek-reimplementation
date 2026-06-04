@@ -6,7 +6,18 @@ dataset:
 
 splits:
   train: train
-  validation: validation
+  validation_source: validation
+
+validation_test_split:
+  method: deterministic_ordered_fraction
+  validation_fraction: 0.5
+  description: >
+    TinyStories provides train and validation splits. For this project,
+    the original train split is used for optimization. The original
+    validation split is deterministically divided by index: the first
+    validation_fraction portion becomes validation, and the remaining
+    portion becomes test. The test split is reserved for final reporting
+    after model variants and evaluation procedures are fixed.
 
 paths:
   raw_dir: data/raw/tinystories
@@ -22,3 +33,4 @@ preprocessing:
 artifacts:
   train_text: data/processed/tinystories/train.txt
   validation_text: data/processed/tinystories/validation.txt
+  test_text: data/processed/tinystories/test.txt
