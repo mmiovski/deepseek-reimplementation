@@ -169,3 +169,42 @@ def test_baseline_experiment_config_loads() -> None:
             "checkpoint_dir",
         ),
     )
+
+
+def test_gpu_smoke_experiment_config_loads() -> None:
+    config = load_yaml_config("configs/experiment/00_baseline_gpu_smoke.yaml")
+
+    require_keys(config, {"experiment"}, name="GPU smoke experiment")
+    experiment_config = config["experiment"]
+
+    require_keys(
+        experiment_config,
+        {
+            "name",
+            "description",
+            "model_config",
+            "data_config",
+            "tokenizer_config",
+            "train_config",
+            "output_dir",
+            "metrics_dir",
+            "checkpoint_dir",
+        },
+        name="GPU smoke experiment",
+    )
+
+    assert experiment_config["name"] == "00_baseline_gpu_smoke"
+    assert experiment_config["train_config"] == "configs/train/gpu_smoke.yaml"
+
+    validate_relative_paths(
+        experiment_config,
+        (
+            "model_config",
+            "data_config",
+            "tokenizer_config",
+            "train_config",
+            "output_dir",
+            "metrics_dir",
+            "checkpoint_dir",
+        ),
+    )
