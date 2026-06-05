@@ -1,0 +1,10 @@
+experiment:
+  name: 00_baseline
+  description: Dense GPT baseline smoke/control experiment.
+  model_config: configs/model/baseline_gpt.yaml
+  data_config: configs/data/tinystories.yaml
+  tokenizer_config: configs/tokenizer/bpe_tiny.yaml
+  train_config: configs/train/cpu_smoke.yaml
+  output_dir: results/raw_logs/00_baseline
+  metrics_dir: results/metrics/00_baseline
+  checkpoint_dir: checkpoints/00_baseline

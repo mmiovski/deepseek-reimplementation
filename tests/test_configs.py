@@ -86,3 +86,86 @@ def test_bpe_tiny_tokenizer_config_loads() -> None:
 
     for path_value in config["training"]["input_text_files"]:
         assert not Path(path_value).is_absolute()
+
+
+def _assert_valid_train_config(path: str) -> None:
+    config = load_yaml_config(path)
+
+    require_keys(config, {"train"}, name="training")
+    train_config = config["train"]
+
+    required_train_keys = {
+        "seed",
+        "device",
+        "batch_size",
+        "block_size",
+        "max_steps",
+        "max_tokens",
+        "eval_interval",
+        "eval_batches",
+        "learning_rate",
+        "weight_decay",
+        "betas",
+        "grad_clip",
+        "num_workers",
+        "checkpoint_interval",
+        "log_interval",
+        "precision",
+    }
+    require_keys(train_config, required_train_keys, name=f"{path} train")
+
+    assert train_config["device"] in {"cpu", "cuda", "auto"}
+    assert train_config["precision"] == "fp32"
+    assert train_config["batch_size"] > 0
+    assert train_config["block_size"] > 0
+    assert train_config["learning_rate"] > 0
+    assert train_config["weight_decay"] >= 0
+    assert len(train_config["betas"]) == 2
+    assert train_config["max_steps"] is not None or train_config["max_tokens"] is not None
+
+
+def test_phase3_train_configs_load_and_validate() -> None:
+    for path in (
+        "configs/train/cpu_smoke.yaml",
+        "configs/train/gpu_smoke.yaml",
+        "configs/train/main_fixed_budget.yaml",
+    ):
+        _assert_valid_train_config(path)
+
+
+def test_baseline_experiment_config_loads() -> None:
+    config = load_yaml_config("configs/experiment/00_baseline.yaml")
+
+    require_keys(config, {"experiment"}, name="baseline experiment")
+    experiment_config = config["experiment"]
+
+    require_keys(
+        experiment_config,
+        {
+            "name",
+            "description",
+            "model_config",
+            "data_config",
+            "tokenizer_config",
+            "train_config",
+            "output_dir",
+            "metrics_dir",
+            "checkpoint_dir",
+        },
+        name="baseline experiment",
+    )
+
+    assert experiment_config["name"] == "00_baseline"
+
+    validate_relative_paths(
+        experiment_config,
+        (
+            "model_config",
+            "data_config",
+            "tokenizer_config",
+            "train_config",
+            "output_dir",
+            "metrics_dir",
+            "checkpoint_dir",
+        ),
+    )
