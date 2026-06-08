@@ -33,7 +33,7 @@ def test_baseline_gpt_config_loads_from_yaml() -> None:
 
     config = GPTConfig.from_dict(config_dict)
 
-    assert config.vocab_size == 8192
+    assert config.vocab_size == 10000
     assert config.block_size == 128
     assert config.n_layers == 4
     assert config.n_heads == 4

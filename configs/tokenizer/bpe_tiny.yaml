@@ -1,7 +1,7 @@
 tokenizer:
   name: bpe_tiny
   type: byte_level_bpe
-  vocab_size: 8192
+  vocab_size: 10000
   min_frequency: 2
 
 special_tokens:
