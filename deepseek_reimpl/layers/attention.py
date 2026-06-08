@@ -1,4 +1,4 @@
-"""Dense causal self-attention layers."""
+"""Dense causal self-attention layers and attention factory."""
 
 from __future__ import annotations
 
@@ -71,3 +71,17 @@ class CausalSelfAttention(nn.Module):
         context = attn_weights @ v
         output: torch.Tensor = self.out_proj(self._merge_heads(context))
         return output
+
+
+def build_attention(config: GPTConfig) -> nn.Module:
+    """Build the configured attention module."""
+    if config.attention_type == "dense":
+        return CausalSelfAttention(config)
+
+    if config.attention_type == "mla":
+        from deepseek_reimpl.layers.mla import MLAAttention
+
+        return MLAAttention(config)
+
+    msg = f"Unsupported attention_type: {config.attention_type}"
+    raise ValueError(msg)

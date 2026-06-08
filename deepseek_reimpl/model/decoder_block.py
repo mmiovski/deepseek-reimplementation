@@ -1,11 +1,11 @@
-"""Decoder block for the dense GPT baseline."""
+"""Decoder block for GPT-style models."""
 
 from __future__ import annotations
 
 import torch
 from torch import nn
 
-from deepseek_reimpl.layers.attention import CausalSelfAttention
+from deepseek_reimpl.layers.attention import build_attention
 from deepseek_reimpl.layers.ffn import build_ffn
 from deepseek_reimpl.layers.rmsnorm import RMSNorm
 from deepseek_reimpl.model.config import GPTConfig
@@ -29,7 +29,7 @@ class DecoderBlock(nn.Module):
     def __init__(self, config: GPTConfig) -> None:
         super().__init__()
         self.attn_norm = build_norm(config)
-        self.attn = CausalSelfAttention(config)
+        self.attn = build_attention(config)
         self.ffn_norm = build_norm(config)
         self.ffn = build_ffn(config)
 

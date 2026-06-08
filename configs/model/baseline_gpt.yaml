@@ -10,4 +10,5 @@ model:
   norm_type: rmsnorm
   positional_encoding: rope
   ffn_type: swiglu
+  attention_type: dense
   tie_embeddings: true

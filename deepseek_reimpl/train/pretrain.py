@@ -134,6 +134,9 @@ def run_pretraining_from_experiment_config(experiment_config_path: str | Path) -
     train_log_path = output_dir / "train_log.jsonl"
     summary_path = metrics_dir / "summary.json"
 
+    if train_log_path.exists():
+        train_log_path.unlink()
+
     def log_record(record: dict[str, Any]) -> None:
         append_jsonl(train_log_path, record)
 

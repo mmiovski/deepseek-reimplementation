@@ -1,0 +1,10 @@
+experiment:
+  name: 01_mla_gpu_smoke
+  description: MLA-style GPT GPU smoke/control experiment.
+  model_config: configs/model/mla.yaml
+  data_config: configs/data/tinystories.yaml
+  tokenizer_config: configs/tokenizer/bpe_tiny.yaml
+  train_config: configs/train/gpu_smoke.yaml
+  output_dir: results/raw_logs/01_mla_gpu_smoke
+  metrics_dir: results/metrics/01_mla_gpu_smoke
+  checkpoint_dir: checkpoints/01_mla_gpu_smoke

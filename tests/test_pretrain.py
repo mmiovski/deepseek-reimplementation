@@ -68,3 +68,113 @@ def test_build_lm_dataloader_from_text_and_tokenizer_artifacts(tmp_path: Path) -
     assert targets.shape == (2, 3)
     assert input_ids.dtype == torch.long
     assert targets.dtype == torch.long
+
+
+def test_pretraining_fixed_log_path_is_reset_between_runs(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from deepseek_reimpl.train import pretrain
+
+    root = tmp_path
+    (root / "configs" / "model").mkdir(parents=True)
+    (root / "configs" / "data").mkdir(parents=True)
+    (root / "configs" / "tokenizer").mkdir(parents=True)
+    (root / "configs" / "train").mkdir(parents=True)
+    (root / "configs" / "experiment").mkdir(parents=True)
+    (root / "data").mkdir(parents=True)
+    (root / "tokenizers").mkdir(parents=True)
+
+    tokenizer_path = root / "tokenizers" / "tiny.json"
+    train_text = root / "data" / "train.txt"
+    validation_text = root / "data" / "validation.txt"
+    test_text = root / "data" / "test.txt"
+
+    _write_tiny_wordlevel_tokenizer(tokenizer_path)
+    text = "one two three four five six seven eight " * 4
+    train_text.write_text(text, encoding="utf-8")
+    validation_text.write_text(text, encoding="utf-8")
+    test_text.write_text(text, encoding="utf-8")
+
+    (root / "configs" / "model" / "tiny.yaml").write_text(
+        """
+model:
+  name: baseline_gpt
+  vocab_size: 9
+  block_size: 3
+  n_layers: 1
+  n_heads: 1
+  d_model: 4
+  d_ff: 16
+  dropout: 0.0
+  norm_type: rmsnorm
+  positional_encoding: rope
+  ffn_type: swiglu
+  attention_type: dense
+  tie_embeddings: true
+""",
+        encoding="utf-8",
+    )
+    (root / "configs" / "data" / "tiny.yaml").write_text(
+        """
+artifacts:
+  train_text: data/train.txt
+  validation_text: data/validation.txt
+  test_text: data/test.txt
+""",
+        encoding="utf-8",
+    )
+    (root / "configs" / "tokenizer" / "tiny.yaml").write_text(
+        """
+artifacts:
+  tokenizer_json: tokenizers/tiny.json
+""",
+        encoding="utf-8",
+    )
+    (root / "configs" / "train" / "tiny.yaml").write_text(
+        """
+train:
+  seed: 1337
+  device: cpu
+  batch_size: 2
+  block_size: 3
+  max_steps: 2
+  max_tokens: 12
+  eval_interval: 2
+  eval_batches: 1
+  learning_rate: 0.0003
+  weight_decay: 0.0
+  betas: [0.9, 0.95]
+  grad_clip: null
+  num_workers: 0
+  checkpoint_interval: null
+  log_interval: 1
+  precision: fp32
+""",
+        encoding="utf-8",
+    )
+    experiment_path = root / "configs" / "experiment" / "tiny.yaml"
+    experiment_path.write_text(
+        f"""
+experiment:
+  name: tiny
+  description: Tiny regression experiment.
+  model_config: {root / "configs" / "model" / "tiny.yaml"}
+  data_config: {root / "configs" / "data" / "tiny.yaml"}
+  tokenizer_config: {root / "configs" / "tokenizer" / "tiny.yaml"}
+  train_config: {root / "configs" / "train" / "tiny.yaml"}
+  output_dir: results/raw_logs/tiny
+  metrics_dir: results/metrics/tiny
+  checkpoint_dir: checkpoints/tiny
+""",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(pretrain, "project_path", lambda *parts: root.joinpath(*map(str, parts)))
+
+    pretrain.run_pretraining_from_experiment_config(experiment_path)
+    pretrain.run_pretraining_from_experiment_config(experiment_path)
+
+    train_log_path = root / "results" / "raw_logs" / "tiny" / "train_log.jsonl"
+    lines = train_log_path.read_text(encoding="utf-8").splitlines()
+
+    assert len(lines) == 2

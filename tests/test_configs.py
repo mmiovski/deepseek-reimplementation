@@ -208,3 +208,83 @@ def test_gpu_smoke_experiment_config_loads() -> None:
             "checkpoint_dir",
         ),
     )
+
+
+def test_mla_experiment_config_loads() -> None:
+    config = load_yaml_config("configs/experiment/01_mla.yaml")
+
+    require_keys(config, {"experiment"}, name="MLA experiment")
+    experiment_config = config["experiment"]
+
+    require_keys(
+        experiment_config,
+        {
+            "name",
+            "description",
+            "model_config",
+            "data_config",
+            "tokenizer_config",
+            "train_config",
+            "output_dir",
+            "metrics_dir",
+            "checkpoint_dir",
+        },
+        name="MLA experiment",
+    )
+
+    assert experiment_config["name"] == "01_mla"
+    assert experiment_config["model_config"] == "configs/model/mla.yaml"
+    assert experiment_config["train_config"] == "configs/train/cpu_smoke.yaml"
+
+    validate_relative_paths(
+        experiment_config,
+        (
+            "model_config",
+            "data_config",
+            "tokenizer_config",
+            "train_config",
+            "output_dir",
+            "metrics_dir",
+            "checkpoint_dir",
+        ),
+    )
+
+
+def test_mla_gpu_smoke_experiment_config_loads() -> None:
+    config = load_yaml_config("configs/experiment/01_mla_gpu_smoke.yaml")
+
+    require_keys(config, {"experiment"}, name="MLA GPU smoke experiment")
+    experiment_config = config["experiment"]
+
+    require_keys(
+        experiment_config,
+        {
+            "name",
+            "description",
+            "model_config",
+            "data_config",
+            "tokenizer_config",
+            "train_config",
+            "output_dir",
+            "metrics_dir",
+            "checkpoint_dir",
+        },
+        name="MLA GPU smoke experiment",
+    )
+
+    assert experiment_config["name"] == "01_mla_gpu_smoke"
+    assert experiment_config["model_config"] == "configs/model/mla.yaml"
+    assert experiment_config["train_config"] == "configs/train/gpu_smoke.yaml"
+
+    validate_relative_paths(
+        experiment_config,
+        (
+            "model_config",
+            "data_config",
+            "tokenizer_config",
+            "train_config",
+            "output_dir",
+            "metrics_dir",
+            "checkpoint_dir",
+        ),
+    )

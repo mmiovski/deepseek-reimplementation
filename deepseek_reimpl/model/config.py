@@ -8,7 +8,11 @@ from typing import Any
 
 @dataclass(frozen=True)
 class GPTConfig:
-    """Configuration for a dense decoder-only GPT baseline."""
+    """Configuration for decoder-only GPT-style models.
+
+    The default configuration remains the dense GPT baseline. MLA fields are only
+    active when attention_type == "mla".
+    """
 
     vocab_size: int
     block_size: int
@@ -20,7 +24,10 @@ class GPTConfig:
     norm_type: str = "rmsnorm"
     positional_encoding: str = "rope"
     ffn_type: str = "swiglu"
+    attention_type: str = "dense"
     tie_embeddings: bool = True
+    mla_kv_latent_dim: int | None = None
+    mla_q_rope_dim: int | None = None
 
     def __post_init__(self) -> None:
         """Validate architectural configuration values."""
@@ -59,6 +66,48 @@ class GPTConfig:
         valid_ffn_types = {"swiglu", "gelu_mlp"}
         if self.ffn_type not in valid_ffn_types:
             msg = f"ffn_type must be one of {sorted(valid_ffn_types)}"
+            raise ValueError(msg)
+
+        valid_attention_types = {"dense", "mla"}
+        if self.attention_type not in valid_attention_types:
+            msg = f"attention_type must be one of {sorted(valid_attention_types)}"
+            raise ValueError(msg)
+
+        if self.attention_type == "mla":
+            self._validate_mla_config()
+
+    def _validate_mla_config(self) -> None:
+        """Validate MLA-specific architecture fields."""
+        if self.positional_encoding != "rope":
+            msg = "MLA attention currently requires positional_encoding='rope'"
+            raise ValueError(msg)
+
+        if self.mla_kv_latent_dim is None:
+            msg = "mla_kv_latent_dim must be set when attention_type='mla'"
+            raise ValueError(msg)
+
+        if self.mla_q_rope_dim is None:
+            msg = "mla_q_rope_dim must be set when attention_type='mla'"
+            raise ValueError(msg)
+
+        if self.mla_kv_latent_dim <= 0:
+            msg = "mla_kv_latent_dim must be positive"
+            raise ValueError(msg)
+
+        if self.mla_kv_latent_dim >= self.d_model:
+            msg = "mla_kv_latent_dim must be smaller than d_model"
+            raise ValueError(msg)
+
+        if self.mla_q_rope_dim <= 0:
+            msg = "mla_q_rope_dim must be positive"
+            raise ValueError(msg)
+
+        if self.mla_q_rope_dim >= self.head_dim:
+            msg = "mla_q_rope_dim must be smaller than head_dim"
+            raise ValueError(msg)
+
+        if self.mla_q_rope_dim % 2 != 0:
+            msg = "mla_q_rope_dim must be even for rotary embeddings"
             raise ValueError(msg)
 
     @property
