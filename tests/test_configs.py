@@ -809,3 +809,83 @@ def test_mtp_gpu_smoke_experiment_config_loads() -> None:
             "checkpoint_dir",
         ),
     )
+
+
+def test_core_model_configs_share_controlled_base_hyperparameters() -> None:
+    model_paths = (
+        "configs/model/baseline_gpt.yaml",
+        "configs/model/mla.yaml",
+        "configs/model/moe.yaml",
+        "configs/model/mla_moe.yaml",
+        "configs/model/v3_routing.yaml",
+        "configs/model/mtp.yaml",
+    )
+
+    controlled_keys = {
+        "vocab_size",
+        "block_size",
+        "n_layers",
+        "n_heads",
+        "d_model",
+        "dropout",
+        "norm_type",
+        "positional_encoding",
+        "tie_embeddings",
+    }
+
+    loaded = {path: load_yaml_config(path)["model"] for path in model_paths}
+    baseline = loaded["configs/model/baseline_gpt.yaml"]
+
+    for path, model_config in loaded.items():
+        for key in controlled_keys:
+            assert model_config[key] == baseline[key], f"{path} differs on controlled key {key}"
+
+
+def test_dense_non_moe_model_configs_share_feedforward_width() -> None:
+    model_paths = (
+        "configs/model/baseline_gpt.yaml",
+        "configs/model/mla.yaml",
+        "configs/model/mtp.yaml",
+    )
+
+    loaded = {path: load_yaml_config(path)["model"] for path in model_paths}
+    baseline = loaded["configs/model/baseline_gpt.yaml"]
+
+    for path, model_config in loaded.items():
+        assert model_config["ffn_type"] != "moe"
+        assert model_config["d_ff"] == baseline["d_ff"], f"{path} differs on dense FFN width"
+
+
+def test_standard_experiment_configs_use_consistent_artifact_layout() -> None:
+    experiment_paths = (
+        "configs/experiment/00_baseline.yaml",
+        "configs/experiment/01_mla.yaml",
+        "configs/experiment/02_moe.yaml",
+        "configs/experiment/03_mla_moe.yaml",
+        "configs/experiment/04_v3_routing.yaml",
+        "configs/experiment/05_mtp.yaml",
+    )
+
+    for path in experiment_paths:
+        experiment = load_yaml_config(path)["experiment"]
+        name = experiment["name"]
+
+        assert experiment["output_dir"] == f"results/raw_logs/{name}"
+        assert experiment["metrics_dir"] == f"results/metrics/{name}"
+        assert experiment["checkpoint_dir"] == f"checkpoints/{name}"
+        assert experiment["train_config"] == "configs/train/cpu_smoke.yaml"
+
+
+def test_gpu_smoke_experiment_configs_use_gpu_smoke_train_config() -> None:
+    experiment_paths = (
+        "configs/experiment/00_baseline_gpu_smoke.yaml",
+        "configs/experiment/01_mla_gpu_smoke.yaml",
+        "configs/experiment/02_moe_gpu_smoke.yaml",
+        "configs/experiment/03_mla_moe_gpu_smoke.yaml",
+        "configs/experiment/04_v3_routing_gpu_smoke.yaml",
+        "configs/experiment/05_mtp_gpu_smoke.yaml",
+    )
+
+    for path in experiment_paths:
+        experiment = load_yaml_config(path)["experiment"]
+        assert experiment["train_config"] == "configs/train/gpu_smoke.yaml"
