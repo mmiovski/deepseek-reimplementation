@@ -209,6 +209,7 @@ def train_loop(
     final_mtp_per_horizon_losses: tuple[float, ...] | None = None
     validation_metrics: EvaluationMetrics | None = None
     test_metrics: EvaluationMetrics | None = None
+    last_logged_validation_step: int | None = None
 
     for batch in cycle(train_dataloader):
         if config.max_steps is not None and steps >= config.max_steps:
@@ -276,6 +277,7 @@ def train_loop(
                         "num_tokens": validation_metrics.num_tokens,
                     }
                 )
+                last_logged_validation_step = steps
 
     if steps == 0:
         raise ValueError("training loop completed zero steps")
@@ -287,6 +289,23 @@ def train_loop(
             device=device,
             max_batches=config.eval_batches,
         )
+        if log_callback is not None and last_logged_validation_step != steps:
+            snapshot = throughput.snapshot()
+            log_callback(
+                {
+                    "record_type": "eval",
+                    "split": "validation",
+                    "phase": "final",
+                    "step": steps,
+                    "tokens": train_tokens,
+                    "elapsed_seconds": snapshot.elapsed_seconds,
+                    "tokens_per_second": snapshot.tokens_per_second,
+                    "loss": validation_metrics.loss,
+                    "perplexity": validation_metrics.perplexity,
+                    "num_batches": validation_metrics.num_batches,
+                    "num_tokens": validation_metrics.num_tokens,
+                }
+            )
 
     if test_dataloader is not None:
         test_metrics = evaluate_language_model(
