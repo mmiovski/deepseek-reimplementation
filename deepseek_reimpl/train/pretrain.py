@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import platform
+import sys
 from collections.abc import Mapping
 from dataclasses import asdict
 from pathlib import Path
@@ -98,6 +100,30 @@ def _routing_stats_summary_to_dict(model: torch.nn.Module) -> dict[str, Any] | N
     return asdict(summary)
 
 
+def _runtime_metadata(device: torch.device) -> dict[str, Any]:
+    """Return JSON-serializable runtime metadata for reproducibility."""
+    cuda_device_name: str | None = None
+    cuda_device_index: int | None = None
+
+    if device.type == "cuda" and torch.cuda.is_available():
+        cuda_device_index = device.index
+        if cuda_device_index is None:
+            cuda_device_index = torch.cuda.current_device()
+        cuda_device_name = torch.cuda.get_device_name(cuda_device_index)
+
+    return {
+        "python_version": sys.version,
+        "platform": platform.platform(),
+        "torch_version": torch.__version__,
+        "device": str(device),
+        "cuda_available": torch.cuda.is_available(),
+        "cuda_version": torch.version.cuda,
+        "cuda_device_count": torch.cuda.device_count() if torch.cuda.is_available() else 0,
+        "cuda_device_index": cuda_device_index,
+        "cuda_device_name": cuda_device_name,
+    }
+
+
 def run_pretraining_from_experiment_config(experiment_config_path: str | Path) -> dict[str, Any]:
     """Run a configured baseline pretraining smoke/control job."""
     experiment_wrapper = load_yaml_config(experiment_config_path)
@@ -171,6 +197,26 @@ def run_pretraining_from_experiment_config(experiment_config_path: str | Path) -
     summary_payload: dict[str, Any] = {
         "experiment_name": experiment_config["name"],
         "model_name": model_config["model"]["name"],
+        "experiment_config_path": str(experiment_config_path),
+        "config_paths": {
+            "model_config": experiment_config["model_config"],
+            "data_config": experiment_config["data_config"],
+            "tokenizer_config": experiment_config["tokenizer_config"],
+            "train_config": experiment_config["train_config"],
+        },
+        "model_config": model_config["model"],
+        "train_config": train_config,
+        "data_config": {
+            "dataset": data_config.get("dataset"),
+            "splits": data_config.get("splits"),
+            "artifacts": data_config.get("artifacts"),
+        },
+        "tokenizer_config": {
+            "tokenizer": tokenizer_config.get("tokenizer"),
+            "artifacts": tokenizer_config.get("artifacts"),
+        },
+        "tokenizer_artifact": tokenizer_path,
+        "runtime": _runtime_metadata(device),
         "device": str(device),
         "seed": int(train_config["seed"]),
         "batch_size": int(train_config["batch_size"]),

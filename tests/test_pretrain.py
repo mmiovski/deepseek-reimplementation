@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import pytest
@@ -171,13 +172,28 @@ experiment:
 
     monkeypatch.setattr(pretrain, "project_path", lambda *parts: root.joinpath(*map(str, parts)))
 
-    pretrain.run_pretraining_from_experiment_config(experiment_path)
-    pretrain.run_pretraining_from_experiment_config(experiment_path)
+    first_summary = pretrain.run_pretraining_from_experiment_config(experiment_path)
+    second_summary = pretrain.run_pretraining_from_experiment_config(experiment_path)
 
     train_log_path = root / "results" / "raw_logs" / "tiny" / "train_log.jsonl"
     lines = train_log_path.read_text(encoding="utf-8").splitlines()
+    records = [json.loads(line) for line in lines]
 
-    assert len(lines) == 2
+    assert len(records) == 3
+    assert [record["record_type"] for record in records] == ["train", "train", "eval"]
+    assert records[-1]["split"] == "validation"
+
+    for summary in (first_summary, second_summary):
+        assert summary["experiment_config_path"] == str(experiment_path)
+        assert summary["config_paths"]["model_config"] == str(
+            root / "configs" / "model" / "tiny.yaml"
+        )
+        assert summary["model_config"]["name"] == "baseline_gpt"
+        assert summary["train_config"]["max_steps"] == 2
+        assert summary["tokenizer_artifact"] == "tokenizers/tiny.json"
+        assert summary["runtime"]["device"] == "cpu"
+        assert summary["runtime"]["torch_version"]
+        assert summary["elapsed_seconds"] >= 0.0
 
 
 def test_pretraining_summary_helpers_include_dense_activated_metrics() -> None:

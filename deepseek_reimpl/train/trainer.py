@@ -58,6 +58,7 @@ class TrainingSummary:
     validation_perplexity: float | None
     test_loss: float | None
     test_perplexity: float | None
+    elapsed_seconds: float
 
 
 def _get_model_auxiliary_loss(model: nn.Module) -> torch.Tensor | None:
@@ -235,6 +236,7 @@ def train_loop(
             snapshot = throughput.snapshot()
             log_callback(
                 {
+                    "record_type": "train",
                     "step": steps,
                     "train_loss": step_metrics.loss,
                     "lm_loss": step_metrics.lm_loss,
@@ -258,6 +260,22 @@ def train_loop(
                 device=device,
                 max_batches=config.eval_batches,
             )
+            if log_callback is not None:
+                snapshot = throughput.snapshot()
+                log_callback(
+                    {
+                        "record_type": "eval",
+                        "split": "validation",
+                        "step": steps,
+                        "tokens": train_tokens,
+                        "elapsed_seconds": snapshot.elapsed_seconds,
+                        "tokens_per_second": snapshot.tokens_per_second,
+                        "loss": validation_metrics.loss,
+                        "perplexity": validation_metrics.perplexity,
+                        "num_batches": validation_metrics.num_batches,
+                        "num_tokens": validation_metrics.num_tokens,
+                    }
+                )
 
     if steps == 0:
         raise ValueError("training loop completed zero steps")
@@ -293,4 +311,5 @@ def train_loop(
         validation_perplexity=None if validation_metrics is None else validation_metrics.perplexity,
         test_loss=None if test_metrics is None else test_metrics.loss,
         test_perplexity=None if test_metrics is None else test_metrics.perplexity,
+        elapsed_seconds=snapshot.elapsed_seconds,
     )
