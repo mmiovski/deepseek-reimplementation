@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import cast
 
 import torch
 from torch import nn
@@ -235,14 +236,15 @@ class DeepSeekMoELayer(nn.Module):
             return
 
         target_fraction = 1.0 / float(self.n_routed_experts)
+        expert_bias = cast(torch.Tensor, self.router.expert_bias)
         load_error = target_fraction - stats.expert_selection_fraction.to(
-            device=self.router.expert_bias.device,
-            dtype=self.router.expert_bias.dtype,
+            device=expert_bias.device,
+            dtype=expert_bias.dtype,
         )
 
         with torch.no_grad():
-            self.router.expert_bias.add_(self.expert_bias_update_rate * load_error)
-            self.router.expert_bias.clamp_(
+            expert_bias.add_(self.expert_bias_update_rate * load_error)
+            expert_bias.clamp_(
                 min=self.expert_bias_min,
                 max=self.expert_bias_max,
             )
@@ -283,7 +285,11 @@ class DeepSeekMoELayer(nn.Module):
         routing_entropy = entropy_per_token.mean()
         mean_router_probability = router_output.scores.mean(dim=0)
 
-        expert_bias = self.router.expert_bias.detach().clone() if self.use_expert_bias else None
+        expert_bias = (
+            cast(torch.Tensor, self.router.expert_bias).detach().clone()
+            if self.use_expert_bias
+            else None
+        )
 
         return MoERoutingStats(
             tokens=tokens,

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, cast
 
 import pytest
 import torch
@@ -10,6 +10,10 @@ from deepseek_reimpl.layers.moe_expert import MoEExpert
 from deepseek_reimpl.layers.moe_layer import DeepSeekMoELayer
 from deepseek_reimpl.layers.moe_router import TopKRouter
 from deepseek_reimpl.model.config import GPTConfig
+
+
+def _expert_bias_tensor(router: TopKRouter) -> torch.Tensor:
+    return cast(torch.Tensor, router.expert_bias)
 
 
 def test_top_k_router_preserves_expected_shapes() -> None:
@@ -81,8 +85,8 @@ def test_top_k_router_expert_bias_initializes_to_zero() -> None:
         use_expert_bias=True,
     )
 
-    assert router.expert_bias.shape == (4,)
-    assert torch.equal(router.expert_bias, torch.zeros(4))
+    assert _expert_bias_tensor(router).shape == (4,)
+    assert torch.equal(_expert_bias_tensor(router), torch.zeros(4))
 
 
 def test_top_k_router_expert_bias_affects_selection_not_scores() -> None:
@@ -96,8 +100,8 @@ def test_top_k_router_expert_bias_affects_selection_not_scores() -> None:
 
     with torch.no_grad():
         router.gate.weight.zero_()
-        router.expert_bias.zero_()
-        router.expert_bias[2] = 1.0
+        _expert_bias_tensor(router).zero_()
+        _expert_bias_tensor(router)[2] = 1.0
 
     output = router(hidden_states)
 
@@ -320,8 +324,8 @@ def test_deepseek_moe_layer_updates_expert_bias_in_train_mode() -> None:
         layer.last_routing_stats.expert_selection_counts.cpu(),
         torch.tensor([4.0, 0.0, 0.0, 0.0]),
     )
-    assert layer.router.expert_bias[0].item() < 0.0
-    assert torch.all(layer.router.expert_bias[1:] > 0.0)
+    assert _expert_bias_tensor(layer.router)[0].item() < 0.0
+    assert torch.all(_expert_bias_tensor(layer.router)[1:] > 0.0)
 
 
 def test_deepseek_moe_layer_does_not_update_expert_bias_in_eval_mode() -> None:
@@ -342,12 +346,12 @@ def test_deepseek_moe_layer_does_not_update_expert_bias_in_eval_mode() -> None:
         layer.router.gate.weight.zero_()
         layer.router.gate.weight[0, 0] = 10.0
 
-    before = layer.router.expert_bias.detach().clone()
+    before = _expert_bias_tensor(layer.router).detach().clone()
     hidden_states = torch.ones(1, 4, 4)
 
     layer(hidden_states)
 
-    assert torch.equal(layer.router.expert_bias, before)
+    assert torch.equal(_expert_bias_tensor(layer.router), before)
 
 
 def test_deepseek_moe_layer_expert_bias_update_clamps() -> None:
@@ -374,10 +378,10 @@ def test_deepseek_moe_layer_expert_bias_update_clamps() -> None:
 
     layer(hidden_states)
 
-    assert torch.all(layer.router.expert_bias >= -0.25)
-    assert torch.all(layer.router.expert_bias <= 0.25)
-    assert layer.router.expert_bias[0].item() == -0.25
-    assert torch.all(layer.router.expert_bias[1:] == 0.25)
+    assert torch.all(_expert_bias_tensor(layer.router) >= -0.25)
+    assert torch.all(_expert_bias_tensor(layer.router) <= 0.25)
+    assert _expert_bias_tensor(layer.router)[0].item() == -0.25
+    assert torch.all(_expert_bias_tensor(layer.router)[1:] == 0.25)
 
 
 def test_deepseek_moe_layer_backward_reaches_router_and_selected_experts() -> None:

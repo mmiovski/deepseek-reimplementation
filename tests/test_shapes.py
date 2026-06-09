@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, cast
 
 import pytest
 import torch
@@ -435,7 +435,7 @@ def test_v3_routing_gpt_backward_reaches_router_experts_and_embeddings() -> None
 def test_model_factory_builds_mtp_gpt_and_preserves_forward_interface() -> None:
     from deepseek_reimpl.model.model_factory import build_model_from_config
 
-    model = build_model_from_config(load_yaml_config("configs/model/mtp.yaml"))
+    model = cast(Any, build_model_from_config(load_yaml_config("configs/model/mtp.yaml")))
     input_ids = torch.randint(0, model.config.vocab_size, (2, 8))
 
     logits = model(input_ids)

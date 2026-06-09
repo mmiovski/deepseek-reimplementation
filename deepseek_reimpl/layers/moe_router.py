@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import cast
 
 import torch
 from torch import nn
@@ -104,7 +105,8 @@ class TopKRouter(nn.Module):
 
         selection_scores = scores
         if self.use_expert_bias:
-            selection_scores = selection_scores + self.expert_bias.to(
+            expert_bias = cast(torch.Tensor, self.expert_bias)
+            selection_scores = selection_scores + expert_bias.to(
                 device=scores.device,
                 dtype=scores.dtype,
             )
