@@ -1,0 +1,10 @@
+experiment:
+  name: report_02_moe
+  description: Report fixed-budget MoE feedforward variant.
+  model_config: configs/model/moe.yaml
+  data_config: configs/data/wikitext2.yaml
+  tokenizer_config: configs/tokenizer/bpe_wikitext2.yaml
+  train_config: configs/train/local_report_fixed_budget.yaml
+  output_dir: results/raw_logs/report_02_moe
+  metrics_dir: results/metrics/report_02_moe
+  checkpoint_dir: checkpoints/report_02_moe
