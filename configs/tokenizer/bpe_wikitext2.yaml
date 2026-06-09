@@ -13,7 +13,7 @@ special_tokens:
 training:
   input_text_files:
     - data/processed/wikitext2/train.txt
-  max_training_chars: 5000000
+  max_training_chars: null
 
 artifacts:
   tokenizer_json: tokenizers/trained/bpe_wikitext2.json
