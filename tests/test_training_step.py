@@ -642,3 +642,38 @@ def test_train_step_includes_mla_moe_auxiliary_loss() -> None:
     assert metrics.aux_loss is not None
     assert metrics.aux_loss > 0.0
     assert metrics.loss > metrics.lm_loss
+
+
+def test_train_step_reports_zero_auxiliary_loss_for_v3_routing_mode() -> None:
+    from deepseek_reimpl.model.baseline_gpt import BaselineGPT
+    from deepseek_reimpl.model.config import GPTConfig
+
+    config = GPTConfig(
+        vocab_size=32,
+        block_size=8,
+        n_layers=1,
+        n_heads=2,
+        d_model=16,
+        d_ff=64,
+        dropout=0.0,
+        ffn_type="moe",
+        n_routed_experts=4,
+        n_shared_experts=1,
+        moe_top_k=2,
+        moe_expert_d_ff=32,
+        moe_aux_loss_weight=0.0,
+        moe_routing_mode="aux_loss_free_bias",
+        moe_use_expert_bias=True,
+        moe_expert_bias_update_rate=0.001,
+    )
+    model = BaselineGPT(config)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=0.001)
+    batch = (
+        torch.randint(0, config.vocab_size, (2, 4)),
+        torch.randint(0, config.vocab_size, (2, 4)),
+    )
+
+    metrics = train_step(model, batch, optimizer, device=torch.device("cpu"))
+
+    assert metrics.aux_loss == 0.0
+    assert metrics.loss == metrics.lm_loss

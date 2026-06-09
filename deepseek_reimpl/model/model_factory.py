@@ -15,7 +15,13 @@ def build_model_from_config(config: dict[str, Any]) -> nn.Module:
     model_config = config.get("model", config)
     model_name = model_config.get("name")
 
-    if model_name in {"baseline_gpt", "mla_gpt", "moe_gpt", "mla_moe_gpt"}:
+    if model_name in {
+        "baseline_gpt",
+        "mla_gpt",
+        "moe_gpt",
+        "mla_moe_gpt",
+        "v3_routing_gpt",
+    }:
         return BaselineGPT(GPTConfig.from_dict(config))
 
     msg = f"Unsupported model name: {model_name}"

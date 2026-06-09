@@ -238,6 +238,85 @@ def test_routing_stats_summary_collects_moe_layer_stats_after_forward() -> None:
     assert len(summary.expert_selection_counts[0]) == 4
 
 
+def test_routing_stats_summary_reports_aux_loss_mode_without_expert_bias() -> None:
+    from deepseek_reimpl.instrumentation.routing_stats import summarize_routing_stats
+
+    config = GPTConfig(
+        vocab_size=128,
+        block_size=16,
+        n_layers=1,
+        n_heads=2,
+        d_model=32,
+        d_ff=64,
+        dropout=0.0,
+        ffn_type="moe",
+        n_routed_experts=4,
+        n_shared_experts=1,
+        moe_top_k=2,
+        moe_expert_d_ff=16,
+        moe_aux_loss_weight=0.01,
+    )
+    model = BaselineGPT(config)
+    input_ids = torch.randint(0, config.vocab_size, (2, 5))
+
+    model(input_ids)
+    summary = summarize_routing_stats(model)
+
+    assert summary is not None
+    assert summary.routing_modes == ["aux_loss"]
+    assert summary.expert_bias_active == [False]
+    assert summary.expert_bias == [None]
+    assert summary.expert_bias_mean == [None]
+    assert summary.expert_bias_std == [None]
+    assert summary.expert_bias_min == [None]
+    assert summary.expert_bias_max == [None]
+    assert summary.expert_bias_update_rate == [0.0]
+    assert summary.expert_bias_update_interval == [1]
+
+
+def test_routing_stats_summary_reports_aux_loss_free_bias_fields() -> None:
+    from deepseek_reimpl.instrumentation.routing_stats import summarize_routing_stats
+
+    config = GPTConfig(
+        vocab_size=128,
+        block_size=16,
+        n_layers=1,
+        n_heads=2,
+        d_model=32,
+        d_ff=64,
+        dropout=0.0,
+        ffn_type="moe",
+        n_routed_experts=4,
+        n_shared_experts=1,
+        moe_top_k=2,
+        moe_expert_d_ff=16,
+        moe_aux_loss_weight=0.0,
+        moe_routing_mode="aux_loss_free_bias",
+        moe_use_expert_bias=True,
+        moe_expert_bias_update_rate=0.001,
+        moe_expert_bias_update_interval=1,
+        moe_expert_bias_min=-0.5,
+        moe_expert_bias_max=0.5,
+    )
+    model = BaselineGPT(config)
+    input_ids = torch.randint(0, config.vocab_size, (2, 5))
+
+    model(input_ids)
+    summary = summarize_routing_stats(model)
+
+    assert summary is not None
+    assert summary.routing_modes == ["aux_loss_free_bias"]
+    assert summary.expert_bias_active == [True]
+    assert summary.expert_bias[0] is not None
+    assert len(summary.expert_bias[0]) == 4
+    assert summary.expert_bias_mean[0] is not None
+    assert summary.expert_bias_std[0] is not None
+    assert summary.expert_bias_min[0] is not None
+    assert summary.expert_bias_max[0] is not None
+    assert summary.expert_bias_update_rate == [0.001]
+    assert summary.expert_bias_update_interval == [1]
+
+
 def test_activated_parameter_summary_mla_moe_model_excludes_unselected_routed_experts() -> None:
     from deepseek_reimpl.instrumentation.activated_params import summarize_activated_parameters
 

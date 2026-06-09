@@ -55,6 +55,12 @@ def build_ffn(config: GPTConfig) -> nn.Module:
             router_score=config.moe_router_score,
             normalize_top_k_weights=config.moe_normalize_top_k_weights,
             aux_loss_weight=config.moe_aux_loss_weight,
+            routing_mode=config.moe_routing_mode,
+            use_expert_bias=config.moe_use_expert_bias,
+            expert_bias_update_rate=config.moe_expert_bias_update_rate,
+            expert_bias_update_interval=config.moe_expert_bias_update_interval,
+            expert_bias_min=config.moe_expert_bias_min,
+            expert_bias_max=config.moe_expert_bias_max,
         )
 
     msg = f"Unsupported ffn_type: {config.ffn_type}"

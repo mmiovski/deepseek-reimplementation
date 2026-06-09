@@ -73,6 +73,43 @@ def test_top_k_router_outputs_are_finite() -> None:
     assert torch.isfinite(output.top_k_weights).all()
 
 
+def test_top_k_router_expert_bias_initializes_to_zero() -> None:
+    router = TopKRouter(
+        d_model=16,
+        n_experts=4,
+        top_k=2,
+        use_expert_bias=True,
+    )
+
+    assert router.expert_bias.shape == (4,)
+    assert torch.equal(router.expert_bias, torch.zeros(4))
+
+
+def test_top_k_router_expert_bias_affects_selection_not_scores() -> None:
+    router = TopKRouter(
+        d_model=4,
+        n_experts=3,
+        top_k=1,
+        use_expert_bias=True,
+    )
+    hidden_states = torch.ones(2, 4)
+
+    with torch.no_grad():
+        router.gate.weight.zero_()
+        router.expert_bias.zero_()
+        router.expert_bias[2] = 1.0
+
+    output = router(hidden_states)
+
+    assert torch.equal(output.top_k_indices.cpu(), torch.full((2, 1), 2))
+    assert torch.allclose(
+        output.scores,
+        torch.full((2, 3), 1.0 / 3.0),
+        atol=1e-6,
+    )
+    assert torch.allclose(output.top_k_weights, torch.ones(2, 1), atol=1e-6)
+
+
 def test_top_k_router_backward_updates_gate_gradients() -> None:
     router = TopKRouter(d_model=16, n_experts=4, top_k=2)
     hidden_states = torch.randn(6, 16, requires_grad=True)
@@ -231,6 +268,116 @@ def test_deepseek_moe_layer_sets_aux_loss_and_routing_stats() -> None:
     assert layer.last_routing_stats.top_k == 2
     assert layer.last_routing_stats.expert_selection_counts.shape == (4,)
     assert torch.isfinite(layer.last_aux_loss)
+
+
+def test_deepseek_moe_layer_aux_loss_free_bias_mode_has_zero_aux_loss() -> None:
+    layer = DeepSeekMoELayer(
+        d_model=16,
+        n_routed_experts=4,
+        n_shared_experts=1,
+        top_k=2,
+        expert_d_ff=32,
+        aux_loss_weight=0.0,
+        routing_mode="aux_loss_free_bias",
+        use_expert_bias=True,
+        expert_bias_update_rate=0.01,
+    )
+    hidden_states = torch.randn(2, 3, 16)
+
+    layer(hidden_states)
+
+    assert layer.last_aux_loss is not None
+    assert layer.last_aux_loss.item() == 0.0
+
+
+def test_deepseek_moe_layer_updates_expert_bias_in_train_mode() -> None:
+    layer = DeepSeekMoELayer(
+        d_model=4,
+        n_routed_experts=4,
+        n_shared_experts=0,
+        top_k=1,
+        expert_d_ff=4,
+        aux_loss_weight=0.0,
+        routing_mode="aux_loss_free_bias",
+        use_expert_bias=True,
+        expert_bias_update_rate=0.4,
+    )
+    layer.train()
+
+    with torch.no_grad():
+        layer.router.gate.weight.zero_()
+        layer.router.gate.weight[0, 0] = 10.0
+        layer.router.gate.weight[1, 0] = -10.0
+        layer.router.gate.weight[2, 0] = -20.0
+        layer.router.gate.weight[3, 0] = -30.0
+
+    hidden_states = torch.ones(1, 4, 4)
+
+    layer(hidden_states)
+
+    assert layer.last_routing_stats is not None
+    assert torch.equal(
+        layer.last_routing_stats.expert_selection_counts.cpu(),
+        torch.tensor([4.0, 0.0, 0.0, 0.0]),
+    )
+    assert layer.router.expert_bias[0].item() < 0.0
+    assert torch.all(layer.router.expert_bias[1:] > 0.0)
+
+
+def test_deepseek_moe_layer_does_not_update_expert_bias_in_eval_mode() -> None:
+    layer = DeepSeekMoELayer(
+        d_model=4,
+        n_routed_experts=4,
+        n_shared_experts=0,
+        top_k=1,
+        expert_d_ff=4,
+        aux_loss_weight=0.0,
+        routing_mode="aux_loss_free_bias",
+        use_expert_bias=True,
+        expert_bias_update_rate=0.4,
+    )
+    layer.eval()
+
+    with torch.no_grad():
+        layer.router.gate.weight.zero_()
+        layer.router.gate.weight[0, 0] = 10.0
+
+    before = layer.router.expert_bias.detach().clone()
+    hidden_states = torch.ones(1, 4, 4)
+
+    layer(hidden_states)
+
+    assert torch.equal(layer.router.expert_bias, before)
+
+
+def test_deepseek_moe_layer_expert_bias_update_clamps() -> None:
+    layer = DeepSeekMoELayer(
+        d_model=4,
+        n_routed_experts=4,
+        n_shared_experts=0,
+        top_k=1,
+        expert_d_ff=4,
+        aux_loss_weight=0.0,
+        routing_mode="aux_loss_free_bias",
+        use_expert_bias=True,
+        expert_bias_update_rate=10.0,
+        expert_bias_min=-0.25,
+        expert_bias_max=0.25,
+    )
+    layer.train()
+
+    with torch.no_grad():
+        layer.router.gate.weight.zero_()
+        layer.router.gate.weight[0, 0] = 10.0
+
+    hidden_states = torch.ones(1, 4, 4)
+
+    layer(hidden_states)
+
+    assert torch.all(layer.router.expert_bias >= -0.25)
+    assert torch.all(layer.router.expert_bias <= 0.25)
+    assert layer.router.expert_bias[0].item() == -0.25
+    assert torch.all(layer.router.expert_bias[1:] == 0.25)
 
 
 def test_deepseek_moe_layer_backward_reaches_router_and_selected_experts() -> None:
@@ -419,6 +566,132 @@ def test_build_ffn_creates_deepseek_moe_layer_from_config() -> None:
     ],
 )
 def test_gpt_config_rejects_invalid_moe_fields(
+    kwargs: dict[str, Any],
+    match: str,
+) -> None:
+    base_kwargs: dict[str, Any] = {
+        "vocab_size": 128,
+        "block_size": 16,
+        "n_layers": 1,
+        "n_heads": 2,
+        "d_model": 16,
+        "d_ff": 64,
+        "dropout": 0.0,
+        "ffn_type": "moe",
+        "n_routed_experts": 4,
+        "n_shared_experts": 1,
+        "moe_top_k": 2,
+        "moe_expert_d_ff": 32,
+        "moe_router_score": "softmax",
+        "moe_normalize_top_k_weights": True,
+        "moe_aux_loss_weight": 0.01,
+        "moe_drop_tokens": False,
+    }
+    base_kwargs.update(kwargs)
+
+    with pytest.raises(ValueError, match=match):
+        GPTConfig(**base_kwargs)
+
+
+def test_gpt_config_defaults_to_aux_loss_routing_mode() -> None:
+    config = tiny_moe_config()
+
+    assert config.moe_routing_mode == "aux_loss"
+    assert config.moe_use_expert_bias is False
+    assert config.moe_expert_bias_update_rate == 0.0
+    assert config.moe_expert_bias_update_interval == 1
+    assert config.moe_expert_bias_min == -1.0
+    assert config.moe_expert_bias_max == 1.0
+
+
+def test_gpt_config_accepts_aux_loss_free_bias_routing_mode() -> None:
+    config = GPTConfig(
+        vocab_size=128,
+        block_size=16,
+        n_layers=1,
+        n_heads=2,
+        d_model=16,
+        d_ff=64,
+        dropout=0.0,
+        ffn_type="moe",
+        n_routed_experts=4,
+        n_shared_experts=1,
+        moe_top_k=2,
+        moe_expert_d_ff=32,
+        moe_router_score="softmax",
+        moe_normalize_top_k_weights=True,
+        moe_aux_loss_weight=0.0,
+        moe_drop_tokens=False,
+        moe_routing_mode="aux_loss_free_bias",
+        moe_use_expert_bias=True,
+        moe_expert_bias_update_rate=0.001,
+        moe_expert_bias_update_interval=1,
+        moe_expert_bias_min=-0.5,
+        moe_expert_bias_max=0.5,
+    )
+
+    assert config.moe_routing_mode == "aux_loss_free_bias"
+    assert config.moe_use_expert_bias is True
+    assert config.moe_aux_loss_weight == 0.0
+    assert config.moe_expert_bias_update_rate == 0.001
+    assert config.moe_expert_bias_min == -0.5
+    assert config.moe_expert_bias_max == 0.5
+
+
+@pytest.mark.parametrize(
+    ("kwargs", "match"),
+    [
+        ({"moe_routing_mode": "bad"}, "moe_routing_mode must be one of"),
+        (
+            {"moe_use_expert_bias": True},
+            "moe_use_expert_bias must be false",
+        ),
+        (
+            {"moe_expert_bias_update_rate": 0.001},
+            "moe_expert_bias_update_rate must be 0.0",
+        ),
+        (
+            {
+                "moe_routing_mode": "aux_loss_free_bias",
+                "moe_use_expert_bias": False,
+                "moe_aux_loss_weight": 0.0,
+                "moe_expert_bias_update_rate": 0.001,
+            },
+            "moe_use_expert_bias must be true",
+        ),
+        (
+            {
+                "moe_routing_mode": "aux_loss_free_bias",
+                "moe_use_expert_bias": True,
+                "moe_aux_loss_weight": 0.01,
+                "moe_expert_bias_update_rate": 0.001,
+            },
+            "moe_aux_loss_weight must be 0.0",
+        ),
+        (
+            {
+                "moe_routing_mode": "aux_loss_free_bias",
+                "moe_use_expert_bias": True,
+                "moe_aux_loss_weight": 0.0,
+                "moe_expert_bias_update_rate": 0.0,
+            },
+            "moe_expert_bias_update_rate must be positive",
+        ),
+        (
+            {"moe_expert_bias_update_rate": -0.001},
+            "moe_expert_bias_update_rate must be nonnegative",
+        ),
+        (
+            {"moe_expert_bias_update_interval": 0},
+            "moe_expert_bias_update_interval must be positive",
+        ),
+        (
+            {"moe_expert_bias_min": 1.0, "moe_expert_bias_max": 1.0},
+            "moe_expert_bias_min must be less than",
+        ),
+    ],
+)
+def test_gpt_config_rejects_invalid_v3_routing_fields(
     kwargs: dict[str, Any],
     match: str,
 ) -> None:

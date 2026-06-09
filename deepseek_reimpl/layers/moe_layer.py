@@ -24,6 +24,10 @@ class MoERoutingStats:
     routing_entropy: torch.Tensor
     mean_router_probability: torch.Tensor
     aux_loss: torch.Tensor
+    routing_mode: str
+    expert_bias: torch.Tensor | None
+    expert_bias_update_rate: float
+    expert_bias_update_interval: int
 
 
 class DeepSeekMoELayer(nn.Module):
@@ -54,6 +58,12 @@ class DeepSeekMoELayer(nn.Module):
         router_score: str = "softmax",
         normalize_top_k_weights: bool = True,
         aux_loss_weight: float = 0.01,
+        routing_mode: str = "aux_loss",
+        use_expert_bias: bool = False,
+        expert_bias_update_rate: float = 0.0,
+        expert_bias_update_interval: int = 1,
+        expert_bias_min: float = -1.0,
+        expert_bias_max: float = 1.0,
     ) -> None:
         super().__init__()
 
@@ -79,12 +89,49 @@ class DeepSeekMoELayer(nn.Module):
             msg = "aux_loss_weight must be nonnegative"
             raise ValueError(msg)
 
+        valid_routing_modes = {"aux_loss", "aux_loss_free_bias"}
+        if routing_mode not in valid_routing_modes:
+            msg = f"routing_mode must be one of {sorted(valid_routing_modes)}"
+            raise ValueError(msg)
+        if expert_bias_update_rate < 0.0:
+            msg = "expert_bias_update_rate must be nonnegative"
+            raise ValueError(msg)
+        if expert_bias_update_interval <= 0:
+            msg = "expert_bias_update_interval must be positive"
+            raise ValueError(msg)
+        if expert_bias_min >= expert_bias_max:
+            msg = "expert_bias_min must be less than expert_bias_max"
+            raise ValueError(msg)
+        if routing_mode == "aux_loss" and use_expert_bias:
+            msg = "use_expert_bias must be false when routing_mode='aux_loss'"
+            raise ValueError(msg)
+        if routing_mode == "aux_loss" and expert_bias_update_rate != 0.0:
+            msg = "expert_bias_update_rate must be 0.0 when " "routing_mode='aux_loss'"
+            raise ValueError(msg)
+        if routing_mode == "aux_loss_free_bias" and not use_expert_bias:
+            msg = "use_expert_bias must be true when routing_mode='aux_loss_free_bias'"
+            raise ValueError(msg)
+        if routing_mode == "aux_loss_free_bias" and aux_loss_weight != 0.0:
+            msg = "aux_loss_weight must be 0.0 when routing_mode='aux_loss_free_bias'"
+            raise ValueError(msg)
+        if routing_mode == "aux_loss_free_bias" and expert_bias_update_rate <= 0.0:
+            msg = (
+                "expert_bias_update_rate must be positive when " "routing_mode='aux_loss_free_bias'"
+            )
+            raise ValueError(msg)
+
         self.d_model = d_model
         self.n_routed_experts = n_routed_experts
         self.n_shared_experts = n_shared_experts
         self.top_k = top_k
         self.expert_d_ff = expert_d_ff
         self.aux_loss_weight = aux_loss_weight
+        self.routing_mode = routing_mode
+        self.use_expert_bias = use_expert_bias
+        self.expert_bias_update_rate = expert_bias_update_rate
+        self.expert_bias_update_interval = expert_bias_update_interval
+        self.expert_bias_min = expert_bias_min
+        self.expert_bias_max = expert_bias_max
 
         self.router = TopKRouter(
             d_model=d_model,
@@ -92,6 +139,9 @@ class DeepSeekMoELayer(nn.Module):
             top_k=top_k,
             score_type=router_score,
             normalize_top_k_weights=normalize_top_k_weights,
+            use_expert_bias=use_expert_bias,
+            expert_bias_min=expert_bias_min,
+            expert_bias_max=expert_bias_max,
         )
         self.routed_experts = nn.ModuleList(
             [
@@ -139,6 +189,9 @@ class DeepSeekMoELayer(nn.Module):
         self.last_aux_loss = aux_loss
         self.last_routing_stats = stats
 
+        if self.training and self.routing_mode == "aux_loss_free_bias":
+            self._update_expert_bias(stats)
+
         return output.reshape(batch_size, seq_len, hidden_dim)
 
     def _dispatch_to_routed_experts(
@@ -172,6 +225,27 @@ class DeepSeekMoELayer(nn.Module):
             shared_output = shared_output + expert(flat_hidden)
 
         return shared_output
+
+    def _update_expert_bias(self, stats: MoERoutingStats) -> None:
+        """Update non-gradient expert bias from latest observed routing load."""
+        if not self.use_expert_bias:
+            return
+
+        if stats.tokens <= 0:
+            return
+
+        target_fraction = 1.0 / float(self.n_routed_experts)
+        load_error = target_fraction - stats.expert_selection_fraction.to(
+            device=self.router.expert_bias.device,
+            dtype=self.router.expert_bias.dtype,
+        )
+
+        with torch.no_grad():
+            self.router.expert_bias.add_(self.expert_bias_update_rate * load_error)
+            self.router.expert_bias.clamp_(
+                min=self.expert_bias_min,
+                max=self.expert_bias_max,
+            )
 
     def _compute_aux_loss(self, router_output: RouterOutput) -> torch.Tensor:
         if self.aux_loss_weight == 0.0:
@@ -209,6 +283,8 @@ class DeepSeekMoELayer(nn.Module):
         routing_entropy = entropy_per_token.mean()
         mean_router_probability = router_output.scores.mean(dim=0)
 
+        expert_bias = self.router.expert_bias.detach().clone() if self.use_expert_bias else None
+
         return MoERoutingStats(
             tokens=tokens,
             n_routed_experts=self.n_routed_experts,
@@ -219,4 +295,8 @@ class DeepSeekMoELayer(nn.Module):
             routing_entropy=routing_entropy.detach(),
             mean_router_probability=mean_router_probability.detach(),
             aux_loss=aux_loss.detach(),
+            routing_mode=self.routing_mode,
+            expert_bias=expert_bias,
+            expert_bias_update_rate=self.expert_bias_update_rate,
+            expert_bias_update_interval=self.expert_bias_update_interval,
         )

@@ -36,6 +36,12 @@ class GPTConfig:
     moe_normalize_top_k_weights: bool = True
     moe_aux_loss_weight: float = 0.0
     moe_drop_tokens: bool = False
+    moe_routing_mode: str = "aux_loss"
+    moe_use_expert_bias: bool = False
+    moe_expert_bias_update_rate: float = 0.0
+    moe_expert_bias_update_interval: int = 1
+    moe_expert_bias_min: float = -1.0
+    moe_expert_bias_max: float = 1.0
 
     def __post_init__(self) -> None:
         """Validate architectural configuration values."""
@@ -166,6 +172,49 @@ class GPTConfig:
         if self.moe_drop_tokens:
             msg = "moe_drop_tokens is reserved for a later capacity-limited MoE phase"
             raise ValueError(msg)
+
+        valid_routing_modes = {"aux_loss", "aux_loss_free_bias"}
+        if self.moe_routing_mode not in valid_routing_modes:
+            msg = f"moe_routing_mode must be one of {sorted(valid_routing_modes)}"
+            raise ValueError(msg)
+
+        if self.moe_expert_bias_update_rate < 0.0:
+            msg = "moe_expert_bias_update_rate must be nonnegative"
+            raise ValueError(msg)
+
+        if self.moe_expert_bias_update_interval <= 0:
+            msg = "moe_expert_bias_update_interval must be positive"
+            raise ValueError(msg)
+
+        if self.moe_expert_bias_min >= self.moe_expert_bias_max:
+            msg = "moe_expert_bias_min must be less than moe_expert_bias_max"
+            raise ValueError(msg)
+
+        if self.moe_routing_mode == "aux_loss":
+            if self.moe_use_expert_bias:
+                msg = "moe_use_expert_bias must be false when moe_routing_mode='aux_loss'"
+                raise ValueError(msg)
+            if self.moe_expert_bias_update_rate != 0.0:
+                msg = "moe_expert_bias_update_rate must be 0.0 when " "moe_routing_mode='aux_loss'"
+                raise ValueError(msg)
+
+        if self.moe_routing_mode == "aux_loss_free_bias":
+            if not self.moe_use_expert_bias:
+                msg = (
+                    "moe_use_expert_bias must be true when " "moe_routing_mode='aux_loss_free_bias'"
+                )
+                raise ValueError(msg)
+            if self.moe_aux_loss_weight != 0.0:
+                msg = (
+                    "moe_aux_loss_weight must be 0.0 when " "moe_routing_mode='aux_loss_free_bias'"
+                )
+                raise ValueError(msg)
+            if self.moe_expert_bias_update_rate <= 0.0:
+                msg = (
+                    "moe_expert_bias_update_rate must be positive when "
+                    "moe_routing_mode='aux_loss_free_bias'"
+                )
+                raise ValueError(msg)
 
     @property
     def head_dim(self) -> int:

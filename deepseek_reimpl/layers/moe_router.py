@@ -40,6 +40,9 @@ class TopKRouter(nn.Module):
         top_k: int,
         score_type: str = "softmax",
         normalize_top_k_weights: bool = True,
+        use_expert_bias: bool = False,
+        expert_bias_min: float = -1.0,
+        expert_bias_max: float = 1.0,
     ) -> None:
         super().__init__()
 
@@ -58,13 +61,20 @@ class TopKRouter(nn.Module):
         if score_type != "softmax":
             msg = "TopKRouter currently supports only score_type='softmax'"
             raise ValueError(msg)
+        if expert_bias_min >= expert_bias_max:
+            msg = "expert_bias_min must be less than expert_bias_max"
+            raise ValueError(msg)
 
         self.d_model = d_model
         self.n_experts = n_experts
         self.top_k = top_k
         self.score_type = score_type
         self.normalize_top_k_weights = normalize_top_k_weights
+        self.use_expert_bias = use_expert_bias
+        self.expert_bias_min = expert_bias_min
+        self.expert_bias_max = expert_bias_max
         self.gate = nn.Linear(d_model, n_experts, bias=False)
+        self.register_buffer("expert_bias", torch.zeros(n_experts))
 
     def forward(self, hidden_states: torch.Tensor) -> RouterOutput:
         """Route flattened hidden states to top-k experts.
@@ -92,7 +102,15 @@ class TopKRouter(nn.Module):
         logits = self.gate(hidden_states)
         scores = torch.softmax(logits, dim=-1)
 
-        top_k_weights, top_k_indices = torch.topk(scores, k=self.top_k, dim=-1)
+        selection_scores = scores
+        if self.use_expert_bias:
+            selection_scores = selection_scores + self.expert_bias.to(
+                device=scores.device,
+                dtype=scores.dtype,
+            )
+
+        _, top_k_indices = torch.topk(selection_scores, k=self.top_k, dim=-1)
+        top_k_weights = torch.gather(scores, dim=-1, index=top_k_indices)
 
         if self.normalize_top_k_weights:
             denominator = top_k_weights.sum(dim=-1, keepdim=True).clamp_min(
