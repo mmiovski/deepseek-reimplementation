@@ -303,7 +303,10 @@ def test_mla_moe_gpt_backward_reaches_router_experts_and_embeddings() -> None:
     assert model.token_embedding.weight.grad is not None
     assert torch.isfinite(model.token_embedding.weight.grad).all()
 
+    from deepseek_reimpl.layers.moe_layer import DeepSeekMoELayer
+
     first_block = model.blocks[0]
+    assert isinstance(first_block.ffn, DeepSeekMoELayer)
     assert first_block.ffn.router.gate.weight.grad is not None
     assert torch.isfinite(first_block.ffn.router.gate.weight.grad).all()
 
