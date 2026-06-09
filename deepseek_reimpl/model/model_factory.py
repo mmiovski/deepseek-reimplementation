@@ -21,6 +21,7 @@ def build_model_from_config(config: dict[str, Any]) -> nn.Module:
         "moe_gpt",
         "mla_moe_gpt",
         "v3_routing_gpt",
+        "mtp_gpt",
     }:
         return BaselineGPT(GPTConfig.from_dict(config))
 

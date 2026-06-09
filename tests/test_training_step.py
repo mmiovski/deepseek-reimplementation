@@ -6,6 +6,8 @@ import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
 
 from deepseek_reimpl.eval.language_model_eval import evaluate_language_model
+from deepseek_reimpl.model.baseline_gpt import BaselineGPT
+from deepseek_reimpl.model.config import GPTConfig
 from deepseek_reimpl.train.losses import next_token_cross_entropy
 from deepseek_reimpl.train.optim import build_adamw, build_optimizer
 from deepseek_reimpl.train.train_utils import (
@@ -677,3 +679,108 @@ def test_train_step_reports_zero_auxiliary_loss_for_v3_routing_mode() -> None:
 
     assert metrics.aux_loss == 0.0
     assert metrics.loss == metrics.lm_loss
+
+
+def test_train_step_reports_mtp_loss_for_mtp_enabled_model() -> None:
+    config = GPTConfig(
+        vocab_size=31,
+        block_size=8,
+        n_layers=2,
+        n_heads=4,
+        d_model=32,
+        d_ff=64,
+        mtp_enabled=True,
+        mtp_num_future_tokens=2,
+        mtp_loss_weight=0.5,
+        mtp_share_lm_head=False,
+    )
+    model = BaselineGPT(config)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3)
+    input_ids = torch.randint(0, config.vocab_size, (2, 6))
+    targets = torch.randint(0, config.vocab_size, (2, 6))
+
+    metrics = train_step(
+        model,
+        (input_ids, targets),
+        optimizer,
+        device=torch.device("cpu"),
+    )
+
+    assert metrics.mtp_loss is not None
+    assert metrics.mtp_per_horizon_losses is not None
+    assert len(metrics.mtp_per_horizon_losses) == config.mtp_num_future_tokens
+    assert metrics.aux_loss is None
+    assert metrics.loss == pytest.approx(
+        metrics.lm_loss + config.mtp_loss_weight * metrics.mtp_loss
+    )
+
+
+def test_train_step_backpropagates_to_mtp_head() -> None:
+    config = GPTConfig(
+        vocab_size=31,
+        block_size=8,
+        n_layers=2,
+        n_heads=4,
+        d_model=32,
+        d_ff=64,
+        mtp_enabled=True,
+        mtp_num_future_tokens=2,
+        mtp_loss_weight=0.5,
+        mtp_share_lm_head=False,
+    )
+    model = BaselineGPT(config)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3)
+    input_ids = torch.randint(0, config.vocab_size, (2, 6))
+    targets = torch.randint(0, config.vocab_size, (2, 6))
+
+    _ = train_step(
+        model,
+        (input_ids, targets),
+        optimizer,
+        device=torch.device("cpu"),
+    )
+
+    assert model.mtp_head is not None
+    assert model.mtp_head.heads[0].weight.grad is not None
+
+
+def test_train_loop_summary_reports_final_mtp_metrics() -> None:
+    config = GPTConfig(
+        vocab_size=31,
+        block_size=8,
+        n_layers=2,
+        n_heads=4,
+        d_model=32,
+        d_ff=64,
+        mtp_enabled=True,
+        mtp_num_future_tokens=2,
+        mtp_loss_weight=0.5,
+        mtp_share_lm_head=False,
+    )
+    model = BaselineGPT(config)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3)
+
+    input_ids = torch.randint(0, config.vocab_size, (4, 6))
+    targets = torch.randint(0, config.vocab_size, (4, 6))
+    dataloader = DataLoader(TensorDataset(input_ids, targets), batch_size=2)
+
+    summary = train_loop(
+        model,
+        dataloader,
+        optimizer,
+        device=torch.device("cpu"),
+        config=TrainingLoopConfig(
+            max_steps=1,
+            max_tokens=None,
+            eval_interval=None,
+            log_interval=1,
+            eval_batches=1,
+        ),
+    )
+
+    assert summary.final_mtp_loss is not None
+    assert summary.final_mtp_per_horizon_losses is not None
+    assert len(summary.final_mtp_per_horizon_losses) == config.mtp_num_future_tokens
+    assert summary.final_train_loss == pytest.approx(
+        summary.final_lm_loss + config.mtp_loss_weight * summary.final_mtp_loss
+    )

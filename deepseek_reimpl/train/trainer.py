@@ -13,7 +13,7 @@ import torch.nn as nn
 from deepseek_reimpl.eval.language_model_eval import EvaluationMetrics, evaluate_language_model
 from deepseek_reimpl.instrumentation.memory import get_peak_memory_bytes, reset_peak_memory
 from deepseek_reimpl.instrumentation.throughput import ThroughputMeter
-from deepseek_reimpl.train.losses import next_token_cross_entropy
+from deepseek_reimpl.train.losses import multi_token_cross_entropy, next_token_cross_entropy
 from deepseek_reimpl.train.train_utils import count_batch_tokens, move_batch_to_device
 
 
@@ -24,6 +24,8 @@ class TrainStepMetrics:
     loss: float
     lm_loss: float
     aux_loss: float | None
+    mtp_loss: float | None
+    mtp_per_horizon_losses: tuple[float, ...] | None
     num_tokens: int
     grad_norm: float | None
 
@@ -47,6 +49,9 @@ class TrainingSummary:
     steps: int
     train_tokens: int
     final_train_loss: float
+    final_lm_loss: float
+    final_mtp_loss: float | None
+    final_mtp_per_horizon_losses: tuple[float, ...] | None
     train_tokens_per_second: float
     peak_memory_bytes: int | None
     validation_loss: float | None
@@ -76,6 +81,22 @@ def _get_model_auxiliary_loss(model: nn.Module) -> torch.Tensor | None:
     return aux_loss
 
 
+def _model_uses_mtp(model: nn.Module) -> bool:
+    """Return whether a model config enables multi-token prediction."""
+    config = getattr(model, "config", None)
+    return bool(getattr(config, "mtp_enabled", False))
+
+
+def _get_mtp_loss_weight(model: nn.Module) -> float:
+    """Return configured MTP loss weight for an MTP-enabled model."""
+    config = getattr(model, "config", None)
+    loss_weight = getattr(config, "mtp_loss_weight", None)
+    if not isinstance(loss_weight, (int, float)):
+        msg = "MTP-enabled models must expose config.mtp_loss_weight as a number"
+        raise TypeError(msg)
+    return float(loss_weight)
+
+
 def train_step(
     model: nn.Module,
     batch: Any,
@@ -93,10 +114,34 @@ def train_step(
     num_tokens = count_batch_tokens((input_ids, targets))
 
     optimizer.zero_grad(set_to_none=True)
-    logits = model(input_ids)
-    lm_loss = next_token_cross_entropy(logits, targets)
+
+    mtp_loss: torch.Tensor | None = None
+    mtp_per_horizon_losses: tuple[float, ...] | None = None
+
+    if _model_uses_mtp(model):
+        forward_mtp = getattr(model, "forward_mtp", None)
+        if not callable(forward_mtp):
+            msg = "MTP-enabled models must expose forward_mtp(input_ids)"
+            raise TypeError(msg)
+
+        mtp_output = forward_mtp(input_ids)
+        logits = mtp_output.next_token_logits
+        lm_loss = next_token_cross_entropy(logits, targets)
+        mtp_loss, mtp_per_horizon_losses = multi_token_cross_entropy(
+            mtp_output.future_token_logits,
+            input_ids,
+        )
+    else:
+        logits = model(input_ids)
+        lm_loss = next_token_cross_entropy(logits, targets)
+
     aux_loss = _get_model_auxiliary_loss(model)
-    loss = lm_loss if aux_loss is None else lm_loss + aux_loss
+    loss = lm_loss
+    if aux_loss is not None:
+        loss = loss + aux_loss
+    if mtp_loss is not None:
+        loss = loss + _get_mtp_loss_weight(model) * mtp_loss
+
     loss.backward()
 
     grad_norm: float | None = None
@@ -110,6 +155,8 @@ def train_step(
         loss=float(loss.item()),
         lm_loss=float(lm_loss.item()),
         aux_loss=None if aux_loss is None else float(aux_loss.item()),
+        mtp_loss=None if mtp_loss is None else float(mtp_loss.item()),
+        mtp_per_horizon_losses=mtp_per_horizon_losses,
         num_tokens=num_tokens,
         grad_norm=grad_norm,
     )
@@ -156,6 +203,9 @@ def train_loop(
     steps = 0
     train_tokens = 0
     final_train_loss = float("nan")
+    final_lm_loss = float("nan")
+    final_mtp_loss: float | None = None
+    final_mtp_per_horizon_losses: tuple[float, ...] | None = None
     validation_metrics: EvaluationMetrics | None = None
     test_metrics: EvaluationMetrics | None = None
 
@@ -176,6 +226,9 @@ def train_loop(
         steps += 1
         train_tokens += step_metrics.num_tokens
         final_train_loss = step_metrics.loss
+        final_lm_loss = step_metrics.lm_loss
+        final_mtp_loss = step_metrics.mtp_loss
+        final_mtp_per_horizon_losses = step_metrics.mtp_per_horizon_losses
         throughput.update(step_metrics.num_tokens)
 
         if log_callback is not None and steps % config.log_interval == 0:
@@ -186,6 +239,8 @@ def train_loop(
                     "train_loss": step_metrics.loss,
                     "lm_loss": step_metrics.lm_loss,
                     "aux_loss": step_metrics.aux_loss,
+                    "mtp_loss": step_metrics.mtp_loss,
+                    "mtp_per_horizon_losses": step_metrics.mtp_per_horizon_losses,
                     "tokens": train_tokens,
                     "tokens_per_second": snapshot.tokens_per_second,
                     "grad_norm": step_metrics.grad_norm,
@@ -229,6 +284,9 @@ def train_loop(
         steps=steps,
         train_tokens=train_tokens,
         final_train_loss=final_train_loss,
+        final_lm_loss=final_lm_loss,
+        final_mtp_loss=final_mtp_loss,
+        final_mtp_per_horizon_losses=final_mtp_per_horizon_losses,
         train_tokens_per_second=snapshot.tokens_per_second,
         peak_memory_bytes=get_peak_memory_bytes(device),
         validation_loss=None if validation_metrics is None else validation_metrics.loss,

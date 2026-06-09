@@ -42,6 +42,10 @@ class GPTConfig:
     moe_expert_bias_update_interval: int = 1
     moe_expert_bias_min: float = -1.0
     moe_expert_bias_max: float = 1.0
+    mtp_enabled: bool = False
+    mtp_num_future_tokens: int = 0
+    mtp_loss_weight: float = 0.0
+    mtp_share_lm_head: bool = True
 
     def __post_init__(self) -> None:
         """Validate architectural configuration values."""
@@ -92,6 +96,16 @@ class GPTConfig:
 
         if self.ffn_type == "moe":
             self._validate_moe_config()
+
+        if self.mtp_enabled:
+            self._validate_mtp_config()
+        else:
+            if self.mtp_num_future_tokens != 0:
+                msg = "mtp_num_future_tokens must be 0 when mtp_enabled is false"
+                raise ValueError(msg)
+            if self.mtp_loss_weight != 0.0:
+                msg = "mtp_loss_weight must be 0.0 when mtp_enabled is false"
+                raise ValueError(msg)
 
     def _validate_mla_config(self) -> None:
         """Validate MLA-specific architecture fields."""
@@ -215,6 +229,24 @@ class GPTConfig:
                     "moe_routing_mode='aux_loss_free_bias'"
                 )
                 raise ValueError(msg)
+
+    def _validate_mtp_config(self) -> None:
+        """Validate multi-token-prediction configuration fields."""
+        if self.mtp_num_future_tokens <= 0:
+            msg = "mtp_num_future_tokens must be positive when mtp_enabled is true"
+            raise ValueError(msg)
+
+        if self.mtp_num_future_tokens >= self.block_size:
+            msg = "mtp_num_future_tokens must be smaller than block_size"
+            raise ValueError(msg)
+
+        if self.mtp_loss_weight <= 0.0:
+            msg = "mtp_loss_weight must be positive when mtp_enabled is true"
+            raise ValueError(msg)
+
+        if self.mtp_share_lm_head:
+            msg = "mtp_share_lm_head=True is reserved for a later shared-head MTP variant"
+            raise ValueError(msg)
 
     @property
     def head_dim(self) -> int:

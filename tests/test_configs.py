@@ -2,6 +2,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
+from deepseek_reimpl.model.config import GPTConfig
 from deepseek_reimpl.utils.config import (
     load_yaml_config,
     require_keys,
@@ -666,6 +669,136 @@ def test_v3_routing_gpu_smoke_experiment_config_loads() -> None:
 
     validate_relative_paths(
         experiment_config,
+        (
+            "model_config",
+            "data_config",
+            "tokenizer_config",
+            "train_config",
+            "output_dir",
+            "metrics_dir",
+            "checkpoint_dir",
+        ),
+    )
+
+
+def test_gpt_config_accepts_valid_mtp_config() -> None:
+    config = GPTConfig(
+        vocab_size=100,
+        block_size=16,
+        n_layers=2,
+        n_heads=4,
+        d_model=32,
+        d_ff=64,
+        mtp_enabled=True,
+        mtp_num_future_tokens=2,
+        mtp_loss_weight=0.5,
+        mtp_share_lm_head=False,
+    )
+
+    assert config.mtp_enabled is True
+    assert config.mtp_num_future_tokens == 2
+    assert config.mtp_loss_weight == 0.5
+    assert config.mtp_share_lm_head is False
+
+
+def test_gpt_config_rejects_disabled_mtp_with_future_tokens() -> None:
+    with pytest.raises(ValueError, match="mtp_num_future_tokens must be 0"):
+        GPTConfig(
+            vocab_size=100,
+            block_size=16,
+            n_layers=2,
+            n_heads=4,
+            d_model=32,
+            d_ff=64,
+            mtp_num_future_tokens=2,
+        )
+
+
+def test_gpt_config_rejects_enabled_mtp_without_positive_horizons() -> None:
+    with pytest.raises(ValueError, match="mtp_num_future_tokens must be positive"):
+        GPTConfig(
+            vocab_size=100,
+            block_size=16,
+            n_layers=2,
+            n_heads=4,
+            d_model=32,
+            d_ff=64,
+            mtp_enabled=True,
+            mtp_num_future_tokens=0,
+            mtp_loss_weight=0.5,
+        )
+
+
+def test_gpt_config_rejects_enabled_mtp_with_invalid_loss_weight() -> None:
+    with pytest.raises(ValueError, match="mtp_loss_weight must be positive"):
+        GPTConfig(
+            vocab_size=100,
+            block_size=16,
+            n_layers=2,
+            n_heads=4,
+            d_model=32,
+            d_ff=64,
+            mtp_enabled=True,
+            mtp_num_future_tokens=2,
+            mtp_loss_weight=0.0,
+        )
+
+
+def test_gpt_config_rejects_mtp_horizon_at_or_above_block_size() -> None:
+    with pytest.raises(ValueError, match="mtp_num_future_tokens must be smaller than block_size"):
+        GPTConfig(
+            vocab_size=100,
+            block_size=16,
+            n_layers=2,
+            n_heads=4,
+            d_model=32,
+            d_ff=64,
+            mtp_enabled=True,
+            mtp_num_future_tokens=16,
+            mtp_loss_weight=0.5,
+        )
+
+
+def test_mtp_model_config_loads() -> None:
+    config = load_yaml_config("configs/model/mtp.yaml")
+    model_config = config["model"]
+
+    assert model_config["name"] == "mtp_gpt"
+    assert model_config["vocab_size"] == 10000
+    assert model_config["attention_type"] == "dense"
+    assert model_config["ffn_type"] == "swiglu"
+    assert model_config["mtp_enabled"] is True
+    assert model_config["mtp_num_future_tokens"] == 2
+    assert model_config["mtp_loss_weight"] == 0.3
+    assert model_config["mtp_share_lm_head"] is False
+
+
+def test_mtp_experiment_config_loads() -> None:
+    config = load_yaml_config("configs/experiment/05_mtp.yaml")
+    experiment = config["experiment"]
+
+    assert experiment["name"] == "05_mtp"
+    validate_relative_paths(
+        experiment,
+        (
+            "model_config",
+            "data_config",
+            "tokenizer_config",
+            "train_config",
+            "output_dir",
+            "metrics_dir",
+            "checkpoint_dir",
+        ),
+    )
+
+
+def test_mtp_gpu_smoke_experiment_config_loads() -> None:
+    config = load_yaml_config("configs/experiment/05_mtp_gpu_smoke.yaml")
+    experiment = config["experiment"]
+
+    assert experiment["name"] == "05_mtp_gpu_smoke"
+    validate_relative_paths(
+        experiment,
         (
             "model_config",
             "data_config",

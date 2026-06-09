@@ -430,3 +430,22 @@ def test_v3_routing_gpt_backward_reaches_router_experts_and_embeddings() -> None
     ]
     assert routed_grads
     assert all(torch.isfinite(grad).all() for grad in routed_grads)
+
+
+def test_model_factory_builds_mtp_gpt_and_preserves_forward_interface() -> None:
+    from deepseek_reimpl.model.model_factory import build_model_from_config
+
+    model = build_model_from_config(load_yaml_config("configs/model/mtp.yaml"))
+    input_ids = torch.randint(0, model.config.vocab_size, (2, 8))
+
+    logits = model(input_ids)
+    mtp_output = model.forward_mtp(input_ids)
+
+    assert logits.shape == (2, 8, model.config.vocab_size)
+    assert mtp_output.next_token_logits.shape == (2, 8, model.config.vocab_size)
+    assert mtp_output.future_token_logits.shape == (
+        model.config.mtp_num_future_tokens,
+        2,
+        8,
+        model.config.vocab_size,
+    )

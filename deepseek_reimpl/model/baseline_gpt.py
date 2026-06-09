@@ -5,6 +5,7 @@ from __future__ import annotations
 import torch
 from torch import nn
 
+from deepseek_reimpl.layers.mtp import MTPOutput, MultiTokenPredictionHead
 from deepseek_reimpl.model.config import GPTConfig
 from deepseek_reimpl.model.decoder_block import DecoderBlock, build_norm
 
@@ -26,12 +27,21 @@ class BaselineGPT(nn.Module):
         self.blocks = nn.ModuleList([DecoderBlock(config) for _ in range(config.n_layers)])
         self.final_norm = build_norm(config)
         self.lm_head = nn.Linear(config.d_model, config.vocab_size, bias=False)
+        self.mtp_head = (
+            MultiTokenPredictionHead(
+                d_model=config.d_model,
+                vocab_size=config.vocab_size,
+                num_future_tokens=config.mtp_num_future_tokens,
+            )
+            if config.mtp_enabled
+            else None
+        )
 
         if config.tie_embeddings:
             self.lm_head.weight = self.token_embedding.weight
 
-    def forward(self, input_ids: torch.Tensor) -> torch.Tensor:
-        """Return next-token logits for input token IDs."""
+    def _forward_hidden_states(self, input_ids: torch.Tensor) -> torch.Tensor:
+        """Return final decoder hidden states for input token IDs."""
         _, seq_len = input_ids.shape
 
         if seq_len > self.config.block_size:
@@ -50,8 +60,29 @@ class BaselineGPT(nn.Module):
             hidden_states = block(hidden_states)
 
         hidden_states = self.final_norm(hidden_states)
+        output: torch.Tensor = hidden_states
+        return output
+
+    def forward(self, input_ids: torch.Tensor) -> torch.Tensor:
+        """Return next-token logits for input token IDs."""
+        hidden_states = self._forward_hidden_states(input_ids)
         logits: torch.Tensor = self.lm_head(hidden_states)
         return logits
+
+    def forward_mtp(self, input_ids: torch.Tensor) -> MTPOutput:
+        """Return next-token and auxiliary future-token logits."""
+        if self.mtp_head is None:
+            msg = "forward_mtp requires mtp_enabled=True"
+            raise RuntimeError(msg)
+
+        hidden_states = self._forward_hidden_states(input_ids)
+        next_token_logits = self.lm_head(hidden_states)
+        future_token_logits = self.mtp_head(hidden_states)
+
+        return MTPOutput(
+            next_token_logits=next_token_logits,
+            future_token_logits=future_token_logits,
+        )
 
     def auxiliary_loss(self) -> torch.Tensor | None:
         """Return summed auxiliary losses from modules that expose them.
