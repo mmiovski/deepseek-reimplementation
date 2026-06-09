@@ -1,0 +1,10 @@
+experiment:
+  name: pilot_00_baseline
+  description: Local pilot fixed-budget dense GPT baseline.
+  model_config: configs/model/baseline_gpt.yaml
+  data_config: configs/data/wikitext2.yaml
+  tokenizer_config: configs/tokenizer/bpe_wikitext2.yaml
+  train_config: configs/train/local_pilot_fixed_budget.yaml
+  output_dir: results/raw_logs/pilot_00_baseline
+  metrics_dir: results/metrics/pilot_00_baseline
+  checkpoint_dir: checkpoints/pilot_00_baseline
