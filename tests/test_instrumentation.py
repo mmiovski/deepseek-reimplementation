@@ -127,3 +127,112 @@ def test_append_jsonl_creates_parent_and_appends_records(tmp_path: Path) -> None
     assert len(lines) == 2
     assert json.loads(lines[0]) == {"loss": 2.0, "step": 1}
     assert json.loads(lines[1]) == {"loss": 1.5, "step": 2}
+
+
+def test_activated_parameter_summary_dense_model_counts_all_parameters_active() -> None:
+    from deepseek_reimpl.instrumentation.activated_params import summarize_activated_parameters
+
+    config = GPTConfig(
+        vocab_size=128,
+        block_size=16,
+        n_layers=1,
+        n_heads=2,
+        d_model=32,
+        d_ff=64,
+        dropout=0.0,
+    )
+    model = BaselineGPT(config)
+
+    summary = summarize_activated_parameters(model)
+
+    assert summary.total_parameters == count_parameters(model)
+    assert summary.routed_expert_total_parameters == 0
+    assert summary.routed_expert_active_parameters_per_token == 0
+    assert summary.activated_parameters_per_token == summary.total_parameters
+    assert summary.activated_to_total_ratio == 1.0
+
+
+def test_activated_parameter_summary_moe_model_excludes_unselected_routed_experts() -> None:
+    from deepseek_reimpl.instrumentation.activated_params import summarize_activated_parameters
+
+    config = GPTConfig(
+        vocab_size=128,
+        block_size=16,
+        n_layers=1,
+        n_heads=2,
+        d_model=32,
+        d_ff=64,
+        dropout=0.0,
+        ffn_type="moe",
+        n_routed_experts=4,
+        n_shared_experts=1,
+        moe_top_k=2,
+        moe_expert_d_ff=16,
+        moe_aux_loss_weight=0.01,
+    )
+    model = BaselineGPT(config)
+
+    summary = summarize_activated_parameters(model)
+
+    assert summary.total_parameters == count_parameters(model)
+    assert summary.routed_expert_total_parameters > 0
+    assert summary.routed_expert_active_parameters_per_token > 0
+    assert summary.activated_parameters_per_token < summary.total_parameters
+    assert 0.0 < summary.activated_to_total_ratio < 1.0
+
+
+def test_routing_stats_summary_returns_none_before_moe_forward() -> None:
+    from deepseek_reimpl.instrumentation.routing_stats import summarize_routing_stats
+
+    config = GPTConfig(
+        vocab_size=128,
+        block_size=16,
+        n_layers=1,
+        n_heads=2,
+        d_model=32,
+        d_ff=64,
+        dropout=0.0,
+        ffn_type="moe",
+        n_routed_experts=4,
+        n_shared_experts=1,
+        moe_top_k=2,
+        moe_expert_d_ff=16,
+        moe_aux_loss_weight=0.01,
+    )
+    model = BaselineGPT(config)
+
+    assert summarize_routing_stats(model) is None
+
+
+def test_routing_stats_summary_collects_moe_layer_stats_after_forward() -> None:
+    from deepseek_reimpl.instrumentation.routing_stats import summarize_routing_stats
+
+    config = GPTConfig(
+        vocab_size=128,
+        block_size=16,
+        n_layers=2,
+        n_heads=2,
+        d_model=32,
+        d_ff=64,
+        dropout=0.0,
+        ffn_type="moe",
+        n_routed_experts=4,
+        n_shared_experts=1,
+        moe_top_k=2,
+        moe_expert_d_ff=16,
+        moe_aux_loss_weight=0.01,
+    )
+    model = BaselineGPT(config)
+    input_ids = torch.randint(0, config.vocab_size, (2, 5))
+
+    model(input_ids)
+    summary = summarize_routing_stats(model)
+
+    assert summary is not None
+    assert summary.moe_layers == 2
+    assert summary.tokens_per_layer == [10, 10]
+    assert summary.mean_routing_entropy is not None
+    assert summary.mean_expert_load_variance is not None
+    assert summary.mean_aux_loss is not None
+    assert len(summary.expert_selection_counts) == 2
+    assert len(summary.expert_selection_counts[0]) == 4

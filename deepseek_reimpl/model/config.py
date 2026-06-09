@@ -28,6 +28,14 @@ class GPTConfig:
     tie_embeddings: bool = True
     mla_kv_latent_dim: int | None = None
     mla_q_rope_dim: int | None = None
+    n_routed_experts: int | None = None
+    n_shared_experts: int = 0
+    moe_top_k: int | None = None
+    moe_expert_d_ff: int | None = None
+    moe_router_score: str = "softmax"
+    moe_normalize_top_k_weights: bool = True
+    moe_aux_loss_weight: float = 0.0
+    moe_drop_tokens: bool = False
 
     def __post_init__(self) -> None:
         """Validate architectural configuration values."""
@@ -63,7 +71,7 @@ class GPTConfig:
             msg = "positional_encoding must be one of " f"{sorted(valid_positional_encodings)}"
             raise ValueError(msg)
 
-        valid_ffn_types = {"swiglu", "gelu_mlp"}
+        valid_ffn_types = {"swiglu", "gelu_mlp", "moe"}
         if self.ffn_type not in valid_ffn_types:
             msg = f"ffn_type must be one of {sorted(valid_ffn_types)}"
             raise ValueError(msg)
@@ -75,6 +83,9 @@ class GPTConfig:
 
         if self.attention_type == "mla":
             self._validate_mla_config()
+
+        if self.ffn_type == "moe":
+            self._validate_moe_config()
 
     def _validate_mla_config(self) -> None:
         """Validate MLA-specific architecture fields."""
@@ -108,6 +119,52 @@ class GPTConfig:
 
         if self.mla_q_rope_dim % 2 != 0:
             msg = "mla_q_rope_dim must be even for rotary embeddings"
+            raise ValueError(msg)
+
+    def _validate_moe_config(self) -> None:
+        """Validate MoE-specific architecture fields."""
+        if self.n_routed_experts is None:
+            msg = "n_routed_experts must be set when ffn_type='moe'"
+            raise ValueError(msg)
+
+        if self.moe_top_k is None:
+            msg = "moe_top_k must be set when ffn_type='moe'"
+            raise ValueError(msg)
+
+        if self.moe_expert_d_ff is None:
+            msg = "moe_expert_d_ff must be set when ffn_type='moe'"
+            raise ValueError(msg)
+
+        if self.n_routed_experts <= 0:
+            msg = "n_routed_experts must be positive"
+            raise ValueError(msg)
+
+        if self.n_shared_experts < 0:
+            msg = "n_shared_experts must be nonnegative"
+            raise ValueError(msg)
+
+        if self.moe_top_k <= 0:
+            msg = "moe_top_k must be positive"
+            raise ValueError(msg)
+
+        if self.moe_top_k > self.n_routed_experts:
+            msg = "moe_top_k must be less than or equal to n_routed_experts"
+            raise ValueError(msg)
+
+        if self.moe_expert_d_ff <= 0:
+            msg = "moe_expert_d_ff must be positive"
+            raise ValueError(msg)
+
+        if self.moe_router_score != "softmax":
+            msg = "moe_router_score currently supports only 'softmax'"
+            raise ValueError(msg)
+
+        if self.moe_aux_loss_weight < 0.0:
+            msg = "moe_aux_loss_weight must be nonnegative"
+            raise ValueError(msg)
+
+        if self.moe_drop_tokens:
+            msg = "moe_drop_tokens is reserved for a later capacity-limited MoE phase"
             raise ValueError(msg)
 
     @property

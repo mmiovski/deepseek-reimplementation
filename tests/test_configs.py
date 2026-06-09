@@ -288,3 +288,127 @@ def test_mla_gpu_smoke_experiment_config_loads() -> None:
             "checkpoint_dir",
         ),
     )
+
+
+def test_moe_model_config_loads() -> None:
+    config_dict = load_yaml_config("configs/model/moe.yaml")
+    config = config_dict["model"]
+
+    require_keys(
+        config,
+        {
+            "name",
+            "vocab_size",
+            "block_size",
+            "n_layers",
+            "n_heads",
+            "d_model",
+            "d_ff",
+            "dropout",
+            "norm_type",
+            "positional_encoding",
+            "ffn_type",
+            "attention_type",
+            "n_routed_experts",
+            "n_shared_experts",
+            "moe_top_k",
+            "moe_expert_d_ff",
+            "moe_router_score",
+            "moe_normalize_top_k_weights",
+            "moe_aux_loss_weight",
+            "moe_drop_tokens",
+            "tie_embeddings",
+        },
+        name="MoE model config",
+    )
+
+    assert config["name"] == "moe_gpt"
+    assert config["vocab_size"] == 10000
+    assert config["ffn_type"] == "moe"
+    assert config["attention_type"] == "dense"
+    assert config["n_routed_experts"] == 8
+    assert config["n_shared_experts"] == 1
+    assert config["moe_top_k"] == 2
+    assert config["moe_expert_d_ff"] == 256
+    assert config["moe_aux_loss_weight"] == 0.01
+    assert config["moe_drop_tokens"] is False
+
+
+def test_moe_experiment_config_loads() -> None:
+    config = load_yaml_config("configs/experiment/02_moe.yaml")
+
+    require_keys(config, {"experiment"}, name="MoE experiment")
+    experiment_config = config["experiment"]
+
+    require_keys(
+        experiment_config,
+        {
+            "name",
+            "description",
+            "model_config",
+            "data_config",
+            "tokenizer_config",
+            "train_config",
+            "output_dir",
+            "metrics_dir",
+            "checkpoint_dir",
+        },
+        name="MoE experiment",
+    )
+
+    assert experiment_config["name"] == "02_moe"
+    assert experiment_config["model_config"] == "configs/model/moe.yaml"
+    assert experiment_config["train_config"] == "configs/train/cpu_smoke.yaml"
+
+    validate_relative_paths(
+        experiment_config,
+        (
+            "model_config",
+            "data_config",
+            "tokenizer_config",
+            "train_config",
+            "output_dir",
+            "metrics_dir",
+            "checkpoint_dir",
+        ),
+    )
+
+
+def test_moe_gpu_smoke_experiment_config_loads() -> None:
+    config = load_yaml_config("configs/experiment/02_moe_gpu_smoke.yaml")
+
+    require_keys(config, {"experiment"}, name="MoE GPU smoke experiment")
+    experiment_config = config["experiment"]
+
+    require_keys(
+        experiment_config,
+        {
+            "name",
+            "description",
+            "model_config",
+            "data_config",
+            "tokenizer_config",
+            "train_config",
+            "output_dir",
+            "metrics_dir",
+            "checkpoint_dir",
+        },
+        name="MoE GPU smoke experiment",
+    )
+
+    assert experiment_config["name"] == "02_moe_gpu_smoke"
+    assert experiment_config["model_config"] == "configs/model/moe.yaml"
+    assert experiment_config["train_config"] == "configs/train/gpu_smoke.yaml"
+
+    validate_relative_paths(
+        experiment_config,
+        (
+            "model_config",
+            "data_config",
+            "tokenizer_config",
+            "train_config",
+            "output_dir",
+            "metrics_dir",
+            "checkpoint_dir",
+        ),
+    )

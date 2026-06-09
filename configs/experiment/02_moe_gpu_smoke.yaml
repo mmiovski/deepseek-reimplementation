@@ -1,0 +1,10 @@
+experiment:
+  name: 02_moe_gpu_smoke
+  description: DeepSeekMoE-style GPT GPU smoke/control experiment.
+  model_config: configs/model/moe.yaml
+  data_config: configs/data/tinystories.yaml
+  tokenizer_config: configs/tokenizer/bpe_tiny.yaml
+  train_config: configs/train/gpu_smoke.yaml
+  output_dir: results/raw_logs/02_moe_gpu_smoke
+  metrics_dir: results/metrics/02_moe_gpu_smoke
+  checkpoint_dir: checkpoints/02_moe_gpu_smoke

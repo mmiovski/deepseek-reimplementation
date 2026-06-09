@@ -13,8 +13,10 @@ from torch.utils.data import DataLoader
 from deepseek_reimpl.data.collators import causal_lm_collate
 from deepseek_reimpl.data.datasets import LanguageModelingDataset
 from deepseek_reimpl.data.tokenization import encode_text_file
+from deepseek_reimpl.instrumentation.activated_params import summarize_activated_parameters
 from deepseek_reimpl.instrumentation.logging_utils import append_jsonl, write_json
 from deepseek_reimpl.instrumentation.parameters import count_parameters, count_trainable_parameters
+from deepseek_reimpl.instrumentation.routing_stats import summarize_routing_stats
 from deepseek_reimpl.model.model_factory import build_model_from_config
 from deepseek_reimpl.tokenizer.load_tokenizer import load_tokenizer
 from deepseek_reimpl.train.optim import build_optimizer
@@ -81,6 +83,18 @@ def _training_loop_config_from_mapping(train_config: Mapping[str, Any]) -> Train
 
 
 def _summary_to_dict(summary: TrainingSummary) -> dict[str, Any]:
+    return asdict(summary)
+
+
+def _activated_parameter_summary_to_dict(model: torch.nn.Module) -> dict[str, Any]:
+    summary = summarize_activated_parameters(model)
+    return asdict(summary)
+
+
+def _routing_stats_summary_to_dict(model: torch.nn.Module) -> dict[str, Any] | None:
+    summary = summarize_routing_stats(model)
+    if summary is None:
+        return None
     return asdict(summary)
 
 
@@ -151,6 +165,9 @@ def run_pretraining_from_experiment_config(experiment_config_path: str | Path) -
         log_callback=log_record,
     )
 
+    activated_parameter_summary = _activated_parameter_summary_to_dict(model)
+    routing_stats_summary = _routing_stats_summary_to_dict(model)
+
     summary_payload: dict[str, Any] = {
         "experiment_name": experiment_config["name"],
         "model_name": model_config["model"]["name"],
@@ -163,6 +180,8 @@ def run_pretraining_from_experiment_config(experiment_config_path: str | Path) -
         "precision": train_config["precision"],
         "total_parameters": count_parameters(model),
         "trainable_parameters": count_trainable_parameters(model),
+        "activated_parameters": activated_parameter_summary,
+        "routing_stats": routing_stats_summary,
         **_summary_to_dict(summary),
     }
 

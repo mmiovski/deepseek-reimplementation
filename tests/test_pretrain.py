@@ -178,3 +178,68 @@ experiment:
     lines = train_log_path.read_text(encoding="utf-8").splitlines()
 
     assert len(lines) == 2
+
+
+def test_pretraining_summary_helpers_include_dense_activated_metrics() -> None:
+    from deepseek_reimpl.model.baseline_gpt import BaselineGPT
+    from deepseek_reimpl.model.config import GPTConfig
+    from deepseek_reimpl.train.pretrain import (
+        _activated_parameter_summary_to_dict,
+        _routing_stats_summary_to_dict,
+    )
+
+    config = GPTConfig(
+        vocab_size=128,
+        block_size=16,
+        n_layers=1,
+        n_heads=2,
+        d_model=32,
+        d_ff=64,
+        dropout=0.0,
+    )
+    model = BaselineGPT(config)
+
+    activated = _activated_parameter_summary_to_dict(model)
+    routing_stats = _routing_stats_summary_to_dict(model)
+
+    assert activated["total_parameters"] > 0
+    assert activated["activated_parameters_per_token"] == activated["total_parameters"]
+    assert activated["activated_to_total_ratio"] == 1.0
+    assert routing_stats is None
+
+
+def test_pretraining_summary_helpers_include_moe_routing_metrics_after_forward() -> None:
+    from deepseek_reimpl.model.baseline_gpt import BaselineGPT
+    from deepseek_reimpl.model.config import GPTConfig
+    from deepseek_reimpl.train.pretrain import (
+        _activated_parameter_summary_to_dict,
+        _routing_stats_summary_to_dict,
+    )
+
+    config = GPTConfig(
+        vocab_size=128,
+        block_size=16,
+        n_layers=1,
+        n_heads=2,
+        d_model=32,
+        d_ff=64,
+        dropout=0.0,
+        ffn_type="moe",
+        n_routed_experts=4,
+        n_shared_experts=1,
+        moe_top_k=2,
+        moe_expert_d_ff=16,
+        moe_aux_loss_weight=0.01,
+    )
+    model = BaselineGPT(config)
+    input_ids = torch.randint(0, config.vocab_size, (2, 5))
+
+    model(input_ids)
+    activated = _activated_parameter_summary_to_dict(model)
+    routing_stats = _routing_stats_summary_to_dict(model)
+
+    assert activated["routed_expert_total_parameters"] > 0
+    assert activated["activated_parameters_per_token"] < activated["total_parameters"]
+    assert routing_stats is not None
+    assert routing_stats["moe_layers"] == 1
+    assert routing_stats["mean_aux_loss"] is not None

@@ -52,3 +52,21 @@ class BaselineGPT(nn.Module):
         hidden_states = self.final_norm(hidden_states)
         logits: torch.Tensor = self.lm_head(hidden_states)
         return logits
+
+    def auxiliary_loss(self) -> torch.Tensor | None:
+        """Return summed auxiliary losses from modules that expose them.
+
+        Dense and MLA-only models return None. MoE models return the sum of the
+        latest per-layer auxiliary load-balancing losses after a forward pass.
+        """
+        aux_losses: list[torch.Tensor] = []
+
+        for module in self.modules():
+            aux_loss = getattr(module, "last_aux_loss", None)
+            if isinstance(aux_loss, torch.Tensor):
+                aux_losses.append(aux_loss)
+
+        if not aux_losses:
+            return None
+
+        return torch.stack(aux_losses).sum()

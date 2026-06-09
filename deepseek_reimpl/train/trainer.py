@@ -22,6 +22,8 @@ class TrainStepMetrics:
     """Metrics returned from one optimizer step."""
 
     loss: float
+    lm_loss: float
+    aux_loss: float | None
     num_tokens: int
     grad_norm: float | None
 
@@ -53,6 +55,27 @@ class TrainingSummary:
     test_perplexity: float | None
 
 
+def _get_model_auxiliary_loss(model: nn.Module) -> torch.Tensor | None:
+    """Return optional scalar auxiliary loss exposed by a model."""
+    auxiliary_loss_fn = getattr(model, "auxiliary_loss", None)
+    if not callable(auxiliary_loss_fn):
+        return None
+
+    aux_loss = auxiliary_loss_fn()
+    if aux_loss is None:
+        return None
+
+    if not isinstance(aux_loss, torch.Tensor):
+        msg = "model auxiliary_loss() must return a torch.Tensor or None"
+        raise TypeError(msg)
+
+    if aux_loss.ndim != 0:
+        msg = "model auxiliary_loss() must return a scalar tensor"
+        raise ValueError(msg)
+
+    return aux_loss
+
+
 def train_step(
     model: nn.Module,
     batch: Any,
@@ -71,7 +94,9 @@ def train_step(
 
     optimizer.zero_grad(set_to_none=True)
     logits = model(input_ids)
-    loss = next_token_cross_entropy(logits, targets)
+    lm_loss = next_token_cross_entropy(logits, targets)
+    aux_loss = _get_model_auxiliary_loss(model)
+    loss = lm_loss if aux_loss is None else lm_loss + aux_loss
     loss.backward()
 
     grad_norm: float | None = None
@@ -83,6 +108,8 @@ def train_step(
 
     return TrainStepMetrics(
         loss=float(loss.item()),
+        lm_loss=float(lm_loss.item()),
+        aux_loss=None if aux_loss is None else float(aux_loss.item()),
         num_tokens=num_tokens,
         grad_norm=grad_norm,
     )
@@ -157,6 +184,8 @@ def train_loop(
                 {
                     "step": steps,
                     "train_loss": step_metrics.loss,
+                    "lm_loss": step_metrics.lm_loss,
+                    "aux_loss": step_metrics.aux_loss,
                     "tokens": train_tokens,
                     "tokens_per_second": snapshot.tokens_per_second,
                     "grad_norm": step_metrics.grad_norm,

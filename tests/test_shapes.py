@@ -190,3 +190,28 @@ def test_baseline_gpt_yaml_config_forward_smoke() -> None:
         logits = model(input_ids)
 
     assert logits.shape == (1, 8, config.vocab_size)
+
+
+def test_moe_gpt_yaml_config_forward_smoke() -> None:
+    config_dict = load_yaml_config("configs/model/moe.yaml")
+    config = GPTConfig.from_dict(config_dict)
+    model = BaselineGPT(config)
+    model.eval()
+
+    input_ids = torch.randint(0, config.vocab_size, (1, 8))
+
+    with torch.no_grad():
+        logits = model(input_ids)
+
+    assert logits.shape == (1, 8, config.vocab_size)
+
+
+def test_model_factory_builds_moe_gpt_from_yaml() -> None:
+    from deepseek_reimpl.model.model_factory import build_model_from_config
+
+    config_dict = load_yaml_config("configs/model/moe.yaml")
+
+    model = build_model_from_config(config_dict)
+
+    assert isinstance(model, BaselineGPT)
+    assert model.config.ffn_type == "moe"
