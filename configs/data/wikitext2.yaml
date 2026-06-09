@@ -1,0 +1,27 @@
+dataset:
+  name: wikitext2
+  source: huggingface
+  hf_dataset_name: Salesforce/wikitext
+  hf_dataset_config_name: wikitext-2-raw-v1
+  text_field: text
+
+splits:
+  train: train
+  validation: validation
+  test: test
+
+paths:
+  raw_dir: data/raw/wikitext2
+  interim_dir: data/interim/wikitext2
+  processed_dir: data/processed/wikitext2
+  tokenized_dir: data/tokenized/wikitext2
+
+preprocessing:
+  normalize_newlines: true
+  strip_whitespace: true
+  min_chars: 1
+
+artifacts:
+  train_text: data/processed/wikitext2/train.txt
+  validation_text: data/processed/wikitext2/validation.txt
+  test_text: data/processed/wikitext2/test.txt
