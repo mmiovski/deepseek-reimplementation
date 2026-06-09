@@ -1,0 +1,24 @@
+model:
+  name: mla_moe_gpt
+  vocab_size: 10000
+  block_size: 128
+  n_layers: 4
+  n_heads: 4
+  d_model: 256
+  d_ff: 1024
+  dropout: 0.1
+  norm_type: rmsnorm
+  positional_encoding: rope
+  ffn_type: moe
+  attention_type: mla
+  mla_kv_latent_dim: 64
+  mla_q_rope_dim: 32
+  n_routed_experts: 8
+  n_shared_experts: 1
+  moe_top_k: 2
+  moe_expert_d_ff: 256
+  moe_router_score: softmax
+  moe_normalize_top_k_weights: true
+  moe_aux_loss_weight: 0.01
+  moe_drop_tokens: false
+  tie_embeddings: true

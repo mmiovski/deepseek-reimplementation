@@ -25,7 +25,8 @@ class TinyLanguageModel(nn.Module):
         self.output = nn.Linear(d_model, vocab_size)
 
     def forward(self, input_ids: torch.Tensor) -> torch.Tensor:
-        return self.output(self.embedding(input_ids))
+        logits: torch.Tensor = self.output(self.embedding(input_ids))
+        return logits
 
 
 def test_next_token_cross_entropy_returns_scalar_loss() -> None:
@@ -604,3 +605,40 @@ def test_dense_train_step_reports_no_auxiliary_loss() -> None:
 
     assert metrics.aux_loss is None
     assert metrics.loss == metrics.lm_loss
+
+
+def test_train_step_includes_mla_moe_auxiliary_loss() -> None:
+    from deepseek_reimpl.model.baseline_gpt import BaselineGPT
+    from deepseek_reimpl.model.config import GPTConfig
+
+    config = GPTConfig(
+        vocab_size=32,
+        block_size=8,
+        n_layers=1,
+        n_heads=2,
+        d_model=16,
+        d_ff=64,
+        dropout=0.0,
+        positional_encoding="rope",
+        attention_type="mla",
+        mla_kv_latent_dim=8,
+        mla_q_rope_dim=4,
+        ffn_type="moe",
+        n_routed_experts=4,
+        n_shared_experts=1,
+        moe_top_k=2,
+        moe_expert_d_ff=32,
+        moe_aux_loss_weight=0.01,
+    )
+    model = BaselineGPT(config)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=0.001)
+    batch = (
+        torch.randint(0, config.vocab_size, (2, 4)),
+        torch.randint(0, config.vocab_size, (2, 4)),
+    )
+
+    metrics = train_step(model, batch, optimizer, device=torch.device("cpu"))
+
+    assert metrics.aux_loss is not None
+    assert metrics.aux_loss > 0.0
+    assert metrics.loss > metrics.lm_loss

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Any
+
 import pytest
 import torch
 
@@ -318,10 +320,10 @@ def test_deepseek_moe_layer_without_shared_experts_still_runs() -> None:
     ],
 )
 def test_deepseek_moe_layer_rejects_invalid_configuration(
-    kwargs: dict[str, int | float],
+    kwargs: dict[str, Any],
     match: str,
 ) -> None:
-    base_kwargs: dict[str, int | float] = {
+    base_kwargs: dict[str, Any] = {
         "d_model": 16,
         "n_routed_experts": 4,
         "n_shared_experts": 1,
@@ -417,10 +419,10 @@ def test_build_ffn_creates_deepseek_moe_layer_from_config() -> None:
     ],
 )
 def test_gpt_config_rejects_invalid_moe_fields(
-    kwargs: dict[str, int | float | str | bool | None],
+    kwargs: dict[str, Any],
     match: str,
 ) -> None:
-    base_kwargs: dict[str, int | float | str | bool | None] = {
+    base_kwargs: dict[str, Any] = {
         "vocab_size": 128,
         "block_size": 16,
         "n_layers": 1,

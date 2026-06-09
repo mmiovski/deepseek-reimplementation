@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 
 from deepseek_reimpl.data.download import iter_texts_from_records, write_text_stream
 from deepseek_reimpl.data.preprocess import format_lm_text, keep_text, normalize_text
@@ -21,7 +22,7 @@ def test_format_lm_text_joins_examples() -> None:
 
 
 def test_iter_texts_from_records_filters_invalid_and_short_records() -> None:
-    records = [
+    records: list[dict[str, Any]] = [
         {"text": "  first story  "},
         {"text": ""},
         {"text": "x"},

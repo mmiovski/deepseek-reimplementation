@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Any
+
 import pytest
 import torch
 
@@ -63,7 +65,7 @@ def test_gpt_config_rejects_invalid_head_dimension() -> None:
     ["vocab_size", "block_size", "n_layers", "n_heads", "d_model", "d_ff"],
 )
 def test_gpt_config_rejects_nonpositive_integer_fields(field_name: str) -> None:
-    kwargs = {
+    kwargs: dict[str, Any] = {
         "vocab_size": 100,
         "block_size": 8,
         "n_layers": 2,
@@ -215,3 +217,100 @@ def test_model_factory_builds_moe_gpt_from_yaml() -> None:
 
     assert isinstance(model, BaselineGPT)
     assert model.config.ffn_type == "moe"
+
+
+def test_mla_moe_gpt_yaml_config_forward_smoke() -> None:
+    config_dict = load_yaml_config("configs/model/mla_moe.yaml")
+    config = GPTConfig.from_dict(config_dict)
+    model = BaselineGPT(config)
+    model.eval()
+
+    input_ids = torch.randint(0, config.vocab_size, (1, 8))
+
+    with torch.no_grad():
+        logits = model(input_ids)
+
+    assert logits.shape == (1, 8, config.vocab_size)
+    assert torch.isfinite(logits).all()
+
+
+def test_model_factory_builds_mla_moe_gpt_from_yaml() -> None:
+    from deepseek_reimpl.model.model_factory import build_model_from_config
+
+    config_dict = load_yaml_config("configs/model/mla_moe.yaml")
+
+    model = build_model_from_config(config_dict)
+
+    assert isinstance(model, BaselineGPT)
+    assert model.config.attention_type == "mla"
+    assert model.config.ffn_type == "moe"
+
+
+def test_mla_moe_gpt_uses_mla_attention_and_moe_ffn() -> None:
+    from deepseek_reimpl.layers.mla import MLAAttention
+    from deepseek_reimpl.layers.moe_layer import DeepSeekMoELayer
+
+    config_dict = load_yaml_config("configs/model/mla_moe.yaml")
+    config = GPTConfig.from_dict(config_dict)
+    model = BaselineGPT(config)
+
+    assert model.config.attention_type == "mla"
+    assert model.config.ffn_type == "moe"
+    assert all(isinstance(block.attn, MLAAttention) for block in model.blocks)
+    assert all(isinstance(block.ffn, DeepSeekMoELayer) for block in model.blocks)
+
+
+def test_mla_moe_gpt_rejects_sequence_longer_than_block_size() -> None:
+    config_dict = load_yaml_config("configs/model/mla_moe.yaml")
+    config = GPTConfig.from_dict(config_dict)
+    model = BaselineGPT(config)
+    input_ids = torch.randint(0, config.vocab_size, (1, config.block_size + 1))
+
+    with pytest.raises(ValueError, match="sequence length exceeds configured block_size"):
+        model(input_ids)
+
+
+def test_mla_moe_gpt_backward_reaches_router_experts_and_embeddings() -> None:
+    config = GPTConfig(
+        vocab_size=64,
+        block_size=8,
+        n_layers=1,
+        n_heads=2,
+        d_model=16,
+        d_ff=64,
+        dropout=0.0,
+        positional_encoding="rope",
+        attention_type="mla",
+        mla_kv_latent_dim=8,
+        mla_q_rope_dim=4,
+        ffn_type="moe",
+        n_routed_experts=4,
+        n_shared_experts=1,
+        moe_top_k=2,
+        moe_expert_d_ff=32,
+        moe_aux_loss_weight=0.01,
+    )
+    model = BaselineGPT(config)
+    input_ids = torch.randint(0, config.vocab_size, (2, 5))
+
+    logits = model(input_ids)
+    aux_loss = model.auxiliary_loss()
+    assert aux_loss is not None
+
+    loss = logits.square().mean() + aux_loss
+    loss.backward()
+
+    assert model.token_embedding.weight.grad is not None
+    assert torch.isfinite(model.token_embedding.weight.grad).all()
+
+    first_block = model.blocks[0]
+    assert first_block.ffn.router.gate.weight.grad is not None
+    assert torch.isfinite(first_block.ffn.router.gate.weight.grad).all()
+
+    routed_grads = [
+        expert.down_proj.weight.grad
+        for expert in first_block.ffn.routed_experts
+        if expert.down_proj.weight.grad is not None
+    ]
+    assert routed_grads
+    assert all(torch.isfinite(grad).all() for grad in routed_grads)

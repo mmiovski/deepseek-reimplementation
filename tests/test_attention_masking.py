@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Any
+
 import pytest
 import torch
 from torch import nn
@@ -10,7 +12,7 @@ from deepseek_reimpl.model.config import GPTConfig
 
 
 def tiny_attention_config(attention_type: str = "dense") -> GPTConfig:
-    kwargs = {
+    kwargs: dict[str, Any] = {
         "vocab_size": 32,
         "block_size": 8,
         "n_layers": 1,
