@@ -48,6 +48,9 @@ class TrainingSummary:
 
     steps: int
     train_tokens: int
+    requested_train_tokens: int | None
+    train_token_overshoot: int
+    train_token_overshoot_ratio: float | None
     final_train_loss: float
     final_lm_loss: float
     final_mtp_loss: float | None
@@ -320,6 +323,15 @@ def train_loop(
     return TrainingSummary(
         steps=steps,
         train_tokens=train_tokens,
+        requested_train_tokens=config.max_tokens,
+        train_token_overshoot=(
+            0 if config.max_tokens is None else max(0, train_tokens - config.max_tokens)
+        ),
+        train_token_overshoot_ratio=(
+            None
+            if config.max_tokens is None
+            else max(0, train_tokens - config.max_tokens) / config.max_tokens
+        ),
         final_train_loss=final_train_loss,
         final_lm_loss=final_lm_loss,
         final_mtp_loss=final_mtp_loss,
