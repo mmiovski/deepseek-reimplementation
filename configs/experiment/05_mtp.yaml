@@ -4,6 +4,6 @@ experiment:
   data_config: configs/data/tinystories.yaml
   tokenizer_config: configs/tokenizer/bpe_tiny.yaml
   train_config: configs/train/cpu_smoke.yaml
-  output_dir: results/05_mtp
-  metrics_dir: results/05_mtp/metrics
+  output_dir: results/raw_logs/05_mtp
+  metrics_dir: results/metrics/05_mtp
   checkpoint_dir: checkpoints/05_mtp
