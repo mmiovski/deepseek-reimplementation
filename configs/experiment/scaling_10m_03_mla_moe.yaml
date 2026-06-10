@@ -1,0 +1,10 @@
+experiment:
+  name: scaling_10m_03_mla_moe
+  description: 10M-token local CUDA scaling-law run for MLA attention plus auxiliary-loss MoE on WikiText-2.
+  model_config: configs/model/mla_moe.yaml
+  data_config: configs/data/wikitext2.yaml
+  tokenizer_config: configs/tokenizer/bpe_wikitext2.yaml
+  train_config: configs/train/local_scaling_10m_fixed_budget.yaml
+  output_dir: results/raw_logs/scaling_10m_03_mla_moe
+  metrics_dir: results/metrics/scaling_10m_03_mla_moe
+  checkpoint_dir: checkpoints/scaling_10m_03_mla_moe
