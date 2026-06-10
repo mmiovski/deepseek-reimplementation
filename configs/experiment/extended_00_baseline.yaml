@@ -1,0 +1,10 @@
+experiment:
+  name: extended_00_baseline
+  description: Extended 5M-token local CUDA run for the dense GPT baseline on WikiText-2.
+  model_config: configs/model/baseline_gpt.yaml
+  data_config: configs/data/wikitext2.yaml
+  tokenizer_config: configs/tokenizer/bpe_wikitext2.yaml
+  train_config: configs/train/local_extended_fixed_budget.yaml
+  output_dir: results/raw_logs/extended_00_baseline
+  metrics_dir: results/metrics/extended_00_baseline
+  checkpoint_dir: checkpoints/extended_00_baseline
