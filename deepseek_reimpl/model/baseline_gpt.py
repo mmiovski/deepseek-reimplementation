@@ -37,8 +37,20 @@ class BaselineGPT(nn.Module):
             else None
         )
 
+        self.apply(self._init_weights)
+
         if config.tie_embeddings:
             self.lm_head.weight = self.token_embedding.weight
+
+    def _init_weights(self, module: nn.Module) -> None:
+        """Initialize trainable weights with GPT-style small normal scales."""
+        if isinstance(module, nn.Linear):
+            nn.init.normal_(module.weight, mean=0.0, std=0.02)
+            if module.bias is not None:
+                nn.init.zeros_(module.bias)
+
+        elif isinstance(module, nn.Embedding):
+            nn.init.normal_(module.weight, mean=0.0, std=0.02)
 
     def _forward_hidden_states(self, input_ids: torch.Tensor) -> torch.Tensor:
         """Return final decoder hidden states for input token IDs."""

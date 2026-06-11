@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass
-from itertools import cycle
 from typing import Any
 
 import torch
@@ -186,6 +185,17 @@ def _validate_training_loop_config(config: TrainingLoopConfig) -> None:
         raise ValueError(f"eval_batches must be positive, got {config.eval_batches}")
 
 
+
+def _repeat_dataloader(dataloader: Iterable[Any]):
+    """Yield batches forever without caching them.
+
+    This replaces itertools.cycle, which stores yielded batches and is unsafe for
+    long large-corpus runs.
+    """
+    while True:
+        yield from dataloader
+
+
 def train_loop(
     model: nn.Module,
     train_dataloader: Iterable[Any],
@@ -214,7 +224,7 @@ def train_loop(
     test_metrics: EvaluationMetrics | None = None
     last_logged_validation_step: int | None = None
 
-    for batch in cycle(train_dataloader):
+    for batch in _repeat_dataloader(train_dataloader):
         if config.max_steps is not None and steps >= config.max_steps:
             break
         if config.max_tokens is not None and train_tokens >= config.max_tokens:

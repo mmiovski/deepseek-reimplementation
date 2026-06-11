@@ -1,0 +1,31 @@
+dataset:
+  name: wikitext103
+  source: huggingface
+  hf_dataset_name: Salesforce/wikitext
+  hf_dataset_config_name: wikitext-103-raw-v1
+  text_field: text
+
+splits:
+  train: train
+  validation: validation
+  test: test
+
+paths:
+  raw_dir: data/raw/wikitext103
+  interim_dir: data/interim/wikitext103
+  processed_dir: data/processed/wikitext103
+  tokenized_dir: data/tokenized/wikitext103
+
+preprocessing:
+  normalize_newlines: true
+  strip_whitespace: true
+  min_chars: 1
+
+artifacts:
+  train_text: data/processed/wikitext103/train.txt
+  validation_text: data/processed/wikitext103/validation.txt
+  test_text: data/processed/wikitext103/test.txt
+  train_token_ids: data/tokenized/wikitext103/train.int32.bin
+  validation_token_ids: data/tokenized/wikitext103/validation.int32.bin
+  test_token_ids: data/tokenized/wikitext103/test.int32.bin
+  tokenized_metadata: data/tokenized/wikitext103/tokenized_metadata.json
