@@ -197,6 +197,46 @@ def _routing_stats_summary_to_dict(model: torch.nn.Module) -> dict[str, Any] | N
     return asdict(summary)
 
 
+def _safe_ratio(numerator: int | float | None, denominator: int | float | None) -> float | None:
+    if numerator is None or denominator is None or denominator == 0:
+        return None
+    return float(numerator) / float(denominator)
+
+
+def _token_parameter_accounting(
+    *,
+    train_corpus_tokens: int | None,
+    requested_train_tokens: int,
+    observed_train_tokens: int,
+    total_parameters: int,
+    trainable_parameters: int,
+    activated_parameters_per_token: int,
+) -> dict[str, float | int | None]:
+    return {
+        "train_corpus_tokens": train_corpus_tokens,
+        "epoch_equivalent": _safe_ratio(observed_train_tokens, train_corpus_tokens),
+        "requested_epoch_equivalent": _safe_ratio(requested_train_tokens, train_corpus_tokens),
+        "tokens_per_total_parameter": _safe_ratio(observed_train_tokens, total_parameters),
+        "tokens_per_trainable_parameter": _safe_ratio(observed_train_tokens, trainable_parameters),
+        "tokens_per_activated_parameter": _safe_ratio(
+            observed_train_tokens,
+            activated_parameters_per_token,
+        ),
+        "requested_tokens_per_total_parameter": _safe_ratio(
+            requested_train_tokens,
+            total_parameters,
+        ),
+        "requested_tokens_per_trainable_parameter": _safe_ratio(
+            requested_train_tokens,
+            trainable_parameters,
+        ),
+        "requested_tokens_per_activated_parameter": _safe_ratio(
+            requested_train_tokens,
+            activated_parameters_per_token,
+        ),
+    }
+
+
 def _runtime_metadata(device: torch.device) -> dict[str, Any]:
     """Return JSON-serializable runtime metadata for reproducibility."""
     cuda_device_name: str | None = None
@@ -319,8 +359,20 @@ def run_pretraining_from_experiment_config(experiment_config_path: str | Path) -
         log_callback=log_record,
     )
 
+    total_parameters = count_parameters(model)
+    trainable_parameters = count_trainable_parameters(model)
     activated_parameter_summary = _activated_parameter_summary_to_dict(model)
     routing_stats_summary = _routing_stats_summary_to_dict(model)
+    token_parameter_accounting = _token_parameter_accounting(
+        train_corpus_tokens=train_token_count,
+        requested_train_tokens=int(train_config["max_tokens"]),
+        observed_train_tokens=int(summary.train_tokens),
+        total_parameters=total_parameters,
+        trainable_parameters=trainable_parameters,
+        activated_parameters_per_token=int(
+            activated_parameter_summary["activated_parameters_per_token"]
+        ),
+    )
 
     summary_payload: dict[str, Any] = {
         "experiment_name": experiment_config["name"],
@@ -353,13 +405,14 @@ def run_pretraining_from_experiment_config(experiment_config_path: str | Path) -
         "max_steps": train_config["max_steps"],
         "max_tokens": train_config["max_tokens"],
         "precision": train_config["precision"],
-        "total_parameters": count_parameters(model),
-        "trainable_parameters": count_trainable_parameters(model),
+        "total_parameters": total_parameters,
+        "trainable_parameters": trainable_parameters,
         "mtp_enabled": bool(model_config["model"].get("mtp_enabled", False)),
         "mtp_num_future_tokens": int(model_config["model"].get("mtp_num_future_tokens", 0)),
         "mtp_loss_weight": float(model_config["model"].get("mtp_loss_weight", 0.0)),
         "mtp_share_lm_head": bool(model_config["model"].get("mtp_share_lm_head", True)),
         "activated_parameters": activated_parameter_summary,
+        **token_parameter_accounting,
         "routing_stats": routing_stats_summary,
         **_summary_to_dict(summary),
     }
