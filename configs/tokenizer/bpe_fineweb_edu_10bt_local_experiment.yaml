@@ -1,0 +1,20 @@
+tokenizer:
+  name: bpe_fineweb_edu_10bt_local_experiment
+  type: byte_level_bpe
+  vocab_size: 10000
+  min_frequency: 2
+
+special_tokens:
+  pad_token: "<pad>"
+  bos_token: "<bos>"
+  eos_token: "<eos>"
+  unk_token: "<unk>"
+
+training:
+  input_text_files:
+    - data/processed/fineweb_edu_10bt/train.txt
+  max_training_chars: null
+
+artifacts:
+  tokenizer_json: tokenizers/trained/bpe_fineweb_edu_10bt_local_experiment.json
+  metadata_json: tokenizers/metadata/bpe_fineweb_edu_10bt_local_experiment_metadata.json
