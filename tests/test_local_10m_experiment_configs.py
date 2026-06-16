@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 
 from deepseek_reimpl.utils.config import load_yaml_config
 
@@ -12,6 +13,15 @@ EXPECTED_EXPERIMENTS = {
     "local_10m_04_v3_routing.yaml": "configs/model/v3_routing.yaml",
     "local_10m_05_mtp.yaml": "configs/model/mtp.yaml",
 }
+
+
+def _vocab_size(config: dict[str, Any]) -> int:
+    if "vocab_size" in config:
+        return int(config["vocab_size"])
+    model = config.get("model")
+    if isinstance(model, dict) and "vocab_size" in model:
+        return int(model["vocab_size"])
+    raise AssertionError("Model config does not expose vocab_size")
 
 
 def test_local_10m_train_config_uses_fixed_token_budget() -> None:
@@ -27,31 +37,32 @@ def test_local_10m_train_config_uses_fixed_token_budget() -> None:
     assert config["precision"] == "fp32"
 
 
-def test_local_10m_experiment_configs_use_local_experiment_tokenizer() -> None:
+def test_local_10m_experiment_configs_use_runtime_schema_and_local_tokenizer() -> None:
     for filename, model_config in EXPECTED_EXPERIMENTS.items():
         path = Path("configs/experiment") / filename
         config = load_yaml_config(path)
+        experiment = config["experiment"]
 
         name = filename.removesuffix(".yaml")
-        assert config["experiment"]["name"] == name
-        assert config["model_config"] == model_config
-        assert config["data_config"] == "configs/data/fineweb_edu_10bt.yaml"
+        assert experiment["name"] == name
+        assert experiment["model_config"] == model_config
+        assert experiment["data_config"] == "configs/data/fineweb_edu_10bt.yaml"
         assert (
-            config["tokenizer_config"]
+            experiment["tokenizer_config"]
             == "configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml"
         )
-        assert config["train_config"] == "configs/train/local_experiment_10m.yaml"
-        assert config["experiment"]["output_dir"] == f"results/raw_logs/{name}"
-        assert config["experiment"]["metrics_dir"] == f"results/metrics/{name}"
-        assert config["experiment"]["checkpoint_dir"] == f"results/checkpoints/{name}"
+        assert experiment["train_config"] == "configs/train/local_experiment_10m.yaml"
+        assert experiment["output_dir"] == f"results/raw_logs/{name}"
+        assert experiment["metrics_dir"] == f"results/metrics/{name}"
+        assert experiment["checkpoint_dir"] == f"results/checkpoints/{name}"
 
 
 def test_local_10m_model_vocab_sizes_match_local_tokenizer_vocab() -> None:
     tokenizer_config = load_yaml_config(
         "configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml"
     )
-    vocab_size = tokenizer_config["tokenizer"]["vocab_size"]
+    vocab_size = int(tokenizer_config["tokenizer"]["vocab_size"])
 
     for model_config_path in EXPECTED_EXPERIMENTS.values():
         model_config = load_yaml_config(model_config_path)
-        assert model_config["vocab_size"] == vocab_size
+        assert _vocab_size(model_config) == vocab_size
