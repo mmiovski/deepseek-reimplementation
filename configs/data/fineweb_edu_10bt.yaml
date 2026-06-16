@@ -1,0 +1,40 @@
+dataset:
+  name: fineweb_edu_10bt
+  source: huggingface_streaming
+  hf_dataset_name: HuggingFaceFW/fineweb-edu
+  hf_dataset_config_name: sample-10BT
+  text_field: text
+
+splits:
+  source: train
+  train: train
+  validation: validation
+  test: test
+
+paths:
+  raw_dir: data/raw/fineweb_edu_10bt
+  interim_dir: data/interim/fineweb_edu_10bt
+  processed_dir: data/processed/fineweb_edu_10bt
+  tokenized_dir: data/tokenized/fineweb_edu_10bt
+
+streaming:
+  enabled: true
+  shuffle: true
+  shuffle_seed: 42
+  shuffle_buffer_size: 10000
+  require_explicit_caps: true
+
+preprocessing:
+  normalize_newlines: true
+  strip_whitespace: true
+  min_chars: 1
+
+artifacts:
+  train_text: data/processed/fineweb_edu_10bt/train.txt
+  validation_text: data/processed/fineweb_edu_10bt/validation.txt
+  test_text: data/processed/fineweb_edu_10bt/test.txt
+  train_token_ids: data/tokenized/fineweb_edu_10bt/train.int32.bin
+  validation_token_ids: data/tokenized/fineweb_edu_10bt/validation.int32.bin
+  test_token_ids: data/tokenized/fineweb_edu_10bt/test.int32.bin
+  metadata: data/processed/fineweb_edu_10bt/streaming_metadata.json
+  tokenized_metadata: data/tokenized/fineweb_edu_10bt/tokenized_metadata.json
