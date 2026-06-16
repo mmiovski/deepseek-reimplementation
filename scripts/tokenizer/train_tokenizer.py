@@ -3,10 +3,15 @@
 from __future__ import annotations
 
 import argparse
+import sys
 from pathlib import Path
 
-from deepseek_reimpl.tokenizer.train_tokenizer import train_tokenizer_from_config
-from deepseek_reimpl.utils.config import load_yaml_config
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from deepseek_reimpl.tokenizer.train_tokenizer import train_tokenizer_from_config  # noqa: E402
+from deepseek_reimpl.utils.config import load_yaml_config  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:

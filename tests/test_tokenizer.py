@@ -163,3 +163,21 @@ def test_train_tokenizer_from_config_writes_metadata(tmp_path: Path) -> None:
         corpus_path.read_text(encoding="utf-8")
     )
     assert metadata["actual_vocab_size"] <= 128
+
+
+def test_train_tokenizer_cli_help_runs_from_script_path() -> None:
+    import subprocess
+    import sys
+    from pathlib import Path
+
+    script_path = Path("scripts/tokenizer/train_tokenizer.py").resolve()
+    result = subprocess.run(
+        [sys.executable, str(script_path), "--help"],
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=20,
+    )
+
+    assert result.returncode == 0
+    assert "--config" in result.stdout
