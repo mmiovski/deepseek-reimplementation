@@ -1,0 +1,10 @@
+experiment:
+  name: fineweb_pilot_05_mtp
+  description: FineWeb-Edu pilot fixed-budget multi-token prediction variant.
+  model_config: configs/model/mtp.yaml
+  data_config: configs/data/fineweb_edu_10bt.yaml
+  tokenizer_config: configs/tokenizer/bpe_fineweb_edu_10bt.yaml
+  train_config: configs/train/local_pilot_fixed_budget.yaml
+  output_dir: results/raw_logs/fineweb_pilot_05_mtp
+  metrics_dir: results/metrics/fineweb_pilot_05_mtp
+  checkpoint_dir: checkpoints/fineweb_pilot_05_mtp
