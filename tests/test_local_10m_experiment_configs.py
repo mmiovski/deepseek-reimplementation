@@ -16,17 +16,19 @@ EXPECTED_EXPERIMENTS = {
 
 
 def _vocab_size(config: dict[str, Any]) -> int:
-    if "vocab_size" in config:
-        return int(config["vocab_size"])
     model = config.get("model")
     if isinstance(model, dict) and "vocab_size" in model:
         return int(model["vocab_size"])
+    if "vocab_size" in config:
+        return int(config["vocab_size"])
     raise AssertionError("Model config does not expose vocab_size")
 
 
 def test_local_10m_train_config_uses_fixed_token_budget() -> None:
-    config = load_yaml_config("configs/train/local_experiment_10m.yaml")
+    wrapper = load_yaml_config("configs/train/local_experiment_10m.yaml")
+    assert set(wrapper.keys()) == {"train"}
 
+    config = wrapper["train"]
     assert config["device"] == "cuda"
     assert config["batch_size"] == 8
     assert config["block_size"] == 128
@@ -41,8 +43,9 @@ def test_local_10m_experiment_configs_use_runtime_schema_and_local_tokenizer() -
     for filename, model_config in EXPECTED_EXPERIMENTS.items():
         path = Path("configs/experiment") / filename
         config = load_yaml_config(path)
-        experiment = config["experiment"]
+        assert set(config.keys()) == {"experiment"}
 
+        experiment = config["experiment"]
         name = filename.removesuffix(".yaml")
         assert experiment["name"] == name
         assert experiment["model_config"] == model_config
@@ -55,6 +58,16 @@ def test_local_10m_experiment_configs_use_runtime_schema_and_local_tokenizer() -
         assert experiment["output_dir"] == f"results/raw_logs/{name}"
         assert experiment["metrics_dir"] == f"results/metrics/{name}"
         assert experiment["checkpoint_dir"] == f"results/checkpoints/{name}"
+
+
+def test_local_10m_experiment_configs_reference_loadable_wrapped_train_config() -> None:
+    for filename in EXPECTED_EXPERIMENTS:
+        experiment_path = Path("configs/experiment") / filename
+        experiment = load_yaml_config(experiment_path)["experiment"]
+        train_wrapper = load_yaml_config(experiment["train_config"])
+
+        assert "train" in train_wrapper
+        assert train_wrapper["train"]["max_tokens"] == 10_000_000
 
 
 def test_local_10m_model_vocab_sizes_match_local_tokenizer_vocab() -> None:
