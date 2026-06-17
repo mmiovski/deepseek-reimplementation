@@ -1,0 +1,325 @@
+{
+  "budgets": {
+    "10m": 10000000,
+    "25m": 25000000,
+    "50m": 50000000
+  },
+  "description": "Main experimental matrix: six large DeepSeek-inspired architecture variants trained at 10M, 25M, and 50M requested tokens. Tiny/small runs are calibration only.",
+  "experiments": [
+    {
+      "budget": "10m",
+      "experiment_config": "configs/experiment/main_large_10m_00_dense_121m.yaml",
+      "experiment_name": "main_large_10m_00_dense_121m",
+      "model_config": "configs/model/dense_121m.yaml",
+      "requested_train_tokens": 10000000,
+      "train_config": "configs/train/main_large_10m.yaml"
+    },
+    {
+      "budget": "10m",
+      "experiment_config": "configs/experiment/main_large_10m_01_mla_121m.yaml",
+      "experiment_name": "main_large_10m_01_mla_121m",
+      "model_config": "configs/model/mla_121m.yaml",
+      "requested_train_tokens": 10000000,
+      "train_config": "configs/train/main_large_10m.yaml"
+    },
+    {
+      "budget": "10m",
+      "experiment_config": "configs/experiment/main_large_10m_02_mtp_121m.yaml",
+      "experiment_name": "main_large_10m_02_mtp_121m",
+      "model_config": "configs/model/mtp_121m.yaml",
+      "requested_train_tokens": 10000000,
+      "train_config": "configs/train/main_large_10m.yaml"
+    },
+    {
+      "budget": "10m",
+      "experiment_config": "configs/experiment/main_large_10m_03_moe_220m.yaml",
+      "experiment_name": "main_large_10m_03_moe_220m",
+      "model_config": "configs/model/moe_220m.yaml",
+      "requested_train_tokens": 10000000,
+      "train_config": "configs/train/main_large_10m.yaml"
+    },
+    {
+      "budget": "10m",
+      "experiment_config": "configs/experiment/main_large_10m_04_mla_moe_220m.yaml",
+      "experiment_name": "main_large_10m_04_mla_moe_220m",
+      "model_config": "configs/model/mla_moe_220m.yaml",
+      "requested_train_tokens": 10000000,
+      "train_config": "configs/train/main_large_10m.yaml"
+    },
+    {
+      "budget": "10m",
+      "experiment_config": "configs/experiment/main_large_10m_05_v3_routing_220m.yaml",
+      "experiment_name": "main_large_10m_05_v3_routing_220m",
+      "model_config": "configs/model/v3_routing_220m.yaml",
+      "requested_train_tokens": 10000000,
+      "train_config": "configs/train/main_large_10m.yaml"
+    },
+    {
+      "budget": "25m",
+      "experiment_config": "configs/experiment/main_large_25m_00_dense_121m.yaml",
+      "experiment_name": "main_large_25m_00_dense_121m",
+      "model_config": "configs/model/dense_121m.yaml",
+      "requested_train_tokens": 25000000,
+      "train_config": "configs/train/main_large_25m.yaml"
+    },
+    {
+      "budget": "25m",
+      "experiment_config": "configs/experiment/main_large_25m_01_mla_121m.yaml",
+      "experiment_name": "main_large_25m_01_mla_121m",
+      "model_config": "configs/model/mla_121m.yaml",
+      "requested_train_tokens": 25000000,
+      "train_config": "configs/train/main_large_25m.yaml"
+    },
+    {
+      "budget": "25m",
+      "experiment_config": "configs/experiment/main_large_25m_02_mtp_121m.yaml",
+      "experiment_name": "main_large_25m_02_mtp_121m",
+      "model_config": "configs/model/mtp_121m.yaml",
+      "requested_train_tokens": 25000000,
+      "train_config": "configs/train/main_large_25m.yaml"
+    },
+    {
+      "budget": "25m",
+      "experiment_config": "configs/experiment/main_large_25m_03_moe_220m.yaml",
+      "experiment_name": "main_large_25m_03_moe_220m",
+      "model_config": "configs/model/moe_220m.yaml",
+      "requested_train_tokens": 25000000,
+      "train_config": "configs/train/main_large_25m.yaml"
+    },
+    {
+      "budget": "25m",
+      "experiment_config": "configs/experiment/main_large_25m_04_mla_moe_220m.yaml",
+      "experiment_name": "main_large_25m_04_mla_moe_220m",
+      "model_config": "configs/model/mla_moe_220m.yaml",
+      "requested_train_tokens": 25000000,
+      "train_config": "configs/train/main_large_25m.yaml"
+    },
+    {
+      "budget": "25m",
+      "experiment_config": "configs/experiment/main_large_25m_05_v3_routing_220m.yaml",
+      "experiment_name": "main_large_25m_05_v3_routing_220m",
+      "model_config": "configs/model/v3_routing_220m.yaml",
+      "requested_train_tokens": 25000000,
+      "train_config": "configs/train/main_large_25m.yaml"
+    },
+    {
+      "budget": "50m",
+      "experiment_config": "configs/experiment/main_large_50m_00_dense_121m.yaml",
+      "experiment_name": "main_large_50m_00_dense_121m",
+      "model_config": "configs/model/dense_121m.yaml",
+      "requested_train_tokens": 50000000,
+      "train_config": "configs/train/main_large_50m.yaml"
+    },
+    {
+      "budget": "50m",
+      "experiment_config": "configs/experiment/main_large_50m_01_mla_121m.yaml",
+      "experiment_name": "main_large_50m_01_mla_121m",
+      "model_config": "configs/model/mla_121m.yaml",
+      "requested_train_tokens": 50000000,
+      "train_config": "configs/train/main_large_50m.yaml"
+    },
+    {
+      "budget": "50m",
+      "experiment_config": "configs/experiment/main_large_50m_02_mtp_121m.yaml",
+      "experiment_name": "main_large_50m_02_mtp_121m",
+      "model_config": "configs/model/mtp_121m.yaml",
+      "requested_train_tokens": 50000000,
+      "train_config": "configs/train/main_large_50m.yaml"
+    },
+    {
+      "budget": "50m",
+      "experiment_config": "configs/experiment/main_large_50m_03_moe_220m.yaml",
+      "experiment_name": "main_large_50m_03_moe_220m",
+      "model_config": "configs/model/moe_220m.yaml",
+      "requested_train_tokens": 50000000,
+      "train_config": "configs/train/main_large_50m.yaml"
+    },
+    {
+      "budget": "50m",
+      "experiment_config": "configs/experiment/main_large_50m_04_mla_moe_220m.yaml",
+      "experiment_name": "main_large_50m_04_mla_moe_220m",
+      "model_config": "configs/model/mla_moe_220m.yaml",
+      "requested_train_tokens": 50000000,
+      "train_config": "configs/train/main_large_50m.yaml"
+    },
+    {
+      "budget": "50m",
+      "experiment_config": "configs/experiment/main_large_50m_05_v3_routing_220m.yaml",
+      "experiment_name": "main_large_50m_05_v3_routing_220m",
+      "model_config": "configs/model/v3_routing_220m.yaml",
+      "requested_train_tokens": 50000000,
+      "train_config": "configs/train/main_large_50m.yaml"
+    }
+  ],
+  "model_parameter_accounting": [
+    {
+      "activated_parameters_per_token": 120945408,
+      "activated_to_total_ratio": 1.0,
+      "architecture_suffix": "00_dense_121m",
+      "attention_type": "dense",
+      "factory_name": "baseline_gpt",
+      "ffn_type": "swiglu",
+      "model_config": "configs/model/dense_121m.yaml",
+      "moe_routing_mode": null,
+      "mtp_enabled": false,
+      "requested_tokens_per_activated_parameter": {
+        "10m": 0.08268193200026247,
+        "25m": 0.20670483000065618,
+        "50m": 0.41340966000131235
+      },
+      "requested_tokens_per_total_parameter": {
+        "10m": 0.08268193200026247,
+        "25m": 0.20670483000065618,
+        "50m": 0.41340966000131235
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "10m": 0.08268193200026247,
+        "25m": 0.20670483000065618,
+        "50m": 0.41340966000131235
+      },
+      "total_parameters": 120945408,
+      "trainable_parameters": 120945408
+    },
+    {
+      "activated_parameters_per_token": 137460480,
+      "activated_to_total_ratio": 1.0,
+      "architecture_suffix": "01_mla_121m",
+      "attention_type": "mla",
+      "factory_name": "mla_gpt",
+      "ffn_type": "swiglu",
+      "model_config": "configs/model/mla_121m.yaml",
+      "moe_routing_mode": null,
+      "mtp_enabled": false,
+      "requested_tokens_per_activated_parameter": {
+        "10m": 0.07274818187743852,
+        "25m": 0.1818704546935963,
+        "50m": 0.3637409093871926
+      },
+      "requested_tokens_per_total_parameter": {
+        "10m": 0.07274818187743852,
+        "25m": 0.1818704546935963,
+        "50m": 0.3637409093871926
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "10m": 0.07274818187743852,
+        "25m": 0.1818704546935963,
+        "50m": 0.3637409093871926
+      },
+      "total_parameters": 137460480,
+      "trainable_parameters": 137460480
+    },
+    {
+      "activated_parameters_per_token": 136305408,
+      "activated_to_total_ratio": 1.0,
+      "architecture_suffix": "02_mtp_121m",
+      "attention_type": "dense",
+      "factory_name": "mtp_gpt",
+      "ffn_type": "swiglu",
+      "model_config": "configs/model/mtp_121m.yaml",
+      "moe_routing_mode": null,
+      "mtp_enabled": true,
+      "requested_tokens_per_activated_parameter": {
+        "10m": 0.07336466063033978,
+        "25m": 0.18341165157584943,
+        "50m": 0.36682330315169887
+      },
+      "requested_tokens_per_total_parameter": {
+        "10m": 0.07336466063033978,
+        "25m": 0.18341165157584943,
+        "50m": 0.36682330315169887
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "10m": 0.07336466063033978,
+        "25m": 0.18341165157584943,
+        "50m": 0.36682330315169887
+      },
+      "total_parameters": 136305408,
+      "trainable_parameters": 136305408
+    },
+    {
+      "activated_parameters_per_token": 78588672,
+      "activated_to_total_ratio": 0.3569836280607991,
+      "architecture_suffix": "03_moe_220m",
+      "attention_type": "dense",
+      "factory_name": "moe_gpt",
+      "ffn_type": "moe",
+      "model_config": "configs/model/moe_220m.yaml",
+      "moe_routing_mode": "aux_loss",
+      "mtp_enabled": false,
+      "requested_tokens_per_activated_parameter": {
+        "10m": 0.12724480189714873,
+        "25m": 0.3181120047428718,
+        "50m": 0.6362240094857436
+      },
+      "requested_tokens_per_total_parameter": {
+        "10m": 0.045424311033121806,
+        "25m": 0.11356077758280453,
+        "50m": 0.22712155516560906
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "10m": 0.045424311033121806,
+        "25m": 0.11356077758280453,
+        "50m": 0.22712155516560906
+      },
+      "total_parameters": 220146432,
+      "trainable_parameters": 220146432
+    },
+    {
+      "activated_parameters_per_token": 95103744,
+      "activated_to_total_ratio": 0.4018555717452045,
+      "architecture_suffix": "04_mla_moe_220m",
+      "attention_type": "mla",
+      "factory_name": "mla_moe_gpt",
+      "ffn_type": "moe",
+      "model_config": "configs/model/mla_moe_220m.yaml",
+      "moe_routing_mode": "aux_loss",
+      "mtp_enabled": false,
+      "requested_tokens_per_activated_parameter": {
+        "10m": 0.1051483314894522,
+        "25m": 0.2628708287236305,
+        "50m": 0.525741657447261
+      },
+      "requested_tokens_per_total_parameter": {
+        "10m": 0.0422544428687481,
+        "25m": 0.10563610717187025,
+        "50m": 0.2112722143437405
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "10m": 0.0422544428687481,
+        "25m": 0.10563610717187025,
+        "50m": 0.2112722143437405
+      },
+      "total_parameters": 236661504,
+      "trainable_parameters": 236661504
+    },
+    {
+      "activated_parameters_per_token": 78588672,
+      "activated_to_total_ratio": 0.3569836280607991,
+      "architecture_suffix": "05_v3_routing_220m",
+      "attention_type": "dense",
+      "factory_name": "v3_routing_gpt",
+      "ffn_type": "moe",
+      "model_config": "configs/model/v3_routing_220m.yaml",
+      "moe_routing_mode": "aux_loss_free_bias",
+      "mtp_enabled": false,
+      "requested_tokens_per_activated_parameter": {
+        "10m": 0.12724480189714873,
+        "25m": 0.3181120047428718,
+        "50m": 0.6362240094857436
+      },
+      "requested_tokens_per_total_parameter": {
+        "10m": 0.045424311033121806,
+        "25m": 0.11356077758280453,
+        "50m": 0.22712155516560906
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "10m": 0.045424311033121806,
+        "25m": 0.11356077758280453,
+        "50m": 0.22712155516560906
+      },
+      "total_parameters": 220146432,
+      "trainable_parameters": 220146432
+    }
+  ],
+  "scope": "main_large_fixed_budget_matrix"
+}

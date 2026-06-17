@@ -66,3 +66,11 @@ Required runs:
 - `main_large_50m_05_v3_routing_220m`
 
 The final analysis must report exact total parameters, trainable parameters, activated parameters per token, and tokens per total/trainable/activated parameter for each model. The variants must not be described as identical-size models.
+
+## Matrix Manifest
+
+The machine-readable main matrix manifest is:
+
+- `configs/experiment/main_large_matrix_manifest.json`
+
+It records every main large fixed-budget run and the exact model-specific total, trainable, and activated-parameter accounting used for tokens-per-parameter calculations.
