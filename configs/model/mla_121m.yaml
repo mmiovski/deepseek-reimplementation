@@ -1,0 +1,14 @@
+model:
+  name: mla_121m
+  vocab_size: 10000
+  block_size: 256
+  n_layers: 12
+  n_heads: 12
+  d_model: 768
+  d_ff: 3072
+  dropout: 0.1
+  norm_type: rmsnorm
+  positional_encoding: rope
+  ffn_type: swiglu
+  attention_type: mla
+  tie_embeddings: true
