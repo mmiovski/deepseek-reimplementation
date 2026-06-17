@@ -39,6 +39,7 @@ class MLAAttention(nn.Module):
             raise ValueError(msg)
 
         self.n_heads = config.n_heads
+        self.block_size = config.block_size
         self.kv_latent_dim = config.mla_kv_latent_dim
         self.qk_nope_head_dim = config.mla_qk_nope_dim
         self.qk_rope_head_dim = config.mla_q_rope_dim
@@ -84,6 +85,10 @@ class MLAAttention(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         batch_size, seq_len, _ = x.shape
+
+        if seq_len > self.block_size:
+            msg = "sequence length exceeds configured block_size"
+            raise ValueError(msg)
 
         q = self._split_heads(self.q_proj(x), self.qk_head_dim)
         q_nope, q_rope = torch.split(

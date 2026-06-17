@@ -39,3 +39,30 @@ For the local large configs, the selected MLA geometry is:
 - `mla_kv_latent_dim = 192`
 
 This is a DeepSeek-inspired local analogue, not an exact DeepSeek-V2/V3 reproduction.
+
+## Main Large Fixed-Budget Matrix
+
+The main experimental matrix must train every large primary architecture at every fixed token budget.
+
+Required runs:
+
+- `main_large_10m_00_dense_121m`
+- `main_large_10m_01_mla_121m`
+- `main_large_10m_02_mtp_121m`
+- `main_large_10m_03_moe_220m`
+- `main_large_10m_04_mla_moe_220m`
+- `main_large_10m_05_v3_routing_220m`
+- `main_large_25m_00_dense_121m`
+- `main_large_25m_01_mla_121m`
+- `main_large_25m_02_mtp_121m`
+- `main_large_25m_03_moe_220m`
+- `main_large_25m_04_mla_moe_220m`
+- `main_large_25m_05_v3_routing_220m`
+- `main_large_50m_00_dense_121m`
+- `main_large_50m_01_mla_121m`
+- `main_large_50m_02_mtp_121m`
+- `main_large_50m_03_moe_220m`
+- `main_large_50m_04_mla_moe_220m`
+- `main_large_50m_05_v3_routing_220m`
+
+The final analysis must report exact total parameters, trainable parameters, activated parameters per token, and tokens per total/trainable/activated parameter for each model. The variants must not be described as identical-size models.
