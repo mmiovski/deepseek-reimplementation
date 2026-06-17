@@ -1,16 +1,8 @@
-"""Small-scale MLA-style causal attention.
-
-This module is a faithful small-scale simplification of DeepSeek-style
-Multi-head Latent Attention. It captures the architecture-level idea of joint
-low-rank key/value compression plus decoupled rotary positional key handling,
-but it is not FlashMLA, not production KV-cache engineering, and not a custom
-CUDA implementation.
-"""
+"""Multi-head Latent Attention layer."""
 
 from __future__ import annotations
 
 import math
-from typing import cast
 
 import torch
 from torch import nn
@@ -20,19 +12,18 @@ from deepseek_reimpl.model.config import GPTConfig
 
 
 class MLAAttention(nn.Module):
-    """MLA-style multi-head causal attention with compressed KV state.
+    """DeepSeek-inspired Multi-head Latent Attention analogue.
 
-    The module preserves the same external contract as dense attention:
+    The implemented geometry follows the DeepSeek MLA pattern where query/key
+    dimensions are decoupled from d_model / n_heads:
 
-    input:  (batch, sequence, d_model)
-    output: (batch, sequence, d_model)
+    - qk_nope_head_dim: non-rotary query/key head dimension
+    - qk_rope_head_dim: rotary query/key head dimension
+    - v_head_dim: value head dimension
+    - kv_latent_dim: compressed key/value latent rank
 
-    Internal structure:
-    - q is projected directly from hidden states.
-    - key/value content is jointly compressed to a latent KV state.
-    - no-position keys and values are reconstructed from the latent state.
-    - a separate rotary key path carries positional information.
-    - RoPE is applied only to the query/key rotary subspace.
+    This is still a local single-GPU analogue, not FlashMLA or a full
+    DeepSeek-V2/V3 production implementation.
     """
 
     def __init__(self, config: GPTConfig) -> None:
@@ -43,88 +34,112 @@ class MLAAttention(nn.Module):
             raise ValueError(msg)
 
         if config.mla_kv_latent_dim is None or config.mla_q_rope_dim is None:
-            msg = "MLAAttention requires MLA dimensions in GPTConfig"
+            msg = "MLAAttention requires MLA latent and RoPE dimensions"
             raise ValueError(msg)
 
         self.n_heads = config.n_heads
-        self.head_dim = config.head_dim
-        self.d_model = config.d_model
-        self.block_size = config.block_size
         self.kv_latent_dim = config.mla_kv_latent_dim
-        self.q_rope_dim = config.mla_q_rope_dim
-        self.q_nope_dim = self.head_dim - self.q_rope_dim
+        self.qk_nope_head_dim = config.mla_qk_nope_dim
+        self.qk_rope_head_dim = config.mla_q_rope_dim
+        self.qk_head_dim = config.mla_qk_head_dim
+        self.v_head_dim = config.mla_v_dim
 
-        self.q_proj = nn.Linear(config.d_model, config.d_model, bias=False)
-
-        self.kv_down_proj = nn.Linear(config.d_model, self.kv_latent_dim, bias=False)
+        self.q_proj = nn.Linear(
+            config.d_model,
+            self.n_heads * self.qk_head_dim,
+            bias=False,
+        )
+        self.kv_down_proj = nn.Linear(
+            config.d_model,
+            self.kv_latent_dim + self.qk_rope_head_dim,
+            bias=False,
+        )
         self.k_nope_up_proj = nn.Linear(
             self.kv_latent_dim,
-            config.n_heads * self.q_nope_dim,
+            self.n_heads * self.qk_nope_head_dim,
             bias=False,
         )
-        self.v_up_proj = nn.Linear(self.kv_latent_dim, config.d_model, bias=False)
-
-        self.k_rope_proj = nn.Linear(
+        self.v_up_proj = nn.Linear(
+            self.kv_latent_dim,
+            self.n_heads * self.v_head_dim,
+            bias=False,
+        )
+        self.out_proj = nn.Linear(
+            self.n_heads * self.v_head_dim,
             config.d_model,
-            config.n_heads * self.q_rope_dim,
             bias=False,
         )
+        self.attn_dropout = nn.Dropout(config.dropout)
+        self.resid_dropout = nn.Dropout(config.dropout)
+        self.rope = RotaryEmbedding(self.qk_rope_head_dim)
 
-        self.out_proj = nn.Linear(config.d_model, config.d_model, bias=False)
-        self.dropout = nn.Dropout(config.dropout)
-        self.rope = RotaryEmbedding(self.q_rope_dim)
-
-        causal_mask = torch.tril(torch.ones(config.block_size, config.block_size, dtype=torch.bool))
-        self.register_buffer("causal_mask", causal_mask, persistent=False)
-
-    def _split_full_heads(self, x: torch.Tensor) -> torch.Tensor:
+    def _split_heads(
+        self,
+        x: torch.Tensor,
+        head_dim: int,
+    ) -> torch.Tensor:
         batch_size, seq_len, _ = x.shape
-        return x.view(batch_size, seq_len, self.n_heads, self.head_dim).transpose(1, 2)
-
-    def _split_nope_heads(self, x: torch.Tensor) -> torch.Tensor:
-        batch_size, seq_len, _ = x.shape
-        return x.view(batch_size, seq_len, self.n_heads, self.q_nope_dim).transpose(1, 2)
-
-    def _split_rope_heads(self, x: torch.Tensor) -> torch.Tensor:
-        batch_size, seq_len, _ = x.shape
-        return x.view(batch_size, seq_len, self.n_heads, self.q_rope_dim).transpose(1, 2)
-
-    def _merge_heads(self, x: torch.Tensor) -> torch.Tensor:
-        batch_size, _, seq_len, _ = x.shape
-        return x.transpose(1, 2).contiguous().view(batch_size, seq_len, self.d_model)
+        return x.view(batch_size, seq_len, self.n_heads, head_dim)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """Apply MLA-style causal self-attention."""
-        _, seq_len, _ = x.shape
+        batch_size, seq_len, _ = x.shape
 
-        if seq_len > self.block_size:
-            msg = "sequence length exceeds configured block_size"
-            raise ValueError(msg)
+        q = self._split_heads(self.q_proj(x), self.qk_head_dim)
+        q_nope, q_rope = torch.split(
+            q,
+            [self.qk_nope_head_dim, self.qk_rope_head_dim],
+            dim=-1,
+        )
 
-        q = self._split_full_heads(self.q_proj(x))
-        q_nope = q[..., : self.q_nope_dim]
-        q_rope = q[..., self.q_nope_dim :]
+        compressed_kv_and_rope = self.kv_down_proj(x)
+        kv_latent, k_rope = torch.split(
+            compressed_kv_and_rope,
+            [self.kv_latent_dim, self.qk_rope_head_dim],
+            dim=-1,
+        )
 
-        kv_latent = self.kv_down_proj(x)
-        k_nope = self._split_nope_heads(self.k_nope_up_proj(kv_latent))
-        v = self._split_full_heads(self.v_up_proj(kv_latent))
+        k_nope = self._split_heads(
+            self.k_nope_up_proj(kv_latent),
+            self.qk_nope_head_dim,
+        )
+        value = self._split_heads(
+            self.v_up_proj(kv_latent),
+            self.v_head_dim,
+        )
 
-        k_rope = self._split_rope_heads(self.k_rope_proj(x))
+        k_rope = k_rope.view(
+            batch_size,
+            seq_len,
+            1,
+            self.qk_rope_head_dim,
+        ).expand(-1, -1, self.n_heads, -1)
+
         q_rope, k_rope = self.rope.apply(q_rope, k_rope)
 
-        q_full = torch.cat((q_nope, q_rope), dim=-1)
-        k_full = torch.cat((k_nope, k_rope), dim=-1)
+        query = torch.cat((q_nope, q_rope), dim=-1)
+        key = torch.cat((k_nope, k_rope), dim=-1)
 
-        attn_scores = q_full @ k_full.transpose(-2, -1)
-        attn_scores = attn_scores / math.sqrt(self.head_dim)
+        query = query.transpose(1, 2)
+        key = key.transpose(1, 2)
+        value = value.transpose(1, 2)
 
-        causal_mask = cast(torch.Tensor, self.causal_mask)
-        mask = causal_mask[:seq_len, :seq_len]
-        attn_scores = attn_scores.masked_fill(~mask[None, None, :, :], float("-inf"))
+        attn_scores = torch.matmul(query, key.transpose(-2, -1))
+        attn_scores = attn_scores / math.sqrt(self.qk_head_dim)
+
+        causal_mask = torch.ones(
+            seq_len,
+            seq_len,
+            dtype=torch.bool,
+            device=x.device,
+        ).triu(1)
+        attn_scores = attn_scores.masked_fill(causal_mask, float("-inf"))
 
         attn_weights = torch.softmax(attn_scores, dim=-1)
-        attn_weights = self.dropout(attn_weights)
+        attn_weights = self.attn_dropout(attn_weights)
 
-        context = attn_weights @ v
-        output: torch.Tensor = self.out_proj(self._merge_heads(context))
-        return output
+        context = torch.matmul(attn_weights, value)
+        context = context.transpose(1, 2).contiguous()
+        context = context.view(batch_size, seq_len, self.n_heads * self.v_head_dim)
+
+        output = self.out_proj(context)
+        return self.resid_dropout(output)

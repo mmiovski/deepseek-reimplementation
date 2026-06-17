@@ -28,6 +28,8 @@ class GPTConfig:
     tie_embeddings: bool = True
     mla_kv_latent_dim: int | None = None
     mla_q_rope_dim: int | None = None
+    mla_qk_nope_head_dim: int | None = None
+    mla_v_head_dim: int | None = None
     n_routed_experts: int | None = None
     n_shared_experts: int = 0
     moe_top_k: int | None = None
@@ -133,12 +135,16 @@ class GPTConfig:
             msg = "mla_q_rope_dim must be positive"
             raise ValueError(msg)
 
-        if self.mla_q_rope_dim >= self.head_dim:
-            msg = "mla_q_rope_dim must be smaller than head_dim"
-            raise ValueError(msg)
-
         if self.mla_q_rope_dim % 2 != 0:
             msg = "mla_q_rope_dim must be even for rotary embeddings"
+            raise ValueError(msg)
+
+        if self.mla_qk_nope_dim <= 0:
+            msg = "mla_qk_nope_head_dim must be positive"
+            raise ValueError(msg)
+
+        if self.mla_v_dim <= 0:
+            msg = "mla_v_head_dim must be positive"
             raise ValueError(msg)
 
     def _validate_moe_config(self) -> None:
@@ -252,6 +258,35 @@ class GPTConfig:
     def head_dim(self) -> int:
         """Per-head attention dimension."""
         return self.d_model // self.n_heads
+
+    @property
+    def mla_qk_nope_dim(self) -> int:
+        """Return MLA non-rotary query/key head dimension."""
+        if self.mla_qk_nope_head_dim is not None:
+            return self.mla_qk_nope_head_dim
+
+        if self.mla_q_rope_dim is None:
+            msg = "mla_q_rope_dim must be set before deriving mla_qk_nope_dim"
+            raise ValueError(msg)
+
+        return self.head_dim - self.mla_q_rope_dim
+
+    @property
+    def mla_v_dim(self) -> int:
+        """Return MLA value head dimension."""
+        if self.mla_v_head_dim is not None:
+            return self.mla_v_head_dim
+
+        return self.head_dim
+
+    @property
+    def mla_qk_head_dim(self) -> int:
+        """Return total MLA query/key head dimension."""
+        if self.mla_q_rope_dim is None:
+            msg = "mla_q_rope_dim must be set before deriving mla_qk_head_dim"
+            raise ValueError(msg)
+
+        return self.mla_qk_nope_dim + self.mla_q_rope_dim
 
     @classmethod
     def from_dict(cls, config: dict[str, Any]) -> GPTConfig:

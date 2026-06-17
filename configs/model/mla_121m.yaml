@@ -13,4 +13,6 @@ model:
   attention_type: mla
   tie_embeddings: true
   mla_kv_latent_dim: 192
-  mla_q_rope_dim: 96
+  mla_q_rope_dim: 64
+  mla_qk_nope_head_dim: 128
+  mla_v_head_dim: 128

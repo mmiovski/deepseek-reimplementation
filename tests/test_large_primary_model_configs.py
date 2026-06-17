@@ -2,6 +2,9 @@ from __future__ import annotations
 
 from typing import Any, cast
 
+import torch
+
+from deepseek_reimpl.model.model_factory import build_model_from_config
 from deepseek_reimpl.utils.config import load_yaml_config
 
 LARGE_CONFIGS = {
@@ -14,8 +17,12 @@ LARGE_CONFIGS = {
 }
 
 
+def _wrapper(path: str) -> dict[str, Any]:
+    return cast(dict[str, Any], load_yaml_config(path))
+
+
 def _model(path: str) -> dict[str, Any]:
-    wrapper = load_yaml_config(path)
+    wrapper = _wrapper(path)
     assert set(wrapper.keys()) == {"model"}
     return cast(dict[str, Any], wrapper["model"])
 
@@ -47,7 +54,9 @@ def test_large_primary_dense_style_configs_are_matched() -> None:
     assert mla["name"] == "mla_gpt"
     assert mla["attention_type"] == "mla"
     assert mla["mla_kv_latent_dim"] == 192
-    assert mla["mla_q_rope_dim"] == 96
+    assert mla["mla_qk_nope_head_dim"] == 128
+    assert mla["mla_q_rope_dim"] == 64
+    assert mla["mla_v_head_dim"] == 128
     assert "mtp_enabled" not in mla or mla["mtp_enabled"] is False
 
     assert mtp["name"] == "mtp_gpt"
@@ -78,7 +87,9 @@ def test_large_primary_sparse_configs_are_matched_to_220m_anchor() -> None:
     assert mla_moe["name"] == "mla_moe_gpt"
     assert mla_moe["attention_type"] == "mla"
     assert mla_moe["mla_kv_latent_dim"] == 192
-    assert mla_moe["mla_q_rope_dim"] == 96
+    assert mla_moe["mla_qk_nope_head_dim"] == 128
+    assert mla_moe["mla_q_rope_dim"] == 64
+    assert mla_moe["mla_v_head_dim"] == 128
     assert mla_moe["moe_routing_mode"] == "aux_loss"
     assert mla_moe["moe_use_expert_bias"] is False
 
@@ -88,3 +99,10 @@ def test_large_primary_sparse_configs_are_matched_to_220m_anchor() -> None:
     assert v3["moe_routing_mode"] == "aux_loss_free_bias"
     assert v3["moe_use_expert_bias"] is True
     assert v3["moe_expert_bias_update_rate"] == 0.001
+
+
+def test_large_primary_configs_build_on_meta_device() -> None:
+    for _, (path, _) in LARGE_CONFIGS.items():
+        with torch.device("meta"):
+            model = build_model_from_config(_wrapper(path))
+        assert model is not None
