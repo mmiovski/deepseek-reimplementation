@@ -74,3 +74,23 @@ The machine-readable main matrix manifest is:
 - `configs/experiment/main_large_matrix_manifest.json`
 
 It records every main large fixed-budget run and the exact model-specific total, trainable, and activated-parameter accounting used for tokens-per-parameter calculations.
+
+## Feasibility Probe Reporting Policy
+
+Large feasibility probes are tracked separately from main experimental results.
+
+Tracked feasibility artifacts:
+
+- `configs/train/main_large_feasibility_probe.yaml`
+- `configs/experiment/main_large_feasibility_*.yaml`
+- `results/metrics/main_large_feasibility_*/summary.json`
+- `results/raw_logs/main_large_feasibility_*/train_log.jsonl` when small enough to audit
+- `results/analysis/main_large_feasibility_summary.json`
+- `results/analysis/main_large_feasibility_summary.csv`
+- `scripts/analysis/export_main_large_feasibility_summary.py`
+
+The reporting exporter must use the actual pretraining summary schema. In particular, it must use `steps`, `train_tokens_per_second`, and `peak_memory_bytes`, not stale aliases such as `train_steps`, `tokens_per_second`, or `peak_memory_mb`.
+
+Feasibility probes validate code paths, CUDA memory, exact parameter accounting, MTP diagnostics, and routing diagnostics. They must not be treated as main 10M/25M/50M experimental results.
+
+Checkpoints and bulky transient runtime artifacts should not be committed unless specifically selected as part of a separate archival policy.
