@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+from typing import cast
 
 import torch
 from torch import nn
@@ -142,4 +143,4 @@ class MLAAttention(nn.Module):
         context = context.view(batch_size, seq_len, self.n_heads * self.v_head_dim)
 
         output = self.out_proj(context)
-        return self.resid_dropout(output)
+        return cast(torch.Tensor, self.resid_dropout(output))

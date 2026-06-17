@@ -8,7 +8,6 @@ from deepseek_reimpl.model.config import GPTConfig
 
 def test_decoupled_mla_allows_deepseek_style_head_geometry() -> None:
     config = GPTConfig(
-        name="mla_gpt",
         vocab_size=10000,
         block_size=256,
         n_layers=12,
@@ -38,7 +37,6 @@ def test_decoupled_mla_allows_deepseek_style_head_geometry() -> None:
 
 def test_legacy_small_mla_config_remains_supported() -> None:
     config = GPTConfig(
-        name="mla_gpt",
         vocab_size=10000,
         block_size=128,
         n_layers=4,
