@@ -1,5 +1,5 @@
 model:
-  name: v3_routing_220m
+  name: v3_routing_gpt
   vocab_size: 10000
   block_size: 256
   n_layers: 12

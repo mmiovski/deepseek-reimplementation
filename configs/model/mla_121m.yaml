@@ -1,5 +1,5 @@
 model:
-  name: mla_121m
+  name: mla_gpt
   vocab_size: 10000
   block_size: 256
   n_layers: 12
@@ -12,3 +12,5 @@ model:
   ffn_type: swiglu
   attention_type: mla
   tie_embeddings: true
+  mla_kv_latent_dim: 192
+  mla_q_rope_dim: 96

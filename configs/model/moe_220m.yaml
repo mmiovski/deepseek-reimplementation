@@ -1,5 +1,5 @@
 model:
-  name: moe_220m
+  name: moe_gpt
   vocab_size: 10000
   block_size: 256
   n_layers: 12

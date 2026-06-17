@@ -1,5 +1,5 @@
 model:
-  name: mla_moe_220m
+  name: mla_moe_gpt
   vocab_size: 10000
   block_size: 256
   n_layers: 12
@@ -26,3 +26,5 @@ model:
   moe_expert_bias_min: -1.0
   moe_expert_bias_max: 1.0
   tie_embeddings: true
+  mla_kv_latent_dim: 192
+  mla_q_rope_dim: 96
