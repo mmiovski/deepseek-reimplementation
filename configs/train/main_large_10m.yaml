@@ -1,7 +1,7 @@
 train:
   seed: 1337
   device: cuda
-  batch_size: 1
+  batch_size: 4
   block_size: 256
   max_steps: null
   max_tokens: 10000000

@@ -94,3 +94,23 @@ The reporting exporter must use the actual pretraining summary schema. In partic
 Feasibility probes validate code paths, CUDA memory, exact parameter accounting, MTP diagnostics, and routing diagnostics. They must not be treated as main 10M/25M/50M experimental results.
 
 Checkpoints and bulky transient runtime artifacts should not be committed unless specifically selected as part of a separate archival policy.
+
+## Main Large Batch-Size Policy
+
+The main large fixed-token matrix uses one standardized batch size across all six architecture variants.
+
+Selected policy:
+
+- `batch_size: 4`
+- `block_size: 256`
+- `precision: fp32`
+- `device: cuda`
+
+Selection artifact:
+
+- `results/analysis/main_large_batch_sweep_summary.json`
+- `results/analysis/main_large_batch_sweep_summary.csv`
+
+Rationale:
+
+Batch size 4 completed all six large variants in the batch-size sweep. The maximum observed peak memory in that sweep was below approximately 5 GB, and the slowest observed throughput was higher than the slowest batch-size-2 run. Using one common batch size avoids architecture-specific optimizer-step counts and keeps the comparison cleaner under fixed token budgets.

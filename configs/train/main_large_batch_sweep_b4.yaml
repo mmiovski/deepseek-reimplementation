@@ -4,9 +4,9 @@ train:
   batch_size: 4
   block_size: 256
   max_steps: null
-  max_tokens: 25000000
-  eval_interval: 2500
-  eval_batches: 75
+  max_tokens: 10240
+  eval_interval: 10
+  eval_batches: 2
   learning_rate: 0.0003
   weight_decay: 0.1
   betas:
@@ -15,5 +15,5 @@ train:
   grad_clip: 1.0
   num_workers: 0
   checkpoint_interval: null
-  log_interval: 250
+  log_interval: 2
   precision: fp32

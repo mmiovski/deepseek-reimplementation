@@ -321,5 +321,12 @@
       "trainable_parameters": 220146432
     }
   ],
-  "scope": "main_large_fixed_budget_matrix"
+  "scope": "main_large_fixed_budget_matrix",
+  "training_policy": {
+    "block_size": 256,
+    "precision": "fp32",
+    "selected_batch_size": 4,
+    "selection_artifact": "results/analysis/main_large_batch_sweep_summary.json",
+    "selection_rationale": "Batch size 4 completed all six large variants in the batch sweep, kept peak memory below approximately 5 GB, and improved throughput relative to batch size 2 while preserving one standardized batch size across all main variants."
+  }
 }
