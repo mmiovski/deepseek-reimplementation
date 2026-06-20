@@ -1,0 +1,101 @@
+{
+  "additional_seeds": [
+    2027,
+    31415
+  ],
+  "base_seed": 1337,
+  "batch_size": 4,
+  "block_size": 256,
+  "description": "Targeted 50M-token replication for the decision-relevant large models. Seed 1337 is provided by the original main_large_50m runs; this manifest adds seeds 2027 and 31415.",
+  "experiments": [
+    {
+      "experiment_config": "configs/experiment/main_large_50m_seed2027_00_dense_121m.yaml",
+      "experiment_name": "main_large_50m_seed2027_00_dense_121m",
+      "model_config": "configs/model/dense_121m.yaml",
+      "requested_train_tokens": 50000000,
+      "seed": 2027,
+      "short_name": "dense_121m",
+      "slot": "00",
+      "train_config": "configs/train/main_large_50m_seed2027.yaml"
+    },
+    {
+      "experiment_config": "configs/experiment/main_large_50m_seed2027_01_mtp_121m.yaml",
+      "experiment_name": "main_large_50m_seed2027_01_mtp_121m",
+      "model_config": "configs/model/mtp_121m.yaml",
+      "requested_train_tokens": 50000000,
+      "seed": 2027,
+      "short_name": "mtp_121m",
+      "slot": "01",
+      "train_config": "configs/train/main_large_50m_seed2027.yaml"
+    },
+    {
+      "experiment_config": "configs/experiment/main_large_50m_seed2027_02_moe_220m.yaml",
+      "experiment_name": "main_large_50m_seed2027_02_moe_220m",
+      "model_config": "configs/model/moe_220m.yaml",
+      "requested_train_tokens": 50000000,
+      "seed": 2027,
+      "short_name": "moe_220m",
+      "slot": "02",
+      "train_config": "configs/train/main_large_50m_seed2027.yaml"
+    },
+    {
+      "experiment_config": "configs/experiment/main_large_50m_seed2027_03_v3_routing_220m.yaml",
+      "experiment_name": "main_large_50m_seed2027_03_v3_routing_220m",
+      "model_config": "configs/model/v3_routing_220m.yaml",
+      "requested_train_tokens": 50000000,
+      "seed": 2027,
+      "short_name": "v3_routing_220m",
+      "slot": "03",
+      "train_config": "configs/train/main_large_50m_seed2027.yaml"
+    },
+    {
+      "experiment_config": "configs/experiment/main_large_50m_seed31415_00_dense_121m.yaml",
+      "experiment_name": "main_large_50m_seed31415_00_dense_121m",
+      "model_config": "configs/model/dense_121m.yaml",
+      "requested_train_tokens": 50000000,
+      "seed": 31415,
+      "short_name": "dense_121m",
+      "slot": "00",
+      "train_config": "configs/train/main_large_50m_seed31415.yaml"
+    },
+    {
+      "experiment_config": "configs/experiment/main_large_50m_seed31415_01_mtp_121m.yaml",
+      "experiment_name": "main_large_50m_seed31415_01_mtp_121m",
+      "model_config": "configs/model/mtp_121m.yaml",
+      "requested_train_tokens": 50000000,
+      "seed": 31415,
+      "short_name": "mtp_121m",
+      "slot": "01",
+      "train_config": "configs/train/main_large_50m_seed31415.yaml"
+    },
+    {
+      "experiment_config": "configs/experiment/main_large_50m_seed31415_02_moe_220m.yaml",
+      "experiment_name": "main_large_50m_seed31415_02_moe_220m",
+      "model_config": "configs/model/moe_220m.yaml",
+      "requested_train_tokens": 50000000,
+      "seed": 31415,
+      "short_name": "moe_220m",
+      "slot": "02",
+      "train_config": "configs/train/main_large_50m_seed31415.yaml"
+    },
+    {
+      "experiment_config": "configs/experiment/main_large_50m_seed31415_03_v3_routing_220m.yaml",
+      "experiment_name": "main_large_50m_seed31415_03_v3_routing_220m",
+      "model_config": "configs/model/v3_routing_220m.yaml",
+      "requested_train_tokens": 50000000,
+      "seed": 31415,
+      "short_name": "v3_routing_220m",
+      "slot": "03",
+      "train_config": "configs/train/main_large_50m_seed31415.yaml"
+    }
+  ],
+  "precision": "fp32",
+  "replicated_models": [
+    "dense_121m",
+    "mtp_121m",
+    "moe_220m",
+    "v3_routing_220m"
+  ],
+  "requested_train_tokens": 50000000,
+  "scope": "main_large_50m_targeted_multiseed_replication"
+}
