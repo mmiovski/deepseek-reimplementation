@@ -38,7 +38,36 @@ def test_main_large_50m_multiseed_train_configs() -> None:
         train = config["train"]
 
         assert train["seed"] == seed
-        assert traing="utf-8"))
+        assert train["device"] == "cuda"
+        assert train["batch_size"] == 4
+        assert train["block_size"] == 256
+        assert train["max_tokens"] == 50_000_000
+        assert train["precision"] == "fp32"
+        assert train["checkpoint_interval"] is None
+
+
+def test_main_large_50m_multiseed_experiment_configs() -> None:
+    manifest = json.loads(
+        Path("configs/experiment/main_large_50m_multiseed_manifest.json").read_text(
+            encoding="utf-8"
+        )
+    )
+
+    expected_model_configs = {
+        "configs/model/dense_121m.yaml",
+        "configs/model/mtp_121m.yaml",
+        "configs/model/moe_220m.yaml",
+        "configs/model/v3_routing_220m.yaml",
+    }
+
+    seen_names: set[str] = set()
+    seen_metric_dirs: set[str] = set()
+
+    for row in manifest["experiments"]:
+        exp_path = Path(row["experiment_config"])
+        assert exp_path.exists()
+
+        config = yaml.safe_load(exp_path.read_text(encoding="utf-8"))
         experiment = config["experiment"]
 
         assert experiment["name"] == row["experiment_name"]

@@ -5,6 +5,32 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
+EXPECTED_EXPERIMENTS = [
+    "main_large_50m_seed2027_00_dense_121m",
+    "main_large_50m_seed2027_01_mtp_121m",
+    "main_large_50m_seed2027_02_moe_220m",
+    "main_large_50m_seed2027_03_v3_routing_220m",
+    "main_large_50m_seed31415_00_dense_121m",
+    "main_large_50m_seed31415_01_mtp_121m",
+    "main_large_50m_seed31415_02_moe_220m",
+    "main_large_50m_seed31415_03_v3_routing_220m",
+]
+
+
+def _all_run_summaries_exist() -> bool:
+    return all(
+        Path("results/metrics", experiment, "summary.json").exists()
+        for experiment in EXPECTED_EXPERIMENTS
+    )
+
+
+pytestmark = pytest.mark.skipif(
+    not _all_run_summaries_exist(),
+    reason="Targeted 50M multi-seed result artifacts have not been generated yet.",
+)
+
 
 def test_export_main_large_50m_multiseed_summary_cli() -> None:
     result = subprocess.run(
