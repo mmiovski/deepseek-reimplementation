@@ -185,7 +185,6 @@ def _validate_training_loop_config(config: TrainingLoopConfig) -> None:
         raise ValueError(f"eval_batches must be positive, got {config.eval_batches}")
 
 
-
 def _repeat_dataloader(dataloader: Iterable[Any]):
     """Yield batches forever without caching them.
 

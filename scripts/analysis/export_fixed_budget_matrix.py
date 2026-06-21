@@ -17,7 +17,10 @@ EXPECTED_SUFFIXES = {
 
 
 def _load_summary(path: Path) -> dict[str, Any]:
-    return json.loads(path.read_text(encoding="utf-8"))
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise TypeError(f"Expected summary JSON object in {path}, got {type(data).__name__}")
+    return data
 
 
 def _budget_from_name(experiment_name: str) -> str:

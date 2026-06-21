@@ -1,0 +1,9 @@
+experiment:
+  name: main_large_50m_seed10007_03_v3_routing_220m
+  output_dir: results/raw_logs/main_large_50m_seed10007_03_v3_routing_220m
+  metrics_dir: results/metrics/main_large_50m_seed10007_03_v3_routing_220m
+  checkpoint_dir: results/checkpoints/main_large_50m_seed10007_03_v3_routing_220m
+  model_config: configs/model/v3_routing_220m.yaml
+  data_config: configs/data/fineweb_edu_10bt.yaml
+  tokenizer_config: configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml
+  train_config: configs/train/main_large_50m_seed10007.yaml
