@@ -140,4 +140,5 @@ def test_main_large_50m_25seed_queue_script_exists() -> None:
     assert "SetThreadExecutionState" in text
     assert "main_large_50m_25seed_queue_new_runs.json" in text
     assert "scripts\\train\\run_pretrain.py" in text
+    assert "--experiment-config" in text
     assert "skipped_existing_summary" in text

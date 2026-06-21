@@ -255,7 +255,7 @@ public static class SleepControl {
         }
 
         $RunStarted = Get-Date
-        & $PythonPath scripts\train\run_pretrain.py $ExperimentConfig
+        & $PythonPath scripts\train\run_pretrain.py --experiment-config $ExperimentConfig
         $ExitCode = $LASTEXITCODE
         $RunEnded = Get-Date
         $ElapsedSeconds = ($RunEnded - $RunStarted).TotalSeconds
