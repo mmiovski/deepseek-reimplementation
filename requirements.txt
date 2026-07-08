@@ -6,3 +6,5 @@ matplotlib
 datasets
 tokenizers
 torch
+scipy
+statsmodels

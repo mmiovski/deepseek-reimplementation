@@ -1,0 +1,97 @@
+{
+  "bootstrap_reps": 20000,
+  "descriptive_rows": 52,
+  "efficiency_metrics": [
+    "train_tokens_per_second",
+    "peak_memory_bytes",
+    "tokens_per_total_parameter",
+    "tokens_per_trainable_parameter",
+    "tokens_per_activated_parameter",
+    "requested_tokens_per_total_parameter",
+    "requested_tokens_per_trainable_parameter",
+    "requested_tokens_per_activated_parameter"
+  ],
+  "global_test_rows": 4,
+  "input_csv": "results\\analysis\\main_large_50m_25seed_summary_flat.csv",
+  "model_order": [
+    "dense_121m",
+    "mtp_121m",
+    "moe_220m",
+    "v3_routing_220m"
+  ],
+  "outputs": {
+    "descriptives": {
+      "full_precision_csv": "results\\analysis\\main_large_50m_25seed_descriptives_full_precision.csv",
+      "rounded_csv": "results\\analysis\\main_large_50m_25seed_descriptives_rounded.csv"
+    },
+    "global_tests": {
+      "full_precision_csv": "results\\analysis\\main_large_50m_25seed_global_tests_full_precision.csv",
+      "rounded_csv": "results\\analysis\\main_large_50m_25seed_global_tests_rounded.csv"
+    },
+    "paired_contrasts": {
+      "full_precision_csv": "results\\analysis\\main_large_50m_25seed_paired_contrasts_full_precision.csv",
+      "rounded_csv": "results\\analysis\\main_large_50m_25seed_paired_contrasts_rounded.csv"
+    },
+    "rankings": {
+      "full_precision_csv": "results\\analysis\\main_large_50m_25seed_rankings_full_precision.csv",
+      "rounded_csv": "results\\analysis\\main_large_50m_25seed_rankings_rounded.csv"
+    }
+  },
+  "paired_contrast_rows": 24,
+  "planned_contrasts": [
+    {
+      "difference": "mtp_121m - dense_121m",
+      "model_a": "mtp_121m",
+      "model_b": "dense_121m"
+    },
+    {
+      "difference": "moe_220m - dense_121m",
+      "model_a": "moe_220m",
+      "model_b": "dense_121m"
+    },
+    {
+      "difference": "v3_routing_220m - dense_121m",
+      "model_a": "v3_routing_220m",
+      "model_b": "dense_121m"
+    },
+    {
+      "difference": "v3_routing_220m - moe_220m",
+      "model_a": "v3_routing_220m",
+      "model_b": "moe_220m"
+    },
+    {
+      "difference": "mtp_121m - moe_220m",
+      "model_a": "mtp_121m",
+      "model_b": "moe_220m"
+    },
+    {
+      "difference": "mtp_121m - v3_routing_220m",
+      "model_a": "mtp_121m",
+      "model_b": "v3_routing_220m"
+    }
+  ],
+  "primary_metrics": [
+    "validation_loss",
+    "test_loss",
+    "validation_perplexity",
+    "test_perplexity"
+  ],
+  "ranking_rows": 24,
+  "rounding_policy": {
+    "effect_sizes": 3,
+    "loss_and_perplexity": 5,
+    "memory_bytes": 0,
+    "p_values": 6,
+    "parameter_ratios": 3,
+    "throughput": 1
+  },
+  "routing_metrics": [
+    "routing_stats.mean_aux_loss",
+    "routing_stats.mean_expert_load_variance",
+    "routing_stats.mean_router_probability",
+    "routing_stats.expert_bias_std"
+  ],
+  "row_count": 100,
+  "seed_count": 25,
+  "sign_flip_reps": 20000
+}

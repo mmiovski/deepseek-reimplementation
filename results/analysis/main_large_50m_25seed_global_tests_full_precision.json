@@ -1,0 +1,46 @@
+[
+  {
+    "friedman_chi_square": 13.175999999999988,
+    "friedman_p_value": 0.004271049215852137,
+    "metric": "validation_loss",
+    "models": "dense_121m,mtp_121m,moe_220m,v3_routing_220m",
+    "n_seed_blocks": 25,
+    "repeated_measures_anova_df_den": 72.0,
+    "repeated_measures_anova_df_num": 3.0,
+    "repeated_measures_anova_f": 5.337442157299958,
+    "repeated_measures_anova_p_value": 0.002237664559121368
+  },
+  {
+    "friedman_chi_square": 6.552000000000021,
+    "friedman_p_value": 0.08763415702495074,
+    "metric": "test_loss",
+    "models": "dense_121m,mtp_121m,moe_220m,v3_routing_220m",
+    "n_seed_blocks": 25,
+    "repeated_measures_anova_df_den": 72.0,
+    "repeated_measures_anova_df_num": 3.0,
+    "repeated_measures_anova_f": 3.427803133652648,
+    "repeated_measures_anova_p_value": 0.02151251023425338
+  },
+  {
+    "friedman_chi_square": 13.175999999999988,
+    "friedman_p_value": 0.004271049215852137,
+    "metric": "validation_perplexity",
+    "models": "dense_121m,mtp_121m,moe_220m,v3_routing_220m",
+    "n_seed_blocks": 25,
+    "repeated_measures_anova_df_den": 72.0,
+    "repeated_measures_anova_df_num": 3.0,
+    "repeated_measures_anova_f": 5.173092854191861,
+    "repeated_measures_anova_p_value": 0.002708760252754832
+  },
+  {
+    "friedman_chi_square": 6.552000000000021,
+    "friedman_p_value": 0.08763415702495074,
+    "metric": "test_perplexity",
+    "models": "dense_121m,mtp_121m,moe_220m,v3_routing_220m",
+    "n_seed_blocks": 25,
+    "repeated_measures_anova_df_den": 72.0,
+    "repeated_measures_anova_df_num": 3.0,
+    "repeated_measures_anova_f": 3.5824123035295248,
+    "repeated_measures_anova_p_value": 0.01785462993435901
+  }
+]

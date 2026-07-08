@@ -1,0 +1,183 @@
+{
+  "activated_parameters": {
+    "activated_parameters_per_token": 136305408,
+    "activated_to_total_ratio": 1.0,
+    "always_active_parameters": 136305408,
+    "routed_expert_active_parameters_per_token": 0,
+    "routed_expert_total_parameters": 0,
+    "total_parameters": 136305408
+  },
+  "batch_size": 4,
+  "block_size": 256,
+  "config_paths": {
+    "data_config": "configs/data/fineweb_edu_10bt.yaml",
+    "model_config": "configs/model/mtp_121m.yaml",
+    "tokenizer_config": "configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml",
+    "train_config": "configs/train/main_large_50m_seed22027.yaml"
+  },
+  "data_config": {
+    "artifacts": {
+      "metadata": "data/processed/fineweb_edu_10bt/streaming_metadata.json",
+      "test_text": "data/processed/fineweb_edu_10bt/test.txt",
+      "test_token_ids": "data/tokenized/fineweb_edu_10bt/test.int32.bin",
+      "tokenized_metadata": "data/tokenized/fineweb_edu_10bt/tokenized_metadata.json",
+      "train_text": "data/processed/fineweb_edu_10bt/train.txt",
+      "train_token_ids": "data/tokenized/fineweb_edu_10bt/train.int32.bin",
+      "validation_text": "data/processed/fineweb_edu_10bt/validation.txt",
+      "validation_token_ids": "data/tokenized/fineweb_edu_10bt/validation.int32.bin"
+    },
+    "dataset": {
+      "hf_dataset_config_name": "sample-10BT",
+      "hf_dataset_name": "HuggingFaceFW/fineweb-edu",
+      "name": "fineweb_edu_10bt",
+      "source": "huggingface_streaming",
+      "text_field": "text"
+    },
+    "splits": {
+      "source": "train",
+      "test": "test",
+      "train": "train",
+      "validation": "validation"
+    },
+    "tokenized_metadata": {
+      "batch_lines": 2048,
+      "data_config": "configs\\data\\fineweb_edu_10bt.yaml",
+      "dtype": "int32",
+      "splits": {
+        "test": {
+          "dtype": "int32",
+          "num_tokens": 1203792,
+          "source_bytes": 4610160,
+          "split": "test",
+          "text_path": "data/processed/fineweb_edu_10bt/test.txt",
+          "token_ids_path": "data/tokenized/fineweb_edu_10bt/test.int32.bin"
+        },
+        "train": {
+          "dtype": "int32",
+          "num_tokens": 61108958,
+          "source_bytes": 237549212,
+          "split": "train",
+          "text_path": "data/processed/fineweb_edu_10bt/train.txt",
+          "token_ids_path": "data/tokenized/fineweb_edu_10bt/train.int32.bin"
+        },
+        "validation": {
+          "dtype": "int32",
+          "num_tokens": 1108976,
+          "source_bytes": 4270864,
+          "split": "validation",
+          "text_path": "data/processed/fineweb_edu_10bt/validation.txt",
+          "token_ids_path": "data/tokenized/fineweb_edu_10bt/validation.int32.bin"
+        }
+      },
+      "tokenizer_config": "configs\\tokenizer\\bpe_fineweb_edu_10bt_local_experiment.yaml",
+      "tokenizer_json": "tokenizers/trained/bpe_fineweb_edu_10bt_local_experiment.json"
+    }
+  },
+  "device": "cuda",
+  "elapsed_seconds": 13494.147649200168,
+  "epoch_equivalent": 0.8182253083091353,
+  "experiment_config_path": "configs\\experiment\\main_large_50m_seed22027_01_mtp_121m.yaml",
+  "experiment_name": "main_large_50m_seed22027_01_mtp_121m",
+  "final_lm_loss": 4.124388217926025,
+  "final_mtp_loss": 5.057828903198242,
+  "final_mtp_per_horizon_losses": [
+    4.133093357086182,
+    5.9825639724731445
+  ],
+  "final_train_loss": 5.64173698425293,
+  "max_steps": null,
+  "max_tokens": 50000000,
+  "model_config": {
+    "attention_type": "dense",
+    "block_size": 256,
+    "d_ff": 3072,
+    "d_model": 768,
+    "dropout": 0.1,
+    "ffn_type": "swiglu",
+    "mtp_enabled": true,
+    "mtp_loss_weight": 0.3,
+    "mtp_num_future_tokens": 2,
+    "mtp_share_lm_head": false,
+    "n_heads": 12,
+    "n_layers": 12,
+    "name": "mtp_gpt",
+    "norm_type": "rmsnorm",
+    "positional_encoding": "rope",
+    "tie_embeddings": true,
+    "vocab_size": 10000
+  },
+  "model_name": "mtp_gpt",
+  "mtp_enabled": true,
+  "mtp_loss_weight": 0.3,
+  "mtp_num_future_tokens": 2,
+  "mtp_share_lm_head": false,
+  "peak_memory_bytes": 3432570368,
+  "precision": "fp32",
+  "requested_epoch_equivalent": 0.8182106459743594,
+  "requested_tokens_per_activated_parameter": 0.36682330315169887,
+  "requested_tokens_per_total_parameter": 0.36682330315169887,
+  "requested_tokens_per_trainable_parameter": 0.36682330315169887,
+  "requested_train_tokens": 50000000,
+  "routing_stats": null,
+  "runtime": {
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_device_index": 0,
+    "cuda_device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "cuda_version": "12.4",
+    "device": "cuda",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python_version": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "torch_version": "2.6.0+cu124"
+  },
+  "seed": 22027,
+  "steps": 48829,
+  "test_loss": 4.502180786132812,
+  "test_perplexity": 90.2136536208675,
+  "tokenizer_artifact": "tokenizers/trained/bpe_fineweb_edu_10bt_local_experiment.json",
+  "tokenizer_config": {
+    "artifacts": {
+      "metadata_json": "tokenizers/metadata/bpe_fineweb_edu_10bt_local_experiment_metadata.json",
+      "tokenizer_json": "tokenizers/trained/bpe_fineweb_edu_10bt_local_experiment.json"
+    },
+    "tokenizer": {
+      "min_frequency": 2,
+      "name": "bpe_fineweb_edu_10bt_local_experiment",
+      "type": "byte_level_bpe",
+      "vocab_size": 10000
+    }
+  },
+  "tokens_per_activated_parameter": 0.3668298766252914,
+  "tokens_per_total_parameter": 0.3668298766252914,
+  "tokens_per_trainable_parameter": 0.3668298766252914,
+  "total_parameters": 136305408,
+  "train_config": {
+    "batch_size": 4,
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "block_size": 256,
+    "checkpoint_interval": null,
+    "device": "cuda",
+    "eval_batches": 100,
+    "eval_interval": 5000,
+    "grad_clip": 1.0,
+    "learning_rate": 0.0003,
+    "log_interval": 500,
+    "max_steps": null,
+    "max_tokens": 50000000,
+    "num_workers": 0,
+    "precision": "fp32",
+    "seed": 22027,
+    "weight_decay": 0.1
+  },
+  "train_corpus_tokens": 61108958,
+  "train_token_overshoot": 896,
+  "train_token_overshoot_ratio": 1.792e-05,
+  "train_tokens": 50000896,
+  "train_tokens_per_second": 3705.37638240261,
+  "trainable_parameters": 136305408,
+  "validation_loss": 4.297979681491852,
+  "validation_perplexity": 73.55104695083739
+}

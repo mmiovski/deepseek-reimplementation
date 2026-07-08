@@ -1,0 +1,218 @@
+[
+  {
+    "ci95_high": 4.289691544598891,
+    "ci95_low": 4.251074057512924,
+    "lower_is_better": true,
+    "mean": 4.27038,
+    "metric": "validation_loss",
+    "model": "mtp_121m",
+    "rank": 1
+  },
+  {
+    "ci95_high": 4.295196907553515,
+    "ci95_low": 4.2470532612468395,
+    "lower_is_better": true,
+    "mean": 4.27113,
+    "metric": "validation_loss",
+    "model": "moe_220m",
+    "rank": 2
+  },
+  {
+    "ci95_high": 4.300054555429776,
+    "ci95_low": 4.257148124967257,
+    "lower_is_better": true,
+    "mean": 4.2786,
+    "metric": "validation_loss",
+    "model": "v3_routing_220m",
+    "rank": 3
+  },
+  {
+    "ci95_high": 4.318998300896231,
+    "ci95_low": 4.280739861144481,
+    "lower_is_better": true,
+    "mean": 4.29987,
+    "metric": "validation_loss",
+    "model": "dense_121m",
+    "rank": 4
+  },
+  {
+    "ci95_high": 4.471332813485397,
+    "ci95_low": 4.440353837362993,
+    "lower_is_better": true,
+    "mean": 4.45584,
+    "metric": "test_loss",
+    "model": "moe_220m",
+    "rank": 1
+  },
+  {
+    "ci95_high": 4.486074031804788,
+    "ci95_low": 4.448796793390524,
+    "lower_is_better": true,
+    "mean": 4.46744,
+    "metric": "test_loss",
+    "model": "mtp_121m",
+    "rank": 2
+  },
+  {
+    "ci95_high": 4.496255476360442,
+    "ci95_low": 4.4504115598868115,
+    "lower_is_better": true,
+    "mean": 4.47333,
+    "metric": "test_loss",
+    "model": "v3_routing_220m",
+    "rank": 3
+  },
+  {
+    "ci95_high": 4.506170446982964,
+    "ci95_low": 4.4656257894367135,
+    "lower_is_better": true,
+    "mean": 4.4859,
+    "metric": "test_loss",
+    "model": "dense_121m",
+    "rank": 4
+  },
+  {
+    "ci95_high": 72.992890702388,
+    "ci95_low": 70.25448437295663,
+    "lower_is_better": true,
+    "mean": 71.62369,
+    "metric": "validation_perplexity",
+    "model": "mtp_121m",
+    "rank": 1
+  },
+  {
+    "ci95_high": 73.45767949873306,
+    "ci95_low": 69.98153287668853,
+    "lower_is_better": true,
+    "mean": 71.71961,
+    "metric": "validation_perplexity",
+    "model": "moe_220m",
+    "rank": 2
+  },
+  {
+    "ci95_high": 73.78869136601963,
+    "ci95_low": 70.67783983169457,
+    "lower_is_better": true,
+    "mean": 72.23327,
+    "metric": "validation_perplexity",
+    "model": "v3_routing_220m",
+    "rank": 3
+  },
+  {
+    "ci95_high": 75.18228142685278,
+    "ci95_low": 72.35033807637585,
+    "lower_is_better": true,
+    "mean": 73.76631,
+    "metric": "validation_perplexity",
+    "model": "dense_121m",
+    "rank": 4
+  },
+  {
+    "ci95_high": 87.51905922933182,
+    "ci95_low": 84.85473839064142,
+    "lower_is_better": true,
+    "mean": 86.1869,
+    "metric": "test_perplexity",
+    "model": "moe_220m",
+    "rank": 1
+  },
+  {
+    "ci95_high": 88.82384782513166,
+    "ci95_low": 85.61136169168059,
+    "lower_is_better": true,
+    "mean": 87.2176,
+    "metric": "test_perplexity",
+    "model": "mtp_121m",
+    "rank": 2
+  },
+  {
+    "ci95_high": 89.78120304509613,
+    "ci95_low": 85.77443990992577,
+    "lower_is_better": true,
+    "mean": 87.77782,
+    "metric": "test_perplexity",
+    "model": "v3_routing_220m",
+    "rank": 3
+  },
+  {
+    "ci95_high": 90.68531373118886,
+    "ci95_low": 87.0353200564892,
+    "lower_is_better": true,
+    "mean": 88.86032,
+    "metric": "test_perplexity",
+    "model": "dense_121m",
+    "rank": 4
+  },
+  {
+    "ci95_high": 4315.1900305103745,
+    "ci95_low": 4280.5076998539325,
+    "lower_is_better": false,
+    "mean": 4297.84887,
+    "metric": "train_tokens_per_second",
+    "model": "dense_121m",
+    "rank": 1
+  },
+  {
+    "ci95_high": 3748.3526092590555,
+    "ci95_low": 3716.487759628446,
+    "lower_is_better": false,
+    "mean": 3732.42018,
+    "metric": "train_tokens_per_second",
+    "model": "mtp_121m",
+    "rank": 2
+  },
+  {
+    "ci95_high": 3043.013461968576,
+    "ci95_low": 3005.854560064029,
+    "lower_is_better": false,
+    "mean": 3024.43401,
+    "metric": "train_tokens_per_second",
+    "model": "v3_routing_220m",
+    "rank": 3
+  },
+  {
+    "ci95_high": 3036.115505209498,
+    "ci95_low": 2958.347290229831,
+    "lower_is_better": false,
+    "mean": 2997.2314,
+    "metric": "train_tokens_per_second",
+    "model": "moe_220m",
+    "rank": 4
+  },
+  {
+    "ci95_high": 3039483904.0,
+    "ci95_low": 3039483904.0,
+    "lower_is_better": true,
+    "mean": 3039483904.0,
+    "metric": "peak_memory_bytes",
+    "model": "dense_121m",
+    "rank": 1
+  },
+  {
+    "ci95_high": 3432570368.0,
+    "ci95_low": 3432570368.0,
+    "lower_is_better": true,
+    "mean": 3432570368.0,
+    "metric": "peak_memory_bytes",
+    "model": "mtp_121m",
+    "rank": 2
+  },
+  {
+    "ci95_high": 4609180512.859008,
+    "ci95_low": 4606939254.180993,
+    "lower_is_better": true,
+    "mean": 4608059883.52,
+    "metric": "peak_memory_bytes",
+    "model": "moe_220m",
+    "rank": 3
+  },
+  {
+    "ci95_high": 4618756615.143183,
+    "ci95_low": 4616132744.216818,
+    "lower_is_better": true,
+    "mean": 4617444679.68,
+    "metric": "peak_memory_bytes",
+    "model": "v3_routing_220m",
+    "rank": 4
+  }
+]
