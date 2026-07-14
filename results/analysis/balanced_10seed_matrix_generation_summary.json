@@ -1,0 +1,40 @@
+{
+  "target_cells": 180,
+  "completed_existing_summary": 54,
+  "queued_missing_summary": 126,
+  "queue_entries": 126,
+  "created_train_config_count": 0,
+  "created_experiment_config_count": 0,
+  "created_run_script": false,
+  "seeds": [
+    1337,
+    2027,
+    31415,
+    4441,
+    5501,
+    6173,
+    8191,
+    10007,
+    11213,
+    12721
+  ],
+  "models": [
+    "dense_121m",
+    "mla_121m",
+    "mtp_121m",
+    "moe_220m",
+    "mla_moe_220m",
+    "v3_routing_220m"
+  ],
+  "budgets": [
+    "10m",
+    "25m",
+    "50m"
+  ],
+  "created_train_configs": [],
+  "created_experiment_configs": [],
+  "manifest_csv": "results/analysis/balanced_10seed_matrix_manifest.csv",
+  "manifest_json": "results/analysis/balanced_10seed_matrix_manifest.json",
+  "queue_txt": "results/analysis/balanced_10seed_matrix_queue.txt",
+  "run_script": "scripts/run_balanced_10seed_matrix_queue.ps1"
+}
