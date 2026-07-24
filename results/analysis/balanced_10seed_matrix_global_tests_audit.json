@@ -1,0 +1,97 @@
+{
+  "artifact_type": "balanced_10seed_matrix_global_tests_audit",
+  "audit_json": "results\\analysis\\balanced_10seed_matrix_global_tests_audit.json",
+  "expected_global_test_rows": 24,
+  "expected_seed_record_rows": 1440,
+  "global_seed_records_csv": "results\\analysis\\balanced_10seed_matrix_global_seed_records.csv",
+  "global_seed_records_json": "results\\analysis\\balanced_10seed_matrix_global_seed_records.json",
+  "global_test_row_count": 24,
+  "global_tests_csv": "results\\analysis\\balanced_10seed_matrix_global_tests_full_precision.csv",
+  "global_tests_json": "results\\analysis\\balanced_10seed_matrix_global_tests_full_precision.json",
+  "global_tests_passed": true,
+  "input_flat_csv": "results\\analysis\\balanced_10seed_matrix_summary_flat.csv",
+  "metric_direction": {
+    "lm_loss": "lower_is_better",
+    "peak_memory_bytes": "lower_is_better",
+    "test_loss": "lower_is_better",
+    "test_perplexity": "lower_is_better",
+    "train_loss": "lower_is_better",
+    "train_tokens_per_second": "higher_is_better",
+    "validation_loss": "lower_is_better",
+    "validation_perplexity": "lower_is_better"
+  },
+  "missing_value_count": 0,
+  "missing_values": [],
+  "permutation_reps": 20000,
+  "permutation_seed": 20260723,
+  "scope_audit": {
+    "bad_model_budget_count_count": 0,
+    "bad_model_budget_counts": {},
+    "budgets": [
+      "10m",
+      "25m",
+      "50m"
+    ],
+    "duplicate_cell_count": 0,
+    "duplicate_cells": {},
+    "expected_budgets": [
+      "10m",
+      "25m",
+      "50m"
+    ],
+    "expected_models": [
+      "dense_121m",
+      "mla_121m",
+      "mla_moe_220m",
+      "moe_220m",
+      "mtp_121m",
+      "v3_routing_220m"
+    ],
+    "expected_row_count": 180,
+    "expected_seeds": [
+      "10007",
+      "11213",
+      "12721",
+      "1337",
+      "2027",
+      "31415",
+      "4441",
+      "5501",
+      "6173",
+      "8191"
+    ],
+    "models": [
+      "dense_121m",
+      "mla_121m",
+      "mla_moe_220m",
+      "moe_220m",
+      "mtp_121m",
+      "v3_routing_220m"
+    ],
+    "row_count": 180,
+    "scope_passed": true,
+    "seeds": [
+      "10007",
+      "11213",
+      "12721",
+      "1337",
+      "2027",
+      "31415",
+      "4441",
+      "5501",
+      "6173",
+      "8191"
+    ]
+  },
+  "seed_record_row_count": 1440,
+  "target_metrics": [
+    "validation_loss",
+    "test_loss",
+    "validation_perplexity",
+    "test_perplexity",
+    "train_loss",
+    "lm_loss",
+    "train_tokens_per_second",
+    "peak_memory_bytes"
+  ]
+}
