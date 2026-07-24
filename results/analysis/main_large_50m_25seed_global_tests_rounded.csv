@@ -1,5 +1,0 @@
-metric,n_seed_blocks,models,repeated_measures_anova_f,repeated_measures_anova_df_num,repeated_measures_anova_df_den,repeated_measures_anova_p_value,friedman_chi_square,friedman_p_value
-validation_loss,25,"dense_121m,mtp_121m,moe_220m,v3_routing_220m",5.337442157299958,3.0,72.0,0.002238,13.175999999999988,0.004271
-test_loss,25,"dense_121m,mtp_121m,moe_220m,v3_routing_220m",3.427803133652648,3.0,72.0,0.021513,6.552000000000021,0.087634
-validation_perplexity,25,"dense_121m,mtp_121m,moe_220m,v3_routing_220m",5.173092854191861,3.0,72.0,0.002709,13.175999999999988,0.004271
-test_perplexity,25,"dense_121m,mtp_121m,moe_220m,v3_routing_220m",3.5824123035295248,3.0,72.0,0.017855,6.552000000000021,0.087634
