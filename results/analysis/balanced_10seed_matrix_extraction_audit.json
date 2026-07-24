@@ -1,0 +1,59 @@
+{
+  "artifact_type": "balanced_10seed_matrix_extraction_audit",
+  "audit_json": "results\\analysis\\balanced_10seed_matrix_extraction_audit.json",
+  "expected_output_rows": 180,
+  "extraction_passed": true,
+  "flat_csv": "results\\analysis\\balanced_10seed_matrix_summary_flat.csv",
+  "flat_json": "results\\analysis\\balanced_10seed_matrix_summary_flat.json",
+  "optional_ambiguous_counts": {},
+  "optional_ambiguous_metrics": {},
+  "output_rows": 180,
+  "required_ambiguous_counts": {},
+  "required_ambiguous_metrics": {},
+  "required_missing_counts": {},
+  "required_missing_metrics": {},
+  "schema_json": "results\\analysis\\balanced_10seed_matrix_summary_schema.json",
+  "scope_audit": {
+    "bad_model_budget_count_count": 0,
+    "bad_model_budget_counts": {},
+    "budgets": [
+      "10m",
+      "25m",
+      "50m"
+    ],
+    "duplicate_matrix_cell_count": 0,
+    "duplicate_matrix_cells": {},
+    "expected_row_count": 180,
+    "invalid_budgets": [],
+    "invalid_models": [],
+    "invalid_seeds": [],
+    "missing_budgets": [],
+    "missing_models": [],
+    "missing_seeds": [],
+    "models": [
+      "dense_121m",
+      "mla_121m",
+      "mla_moe_220m",
+      "moe_220m",
+      "mtp_121m",
+      "v3_routing_220m"
+    ],
+    "row_count": 180,
+    "scope_passed": true,
+    "seeds": [
+      "10007",
+      "11213",
+      "12721",
+      "1337",
+      "2027",
+      "31415",
+      "4441",
+      "5501",
+      "6173",
+      "8191"
+    ]
+  },
+  "summary_parse_error_count": 0,
+  "summary_parse_errors": [],
+  "v1_controlled_design_guardrail": "Extraction reads only balanced_10seed_matrix_manifest.csv and does not scan results/metrics broadly."
+}
