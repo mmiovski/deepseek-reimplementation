@@ -1,0 +1,4196 @@
+[
+  {
+    "budget": "10m",
+    "budget_tokens": 10000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 1.0,
+      "activated_to_trainable_parameter_ratio_mean": 1.0,
+      "peak_memory_gib_mean": 2.830739974975586,
+      "test_minus_validation_loss_gap_mean": 0.2979371690750119,
+      "total_to_activated_parameter_ratio_mean": 1.0
+    },
+    "mechanism": {
+      "attention_mechanism": "standard_attention",
+      "ffn_mechanism": "dense_ffn",
+      "has_mla": false,
+      "has_moe": false,
+      "has_mtp": false,
+      "has_v3_routing": false,
+      "mechanism_family": "dense_baseline",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "none"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 120945408.0,
+        "ci95_low": 120945408.0,
+        "mean": 120945408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 4.957737918258139,
+        "ci95_low": 4.609135346054605,
+        "mean": 4.783436632156372,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.2436563967599736
+      },
+      "mean_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 3039483904.0,
+        "ci95_low": 3039483904.0,
+        "mean": 3039483904.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.08268193200026247,
+        "ci95_low": 0.08268193200026247,
+        "mean": 0.08268193200026247,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.08268193200026247,
+        "ci95_low": 0.08268193200026247,
+        "mean": 0.08268193200026247,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.08268193200026247,
+        "ci95_low": 0.08268193200026247,
+        "mean": 0.08268193200026247,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 5.220309916317028,
+        "ci95_low": 5.161249289691883,
+        "mean": 5.190779603004455,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.04128053153166978
+      },
+      "test_perplexity": {
+        "ci95_high": 185.16121898872862,
+        "ci95_low": 174.33499429234527,
+        "mean": 179.74810664053695,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 7.567009283266153
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.08268510698645128,
+        "ci95_low": 0.08268510698645128,
+        "mean": 0.08268510698645128,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.08268510698645128,
+        "ci95_low": 0.08268510698645128,
+        "mean": 0.08268510698645128,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.08268510698645128,
+        "ci95_low": 0.08268510698645128,
+        "mean": 0.08268510698645128,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 120945408.0,
+        "ci95_low": 120945408.0,
+        "mean": 120945408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 4.957737918258139,
+        "ci95_low": 4.609135346054605,
+        "mean": 4.783436632156372,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.2436563967599736
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 4306.7699486044885,
+        "ci95_low": 4250.710883712266,
+        "mean": 4278.740416158377,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 39.1825845432877
+      },
+      "trainable_parameters": {
+        "ci95_high": 120945408.0,
+        "ci95_low": 120945408.0,
+        "mean": 120945408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 4.952050411624997,
+        "ci95_low": 4.83363445623389,
+        "mean": 4.892842433929443,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.08276704565633804
+      },
+      "validation_perplexity": {
+        "ci95_high": 141.5830962396749,
+        "ci95_low": 125.89872328049934,
+        "mean": 133.7409097600871,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 10.962620776191544
+      }
+    },
+    "model": "dense_121m"
+  },
+  {
+    "budget": "10m",
+    "budget_tokens": 10000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 1.0,
+      "activated_to_trainable_parameter_ratio_mean": 1.0,
+      "peak_memory_gib_mean": 3.266996383666992,
+      "test_minus_validation_loss_gap_mean": 0.34566519069671564,
+      "total_to_activated_parameter_ratio_mean": 1.0
+    },
+    "mechanism": {
+      "attention_mechanism": "mla",
+      "ffn_mechanism": "dense_ffn",
+      "has_mla": true,
+      "has_moe": false,
+      "has_mtp": false,
+      "has_v3_routing": false,
+      "mechanism_family": "mla_attention",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "none"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 137460480.0,
+        "ci95_low": 137460480.0,
+        "mean": 137460480.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 5.191479828270546,
+        "ci95_low": 4.889553783027062,
+        "mean": 5.040516805648804,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.21103175403153357
+      },
+      "mean_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 3507910656.0,
+        "ci95_low": 3507910656.0,
+        "mean": 3507910656.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.07274818187743852,
+        "ci95_low": 0.07274818187743852,
+        "mean": 0.07274818187743852,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.07274818187743852,
+        "ci95_low": 0.07274818187743852,
+        "mean": 0.07274818187743852,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.07274818187743852,
+        "ci95_low": 0.07274818187743852,
+        "mean": 0.07274818187743852,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 5.526724212056048,
+        "ci95_low": 5.4354284826461,
+        "mean": 5.481076347351074,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.06381131477886402
+      },
+      "test_perplexity": {
+        "ci95_high": 251.4452348432092,
+        "ci95_low": 229.64120774344062,
+        "mean": 240.5432212933249,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 15.239964078304567
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.07275097540762261,
+        "ci95_low": 0.07275097540762261,
+        "mean": 0.07275097540762261,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.07275097540762261,
+        "ci95_low": 0.07275097540762261,
+        "mean": 0.07275097540762261,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.07275097540762261,
+        "ci95_low": 0.07275097540762261,
+        "mean": 0.07275097540762261,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 137460480.0,
+        "ci95_low": 137460480.0,
+        "mean": 137460480.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 5.191479828270546,
+        "ci95_low": 4.889553783027062,
+        "mean": 5.040516805648804,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.21103175403153357
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 3702.630395023659,
+        "ci95_low": 3666.1487753528427,
+        "mean": 3684.3895851882507,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 25.498893885868494
+      },
+      "trainable_parameters": {
+        "ci95_high": 137460480.0,
+        "ci95_low": 137460480.0,
+        "mean": 137460480.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 5.187044125276851,
+        "ci95_low": 5.083778188031865,
+        "mean": 5.135411156654358,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.07217791314076713
+      },
+      "validation_perplexity": {
+        "ci95_high": 179.03213150370814,
+        "ci95_low": 161.628022496876,
+        "mean": 170.33007700029208,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 12.164633389298677
+      }
+    },
+    "model": "mla_121m"
+  },
+  {
+    "budget": "10m",
+    "budget_tokens": 10000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 1.0,
+      "activated_to_trainable_parameter_ratio_mean": 1.0,
+      "peak_memory_gib_mean": 3.1968302726745605,
+      "test_minus_validation_loss_gap_mean": 0.2961538248062139,
+      "total_to_activated_parameter_ratio_mean": 1.0
+    },
+    "mechanism": {
+      "attention_mechanism": "standard_attention",
+      "ffn_mechanism": "dense_ffn",
+      "has_mla": false,
+      "has_moe": false,
+      "has_mtp": true,
+      "has_v3_routing": false,
+      "mechanism_family": "mtp_objective",
+      "objective_mechanism": "multi_token_prediction",
+      "routing_mechanism": "none"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 136305408.0,
+        "ci95_low": 136305408.0,
+        "mean": 136305408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 4.947815170196824,
+        "ci95_low": 4.584105453582472,
+        "mean": 4.765960311889648,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.25421556260090505
+      },
+      "mean_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss": {
+        "ci95_high": 5.696179382089553,
+        "ci95_low": 5.321254451986374,
+        "mean": 5.5087169170379635,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.2620544563024291
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.3,
+        "ci95_low": 0.3,
+        "mean": 0.3,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 2.0,
+        "ci95_low": 2.0,
+        "mean": 2.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 3432570368.0,
+        "ci95_low": 3432570368.0,
+        "mean": 3432570368.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.07336466063033978,
+        "ci95_low": 0.07336466063033978,
+        "mean": 0.07336466063033978,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.07336466063033978,
+        "ci95_low": 0.07336466063033978,
+        "mean": 0.07336466063033978,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.07336466063033978,
+        "ci95_low": 0.07336466063033978,
+        "mean": 0.07336466063033978,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 5.225371337281897,
+        "ci95_low": 5.135541451109217,
+        "mean": 5.180456394195557,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.06278676100362918
+      },
+      "test_perplexity": {
+        "ci95_high": 185.93218209116165,
+        "ci95_low": 170.21918717872072,
+        "mean": 178.07568463494118,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 10.982626142063609
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.07336747783330798,
+        "ci95_low": 0.07336747783330798,
+        "mean": 0.07336747783330798,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.07336747783330798,
+        "ci95_low": 0.07336747783330798,
+        "mean": 0.07336747783330798,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.07336747783330798,
+        "ci95_low": 0.07336747783330798,
+        "mean": 0.07336747783330798,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 136305408.0,
+        "ci95_low": 136305408.0,
+        "mean": 136305408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 6.6556943966156465,
+        "ci95_low": 6.181456463217118,
+        "mean": 6.418575429916382,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.3314694591275605
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 3754.2386354702217,
+        "ci95_low": 3717.514445665072,
+        "mean": 3735.8765405676468,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 25.668438718885046
+      },
+      "trainable_parameters": {
+        "ci95_high": 136305408.0,
+        "ci95_low": 136305408.0,
+        "mean": 136305408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 4.940439778911823,
+        "ci95_low": 4.828165359866863,
+        "mean": 4.884302569389343,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.07847440774717546
+      },
+      "validation_perplexity": {
+        "ci95_high": 139.81107773712958,
+        "ci95_low": 125.30636032833607,
+        "mean": 132.55871903273282,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 10.13809840102052
+      }
+    },
+    "model": "mtp_121m"
+  },
+  {
+    "budget": "10m",
+    "budget_tokens": 10000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 0.3569836280607991,
+      "activated_to_trainable_parameter_ratio_mean": 0.3569836280607991,
+      "peak_memory_gib_mean": 4.2918144226074215,
+      "test_minus_validation_loss_gap_mean": 0.28490522193908685,
+      "total_to_activated_parameter_ratio_mean": 2.8012489128204128
+    },
+    "mechanism": {
+      "attention_mechanism": "standard_attention",
+      "ffn_mechanism": "moe_ffn",
+      "has_mla": false,
+      "has_moe": true,
+      "has_mtp": false,
+      "has_v3_routing": false,
+      "mechanism_family": "sparse_moe",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "standard_moe_routing"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 78588672.0,
+        "ci95_low": 78588672.0,
+        "mean": 78588672.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 4.901968747854622,
+        "ci95_low": 4.54367000412902,
+        "mean": 4.722819375991821,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.2504335533383084
+      },
+      "mean_aux_loss": {
+        "ci95_high": 0.01044957351229569,
+        "ci95_low": 0.010330333585744296,
+        "mean": 0.010389953549019993,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 8.334296178535907e-05
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": 0.00044219767135440254,
+        "ci95_low": 0.0003603199265584082,
+        "mean": 0.00040125879895640536,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 5.722859744183616e-05
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": 1.5819610804260438,
+        "ci95_low": 1.5441586385229562,
+        "mean": 1.5630598594745,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 0.02642208496802707
+      },
+      "mtp_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 4610257581.68004,
+        "ci95_low": 4606343711.119959,
+        "mean": 4608300646.4,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 2735606.8890317637
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.12724480189714873,
+        "ci95_low": 0.12724480189714873,
+        "mean": 0.12724480189714873,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.045424311033121806,
+        "ci95_low": 0.045424311033121806,
+        "mean": 0.045424311033121806,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.045424311033121806,
+        "ci95_low": 0.045424311033121806,
+        "mean": 0.045424311033121806,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 5.182614614341648,
+        "ci95_low": 5.087518272544949,
+        "mean": 5.135066443443298,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.06646775966331733
+      },
+      "test_perplexity": {
+        "ci95_high": 178.01158367976475,
+        "ci95_low": 162.39947898753283,
+        "mean": 170.2055313336488,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 10.912108740631227
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.12724968809754159,
+        "ci95_low": 0.12724968809754159,
+        "mean": 0.12724968809754159,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.04542605532666548,
+        "ci95_low": 0.04542605532666548,
+        "mean": 0.04542605532666548,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.04542605532666548,
+        "ci95_low": 0.04542605532666548,
+        "mean": 0.04542605532666548,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 220146432.0,
+        "ci95_low": 220146432.0,
+        "mean": 220146432.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 5.023901459468174,
+        "ci95_low": 4.665782645451259,
+        "mean": 4.844842052459716,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.25030779114380936
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 3036.9654008949583,
+        "ci95_low": 3011.0265189186075,
+        "mean": 3023.995959906783,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 18.130028354035698
+      },
+      "trainable_parameters": {
+        "ci95_high": 220146432.0,
+        "ci95_low": 220146432.0,
+        "mean": 220146432.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 4.90393612170224,
+        "ci95_low": 4.796386321306183,
+        "mean": 4.850161221504211,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.07517212701878057
+      },
+      "validation_perplexity": {
+        "ci95_high": 134.72176788969364,
+        "ci95_low": 121.43528252555353,
+        "mean": 128.07852520762358,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 9.286612915582165
+      }
+    },
+    "model": "moe_220m"
+  },
+  {
+    "budget": "10m",
+    "budget_tokens": 10000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 0.4018555717452045,
+      "activated_to_trainable_parameter_ratio_mean": 0.4018555717452045,
+      "peak_memory_gib_mean": 4.598430061340332,
+      "test_minus_validation_loss_gap_mean": 0.3406687812805176,
+      "total_to_activated_parameter_ratio_mean": 2.4884562273384314
+    },
+    "mechanism": {
+      "attention_mechanism": "mla",
+      "ffn_mechanism": "moe_ffn",
+      "has_mla": true,
+      "has_moe": true,
+      "has_mtp": false,
+      "has_v3_routing": false,
+      "mechanism_family": "mla_plus_moe",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "standard_moe_routing"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 95103744.0,
+        "ci95_low": 95103744.0,
+        "mean": 95103744.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 5.175141517096328,
+        "ci95_low": 4.864304741448594,
+        "mean": 5.019723129272461,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.21725992512354636
+      },
+      "mean_aux_loss": {
+        "ci95_high": 0.010377282504820281,
+        "ci95_low": 0.010297610149822181,
+        "mean": 0.010337446327321231,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 5.5687136263825355e-05
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": 0.0004334162992642776,
+        "ci95_low": 0.0003621249011830067,
+        "mean": 0.00039777060022364215,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 4.982925130661799e-05
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": 1.677055557947284,
+        "ci95_low": 1.6282247698496521,
+        "mean": 1.652640163898468,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 0.03413036743708281
+      },
+      "mtp_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 4938975511.85303,
+        "ci95_low": 4936077851.346971,
+        "mean": 4937526681.6,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 2025325.0384163691
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.1051483314894522,
+        "ci95_low": 0.1051483314894522,
+        "mean": 0.1051483314894522,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.0422544428687481,
+        "ci95_low": 0.0422544428687481,
+        "mean": 0.0422544428687481,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.0422544428687481,
+        "ci95_low": 0.0422544428687481,
+        "mean": 0.0422544428687481,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 5.488946457452821,
+        "ci95_low": 5.411850236349059,
+        "mean": 5.45039834690094,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.05388654283074334
+      },
+      "test_perplexity": {
+        "ci95_high": 241.90097597971078,
+        "ci95_low": 224.39885210189942,
+        "mean": 233.1499140408051,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 12.233141060199488
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.10515236918538137,
+        "ci95_low": 0.10515236918538137,
+        "mean": 0.10515236918538137,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.04225606543935426,
+        "ci95_low": 0.04225606543935426,
+        "mean": 0.04225606543935426,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.04225606543935426,
+        "ci95_low": 0.04225606543935426,
+        "mean": 0.04225606543935426,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 236661504.0,
+        "ci95_low": 236661504.0,
+        "mean": 236661504.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 5.296873167494681,
+        "ci95_low": 4.986184999009225,
+        "mean": 5.141529083251953,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.2171560558793665
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 2729.3691315328056,
+        "ci95_low": 2709.3994375520556,
+        "mean": 2719.3842845424306,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 13.9578536354226
+      },
+      "trainable_parameters": {
+        "ci95_high": 236661504.0,
+        "ci95_low": 236661504.0,
+        "mean": 236661504.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 5.164722760608092,
+        "ci95_low": 5.054736370632752,
+        "mean": 5.109729565620422,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.07687518570110208
+      },
+      "validation_perplexity": {
+        "ci95_high": 175.24134766169664,
+        "ci95_low": 156.89421020166475,
+        "mean": 166.0677789316807,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 12.82376482799225
+      }
+    },
+    "model": "mla_moe_220m"
+  },
+  {
+    "budget": "10m",
+    "budget_tokens": 10000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 0.3569836280607991,
+      "activated_to_trainable_parameter_ratio_mean": 0.3569836280607991,
+      "peak_memory_gib_mean": 4.300116443634034,
+      "test_minus_validation_loss_gap_mean": 0.28053966808319064,
+      "total_to_activated_parameter_ratio_mean": 2.8012489128204128
+    },
+    "mechanism": {
+      "attention_mechanism": "standard_attention",
+      "ffn_mechanism": "moe_ffn",
+      "has_mla": false,
+      "has_moe": true,
+      "has_mtp": false,
+      "has_v3_routing": true,
+      "mechanism_family": "v3_style_routing",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "v3_style_routing"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 78588672.0,
+        "ci95_low": 78588672.0,
+        "mean": 78588672.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 4.9324865208935655,
+        "ci95_low": 4.568455900065906,
+        "mean": 4.750471210479736,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.2544398591797431
+      },
+      "mean_aux_loss": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": 0.0008037337643717872,
+        "ci95_low": 0.0006601424241765721,
+        "mean": 0.0007319380942741796,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 0.00010036342628440009
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": 1.4452177025623363,
+        "ci95_low": 1.4022578956934573,
+        "mean": 1.4237377991278968,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 0.030026834515334486
+      },
+      "mtp_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 4619610358.717049,
+        "ci95_low": 4614819388.482952,
+        "mean": 4617214873.6,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 3348657.2885720166
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.12724480189714873,
+        "ci95_low": 0.12724480189714873,
+        "mean": 0.12724480189714873,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.045424311033121806,
+        "ci95_low": 0.045424311033121806,
+        "mean": 0.045424311033121806,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.045424311033121806,
+        "ci95_low": 0.045424311033121806,
+        "mean": 0.045424311033121806,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 5.2181733523255165,
+        "ci95_low": 5.102238146697921,
+        "mean": 5.160205749511719,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.08103312113358005
+      },
+      "test_perplexity": {
+        "ci95_high": 184.90374479646414,
+        "ci95_low": 164.53168767843664,
+        "mean": 174.7177162374504,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 14.239086076131436
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.12724968809754159,
+        "ci95_low": 0.12724968809754159,
+        "mean": 0.12724968809754159,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.04542605532666548,
+        "ci95_low": 0.04542605532666548,
+        "mean": 0.04542605532666548,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.04542605532666548,
+        "ci95_low": 0.04542605532666548,
+        "mean": 0.04542605532666548,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 220146432.0,
+        "ci95_low": 220146432.0,
+        "mean": 220146432.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 4.9324865208935655,
+        "ci95_low": 4.568455900065906,
+        "mean": 4.750471210479736,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.2544398591797431
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 3063.002028343508,
+        "ci95_low": 3036.000465895054,
+        "mean": 3049.501247119281,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 18.87279078720787
+      },
+      "trainable_parameters": {
+        "ci95_high": 220146432.0,
+        "ci95_low": 220146432.0,
+        "mean": 220146432.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 4.935166372766863,
+        "ci95_low": 4.824165790090193,
+        "mean": 4.879666081428528,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.07758405751941533
+      },
+      "validation_perplexity": {
+        "ci95_high": 139.2211809377534,
+        "ci95_low": 124.66317831895005,
+        "mean": 131.9421796283517,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 10.1753421946894
+      }
+    },
+    "model": "v3_routing_220m"
+  },
+  {
+    "budget": "25m",
+    "budget_tokens": 25000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 1.0,
+      "activated_to_trainable_parameter_ratio_mean": 1.0,
+      "peak_memory_gib_mean": 2.830739974975586,
+      "test_minus_validation_loss_gap_mean": 0.2111630433400471,
+      "total_to_activated_parameter_ratio_mean": 1.0
+    },
+    "mechanism": {
+      "attention_mechanism": "standard_attention",
+      "ffn_mechanism": "dense_ffn",
+      "has_mla": false,
+      "has_moe": false,
+      "has_mtp": false,
+      "has_v3_routing": false,
+      "mechanism_family": "dense_baseline",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "none"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 120945408.0,
+        "ci95_low": 120945408.0,
+        "mean": 120945408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 4.50239735617063,
+        "ci95_low": 4.287749852996851,
+        "mean": 4.39507360458374,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.1500282595915907
+      },
+      "mean_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 3039483904.0,
+        "ci95_low": 3039483904.0,
+        "mean": 3039483904.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.20670483000065615,
+        "ci95_low": 0.20670483000065615,
+        "mean": 0.20670483000065615,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.20670483000065615,
+        "ci95_low": 0.20670483000065615,
+        "mean": 0.20670483000065615,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.20670483000065615,
+        "ci95_low": 0.20670483000065615,
+        "mean": 0.20670483000065615,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 4.786274234669674,
+        "ci95_low": 4.67190569442782,
+        "mean": 4.729089964548747,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.07993809753577513
+      },
+      "test_perplexity": {
+        "ci95_high": 120.1005119708395,
+        "ci95_low": 106.94217787665755,
+        "mean": 113.52134492374853,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 9.19704135424558
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.20671276746612816,
+        "ci95_low": 0.20671276746612816,
+        "mean": 0.20671276746612816,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.20671276746612816,
+        "ci95_low": 0.20671276746612816,
+        "mean": 0.20671276746612816,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.20671276746612816,
+        "ci95_low": 0.20671276746612816,
+        "mean": 0.20671276746612816,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 120945408.0,
+        "ci95_low": 120945408.0,
+        "mean": 120945408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 4.50239735617063,
+        "ci95_low": 4.287749852996851,
+        "mean": 4.39507360458374,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.1500282595915907
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 4349.8668847749495,
+        "ci95_low": 4334.513632253952,
+        "mean": 4342.190258514451,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 10.731183548548854
+      },
+      "trainable_parameters": {
+        "ci95_high": 120945408.0,
+        "ci95_low": 120945408.0,
+        "mean": 120945408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 4.552767906330238,
+        "ci95_low": 4.4830859360871615,
+        "mean": 4.5179269212087,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.04870433881552292
+      },
+      "validation_perplexity": {
+        "ci95_high": 94.96904482452928,
+        "ci95_low": 88.51870675868358,
+        "mean": 91.74387579160643,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 4.508475428259416
+      }
+    },
+    "model": "dense_121m"
+  },
+  {
+    "budget": "25m",
+    "budget_tokens": 25000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 1.0,
+      "activated_to_trainable_parameter_ratio_mean": 1.0,
+      "peak_memory_gib_mean": 3.266996383666992,
+      "test_minus_validation_loss_gap_mean": 0.20779171498616567,
+      "total_to_activated_parameter_ratio_mean": 1.0
+    },
+    "mechanism": {
+      "attention_mechanism": "mla",
+      "ffn_mechanism": "dense_ffn",
+      "has_mla": true,
+      "has_moe": false,
+      "has_mtp": false,
+      "has_v3_routing": false,
+      "mechanism_family": "mla_attention",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "none"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 137460480.0,
+        "ci95_low": 137460480.0,
+        "mean": 137460480.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 4.811395425842325,
+        "ci95_low": 4.574388246490439,
+        "mean": 4.692891836166382,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.16565659559565407
+      },
+      "mean_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 3507910656.0,
+        "ci95_low": 3507910656.0,
+        "mean": 3507910656.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.1818704546935963,
+        "ci95_low": 0.1818704546935963,
+        "mean": 0.1818704546935963,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.1818704546935963,
+        "ci95_low": 0.1818704546935963,
+        "mean": 0.1818704546935963,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.1818704546935963,
+        "ci95_low": 0.1818704546935963,
+        "mean": 0.1818704546935963,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 5.058356511943216,
+        "ci95_low": 4.954159386443421,
+        "mean": 5.006257949193318,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.07282876885143451
+      },
+      "test_perplexity": {
+        "ci95_high": 157.5369036692294,
+        "ci95_low": 141.86815509261794,
+        "mean": 149.70252938092366,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 10.951700085810216
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.18187743851905652,
+        "ci95_low": 0.18187743851905652,
+        "mean": 0.18187743851905652,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.18187743851905652,
+        "ci95_low": 0.18187743851905652,
+        "mean": 0.18187743851905652,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.18187743851905652,
+        "ci95_low": 0.18187743851905652,
+        "mean": 0.18187743851905652,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 137460480.0,
+        "ci95_low": 137460480.0,
+        "mean": 137460480.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 4.811395425842325,
+        "ci95_low": 4.574388246490439,
+        "mean": 4.692891836166382,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.16565659559565407
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 3733.565154051015,
+        "ci95_low": 3717.433415281342,
+        "mean": 3725.4992846661785,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 11.275307916536727
+      },
+      "trainable_parameters": {
+        "ci95_high": 137460480.0,
+        "ci95_low": 137460480.0,
+        "mean": 137460480.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 4.833960581953224,
+        "ci95_low": 4.762971886461082,
+        "mean": 4.798466234207153,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.0496176767858367
+      },
+      "validation_perplexity": {
+        "ci95_high": 125.81040887375833,
+        "ci95_low": 117.10858018546993,
+        "mean": 121.45949452961413,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 6.082158860758462
+      }
+    },
+    "model": "mla_121m"
+  },
+  {
+    "budget": "25m",
+    "budget_tokens": 25000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 1.0,
+      "activated_to_trainable_parameter_ratio_mean": 1.0,
+      "peak_memory_gib_mean": 3.1968302726745605,
+      "test_minus_validation_loss_gap_mean": 0.19567571830749486,
+      "total_to_activated_parameter_ratio_mean": 1.0
+    },
+    "mechanism": {
+      "attention_mechanism": "standard_attention",
+      "ffn_mechanism": "dense_ffn",
+      "has_mla": false,
+      "has_moe": false,
+      "has_mtp": true,
+      "has_v3_routing": false,
+      "mechanism_family": "mtp_objective",
+      "objective_mechanism": "multi_token_prediction",
+      "routing_mechanism": "none"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 136305408.0,
+        "ci95_low": 136305408.0,
+        "mean": 136305408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 4.496482125619673,
+        "ci95_low": 4.269047316213824,
+        "mean": 4.382764720916748,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.1589659703522372
+      },
+      "mean_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss": {
+        "ci95_high": 5.376099793623358,
+        "ci95_low": 5.145788557817071,
+        "mean": 5.260944175720215,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.16097645377422032
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.3,
+        "ci95_low": 0.3,
+        "mean": 0.3,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 2.0,
+        "ci95_low": 2.0,
+        "mean": 2.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 3432570368.0,
+        "ci95_low": 3432570368.0,
+        "mean": 3432570368.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.18341165157584943,
+        "ci95_low": 0.18341165157584943,
+        "mean": 0.18341165157584943,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.18341165157584943,
+        "ci95_low": 0.18341165157584943,
+        "mean": 0.18341165157584943,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.18341165157584943,
+        "ci95_low": 0.18341165157584943,
+        "mean": 0.18341165157584943,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 4.743249822027443,
+        "ci95_low": 4.644951844486635,
+        "mean": 4.694100833257039,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.06870554874277378
+      },
+      "test_perplexity": {
+        "ci95_high": 115.04505634411358,
+        "ci95_low": 104.02787462545238,
+        "mean": 109.53646548478298,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 7.700479038495244
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.18341869458326995,
+        "ci95_low": 0.18341869458326995,
+        "mean": 0.18341869458326995,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.18341869458326995,
+        "ci95_low": 0.18341869458326995,
+        "mean": 0.18341869458326995,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.18341869458326995,
+        "ci95_low": 0.18341869458326995,
+        "mean": 0.18341869458326995,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 136305408.0,
+        "ci95_low": 136305408.0,
+        "mean": 136305408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 6.109024882868722,
+        "ci95_low": 5.813071178837822,
+        "mean": 5.961048030853272,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.2068573753662213
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 3781.7008226231965,
+        "ci95_low": 3763.991183799776,
+        "mean": 3772.8460032114863,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 12.378184005812988
+      },
+      "trainable_parameters": {
+        "ci95_high": 136305408.0,
+        "ci95_low": 136305408.0,
+        "mean": 136305408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 4.525089877334554,
+        "ci95_low": 4.471760352564535,
+        "mean": 4.498425114949544,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.03727476755047511
+      },
+      "validation_perplexity": {
+        "ci95_high": 92.27230386848662,
+        "ci95_low": 87.58928195228548,
+        "mean": 89.93079291038605,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 3.2732066170279177
+      }
+    },
+    "model": "mtp_121m"
+  },
+  {
+    "budget": "25m",
+    "budget_tokens": 25000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 0.3569836280607991,
+      "activated_to_trainable_parameter_ratio_mean": 0.3569836280607991,
+      "peak_memory_gib_mean": 4.2918144226074215,
+      "test_minus_validation_loss_gap_mean": 0.2251674620310462,
+      "total_to_activated_parameter_ratio_mean": 2.8012489128204128
+    },
+    "mechanism": {
+      "attention_mechanism": "standard_attention",
+      "ffn_mechanism": "moe_ffn",
+      "has_mla": false,
+      "has_moe": true,
+      "has_mtp": false,
+      "has_v3_routing": false,
+      "mechanism_family": "sparse_moe",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "standard_moe_routing"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 78588672.0,
+        "ci95_low": 78588672.0,
+        "mean": 78588672.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 4.482804787314533,
+        "ci95_low": 4.270213687264324,
+        "mean": 4.3765092372894285,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.1485909329183886
+      },
+      "mean_aux_loss": {
+        "ci95_high": 0.010344855010194616,
+        "ci95_low": 0.010269781415355169,
+        "mean": 0.010307318212774893,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 5.247282455425368e-05
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": 0.00043740290430016756,
+        "ci95_low": 0.00035911117765769884,
+        "mean": 0.0003982570409789332,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 5.472214358384865e-05
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": 1.7698827750482353,
+        "ci95_low": 1.7401442461214272,
+        "mean": 1.7550135105848312,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 0.02078579844504898
+      },
+      "mtp_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 4610257581.68004,
+        "ci95_low": 4606343711.119959,
+        "mean": 4608300646.4,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 2735606.8890317637
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.3181120047428718,
+        "ci95_low": 0.3181120047428718,
+        "mean": 0.3181120047428718,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.11356077758280451,
+        "ci95_low": 0.11356077758280451,
+        "mean": 0.11356077758280451,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.11356077758280451,
+        "ci95_low": 0.11356077758280451,
+        "mean": 0.11356077758280451,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 4.756839588815477,
+        "ci95_low": 4.655878588979934,
+        "mean": 4.706359088897705,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.07056687298007085
+      },
+      "test_perplexity": {
+        "ci95_high": 116.49134998745443,
+        "ci95_low": 105.30198723113033,
+        "mean": 110.89666860929238,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 7.820825285403729
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.31812422024385395,
+        "ci95_low": 0.31812422024385395,
+        "mean": 0.31812422024385395,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.1135651383166637,
+        "ci95_low": 0.1135651383166637,
+        "mean": 0.1135651383166637,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.1135651383166637,
+        "ci95_low": 0.1135651383166637,
+        "mean": 0.1135651383166637,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 220146432.0,
+        "ci95_low": 220146432.0,
+        "mean": 220146432.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 4.604447198727643,
+        "ci95_low": 4.391625284335101,
+        "mean": 4.498036241531372,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.1487522610193775
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 3060.2761068203254,
+        "ci95_low": 3043.9309000777694,
+        "mean": 3052.1035034490474,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 11.424511741303773
+      },
+      "trainable_parameters": {
+        "ci95_high": 220146432.0,
+        "ci95_low": 220146432.0,
+        "mean": 220146432.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 4.512414812000252,
+        "ci95_low": 4.449968441733066,
+        "mean": 4.481191626866659,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.043647003158536764
+      },
+      "validation_perplexity": {
+        "ci95_high": 91.20252459444495,
+        "ci95_low": 85.62970215276815,
+        "mean": 88.41611337360655,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 3.8951342996095146
+      }
+    },
+    "model": "moe_220m"
+  },
+  {
+    "budget": "25m",
+    "budget_tokens": 25000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 0.4018555717452045,
+      "activated_to_trainable_parameter_ratio_mean": 0.4018555717452045,
+      "peak_memory_gib_mean": 4.598430061340332,
+      "test_minus_validation_loss_gap_mean": 0.21862693150838197,
+      "total_to_activated_parameter_ratio_mean": 2.4884562273384314
+    },
+    "mechanism": {
+      "attention_mechanism": "mla",
+      "ffn_mechanism": "moe_ffn",
+      "has_mla": true,
+      "has_moe": true,
+      "has_mtp": false,
+      "has_v3_routing": false,
+      "mechanism_family": "mla_plus_moe",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "standard_moe_routing"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 95103744.0,
+        "ci95_low": 95103744.0,
+        "mean": 95103744.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 4.791198256301373,
+        "ci95_low": 4.562964341354878,
+        "mean": 4.677081298828125,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.15952450661154802
+      },
+      "mean_aux_loss": {
+        "ci95_high": 0.010283568736053753,
+        "ci95_low": 0.010221054527399694,
+        "mean": 0.010252311631726723,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 4.369441892142911e-05
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": 0.00038704618191852885,
+        "ci95_low": 0.00032960760814688836,
+        "mean": 0.0003583268950327086,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 4.0146794763346136e-05
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": 1.7898251285579903,
+        "ci95_low": 1.7507262388440863,
+        "mean": 1.7702756837010383,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 0.027328239504335144
+      },
+      "mtp_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 4938975511.85303,
+        "ci95_low": 4936077851.346971,
+        "mean": 4937526681.6,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 2025325.0384163691
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.2628708287236305,
+        "ci95_low": 0.2628708287236305,
+        "mean": 0.2628708287236305,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.10563610717187025,
+        "ci95_low": 0.10563610717187025,
+        "mean": 0.10563610717187025,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.10563610717187025,
+        "ci95_low": 0.10563610717187025,
+        "mean": 0.10563610717187025,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 5.049517736094443,
+        "ci95_low": 4.925615343434365,
+        "mean": 4.987566539764404,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.08660180088363634
+      },
+      "test_perplexity": {
+        "ci95_high": 155.9698241819263,
+        "ci95_low": 138.16400413866694,
+        "mean": 147.06691416029662,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 12.445410042941464
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.26288092296345345,
+        "ci95_low": 0.26288092296345345,
+        "mean": 0.26288092296345345,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.10564016359838566,
+        "ci95_low": 0.10564016359838566,
+        "mean": 0.10564016359838566,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.10564016359838566,
+        "ci95_low": 0.10564016359838566,
+        "mean": 0.10564016359838566,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 236661504.0,
+        "ci95_low": 236661504.0,
+        "mean": 236661504.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 4.9123186880440155,
+        "ci95_low": 4.684275836339529,
+        "mean": 4.798297262191772,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.15939096261384716
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 2744.6985125334,
+        "ci95_low": 2733.2344920648343,
+        "mean": 2738.966502299117,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 8.0127977888885
+      },
+      "trainable_parameters": {
+        "ci95_high": 236661504.0,
+        "ci95_low": 236661504.0,
+        "mean": 236661504.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 4.800208446553135,
+        "ci95_low": 4.737670769958909,
+        "mean": 4.768939608256022,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.043710821880548506
+      },
+      "validation_perplexity": {
+        "ci95_high": 121.56789695522194,
+        "ci95_low": 114.22272656608824,
+        "mean": 117.89531176065509,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 5.133920094999872
+      }
+    },
+    "model": "mla_moe_220m"
+  },
+  {
+    "budget": "25m",
+    "budget_tokens": 25000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 0.3569836280607991,
+      "activated_to_trainable_parameter_ratio_mean": 0.3569836280607991,
+      "peak_memory_gib_mean": 4.300116443634034,
+      "test_minus_validation_loss_gap_mean": 0.21317553615570084,
+      "total_to_activated_parameter_ratio_mean": 2.8012489128204128
+    },
+    "mechanism": {
+      "attention_mechanism": "standard_attention",
+      "ffn_mechanism": "moe_ffn",
+      "has_mla": false,
+      "has_moe": true,
+      "has_mtp": false,
+      "has_v3_routing": true,
+      "mechanism_family": "v3_style_routing",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "v3_style_routing"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 78588672.0,
+        "ci95_low": 78588672.0,
+        "mean": 78588672.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 4.467848665168382,
+        "ci95_low": 4.2666700535511,
+        "mean": 4.367259359359741,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.14061415353877937
+      },
+      "mean_aux_loss": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": 0.0007380271410177279,
+        "ci95_low": 0.0005956883768128414,
+        "mean": 0.0006668577589152846,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 9.948793603617185e-05
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": 1.7000062213738698,
+        "ci95_low": 1.6679690434138041,
+        "mean": 1.683987632393837,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 0.02239244333386626
+      },
+      "mtp_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 4619610358.717049,
+        "ci95_low": 4614819388.482952,
+        "mean": 4617214873.6,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 3348657.2885720166
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.3181120047428718,
+        "ci95_low": 0.3181120047428718,
+        "mean": 0.3181120047428718,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.11356077758280451,
+        "ci95_low": 0.11356077758280451,
+        "mean": 0.11356077758280451,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.11356077758280451,
+        "ci95_low": 0.11356077758280451,
+        "mean": 0.11356077758280451,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 4.772872836130327,
+        "ci95_low": 4.647207304301395,
+        "mean": 4.710040070215861,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.08783415018660952
+      },
+      "test_perplexity": {
+        "ci95_high": 118.55800051111353,
+        "ci95_low": 104.33557587072721,
+        "mean": 111.44678819092037,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 9.940789361254346
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.31812422024385395,
+        "ci95_low": 0.31812422024385395,
+        "mean": 0.31812422024385395,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.1135651383166637,
+        "ci95_low": 0.1135651383166637,
+        "mean": 0.1135651383166637,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.1135651383166637,
+        "ci95_low": 0.1135651383166637,
+        "mean": 0.1135651383166637,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 220146432.0,
+        "ci95_low": 220146432.0,
+        "mean": 220146432.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 4.467848665168382,
+        "ci95_low": 4.2666700535511,
+        "mean": 4.367259359359741,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.14061415353877937
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 3071.956154996644,
+        "ci95_low": 3062.9517006204032,
+        "mean": 3067.4539278085235,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 6.293679631323772
+      },
+      "trainable_parameters": {
+        "ci95_high": 220146432.0,
+        "ci95_low": 220146432.0,
+        "mean": 220146432.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 4.527893260380271,
+        "ci95_low": 4.465835807740049,
+        "mean": 4.49686453406016,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.0433751684815191
+      },
+      "validation_perplexity": {
+        "ci95_high": 92.51734898537084,
+        "ci95_low": 87.10239601993415,
+        "mean": 89.8098725026525,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 3.784791144377163
+      }
+    },
+    "model": "v3_routing_220m"
+  },
+  {
+    "budget": "50m",
+    "budget_tokens": 50000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 1.0,
+      "activated_to_trainable_parameter_ratio_mean": 1.0,
+      "peak_memory_gib_mean": 2.830739974975586,
+      "test_minus_validation_loss_gap_mean": 0.1669626007080076,
+      "total_to_activated_parameter_ratio_mean": 1.0
+    },
+    "mechanism": {
+      "attention_mechanism": "standard_attention",
+      "ffn_mechanism": "dense_ffn",
+      "has_mla": false,
+      "has_moe": false,
+      "has_mtp": false,
+      "has_v3_routing": false,
+      "mechanism_family": "dense_baseline",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "none"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 120945408.0,
+        "ci95_low": 120945408.0,
+        "mean": 120945408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 4.4534910581740865,
+        "ci95_low": 4.047119245704697,
+        "mean": 4.250305151939392,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.28403431146601127
+      },
+      "mean_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 3039483904.0,
+        "ci95_low": 3039483904.0,
+        "mean": 3039483904.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.4134096600013123,
+        "ci95_low": 0.4134096600013123,
+        "mean": 0.4134096600013123,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.4134096600013123,
+        "ci95_low": 0.4134096600013123,
+        "mean": 0.4134096600013123,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.4134096600013123,
+        "ci95_low": 0.4134096600013123,
+        "mean": 0.4134096600013123,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 4.521088915308502,
+        "ci95_low": 4.443395260373567,
+        "mean": 4.482242087841034,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.054304120284879326
+      },
+      "test_perplexity": {
+        "ci95_high": 92.04660588866703,
+        "ci95_low": 85.05611149732427,
+        "mean": 88.55135869299565,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 4.886018666468451
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.41341706830241953,
+        "ci95_low": 0.41341706830241953,
+        "mean": 0.41341706830241953,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.41341706830241953,
+        "ci95_low": 0.41341706830241953,
+        "mean": 0.41341706830241953,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.41341706830241953,
+        "ci95_low": 0.41341706830241953,
+        "mean": 0.41341706830241953,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 120945408.0,
+        "ci95_low": 120945408.0,
+        "mean": 120945408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 4.4534910581740865,
+        "ci95_low": 4.047119245704697,
+        "mean": 4.250305151939392,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.28403431146601127
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 4366.657548750769,
+        "ci95_low": 4305.420573609037,
+        "mean": 4336.039061179903,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 42.80169425371493
+      },
+      "trainable_parameters": {
+        "ci95_high": 120945408.0,
+        "ci95_low": 120945408.0,
+        "mean": 120945408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 4.349902019831542,
+        "ci95_low": 4.280656954434511,
+        "mean": 4.315279487133027,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.0483989633851539
+      },
+      "validation_perplexity": {
+        "ci95_high": 77.486066740599,
+        "ci95_low": 72.33999169607517,
+        "mean": 74.91302921833709,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 3.596858436469052
+      }
+    },
+    "model": "dense_121m"
+  },
+  {
+    "budget": "50m",
+    "budget_tokens": 50000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 1.0,
+      "activated_to_trainable_parameter_ratio_mean": 1.0,
+      "peak_memory_gib_mean": 3.266996383666992,
+      "test_minus_validation_loss_gap_mean": 0.15156349945068293,
+      "total_to_activated_parameter_ratio_mean": 1.0
+    },
+    "mechanism": {
+      "attention_mechanism": "mla",
+      "ffn_mechanism": "dense_ffn",
+      "has_mla": true,
+      "has_moe": false,
+      "has_mtp": false,
+      "has_v3_routing": false,
+      "mechanism_family": "mla_attention",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "none"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 137460480.0,
+        "ci95_low": 137460480.0,
+        "mean": 137460480.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 4.654570934102911,
+        "ci95_low": 4.282538631631952,
+        "mean": 4.4685547828674315,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.2600326490002638
+      },
+      "mean_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 3507910656.0,
+        "ci95_low": 3507910656.0,
+        "mean": 3507910656.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.3637409093871926,
+        "ci95_low": 0.3637409093871926,
+        "mean": 0.3637409093871926,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.3637409093871926,
+        "ci95_low": 0.3637409093871926,
+        "mean": 0.3637409093871926,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.3637409093871926,
+        "ci95_low": 0.3637409093871926,
+        "mean": 0.3637409093871926,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 4.726394102168423,
+        "ci95_low": 4.617448321270602,
+        "mean": 4.671921211719512,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.07614785010899447
+      },
+      "test_perplexity": {
+        "ci95_high": 113.1137889697655,
+        "ci95_low": 101.2562612209901,
+        "mean": 107.1850250953778,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 8.287840412322469
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.3637474276242888,
+        "ci95_low": 0.3637474276242888,
+        "mean": 0.3637474276242888,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.3637474276242888,
+        "ci95_low": 0.3637474276242888,
+        "mean": 0.3637474276242888,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.3637474276242888,
+        "ci95_low": 0.3637474276242888,
+        "mean": 0.3637474276242888,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 137460480.0,
+        "ci95_low": 137460480.0,
+        "mean": 137460480.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 4.654570934102911,
+        "ci95_low": 4.282538631631952,
+        "mean": 4.4685547828674315,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.2600326490002638
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 3742.6749945300317,
+        "ci95_low": 3724.921063173102,
+        "mean": 3733.798028851567,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 12.40914235201808
+      },
+      "trainable_parameters": {
+        "ci95_high": 137460480.0,
+        "ci95_low": 137460480.0,
+        "mean": 137460480.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 4.5709097017316545,
+        "ci95_low": 4.469805722806004,
+        "mean": 4.520357712268829,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.07066680847305075
+      },
+      "validation_perplexity": {
+        "ci95_high": 96.78463592013279,
+        "ci95_low": 87.36871145769507,
+        "mean": 92.07667368891393,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 6.581277390409365
+      }
+    },
+    "model": "mla_121m"
+  },
+  {
+    "budget": "50m",
+    "budget_tokens": 50000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 1.0,
+      "activated_to_trainable_parameter_ratio_mean": 1.0,
+      "peak_memory_gib_mean": 3.1968302726745605,
+      "test_minus_validation_loss_gap_mean": 0.18146834683418245,
+      "total_to_activated_parameter_ratio_mean": 1.0
+    },
+    "mechanism": {
+      "attention_mechanism": "standard_attention",
+      "ffn_mechanism": "dense_ffn",
+      "has_mla": false,
+      "has_moe": false,
+      "has_mtp": true,
+      "has_v3_routing": false,
+      "mechanism_family": "mtp_objective",
+      "objective_mechanism": "multi_token_prediction",
+      "routing_mechanism": "none"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 136305408.0,
+        "ci95_low": 136305408.0,
+        "mean": 136305408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 4.439416144355259,
+        "ci95_low": 4.030180336967983,
+        "mean": 4.234798240661621,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.2860361058808368
+      },
+      "mean_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss": {
+        "ci95_high": 5.326741059805712,
+        "ci95_low": 4.953743902657668,
+        "mean": 5.14024248123169,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.26070703591751765
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.3,
+        "ci95_low": 0.3,
+        "mean": 0.3,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 2.0,
+        "ci95_low": 2.0,
+        "mean": 2.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 3432570368.0,
+        "ci95_low": 3432570368.0,
+        "mean": 3432570368.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.36682330315169887,
+        "ci95_low": 0.36682330315169887,
+        "mean": 0.36682330315169887,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.36682330315169887,
+        "ci95_low": 0.36682330315169887,
+        "mean": 0.36682330315169887,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.36682330315169887,
+        "ci95_low": 0.36682330315169887,
+        "mean": 0.36682330315169887,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 4.487706023055928,
+        "ci95_low": 4.425550340812785,
+        "mean": 4.456628181934357,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.04344382623969792
+      },
+      "test_perplexity": {
+        "ci95_high": 88.91397143657925,
+        "ci95_low": 83.62394695816268,
+        "mean": 86.26895919737096,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 3.6974721529893833
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.3668298766252914,
+        "ci95_low": 0.3668298766252914,
+        "mean": 0.3668298766252914,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.3668298766252914,
+        "ci95_low": 0.3668298766252914,
+        "mean": 0.3668298766252914,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.3668298766252914,
+        "ci95_low": 0.3668298766252914,
+        "mean": 0.3668298766252914,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 136305408.0,
+        "ci95_low": 136305408.0,
+        "mean": 136305408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 6.036395572786549,
+        "ci95_low": 5.517346359128735,
+        "mean": 5.776870965957642,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.36279038430938626
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 3795.280348675302,
+        "ci95_low": 3742.5576611232163,
+        "mean": 3768.919004899259,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 36.850617582197955
+      },
+      "trainable_parameters": {
+        "ci95_high": 136305408.0,
+        "ci95_low": 136305408.0,
+        "mean": 136305408.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 4.306865811918431,
+        "ci95_low": 4.243453858281917,
+        "mean": 4.275159835100174,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.04432189939654918
+      },
+      "validation_perplexity": {
+        "ci95_high": 74.16842587807758,
+        "ci95_low": 69.7394637573507,
+        "mean": 71.95394481771415,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 3.095631064628686
+      }
+    },
+    "model": "mtp_121m"
+  },
+  {
+    "budget": "50m",
+    "budget_tokens": 50000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 0.3569836280607991,
+      "activated_to_trainable_parameter_ratio_mean": 0.3569836280607991,
+      "peak_memory_gib_mean": 4.2918144226074215,
+      "test_minus_validation_loss_gap_mean": 0.18113623833656334,
+      "total_to_activated_parameter_ratio_mean": 2.8012489128204128
+    },
+    "mechanism": {
+      "attention_mechanism": "standard_attention",
+      "ffn_mechanism": "moe_ffn",
+      "has_mla": false,
+      "has_moe": true,
+      "has_mtp": false,
+      "has_v3_routing": false,
+      "mechanism_family": "sparse_moe",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "standard_moe_routing"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 78588672.0,
+        "ci95_low": 78588672.0,
+        "mean": 78588672.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 4.417705096893382,
+        "ci95_low": 4.005040607757497,
+        "mean": 4.2113728523254395,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.288432589174756
+      },
+      "mean_aux_loss": {
+        "ci95_high": 0.010292146731206521,
+        "ci95_low": 0.010239620549565807,
+        "mean": 0.010265883640386164,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 3.6713269420925815e-05
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": 0.0004400872382577419,
+        "ci95_low": 0.0003684332104662212,
+        "mean": 0.00040426022436198156,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 5.0082711996822014e-05
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": 1.9628090423121536,
+        "ci95_low": 1.939090408705226,
+        "mean": 1.9509497255086898,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 0.016578181750649203
+      },
+      "mtp_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 4610257581.68004,
+        "ci95_low": 4606343711.119959,
+        "mean": 4608300646.4,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 2735606.8890317637
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.6362240094857436,
+        "ci95_low": 0.6362240094857436,
+        "mean": 0.6362240094857436,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.22712155516560903,
+        "ci95_low": 0.22712155516560903,
+        "mean": 0.22712155516560903,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.22712155516560903,
+        "ci95_low": 0.22712155516560903,
+        "mean": 0.22712155516560903,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 4.487957553258165,
+        "ci95_low": 4.4250007201526325,
+        "mean": 4.456479136705399,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.04400379208033125
+      },
+      "test_perplexity": {
+        "ci95_high": 88.97632932178281,
+        "ci95_low": 83.54107296734351,
+        "mean": 86.25870114456316,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 3.79898223475014
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.6362354106199937,
+        "ci95_low": 0.6362354106199937,
+        "mean": 0.6362354106199937,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.22712562518387763,
+        "ci95_low": 0.22712562518387763,
+        "mean": 0.22712562518387763,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.22712562518387763,
+        "ci95_low": 0.22712562518387763,
+        "mean": 0.22712562518387763,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 220146432.0,
+        "ci95_low": 220146432.0,
+        "mean": 220146432.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 4.539112967419578,
+        "ci95_low": 4.126776009631203,
+        "mean": 4.33294448852539,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.2882036605485092
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 3119.3389625857253,
+        "ci95_low": 2905.6429736078308,
+        "mean": 3012.490968096778,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 149.36319702773838
+      },
+      "trainable_parameters": {
+        "ci95_high": 220146432.0,
+        "ci95_low": 220146432.0,
+        "mean": 220146432.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 4.30927523441576,
+        "ci95_low": 4.241410562321911,
+        "mean": 4.2753428983688355,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.047434134995509594
+      },
+      "validation_perplexity": {
+        "ci95_high": 74.39406822494907,
+        "ci95_low": 69.5601274610814,
+        "mean": 71.97709784301523,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 3.3786916178790394
+      }
+    },
+    "model": "moe_220m"
+  },
+  {
+    "budget": "50m",
+    "budget_tokens": 50000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 0.4018555717452045,
+      "activated_to_trainable_parameter_ratio_mean": 0.4018555717452045,
+      "peak_memory_gib_mean": 4.598430061340332,
+      "test_minus_validation_loss_gap_mean": 0.13970146131515548,
+      "total_to_activated_parameter_ratio_mean": 2.4884562273384314
+    },
+    "mechanism": {
+      "attention_mechanism": "mla",
+      "ffn_mechanism": "moe_ffn",
+      "has_mla": true,
+      "has_moe": true,
+      "has_mtp": false,
+      "has_v3_routing": false,
+      "mechanism_family": "mla_plus_moe",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "standard_moe_routing"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 95103744.0,
+        "ci95_low": 95103744.0,
+        "mean": 95103744.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 4.655982207740257,
+        "ci95_low": 4.264513683830788,
+        "mean": 4.460247945785523,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.27361763103984194
+      },
+      "mean_aux_loss": {
+        "ci95_high": 0.010244018011000833,
+        "ci95_low": 0.01019916484670631,
+        "mean": 0.010221591428853571,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 3.1350200103819565e-05
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": 0.0004537712938728657,
+        "ci95_low": 0.000363064000978275,
+        "mean": 0.00040841764742557035,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 6.340002601484952e-05
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": 1.986420018220472,
+        "ci95_low": 1.956107077256314,
+        "mean": 1.971263547738393,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 0.021187284774858817
+      },
+      "mtp_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 4938975511.85303,
+        "ci95_low": 4936077851.346971,
+        "mean": 4937526681.6,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 2025325.0384163691
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.525741657447261,
+        "ci95_low": 0.525741657447261,
+        "mean": 0.525741657447261,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.2112722143437405,
+        "ci95_low": 0.2112722143437405,
+        "mean": 0.2112722143437405,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.2112722143437405,
+        "ci95_low": 0.2112722143437405,
+        "mean": 0.2112722143437405,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 4.687369388965386,
+        "ci95_low": 4.592778222652657,
+        "mean": 4.640073805809021,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.06611466634740212
+      },
+      "test_perplexity": {
+        "ci95_high": 108.72924415465901,
+        "ci95_low": 98.78600818489188,
+        "mean": 103.75762616977545,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 6.949842719786618
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.5257510787377624,
+        "ci95_low": 0.5257510787377624,
+        "mean": 0.5257510787377624,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.21127600034182153,
+        "ci95_low": 0.21127600034182153,
+        "mean": 0.21127600034182153,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.21127600034182153,
+        "ci95_low": 0.21127600034182153,
+        "mean": 0.21127600034182153,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 236661504.0,
+        "ci95_low": 236661504.0,
+        "mean": 236661504.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 4.777185956471415,
+        "ci95_low": 4.385858114726094,
+        "mean": 4.581522035598755,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.27351930098740457
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 2747.4789242130196,
+        "ci95_low": 2739.616930840704,
+        "mean": 2743.5479275268617,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 5.4951544515017
+      },
+      "trainable_parameters": {
+        "ci95_high": 236661504.0,
+        "ci95_low": 236661504.0,
+        "mean": 236661504.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 4.536596538880863,
+        "ci95_low": 4.464148150106869,
+        "mean": 4.500372344493866,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.05063793203863851
+      },
+      "validation_perplexity": {
+        "ci95_high": 93.41338633902949,
+        "ci95_low": 86.89556519569864,
+        "mean": 90.15447576736406,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 4.5556428470147265
+      }
+    },
+    "model": "mla_moe_220m"
+  },
+  {
+    "budget": "50m",
+    "budget_tokens": 50000000,
+    "derived": {
+      "activated_to_total_parameter_ratio_mean": 0.3569836280607991,
+      "activated_to_trainable_parameter_ratio_mean": 0.3569836280607991,
+      "peak_memory_gib_mean": 4.300116443634034,
+      "test_minus_validation_loss_gap_mean": 0.19122074079513496,
+      "total_to_activated_parameter_ratio_mean": 2.8012489128204128
+    },
+    "mechanism": {
+      "attention_mechanism": "standard_attention",
+      "ffn_mechanism": "moe_ffn",
+      "has_mla": false,
+      "has_moe": true,
+      "has_mtp": false,
+      "has_v3_routing": true,
+      "mechanism_family": "v3_style_routing",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "v3_style_routing"
+    },
+    "metrics": {
+      "activated_parameters_per_token": {
+        "ci95_high": 78588672.0,
+        "ci95_low": 78588672.0,
+        "mean": 78588672.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "expert_bias_mean": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "expert_bias_std": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "lm_loss": {
+        "ci95_high": 4.432189933627632,
+        "ci95_low": 4.030550010830376,
+        "mean": 4.231369972229004,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.28072694864281195
+      },
+      "mean_aux_loss": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mean_expert_load_variance": {
+        "ci95_high": 0.00069303662185129,
+        "ci95_low": 0.0006228438503966644,
+        "mean": 0.0006579402361239772,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 4.9061364243878064e-05
+      },
+      "mean_router_probability": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "routing",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mean_routing_entropy": {
+        "ci95_high": 1.9365268582666204,
+        "ci95_low": 1.8950524673298708,
+        "mean": 1.9157896627982456,
+        "metric_group": "routing",
+        "non_missing_seed_count": 10,
+        "std": 0.028988600369714755
+      },
+      "mtp_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
+      "mtp_loss_weight": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "mtp_num_future_tokens": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "peak_memory_bytes": {
+        "ci95_high": 4619610358.717049,
+        "ci95_low": 4614819388.482952,
+        "mean": 4617214873.6,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 3348657.2885720166
+      },
+      "requested_tokens_per_activated_parameter": {
+        "ci95_high": 0.6362240094857436,
+        "ci95_low": 0.6362240094857436,
+        "mean": 0.6362240094857436,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_total_parameter": {
+        "ci95_high": 0.22712155516560903,
+        "ci95_low": 0.22712155516560903,
+        "mean": 0.22712155516560903,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "requested_tokens_per_trainable_parameter": {
+        "ci95_high": 0.22712155516560903,
+        "ci95_low": 0.22712155516560903,
+        "mean": 0.22712155516560903,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "test_loss": {
+        "ci95_high": 4.525697808705331,
+        "ci95_low": 4.42683206180477,
+        "mean": 4.476264935255051,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.06910239216109255
+      },
+      "test_perplexity": {
+        "ci95_high": 92.41864711140502,
+        "ci95_low": 83.76911176835486,
+        "mean": 88.09387943987994,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 6.045608332761115
+      },
+      "tokens_per_activated_parameter": {
+        "ci95_high": 0.6362354106199937,
+        "ci95_low": 0.6362354106199937,
+        "mean": 0.6362354106199937,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_total_parameter": {
+        "ci95_high": 0.22712562518387763,
+        "ci95_low": 0.22712562518387763,
+        "mean": 0.22712562518387763,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "tokens_per_trainable_parameter": {
+        "ci95_high": 0.22712562518387763,
+        "ci95_low": 0.22712562518387763,
+        "mean": 0.22712562518387763,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "total_parameters": {
+        "ci95_high": 220146432.0,
+        "ci95_low": 220146432.0,
+        "mean": 220146432.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "train_loss": {
+        "ci95_high": 4.432189933627632,
+        "ci95_low": 4.030550010830376,
+        "mean": 4.231369972229004,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.28072694864281195
+      },
+      "train_tokens_per_second": {
+        "ci95_high": 3086.396909183249,
+        "ci95_low": 3054.176797629659,
+        "mean": 3070.286853406454,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 22.520305099092838
+      },
+      "trainable_parameters": {
+        "ci95_high": 220146432.0,
+        "ci95_low": 220146432.0,
+        "mean": 220146432.0,
+        "metric_group": "parameterization",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
+      "validation_loss": {
+        "ci95_high": 4.317948169157374,
+        "ci95_low": 4.252140219762458,
+        "mean": 4.285044194459916,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 0.04599658495453118
+      },
+      "validation_perplexity": {
+        "ci95_high": 75.09564506032764,
+        "ci95_low": 70.2552518829935,
+        "mean": 72.67544847166057,
+        "metric_group": "quality",
+        "non_missing_seed_count": 10,
+        "std": 3.3832015439122913
+      }
+    },
+    "model": "v3_routing_220m"
+  }
+]

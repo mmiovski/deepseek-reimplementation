@@ -1,0 +1,131 @@
+{
+  "derived_fields": [
+    "activated_to_total_parameter_ratio_mean",
+    "activated_to_trainable_parameter_ratio_mean",
+    "total_to_activated_parameter_ratio_mean",
+    "peak_memory_gib_mean",
+    "test_minus_validation_loss_gap_mean"
+  ],
+  "model_mechanisms": {
+    "dense_121m": {
+      "attention_mechanism": "standard_attention",
+      "ffn_mechanism": "dense_ffn",
+      "has_mla": false,
+      "has_moe": false,
+      "has_mtp": false,
+      "has_v3_routing": false,
+      "mechanism_family": "dense_baseline",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "none"
+    },
+    "mla_121m": {
+      "attention_mechanism": "mla",
+      "ffn_mechanism": "dense_ffn",
+      "has_mla": true,
+      "has_moe": false,
+      "has_mtp": false,
+      "has_v3_routing": false,
+      "mechanism_family": "mla_attention",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "none"
+    },
+    "mla_moe_220m": {
+      "attention_mechanism": "mla",
+      "ffn_mechanism": "moe_ffn",
+      "has_mla": true,
+      "has_moe": true,
+      "has_mtp": false,
+      "has_v3_routing": false,
+      "mechanism_family": "mla_plus_moe",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "standard_moe_routing"
+    },
+    "moe_220m": {
+      "attention_mechanism": "standard_attention",
+      "ffn_mechanism": "moe_ffn",
+      "has_mla": false,
+      "has_moe": true,
+      "has_mtp": false,
+      "has_v3_routing": false,
+      "mechanism_family": "sparse_moe",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "standard_moe_routing"
+    },
+    "mtp_121m": {
+      "attention_mechanism": "standard_attention",
+      "ffn_mechanism": "dense_ffn",
+      "has_mla": false,
+      "has_moe": false,
+      "has_mtp": true,
+      "has_v3_routing": false,
+      "mechanism_family": "mtp_objective",
+      "objective_mechanism": "multi_token_prediction",
+      "routing_mechanism": "none"
+    },
+    "v3_routing_220m": {
+      "attention_mechanism": "standard_attention",
+      "ffn_mechanism": "moe_ffn",
+      "has_mla": false,
+      "has_moe": true,
+      "has_mtp": false,
+      "has_v3_routing": true,
+      "mechanism_family": "v3_style_routing",
+      "objective_mechanism": "next_token_prediction",
+      "routing_mechanism": "v3_style_routing"
+    }
+  },
+  "profile_metric_groups": {
+    "efficiency": [
+      "train_tokens_per_second",
+      "peak_memory_bytes"
+    ],
+    "mtp": [
+      "mtp_loss",
+      "mtp_loss_weight",
+      "mtp_num_future_tokens"
+    ],
+    "optimization": [
+      "train_loss",
+      "lm_loss"
+    ],
+    "parameterization": [
+      "total_parameters",
+      "trainable_parameters",
+      "activated_parameters_per_token",
+      "tokens_per_total_parameter",
+      "tokens_per_trainable_parameter",
+      "tokens_per_activated_parameter",
+      "requested_tokens_per_total_parameter",
+      "requested_tokens_per_trainable_parameter",
+      "requested_tokens_per_activated_parameter"
+    ],
+    "quality": [
+      "validation_loss",
+      "test_loss",
+      "validation_perplexity",
+      "test_perplexity"
+    ],
+    "routing": [
+      "mean_aux_loss",
+      "mean_expert_load_variance",
+      "mean_routing_entropy",
+      "mean_router_probability",
+      "expert_bias_mean",
+      "expert_bias_std"
+    ]
+  },
+  "required_profile_metrics": [
+    "validation_loss",
+    "test_loss",
+    "validation_perplexity",
+    "test_perplexity",
+    "train_tokens_per_second",
+    "peak_memory_bytes",
+    "total_parameters",
+    "trainable_parameters",
+    "activated_parameters_per_token",
+    "tokens_per_total_parameter",
+    "tokens_per_trainable_parameter",
+    "tokens_per_activated_parameter"
+  ]
+}
