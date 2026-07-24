@@ -1,0 +1,15 @@
+metric,filename,required,expected_model_count,plotted_model_count,plotted_models,coverage_failures,coverage_passed,file_exists,file_size_bytes
+validation_loss,results\figures\balanced_10seed_matrix\validation_loss_by_budget.png,True,6,6,dense_121m;mla_121m;mtp_121m;moe_220m;mla_moe_220m;v3_routing_220m,,True,True,190600
+test_loss,results\figures\balanced_10seed_matrix\test_loss_by_budget.png,True,6,6,dense_121m;mla_121m;mtp_121m;moe_220m;mla_moe_220m;v3_routing_220m,,True,True,185298
+validation_perplexity,results\figures\balanced_10seed_matrix\validation_perplexity_by_budget.png,True,6,6,dense_121m;mla_121m;mtp_121m;moe_220m;mla_moe_220m;v3_routing_220m,,True,True,191686
+test_perplexity,results\figures\balanced_10seed_matrix\test_perplexity_by_budget.png,True,6,6,dense_121m;mla_121m;mtp_121m;moe_220m;mla_moe_220m;v3_routing_220m,,True,True,194139
+train_loss,results\figures\balanced_10seed_matrix\train_loss_by_budget.png,True,6,6,dense_121m;mla_121m;mtp_121m;moe_220m;mla_moe_220m;v3_routing_220m,,True,True,145612
+train_tokens_per_second,results\figures\balanced_10seed_matrix\train_tokens_per_second_by_budget.png,True,6,6,dense_121m;mla_121m;mtp_121m;moe_220m;mla_moe_220m;v3_routing_220m,,True,True,115057
+peak_memory_bytes,results\figures\balanced_10seed_matrix\peak_memory_gib_by_budget.png,True,6,6,dense_121m;mla_121m;mtp_121m;moe_220m;mla_moe_220m;v3_routing_220m,,True,True,91079
+tokens_per_total_parameter,results\figures\balanced_10seed_matrix\tokens_per_total_parameter_by_budget.png,True,6,6,dense_121m;mla_121m;mtp_121m;moe_220m;mla_moe_220m;v3_routing_220m,,True,True,185414
+tokens_per_trainable_parameter,results\figures\balanced_10seed_matrix\tokens_per_trainable_parameter_by_budget.png,True,6,6,dense_121m;mla_121m;mtp_121m;moe_220m;mla_moe_220m;v3_routing_220m,,True,True,188128
+tokens_per_activated_parameter,results\figures\balanced_10seed_matrix\tokens_per_activated_parameter_by_budget.png,True,6,6,dense_121m;mla_121m;mtp_121m;moe_220m;mla_moe_220m;v3_routing_220m,,True,True,176794
+mean_aux_loss,results\figures\balanced_10seed_matrix\mean_aux_loss_by_budget.png,True,3,3,moe_220m;mla_moe_220m;v3_routing_220m,,True,True,92389
+mean_expert_load_variance,results\figures\balanced_10seed_matrix\mean_expert_load_variance_by_budget.png,True,3,3,moe_220m;mla_moe_220m;v3_routing_220m,,True,True,114737
+mean_routing_entropy,results\figures\balanced_10seed_matrix\mean_routing_entropy_by_budget.png,True,3,3,moe_220m;mla_moe_220m;v3_routing_220m,,True,True,136500
+mtp_loss,results\figures\balanced_10seed_matrix\mtp_loss_by_budget.png,True,1,1,mtp_121m,,True,True,82817
