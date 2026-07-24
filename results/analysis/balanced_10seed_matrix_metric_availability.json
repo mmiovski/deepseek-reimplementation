@@ -1,0 +1,236 @@
+[
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": true,
+    "metric": "activated_parameters_per_token",
+    "metric_group": "efficiency",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": false,
+    "is_primary_metric": false,
+    "metric": "expert_bias_mean",
+    "metric_group": "routing",
+    "missing_count": 180,
+    "non_missing_count": 0,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": false,
+    "is_primary_metric": false,
+    "metric": "expert_bias_std",
+    "metric_group": "routing",
+    "missing_count": 180,
+    "non_missing_count": 0,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": false,
+    "metric": "lm_loss",
+    "metric_group": "optimization",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": false,
+    "is_primary_metric": false,
+    "metric": "mean_aux_loss",
+    "metric_group": "routing",
+    "missing_count": 90,
+    "non_missing_count": 90,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": false,
+    "is_primary_metric": false,
+    "metric": "mean_expert_load_variance",
+    "metric_group": "routing",
+    "missing_count": 90,
+    "non_missing_count": 90,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": false,
+    "is_primary_metric": false,
+    "metric": "mean_router_probability",
+    "metric_group": "routing",
+    "missing_count": 180,
+    "non_missing_count": 0,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": false,
+    "is_primary_metric": false,
+    "metric": "mean_routing_entropy",
+    "metric_group": "routing",
+    "missing_count": 90,
+    "non_missing_count": 90,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": false,
+    "is_primary_metric": false,
+    "metric": "mtp_loss",
+    "metric_group": "mtp",
+    "missing_count": 150,
+    "non_missing_count": 30,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": false,
+    "metric": "mtp_loss_weight",
+    "metric_group": "mtp",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": false,
+    "metric": "mtp_num_future_tokens",
+    "metric_group": "mtp",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": true,
+    "metric": "peak_memory_bytes",
+    "metric_group": "efficiency",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": false,
+    "metric": "requested_tokens_per_activated_parameter",
+    "metric_group": "efficiency",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": false,
+    "metric": "requested_tokens_per_total_parameter",
+    "metric_group": "efficiency",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": false,
+    "metric": "requested_tokens_per_trainable_parameter",
+    "metric_group": "efficiency",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": true,
+    "metric": "test_loss",
+    "metric_group": "quality",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": true,
+    "metric": "test_perplexity",
+    "metric_group": "quality",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": true,
+    "metric": "tokens_per_activated_parameter",
+    "metric_group": "efficiency",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": true,
+    "metric": "tokens_per_total_parameter",
+    "metric_group": "efficiency",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": true,
+    "metric": "tokens_per_trainable_parameter",
+    "metric_group": "efficiency",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": true,
+    "metric": "total_parameters",
+    "metric_group": "efficiency",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": false,
+    "metric": "train_loss",
+    "metric_group": "optimization",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": true,
+    "metric": "train_tokens_per_second",
+    "metric_group": "efficiency",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": true,
+    "metric": "trainable_parameters",
+    "metric_group": "efficiency",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": true,
+    "metric": "validation_loss",
+    "metric_group": "quality",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  },
+  {
+    "available_for_all_rows": true,
+    "is_primary_metric": true,
+    "metric": "validation_perplexity",
+    "metric_group": "quality",
+    "missing_count": 0,
+    "non_missing_count": 180,
+    "total_rows": 180
+  }
+]
