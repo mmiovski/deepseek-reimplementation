@@ -1,0 +1,135 @@
+{
+  "actual_seed_trend_rows_for_primary": 540,
+  "artifact_type": "balanced_10seed_matrix_budget_trends_audit",
+  "audit_json": "results\\analysis\\balanced_10seed_matrix_budget_trends_audit.json",
+  "budget_pairs": [
+    [
+      "10m",
+      "25m"
+    ],
+    [
+      "25m",
+      "50m"
+    ],
+    [
+      "10m",
+      "50m"
+    ]
+  ],
+  "expected_pair_delta_rows": 468,
+  "expected_seed_trend_rows_for_primary": 540,
+  "expected_trend_summary_rows": 156,
+  "input_flat_csv": "results\\analysis\\balanced_10seed_matrix_summary_flat.csv",
+  "metric_count": 26,
+  "metrics": [
+    "activated_parameters_per_token",
+    "expert_bias_mean",
+    "expert_bias_std",
+    "lm_loss",
+    "mean_aux_loss",
+    "mean_expert_load_variance",
+    "mean_router_probability",
+    "mean_routing_entropy",
+    "mtp_loss",
+    "mtp_loss_weight",
+    "mtp_num_future_tokens",
+    "peak_memory_bytes",
+    "requested_tokens_per_activated_parameter",
+    "requested_tokens_per_total_parameter",
+    "requested_tokens_per_trainable_parameter",
+    "test_loss",
+    "test_perplexity",
+    "tokens_per_activated_parameter",
+    "tokens_per_total_parameter",
+    "tokens_per_trainable_parameter",
+    "total_parameters",
+    "train_loss",
+    "train_tokens_per_second",
+    "trainable_parameters",
+    "validation_loss",
+    "validation_perplexity"
+  ],
+  "missing_seed_trend_count": 960,
+  "pair_delta_row_count": 468,
+  "pair_deltas_csv": "results\\analysis\\balanced_10seed_matrix_budget_pair_deltas_full_precision.csv",
+  "pair_deltas_json": "results\\analysis\\balanced_10seed_matrix_budget_pair_deltas_full_precision.json",
+  "primary_missing_seed_trend_count": 0,
+  "primary_missing_seed_trends": [],
+  "primary_trend_metrics": [
+    "validation_loss",
+    "test_loss",
+    "validation_perplexity",
+    "test_perplexity",
+    "train_tokens_per_second",
+    "peak_memory_bytes",
+    "tokens_per_total_parameter",
+    "tokens_per_trainable_parameter",
+    "tokens_per_activated_parameter"
+  ],
+  "scope_audit": {
+    "bad_model_budget_count_count": 0,
+    "bad_model_budget_counts": {},
+    "budgets": [
+      "10m",
+      "25m",
+      "50m"
+    ],
+    "duplicate_cell_count": 0,
+    "duplicate_cells": {},
+    "expected_budgets": [
+      "10m",
+      "25m",
+      "50m"
+    ],
+    "expected_models": [
+      "dense_121m",
+      "mla_121m",
+      "mla_moe_220m",
+      "moe_220m",
+      "mtp_121m",
+      "v3_routing_220m"
+    ],
+    "expected_row_count": 180,
+    "expected_seeds": [
+      "10007",
+      "11213",
+      "12721",
+      "1337",
+      "2027",
+      "31415",
+      "4441",
+      "5501",
+      "6173",
+      "8191"
+    ],
+    "models": [
+      "dense_121m",
+      "mla_121m",
+      "mla_moe_220m",
+      "moe_220m",
+      "mtp_121m",
+      "v3_routing_220m"
+    ],
+    "row_count": 180,
+    "scope_passed": true,
+    "seeds": [
+      "10007",
+      "11213",
+      "12721",
+      "1337",
+      "2027",
+      "31415",
+      "4441",
+      "5501",
+      "6173",
+      "8191"
+    ]
+  },
+  "seed_trends_csv": "results\\analysis\\balanced_10seed_matrix_budget_trend_seed_records.csv",
+  "seed_trends_json": "results\\analysis\\balanced_10seed_matrix_budget_trend_seed_records.json",
+  "trend_passed": true,
+  "trend_summary_row_count": 156,
+  "trends_csv": "results\\analysis\\balanced_10seed_matrix_budget_trends_full_precision.csv",
+  "trends_json": "results\\analysis\\balanced_10seed_matrix_budget_trends_full_precision.json",
+  "v1_controlled_design_guardrail": "Budget trends are generated only from the balanced 10-seed flat artifact and summarize within-model behavior across token budgets."
+}
