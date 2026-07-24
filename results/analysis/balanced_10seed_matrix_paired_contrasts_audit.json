@@ -1,0 +1,149 @@
+{
+  "artifact_type": "balanced_10seed_matrix_paired_contrasts_audit",
+  "audit_json": "results\\analysis\\balanced_10seed_matrix_paired_contrasts_audit.json",
+  "bootstrap_reps": 20000,
+  "bootstrap_seed": 20260723,
+  "contrast_passed": true,
+  "contrast_row_count": 168,
+  "contrasts_csv": "results\\analysis\\balanced_10seed_matrix_paired_contrasts_full_precision.csv",
+  "contrasts_json": "results\\analysis\\balanced_10seed_matrix_paired_contrasts_full_precision.json",
+  "expected_contrast_rows": 168,
+  "expected_seed_record_rows": 1680,
+  "input_flat_csv": "results\\analysis\\balanced_10seed_matrix_summary_flat.csv",
+  "metric_direction": {
+    "lm_loss": "lower_is_better",
+    "peak_memory_bytes": "lower_is_better",
+    "test_loss": "lower_is_better",
+    "test_perplexity": "lower_is_better",
+    "train_loss": "lower_is_better",
+    "train_tokens_per_second": "higher_is_better",
+    "validation_loss": "lower_is_better",
+    "validation_perplexity": "lower_is_better"
+  },
+  "missing_pair_count": 0,
+  "missing_pairs": [],
+  "scope_audit": {
+    "bad_model_budget_count_count": 0,
+    "bad_model_budget_counts": {},
+    "budgets": [
+      "10m",
+      "25m",
+      "50m"
+    ],
+    "duplicate_cell_count": 0,
+    "duplicate_cells": {},
+    "expected_budgets": [
+      "10m",
+      "25m",
+      "50m"
+    ],
+    "expected_models": [
+      "dense_121m",
+      "mla_121m",
+      "mla_moe_220m",
+      "moe_220m",
+      "mtp_121m",
+      "v3_routing_220m"
+    ],
+    "expected_row_count": 180,
+    "expected_seeds": [
+      "10007",
+      "11213",
+      "12721",
+      "1337",
+      "2027",
+      "31415",
+      "4441",
+      "5501",
+      "6173",
+      "8191"
+    ],
+    "models": [
+      "dense_121m",
+      "mla_121m",
+      "mla_moe_220m",
+      "moe_220m",
+      "mtp_121m",
+      "v3_routing_220m"
+    ],
+    "row_count": 180,
+    "scope_passed": true,
+    "seeds": [
+      "10007",
+      "11213",
+      "12721",
+      "1337",
+      "2027",
+      "31415",
+      "4441",
+      "5501",
+      "6173",
+      "8191"
+    ]
+  },
+  "seed_record_row_count": 1680,
+  "seed_records_csv": "results\\analysis\\balanced_10seed_matrix_paired_seed_records.csv",
+  "seed_records_json": "results\\analysis\\balanced_10seed_matrix_paired_seed_records.json",
+  "target_contrasts": [
+    {
+      "contrast_family": "attention_mechanism",
+      "contrast_id": "mla_vs_dense",
+      "interpretation": "Effect of MLA attention relative to dense baseline.",
+      "model_a": "dense_121m",
+      "model_b": "mla_121m"
+    },
+    {
+      "contrast_family": "sparse_ffn_mechanism",
+      "contrast_id": "moe_vs_dense",
+      "interpretation": "Effect of sparse MoE capacity relative to dense baseline.",
+      "model_a": "dense_121m",
+      "model_b": "moe_220m"
+    },
+    {
+      "contrast_family": "composition_supporting",
+      "contrast_id": "mla_moe_vs_dense",
+      "interpretation": "Supporting comparison for combined MLA plus MoE relative to dense baseline.",
+      "model_a": "dense_121m",
+      "model_b": "mla_moe_220m"
+    },
+    {
+      "contrast_family": "composition_mechanism",
+      "contrast_id": "mla_moe_vs_mla",
+      "interpretation": "Effect of adding MoE capacity on top of MLA.",
+      "model_a": "mla_121m",
+      "model_b": "mla_moe_220m"
+    },
+    {
+      "contrast_family": "composition_mechanism",
+      "contrast_id": "mla_moe_vs_moe",
+      "interpretation": "Effect of adding MLA attention inside the MoE setting.",
+      "model_a": "moe_220m",
+      "model_b": "mla_moe_220m"
+    },
+    {
+      "contrast_family": "routing_mechanism",
+      "contrast_id": "v3_routing_vs_moe",
+      "interpretation": "Effect of V3-style routing relative to standard MoE.",
+      "model_a": "moe_220m",
+      "model_b": "v3_routing_220m"
+    },
+    {
+      "contrast_family": "objective_mechanism",
+      "contrast_id": "mtp_vs_dense",
+      "interpretation": "Effect of MTP objective relative to next-token-only dense baseline.",
+      "model_a": "dense_121m",
+      "model_b": "mtp_121m"
+    }
+  ],
+  "target_metrics": [
+    "validation_loss",
+    "test_loss",
+    "validation_perplexity",
+    "test_perplexity",
+    "train_loss",
+    "lm_loss",
+    "train_tokens_per_second",
+    "peak_memory_bytes"
+  ],
+  "v1_controlled_design_guardrail": "Paired contrasts are generated only from the balanced 10-seed flat artifact and only for pre-specified mechanism contrasts."
+}
