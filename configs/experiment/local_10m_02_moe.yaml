@@ -1,9 +1,0 @@
-experiment:
-  name: local_10m_02_moe
-  output_dir: results/raw_logs/local_10m_02_moe
-  metrics_dir: results/metrics/local_10m_02_moe
-  checkpoint_dir: results/checkpoints/local_10m_02_moe
-  model_config: configs/model/moe.yaml
-  data_config: configs/data/fineweb_edu_10bt.yaml
-  tokenizer_config: configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml
-  train_config: configs/train/local_experiment_10m.yaml

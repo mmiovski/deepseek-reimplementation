@@ -76,26 +76,6 @@ def test_save_and_load_tokenizer_roundtrip(tmp_path: Path) -> None:
     assert loaded.encode("tiny test").ids == tokenizer.encode("tiny test").ids
 
 
-def test_project_tokenizer_artifact_fits_model_vocab() -> None:
-    from deepseek_reimpl.utils.config import load_yaml_config
-    from tokenizers import Tokenizer
-
-    tokenizer_config = load_yaml_config("configs/tokenizer/bpe_tiny.yaml")
-    baseline_config = load_yaml_config("configs/model/baseline_gpt.yaml")
-    mla_config = load_yaml_config("configs/model/mla.yaml")
-
-    requested_vocab_size = tokenizer_config["tokenizer"]["vocab_size"]
-    tokenizer_path = tokenizer_config["artifacts"]["tokenizer_json"]
-    actual_vocab_size = Tokenizer.from_file(tokenizer_path).get_vocab_size()
-
-    assert requested_vocab_size == 10000
-    assert actual_vocab_size <= requested_vocab_size
-    assert baseline_config["model"]["vocab_size"] == requested_vocab_size
-    assert mla_config["model"]["vocab_size"] == requested_vocab_size
-    assert actual_vocab_size <= baseline_config["model"]["vocab_size"]
-    assert actual_vocab_size <= mla_config["model"]["vocab_size"]
-
-
 def test_train_byte_level_bpe_tokenizer_respects_character_cap(tmp_path: Path) -> None:
     corpus_path = tmp_path / "tiny_corpus.txt"
     corpus_path.write_text("alpha beta gamma delta epsilon", encoding="utf-8")

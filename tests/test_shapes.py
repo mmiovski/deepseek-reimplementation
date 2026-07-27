@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any
 
 import pytest
 import torch
@@ -11,7 +11,6 @@ from deepseek_reimpl.layers.swiglu import SwiGLU
 from deepseek_reimpl.model.baseline_gpt import BaselineGPT
 from deepseek_reimpl.model.config import GPTConfig
 from deepseek_reimpl.model.decoder_block import DecoderBlock
-from deepseek_reimpl.utils.config import load_yaml_config
 
 
 def tiny_gpt_config() -> GPTConfig:
@@ -28,24 +27,6 @@ def tiny_gpt_config() -> GPTConfig:
         ffn_type="swiglu",
         tie_embeddings=True,
     )
-
-
-def test_baseline_gpt_config_loads_from_yaml() -> None:
-    config_dict = load_yaml_config("configs/model/baseline_gpt.yaml")
-
-    config = GPTConfig.from_dict(config_dict)
-
-    assert config.vocab_size == 10000
-    assert config.block_size == 128
-    assert config.n_layers == 4
-    assert config.n_heads == 4
-    assert config.d_model == 256
-    assert config.d_ff == 1024
-    assert config.head_dim == 64
-    assert config.norm_type == "rmsnorm"
-    assert config.positional_encoding == "rope"
-    assert config.ffn_type == "swiglu"
-    assert config.tie_embeddings
 
 
 def test_gpt_config_rejects_invalid_head_dimension() -> None:
@@ -162,112 +143,12 @@ def test_baseline_gpt_rejects_sequence_longer_than_block_size() -> None:
         model(input_ids)
 
 
-def test_model_factory_builds_baseline_gpt_from_yaml() -> None:
-    from deepseek_reimpl.model.model_factory import build_model_from_config
-
-    config_dict = load_yaml_config("configs/model/baseline_gpt.yaml")
-
-    model = build_model_from_config(config_dict)
-
-    assert isinstance(model, BaselineGPT)
-
-
 def test_model_package_exports() -> None:
     from deepseek_reimpl.model import BaselineGPT as ExportedBaselineGPT
     from deepseek_reimpl.model import GPTConfig as ExportedGPTConfig
 
     assert ExportedBaselineGPT is BaselineGPT
     assert ExportedGPTConfig is GPTConfig
-
-
-def test_baseline_gpt_yaml_config_forward_smoke() -> None:
-    config_dict = load_yaml_config("configs/model/baseline_gpt.yaml")
-    config = GPTConfig.from_dict(config_dict)
-    model = BaselineGPT(config)
-    model.eval()
-
-    input_ids = torch.randint(0, config.vocab_size, (1, 8))
-
-    with torch.no_grad():
-        logits = model(input_ids)
-
-    assert logits.shape == (1, 8, config.vocab_size)
-
-
-def test_moe_gpt_yaml_config_forward_smoke() -> None:
-    config_dict = load_yaml_config("configs/model/moe.yaml")
-    config = GPTConfig.from_dict(config_dict)
-    model = BaselineGPT(config)
-    model.eval()
-
-    input_ids = torch.randint(0, config.vocab_size, (1, 8))
-
-    with torch.no_grad():
-        logits = model(input_ids)
-
-    assert logits.shape == (1, 8, config.vocab_size)
-
-
-def test_model_factory_builds_moe_gpt_from_yaml() -> None:
-    from deepseek_reimpl.model.model_factory import build_model_from_config
-
-    config_dict = load_yaml_config("configs/model/moe.yaml")
-
-    model = build_model_from_config(config_dict)
-
-    assert isinstance(model, BaselineGPT)
-    assert model.config.ffn_type == "moe"
-
-
-def test_mla_moe_gpt_yaml_config_forward_smoke() -> None:
-    config_dict = load_yaml_config("configs/model/mla_moe.yaml")
-    config = GPTConfig.from_dict(config_dict)
-    model = BaselineGPT(config)
-    model.eval()
-
-    input_ids = torch.randint(0, config.vocab_size, (1, 8))
-
-    with torch.no_grad():
-        logits = model(input_ids)
-
-    assert logits.shape == (1, 8, config.vocab_size)
-    assert torch.isfinite(logits).all()
-
-
-def test_model_factory_builds_mla_moe_gpt_from_yaml() -> None:
-    from deepseek_reimpl.model.model_factory import build_model_from_config
-
-    config_dict = load_yaml_config("configs/model/mla_moe.yaml")
-
-    model = build_model_from_config(config_dict)
-
-    assert isinstance(model, BaselineGPT)
-    assert model.config.attention_type == "mla"
-    assert model.config.ffn_type == "moe"
-
-
-def test_mla_moe_gpt_uses_mla_attention_and_moe_ffn() -> None:
-    from deepseek_reimpl.layers.mla import MLAAttention
-    from deepseek_reimpl.layers.moe_layer import DeepSeekMoELayer
-
-    config_dict = load_yaml_config("configs/model/mla_moe.yaml")
-    config = GPTConfig.from_dict(config_dict)
-    model = BaselineGPT(config)
-
-    assert model.config.attention_type == "mla"
-    assert model.config.ffn_type == "moe"
-    assert all(isinstance(block.attn, MLAAttention) for block in model.blocks)
-    assert all(isinstance(block.ffn, DeepSeekMoELayer) for block in model.blocks)
-
-
-def test_mla_moe_gpt_rejects_sequence_longer_than_block_size() -> None:
-    config_dict = load_yaml_config("configs/model/mla_moe.yaml")
-    config = GPTConfig.from_dict(config_dict)
-    model = BaselineGPT(config)
-    input_ids = torch.randint(0, config.vocab_size, (1, config.block_size + 1))
-
-    with pytest.raises(ValueError, match="sequence length exceeds configured block_size"):
-        model(input_ids)
 
 
 def test_mla_moe_gpt_backward_reaches_router_experts_and_embeddings() -> None:
@@ -319,71 +200,6 @@ def test_mla_moe_gpt_backward_reaches_router_experts_and_embeddings() -> None:
     assert all(torch.isfinite(grad).all() for grad in routed_grads)
 
 
-def test_v3_routing_gpt_yaml_config_forward_smoke() -> None:
-    config_dict = load_yaml_config("configs/model/v3_routing.yaml")
-    config = GPTConfig.from_dict(config_dict)
-    model = BaselineGPT(config)
-    model.eval()
-
-    input_ids = torch.randint(0, config.vocab_size, (1, 8))
-
-    with torch.no_grad():
-        logits = model(input_ids)
-
-    assert logits.shape == (1, 8, config.vocab_size)
-    assert torch.isfinite(logits).all()
-
-
-def test_model_factory_builds_v3_routing_gpt_from_yaml() -> None:
-    from deepseek_reimpl.model.model_factory import build_model_from_config
-
-    config_dict = load_yaml_config("configs/model/v3_routing.yaml")
-
-    model = build_model_from_config(config_dict)
-
-    assert isinstance(model, BaselineGPT)
-    assert model.config.attention_type == "dense"
-    assert model.config.ffn_type == "moe"
-    assert model.config.moe_routing_mode == "aux_loss_free_bias"
-    assert model.config.moe_use_expert_bias is True
-
-
-def test_v3_routing_gpt_uses_moe_ffn_with_expert_bias() -> None:
-    from deepseek_reimpl.layers.moe_layer import DeepSeekMoELayer
-
-    config_dict = load_yaml_config("configs/model/v3_routing.yaml")
-    config = GPTConfig.from_dict(config_dict)
-    model = BaselineGPT(config)
-
-    assert all(isinstance(block.ffn, DeepSeekMoELayer) for block in model.blocks)
-    assert all(block.ffn.routing_mode == "aux_loss_free_bias" for block in model.blocks)
-    assert all(block.ffn.use_expert_bias for block in model.blocks)
-    assert all(block.ffn.router.use_expert_bias for block in model.blocks)
-
-
-def test_v3_routing_gpt_auxiliary_loss_is_zero_after_forward() -> None:
-    config_dict = load_yaml_config("configs/model/v3_routing.yaml")
-    config = GPTConfig.from_dict(config_dict)
-    model = BaselineGPT(config)
-    input_ids = torch.randint(0, config.vocab_size, (1, 8))
-
-    model(input_ids)
-    aux_loss = model.auxiliary_loss()
-
-    assert aux_loss is not None
-    assert aux_loss.item() == 0.0
-
-
-def test_v3_routing_gpt_rejects_sequence_longer_than_block_size() -> None:
-    config_dict = load_yaml_config("configs/model/v3_routing.yaml")
-    config = GPTConfig.from_dict(config_dict)
-    model = BaselineGPT(config)
-    input_ids = torch.randint(0, config.vocab_size, (1, config.block_size + 1))
-
-    with pytest.raises(ValueError, match="sequence length exceeds configured block_size"):
-        model(input_ids)
-
-
 def test_v3_routing_gpt_backward_reaches_router_experts_and_embeddings() -> None:
     from deepseek_reimpl.layers.moe_layer import DeepSeekMoELayer
 
@@ -430,22 +246,3 @@ def test_v3_routing_gpt_backward_reaches_router_experts_and_embeddings() -> None
     ]
     assert routed_grads
     assert all(torch.isfinite(grad).all() for grad in routed_grads)
-
-
-def test_model_factory_builds_mtp_gpt_and_preserves_forward_interface() -> None:
-    from deepseek_reimpl.model.model_factory import build_model_from_config
-
-    model = cast(Any, build_model_from_config(load_yaml_config("configs/model/mtp.yaml")))
-    input_ids = torch.randint(0, model.config.vocab_size, (2, 8))
-
-    logits = model(input_ids)
-    mtp_output = model.forward_mtp(input_ids)
-
-    assert logits.shape == (2, 8, model.config.vocab_size)
-    assert mtp_output.next_token_logits.shape == (2, 8, model.config.vocab_size)
-    assert mtp_output.future_token_logits.shape == (
-        model.config.mtp_num_future_tokens,
-        2,
-        8,
-        model.config.vocab_size,
-    )

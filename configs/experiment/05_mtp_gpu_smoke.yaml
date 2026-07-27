@@ -1,9 +1,0 @@
-experiment:
-  name: 05_mtp_gpu_smoke
-  model_config: configs/model/mtp.yaml
-  data_config: configs/data/tinystories.yaml
-  tokenizer_config: configs/tokenizer/bpe_tiny.yaml
-  train_config: configs/train/gpu_smoke.yaml
-  output_dir: results/05_mtp_gpu_smoke
-  metrics_dir: results/05_mtp_gpu_smoke/metrics
-  checkpoint_dir: checkpoints/05_mtp_gpu_smoke

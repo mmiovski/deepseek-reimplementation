@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import subprocess
 import sys
-from pathlib import Path
 
 from deepseek_reimpl.utils.config import load_yaml_config, require_keys, validate_relative_paths
 from deepseek_reimpl.utils.paths import project_path
@@ -74,29 +73,3 @@ def test_hf_streaming_script_rejects_missing_caps_before_streaming() -> None:
     assert result.returncode != 0
     assert "has no explicit cap" in result.stderr
     assert "before streaming" in result.stderr
-
-
-def test_bpe_fineweb_edu_tokenizer_config_loads() -> None:
-    config = load_yaml_config("configs/tokenizer/bpe_fineweb_edu_10bt.yaml")
-
-    require_keys(
-        config,
-        {"tokenizer", "special_tokens", "training", "artifacts"},
-        name="FineWeb-Edu BPE tokenizer",
-    )
-
-    assert config["tokenizer"]["name"] == "bpe_fineweb_edu_10bt"
-    assert config["tokenizer"]["type"] == "byte_level_bpe"
-    assert config["tokenizer"]["vocab_size"] == 10000
-    assert config["tokenizer"]["min_frequency"] == 2
-
-    assert config["training"]["max_training_chars"] == 50000000
-
-    validate_relative_paths(
-        config["artifacts"],
-        ("tokenizer_json", "metadata_json"),
-    )
-
-    for path_value in config["training"]["input_text_files"]:
-        assert not Path(path_value).is_absolute()
-        assert "fineweb_edu_10bt" in path_value

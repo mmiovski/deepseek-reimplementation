@@ -19,7 +19,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--config",
         type=Path,
-        default=Path("configs/tokenizer/bpe_tiny.yaml"),
+        default=Path("configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml"),
         help="Path to tokenizer config.",
     )
     return parser.parse_args()

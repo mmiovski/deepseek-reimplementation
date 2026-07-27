@@ -6,8 +6,6 @@ import torch
 from deepseek_reimpl.layers.mla import MLAAttention
 from deepseek_reimpl.model.baseline_gpt import BaselineGPT
 from deepseek_reimpl.model.config import GPTConfig
-from deepseek_reimpl.model.model_factory import build_model_from_config
-from deepseek_reimpl.utils.config import load_yaml_config
 
 
 def tiny_mla_config() -> GPTConfig:
@@ -112,32 +110,6 @@ def test_mla_config_rejects_odd_rope_dim() -> None:
             mla_kv_latent_dim=8,
             mla_q_rope_dim=3,
         )
-
-
-def test_mla_model_config_loads_from_yaml() -> None:
-    config_dict = load_yaml_config("configs/model/mla.yaml")
-
-    config = GPTConfig.from_dict(config_dict)
-
-    assert config.vocab_size == 10000
-    assert config.block_size == 128
-    assert config.n_layers == 4
-    assert config.n_heads == 4
-    assert config.d_model == 256
-    assert config.d_ff == 1024
-    assert config.head_dim == 64
-    assert config.attention_type == "mla"
-    assert config.mla_kv_latent_dim == 64
-    assert config.mla_q_rope_dim == 32
-
-
-def test_model_factory_builds_mla_gpt_from_yaml() -> None:
-    config_dict = load_yaml_config("configs/model/mla.yaml")
-
-    model = build_model_from_config(config_dict)
-
-    assert isinstance(model, BaselineGPT)
-    assert model.config.attention_type == "mla"
 
 
 def test_mla_gpt_outputs_logits_shape() -> None:

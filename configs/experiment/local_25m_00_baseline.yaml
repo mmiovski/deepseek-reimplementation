@@ -1,9 +1,0 @@
-experiment:
-  name: local_25m_00_baseline
-  output_dir: results/raw_logs/local_25m_00_baseline
-  metrics_dir: results/metrics/local_25m_00_baseline
-  checkpoint_dir: results/checkpoints/local_25m_00_baseline
-  model_config: configs/model/baseline_gpt.yaml
-  data_config: configs/data/fineweb_edu_10bt.yaml
-  tokenizer_config: configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml
-  train_config: configs/train/local_experiment_25m.yaml
