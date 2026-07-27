@@ -1,8 +1,8 @@
 {
   "target_cells": 180,
-  "completed_existing_summary": 54,
-  "queued_missing_summary": 126,
-  "queue_entries": 126,
+  "completed_existing_summary": 180,
+  "queued_missing_summary": 0,
+  "queue_entries": 0,
   "created_train_config_count": 0,
   "created_experiment_config_count": 0,
   "created_run_script": false,

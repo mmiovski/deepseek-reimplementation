@@ -88,7 +88,7 @@
     "train_config": "configs/train/main_large_10m_seed2027.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed2027_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -101,7 +101,7 @@
     "train_config": "configs/train/main_large_10m_seed2027.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed2027_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -114,7 +114,7 @@
     "train_config": "configs/train/main_large_10m_seed2027.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed2027_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -127,7 +127,7 @@
     "train_config": "configs/train/main_large_10m_seed2027.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed2027_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -140,7 +140,7 @@
     "train_config": "configs/train/main_large_10m_seed2027.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed2027_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -153,7 +153,7 @@
     "train_config": "configs/train/main_large_10m_seed2027.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed2027_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -166,7 +166,7 @@
     "train_config": "configs/train/main_large_10m_seed31415.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed31415_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -179,7 +179,7 @@
     "train_config": "configs/train/main_large_10m_seed31415.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed31415_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -192,7 +192,7 @@
     "train_config": "configs/train/main_large_10m_seed31415.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed31415_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -205,7 +205,7 @@
     "train_config": "configs/train/main_large_10m_seed31415.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed31415_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -218,7 +218,7 @@
     "train_config": "configs/train/main_large_10m_seed31415.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed31415_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -231,7 +231,7 @@
     "train_config": "configs/train/main_large_10m_seed31415.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed31415_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -244,7 +244,7 @@
     "train_config": "configs/train/main_large_10m_seed4441.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed4441_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -257,7 +257,7 @@
     "train_config": "configs/train/main_large_10m_seed4441.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed4441_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -270,7 +270,7 @@
     "train_config": "configs/train/main_large_10m_seed4441.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed4441_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -283,7 +283,7 @@
     "train_config": "configs/train/main_large_10m_seed4441.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed4441_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -296,7 +296,7 @@
     "train_config": "configs/train/main_large_10m_seed4441.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed4441_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -309,7 +309,7 @@
     "train_config": "configs/train/main_large_10m_seed4441.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed4441_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -322,7 +322,7 @@
     "train_config": "configs/train/main_large_10m_seed5501.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed5501_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -335,7 +335,7 @@
     "train_config": "configs/train/main_large_10m_seed5501.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed5501_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -348,7 +348,7 @@
     "train_config": "configs/train/main_large_10m_seed5501.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed5501_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -361,7 +361,7 @@
     "train_config": "configs/train/main_large_10m_seed5501.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed5501_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -374,7 +374,7 @@
     "train_config": "configs/train/main_large_10m_seed5501.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed5501_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -387,7 +387,7 @@
     "train_config": "configs/train/main_large_10m_seed5501.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed5501_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -400,7 +400,7 @@
     "train_config": "configs/train/main_large_10m_seed6173.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed6173_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -413,7 +413,7 @@
     "train_config": "configs/train/main_large_10m_seed6173.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed6173_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -426,7 +426,7 @@
     "train_config": "configs/train/main_large_10m_seed6173.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed6173_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -439,7 +439,7 @@
     "train_config": "configs/train/main_large_10m_seed6173.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed6173_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -452,7 +452,7 @@
     "train_config": "configs/train/main_large_10m_seed6173.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed6173_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -465,7 +465,7 @@
     "train_config": "configs/train/main_large_10m_seed6173.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed6173_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -478,7 +478,7 @@
     "train_config": "configs/train/main_large_10m_seed8191.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed8191_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -491,7 +491,7 @@
     "train_config": "configs/train/main_large_10m_seed8191.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed8191_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -504,7 +504,7 @@
     "train_config": "configs/train/main_large_10m_seed8191.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed8191_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -517,7 +517,7 @@
     "train_config": "configs/train/main_large_10m_seed8191.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed8191_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -530,7 +530,7 @@
     "train_config": "configs/train/main_large_10m_seed8191.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed8191_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -543,7 +543,7 @@
     "train_config": "configs/train/main_large_10m_seed8191.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed8191_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -556,7 +556,7 @@
     "train_config": "configs/train/main_large_10m_seed10007.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed10007_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -569,7 +569,7 @@
     "train_config": "configs/train/main_large_10m_seed10007.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed10007_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -582,7 +582,7 @@
     "train_config": "configs/train/main_large_10m_seed10007.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed10007_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -595,7 +595,7 @@
     "train_config": "configs/train/main_large_10m_seed10007.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed10007_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -608,7 +608,7 @@
     "train_config": "configs/train/main_large_10m_seed10007.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed10007_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -621,7 +621,7 @@
     "train_config": "configs/train/main_large_10m_seed10007.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed10007_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -634,7 +634,7 @@
     "train_config": "configs/train/main_large_10m_seed11213.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed11213_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -647,7 +647,7 @@
     "train_config": "configs/train/main_large_10m_seed11213.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed11213_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -660,7 +660,7 @@
     "train_config": "configs/train/main_large_10m_seed11213.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed11213_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -673,7 +673,7 @@
     "train_config": "configs/train/main_large_10m_seed11213.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed11213_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -686,7 +686,7 @@
     "train_config": "configs/train/main_large_10m_seed11213.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed11213_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -699,7 +699,7 @@
     "train_config": "configs/train/main_large_10m_seed11213.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed11213_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -712,7 +712,7 @@
     "train_config": "configs/train/main_large_10m_seed12721.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed12721_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -725,7 +725,7 @@
     "train_config": "configs/train/main_large_10m_seed12721.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed12721_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -738,7 +738,7 @@
     "train_config": "configs/train/main_large_10m_seed12721.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed12721_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -751,7 +751,7 @@
     "train_config": "configs/train/main_large_10m_seed12721.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed12721_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -764,7 +764,7 @@
     "train_config": "configs/train/main_large_10m_seed12721.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed12721_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "10m",
@@ -777,7 +777,7 @@
     "train_config": "configs/train/main_large_10m_seed12721.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_10m_seed12721_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -868,7 +868,7 @@
     "train_config": "configs/train/main_large_25m_seed2027.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed2027_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -881,7 +881,7 @@
     "train_config": "configs/train/main_large_25m_seed2027.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed2027_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -894,7 +894,7 @@
     "train_config": "configs/train/main_large_25m_seed2027.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed2027_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -907,7 +907,7 @@
     "train_config": "configs/train/main_large_25m_seed2027.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed2027_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -920,7 +920,7 @@
     "train_config": "configs/train/main_large_25m_seed2027.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed2027_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -933,7 +933,7 @@
     "train_config": "configs/train/main_large_25m_seed2027.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed2027_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -946,7 +946,7 @@
     "train_config": "configs/train/main_large_25m_seed31415.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed31415_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -959,7 +959,7 @@
     "train_config": "configs/train/main_large_25m_seed31415.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed31415_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -972,7 +972,7 @@
     "train_config": "configs/train/main_large_25m_seed31415.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed31415_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -985,7 +985,7 @@
     "train_config": "configs/train/main_large_25m_seed31415.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed31415_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -998,7 +998,7 @@
     "train_config": "configs/train/main_large_25m_seed31415.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed31415_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1011,7 +1011,7 @@
     "train_config": "configs/train/main_large_25m_seed31415.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed31415_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1024,7 +1024,7 @@
     "train_config": "configs/train/main_large_25m_seed4441.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed4441_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1037,7 +1037,7 @@
     "train_config": "configs/train/main_large_25m_seed4441.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed4441_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1050,7 +1050,7 @@
     "train_config": "configs/train/main_large_25m_seed4441.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed4441_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1063,7 +1063,7 @@
     "train_config": "configs/train/main_large_25m_seed4441.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed4441_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1076,7 +1076,7 @@
     "train_config": "configs/train/main_large_25m_seed4441.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed4441_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1089,7 +1089,7 @@
     "train_config": "configs/train/main_large_25m_seed4441.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed4441_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1102,7 +1102,7 @@
     "train_config": "configs/train/main_large_25m_seed5501.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed5501_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1115,7 +1115,7 @@
     "train_config": "configs/train/main_large_25m_seed5501.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed5501_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1128,7 +1128,7 @@
     "train_config": "configs/train/main_large_25m_seed5501.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed5501_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1141,7 +1141,7 @@
     "train_config": "configs/train/main_large_25m_seed5501.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed5501_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1154,7 +1154,7 @@
     "train_config": "configs/train/main_large_25m_seed5501.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed5501_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1167,7 +1167,7 @@
     "train_config": "configs/train/main_large_25m_seed5501.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed5501_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1180,7 +1180,7 @@
     "train_config": "configs/train/main_large_25m_seed6173.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed6173_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1193,7 +1193,7 @@
     "train_config": "configs/train/main_large_25m_seed6173.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed6173_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1206,7 +1206,7 @@
     "train_config": "configs/train/main_large_25m_seed6173.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed6173_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1219,7 +1219,7 @@
     "train_config": "configs/train/main_large_25m_seed6173.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed6173_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1232,7 +1232,7 @@
     "train_config": "configs/train/main_large_25m_seed6173.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed6173_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1245,7 +1245,7 @@
     "train_config": "configs/train/main_large_25m_seed6173.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed6173_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1258,7 +1258,7 @@
     "train_config": "configs/train/main_large_25m_seed8191.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed8191_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1271,7 +1271,7 @@
     "train_config": "configs/train/main_large_25m_seed8191.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed8191_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1284,7 +1284,7 @@
     "train_config": "configs/train/main_large_25m_seed8191.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed8191_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1297,7 +1297,7 @@
     "train_config": "configs/train/main_large_25m_seed8191.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed8191_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1310,7 +1310,7 @@
     "train_config": "configs/train/main_large_25m_seed8191.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed8191_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1323,7 +1323,7 @@
     "train_config": "configs/train/main_large_25m_seed8191.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed8191_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1336,7 +1336,7 @@
     "train_config": "configs/train/main_large_25m_seed10007.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed10007_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1349,7 +1349,7 @@
     "train_config": "configs/train/main_large_25m_seed10007.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed10007_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1362,7 +1362,7 @@
     "train_config": "configs/train/main_large_25m_seed10007.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed10007_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1375,7 +1375,7 @@
     "train_config": "configs/train/main_large_25m_seed10007.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed10007_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1388,7 +1388,7 @@
     "train_config": "configs/train/main_large_25m_seed10007.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed10007_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1401,7 +1401,7 @@
     "train_config": "configs/train/main_large_25m_seed10007.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed10007_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1414,7 +1414,7 @@
     "train_config": "configs/train/main_large_25m_seed11213.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed11213_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1427,7 +1427,7 @@
     "train_config": "configs/train/main_large_25m_seed11213.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed11213_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1440,7 +1440,7 @@
     "train_config": "configs/train/main_large_25m_seed11213.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed11213_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1453,7 +1453,7 @@
     "train_config": "configs/train/main_large_25m_seed11213.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed11213_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1466,7 +1466,7 @@
     "train_config": "configs/train/main_large_25m_seed11213.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed11213_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1479,7 +1479,7 @@
     "train_config": "configs/train/main_large_25m_seed11213.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed11213_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1492,7 +1492,7 @@
     "train_config": "configs/train/main_large_25m_seed12721.yaml",
     "model_config": "configs/model/dense_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed12721_00_dense_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1505,7 +1505,7 @@
     "train_config": "configs/train/main_large_25m_seed12721.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed12721_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1518,7 +1518,7 @@
     "train_config": "configs/train/main_large_25m_seed12721.yaml",
     "model_config": "configs/model/mtp_121m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed12721_02_mtp_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1531,7 +1531,7 @@
     "train_config": "configs/train/main_large_25m_seed12721.yaml",
     "model_config": "configs/model/moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed12721_03_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1544,7 +1544,7 @@
     "train_config": "configs/train/main_large_25m_seed12721.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed12721_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "25m",
@@ -1557,7 +1557,7 @@
     "train_config": "configs/train/main_large_25m_seed12721.yaml",
     "model_config": "configs/model/v3_routing_220m.yaml",
     "summary_path": "results/metrics/main_large_25m_seed12721_05_v3_routing_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -1661,7 +1661,7 @@
     "train_config": "configs/train/main_large_50m_seed2027.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed2027_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -1700,7 +1700,7 @@
     "train_config": "configs/train/main_large_50m_seed2027.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed2027_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -1739,7 +1739,7 @@
     "train_config": "configs/train/main_large_50m_seed31415.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed31415_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -1778,7 +1778,7 @@
     "train_config": "configs/train/main_large_50m_seed31415.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed31415_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -1817,7 +1817,7 @@
     "train_config": "configs/train/main_large_50m_seed4441.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed4441_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -1856,7 +1856,7 @@
     "train_config": "configs/train/main_large_50m_seed4441.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed4441_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -1895,7 +1895,7 @@
     "train_config": "configs/train/main_large_50m_seed5501.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed5501_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -1934,7 +1934,7 @@
     "train_config": "configs/train/main_large_50m_seed5501.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed5501_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -1973,7 +1973,7 @@
     "train_config": "configs/train/main_large_50m_seed6173.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed6173_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -2012,7 +2012,7 @@
     "train_config": "configs/train/main_large_50m_seed6173.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed6173_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -2051,7 +2051,7 @@
     "train_config": "configs/train/main_large_50m_seed8191.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed8191_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -2090,7 +2090,7 @@
     "train_config": "configs/train/main_large_50m_seed8191.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed8191_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -2129,7 +2129,7 @@
     "train_config": "configs/train/main_large_50m_seed10007.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed10007_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -2168,7 +2168,7 @@
     "train_config": "configs/train/main_large_50m_seed10007.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed10007_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -2207,7 +2207,7 @@
     "train_config": "configs/train/main_large_50m_seed11213.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed11213_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -2246,7 +2246,7 @@
     "train_config": "configs/train/main_large_50m_seed11213.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed11213_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -2285,7 +2285,7 @@
     "train_config": "configs/train/main_large_50m_seed12721.yaml",
     "model_config": "configs/model/mla_121m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed12721_01_mla_121m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",
@@ -2324,7 +2324,7 @@
     "train_config": "configs/train/main_large_50m_seed12721.yaml",
     "model_config": "configs/model/mla_moe_220m.yaml",
     "summary_path": "results/metrics/main_large_50m_seed12721_04_mla_moe_220m/summary.json",
-    "status": "queued_missing_summary"
+    "status": "complete_existing_summary"
   },
   {
     "budget": "50m",

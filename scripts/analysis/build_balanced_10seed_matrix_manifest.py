@@ -488,17 +488,21 @@ def main() -> None:
 
     if len(rows) != 180:
         raise RuntimeError(f"Expected 180 target cells, found {len(rows)}")
-    if len(completed) != 54:
-        raise RuntimeError(f"Expected 54 completed target cells, found {len(completed)}")
-    if len(missing) != 126:
-        raise RuntimeError(f"Expected 126 missing target cells, found {len(missing)}")
-    if len(queue) != 126:
-        raise RuntimeError(f"Expected 126 queue entries, found {len(queue)}")
+    if len(completed) + len(missing) != len(rows):
+        raise RuntimeError(
+            "Completed and missing partitions do not " "cover the complete manifest."
+        )
+    if len(queue) != len(missing):
+        raise RuntimeError("Queue size does not match the " "missing-summary count.")
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     write_csv(MANIFEST_CSV, rows)
     MANIFEST_JSON.write_text(json.dumps(rows, indent=2) + "\n", encoding="utf-8")
-    QUEUE_TXT.write_text("\n".join(queue) + "\n", encoding="utf-8")
+    queue_text = "\n".join(queue)
+    QUEUE_TXT.write_text(
+        queue_text + ("\n" if queue_text else ""),
+        encoding="utf-8",
+    )
     created_run_script = write_run_script()
 
     counts: dict[str, Any] = {
