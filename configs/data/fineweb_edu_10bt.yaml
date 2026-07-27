@@ -20,7 +20,7 @@ paths:
 streaming:
   enabled: true
   shuffle: true
-  shuffle_seed: 42
+  shuffle_seed: 1337
   shuffle_buffer_size: 10000
   require_explicit_caps: true
 

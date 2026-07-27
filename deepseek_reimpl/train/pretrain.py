@@ -261,6 +261,20 @@ def _runtime_metadata(device: torch.device) -> dict[str, Any]:
     }
 
 
+def _validate_precision(
+    train_config: Mapping[str, Any],
+) -> str:
+    """Validate and return the implemented training precision."""
+    precision = str(train_config["precision"])
+
+    if precision != "fp32":
+        raise ValueError(
+            "Only precision='fp32' is implemented; " f"received precision={precision!r}."
+        )
+
+    return precision
+
+
 def _mtp_summary_metadata(
     model_config: Mapping[str, Any],
 ) -> dict[str, bool | int | float]:
@@ -283,6 +297,7 @@ def run_pretraining_from_experiment_config(experiment_config_path: str | Path) -
     tokenizer_config = load_yaml_config(experiment_config["tokenizer_config"])
     train_wrapper = load_yaml_config(experiment_config["train_config"])
     train_config = train_wrapper["train"]
+    precision = _validate_precision(train_config)
 
     set_seed(int(train_config["seed"]))
     device = resolve_device(str(train_config["device"]))
@@ -416,7 +431,7 @@ def run_pretraining_from_experiment_config(experiment_config_path: str | Path) -
         "block_size": int(train_config["block_size"]),
         "max_steps": train_config["max_steps"],
         "max_tokens": train_config["max_tokens"],
-        "precision": train_config["precision"],
+        "precision": precision,
         "total_parameters": total_parameters,
         "trainable_parameters": trainable_parameters,
         **_mtp_summary_metadata(model_config["model"]),

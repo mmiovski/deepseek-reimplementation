@@ -1,0 +1,135 @@
+{
+  "artifact_type": "final_data_tokenizer_provenance",
+  "artifacts": {
+    "data/processed/fineweb_edu_10bt/streaming_metadata.json": {
+      "sha256": "fa374a63c51e1be2be994d63ee46cd0c32d766efa5fa2d0bd26b65ab24af5184",
+      "size_bytes": 1245
+    },
+    "data/processed/fineweb_edu_10bt/test.txt": {
+      "sha256": "2d5278e3ca9cd95be656a5fc664bd764efaaade96e9afec97418030c6dd28cb1",
+      "size_bytes": 4610160
+    },
+    "data/processed/fineweb_edu_10bt/train.txt": {
+      "sha256": "0d1b043d9190427f66b5f0d81946b610cae6dea486762db40bd049f69dc8167e",
+      "size_bytes": 237549212
+    },
+    "data/processed/fineweb_edu_10bt/validation.txt": {
+      "sha256": "4a19a1cd8c247a16b8717ae81b41f9fb715268efc901a58ec77138375f06a26e",
+      "size_bytes": 4270864
+    },
+    "data/tokenized/fineweb_edu_10bt/test.int32.bin": {
+      "sha256": "9a51fcdbbdb408987c469da7f3c001c099854d6c830caaca7ef2a4316c842318",
+      "size_bytes": 4815168
+    },
+    "data/tokenized/fineweb_edu_10bt/tokenized_metadata.json": {
+      "sha256": "6d7ecb70eb7d7bc219d2acd4226d1b35cef9eca522cd767e3c06357c92d9f7a0",
+      "size_bytes": 1148
+    },
+    "data/tokenized/fineweb_edu_10bt/train.int32.bin": {
+      "sha256": "b03ea1ad98dbf6196d0db137c22bd9dcc4b278e9acf25805da5133da1ad1c707",
+      "size_bytes": 244435832
+    },
+    "data/tokenized/fineweb_edu_10bt/validation.int32.bin": {
+      "sha256": "8e78ab7ff1a66254a56f018f566cd2c163ca16afe99fe3cf5025c935931f320c",
+      "size_bytes": 4435904
+    },
+    "tokenizers/metadata/bpe_fineweb_edu_10bt_local_experiment_metadata.json": {
+      "sha256": "359eda401f4b7ca19a90e2fad9f3d133c27e7099807b8f6dd1234c308217a7f7",
+      "size_bytes": 614
+    },
+    "tokenizers/trained/bpe_fineweb_edu_10bt_local_experiment.json": {
+      "sha256": "82858c9d4f481eeae1c191e1ed01a0c3e0d82855958c73356de9d28574575afe",
+      "size_bytes": 681785
+    }
+  },
+  "corpus": {
+    "document_separator_contract": "The corpus writer emits one trailing newline after the first document and two separator newlines plus one trailing newline before/after each subsequent document.",
+    "split_document_chars": {
+      "test": 4586512,
+      "train": 236219473,
+      "validation": 4250565
+    },
+    "split_examples": {
+      "test": 1000,
+      "train": 50000,
+      "validation": 1000
+    },
+    "split_file_bytes": {
+      "test": 4610160,
+      "train": 237549212,
+      "validation": 4270864
+    }
+  },
+  "data_config": "configs/data/fineweb_edu_10bt.yaml",
+  "dataset": {
+    "hf_dataset_config_name": "sample-10BT",
+    "hf_dataset_name": "HuggingFaceFW/fineweb-edu",
+    "source": "huggingface_streaming",
+    "source_split": "train",
+    "text_field": "text"
+  },
+  "notes": [
+    "The tracked data configuration previously listed shuffle seed 42. Retained streaming metadata records that the final corpus was actually generated with shuffle seed 1337.",
+    "Large corpus, token-ID, and tokenizer files remain ignored. Their exact sizes and SHA-256 hashes are retained here.",
+    "The canonical flattened 180-run matrix remains the tracked downstream statistical starting point."
+  ],
+  "preprocessing": {
+    "min_chars": 1,
+    "normalize_newlines": true,
+    "strip_whitespace": true
+  },
+  "regeneration_commands": [
+    ".\\.venv\\Scripts\\python.exe scripts/data/prepare_hf_streaming_text.py --config configs/data/fineweb_edu_10bt.yaml --max-train-examples 50000 --max-validation-examples 1000 --max-test-examples 1000 --shuffle-buffer-size 10000 --shuffle-seed 1337",
+    ".\\.venv\\Scripts\\python.exe scripts/tokenizer/train_tokenizer.py --config configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml",
+    ".\\.venv\\Scripts\\python.exe scripts/data/tokenize_lm_corpus.py --data-config configs/data/fineweb_edu_10bt.yaml --tokenizer-config configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml --batch-lines 2048"
+  ],
+  "schema_version": 1,
+  "split_caps": {
+    "test": {
+      "max_chars": null,
+      "max_examples": 1000
+    },
+    "train": {
+      "max_chars": null,
+      "max_examples": 50000
+    },
+    "validation": {
+      "max_chars": null,
+      "max_examples": 1000
+    }
+  },
+  "streaming": {
+    "enabled": true,
+    "require_explicit_caps": true,
+    "shuffle": true,
+    "shuffle_buffer_size": 10000,
+    "shuffle_seed": 1337
+  },
+  "study_scope": "Canonical balanced 10-seed matrix: 6 models x 3 token budgets x 10 aligned seeds.",
+  "tokenization": {
+    "batch_lines": 2048,
+    "dtype": "int32",
+    "split_token_counts": {
+      "test": 1203792,
+      "train": 61108958,
+      "validation": 1108976
+    }
+  },
+  "tokenizer": {
+    "actual_vocab_size": 10000,
+    "configured_vocab_size": 10000,
+    "effective_training_chars": 236369471,
+    "max_training_chars": null,
+    "min_frequency": 2,
+    "name": "bpe_fineweb_edu_10bt_local_experiment",
+    "special_tokens": {
+      "bos_token": "<bos>",
+      "eos_token": "<eos>",
+      "pad_token": "<pad>",
+      "unk_token": "<unk>"
+    },
+    "type": "byte_level_bpe",
+    "was_capped": false
+  },
+  "tokenizer_config": "configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml"
+}

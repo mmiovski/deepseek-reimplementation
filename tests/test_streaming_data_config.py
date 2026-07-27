@@ -31,7 +31,7 @@ def test_fineweb_edu_streaming_config_loads() -> None:
     assert config["streaming"]["enabled"] is True
     assert config["streaming"]["require_explicit_caps"] is True
     assert config["streaming"]["shuffle"] is True
-    assert config["streaming"]["shuffle_seed"] == 42
+    assert config["streaming"]["shuffle_seed"] == 1337
     assert config["streaming"]["shuffle_buffer_size"] > 0
 
     validate_relative_paths(

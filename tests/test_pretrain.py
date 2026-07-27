@@ -288,3 +288,21 @@ def test_mtp_summary_metadata_preserves_explicit_values() -> None:
         "mtp_loss_weight": 0.3,
         "mtp_share_lm_head": False,
     }
+
+
+def test_validate_precision_accepts_fp32() -> None:
+    from deepseek_reimpl.train.pretrain import _validate_precision
+
+    assert _validate_precision({"precision": "fp32"}) == "fp32"
+
+
+def test_validate_precision_rejects_unsupported_precision() -> None:
+    import pytest
+
+    from deepseek_reimpl.train.pretrain import _validate_precision
+
+    with pytest.raises(
+        ValueError,
+        match="Only precision='fp32' is implemented",
+    ):
+        _validate_precision({"precision": "bf16"})
