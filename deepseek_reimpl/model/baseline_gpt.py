@@ -1,4 +1,4 @@
-"""Dense decoder-only GPT baseline model."""
+"""Configurable decoder-only model for controlled architecture variants."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ from deepseek_reimpl.model.decoder_block import DecoderBlock, build_norm
 
 
 class BaselineGPT(nn.Module):
-    """Dense decoder-only GPT baseline."""
+    """Shared decoder implementation for dense and DeepSeek-inspired variants."""
 
     def __init__(self, config: GPTConfig) -> None:
         super().__init__()

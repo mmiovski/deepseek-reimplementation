@@ -5,11 +5,11 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "deepseek-reimplementation"
 version = "0.1.0"
-description = "Small-scale DeepSeek-inspired reimplementation and efficiency study of MLA, MoE routing, and multi-token prediction."
+description = "Controlled larger-local-model study of DeepSeek-inspired MLA, MoE routing, and multi-token prediction under constrained compute."
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [
-    { name = "Mork" }
+    { name = "Marko Miovski" }
 ]
 dependencies = []
 
@@ -25,7 +25,7 @@ addopts = "-q"
 
 [tool.black]
 line-length = 100
-target-version = ["py310", "py311", "py312"]
+target-version = ["py310"]
 
 [tool.ruff]
 line-length = 100

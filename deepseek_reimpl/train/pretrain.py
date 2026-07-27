@@ -261,6 +261,18 @@ def _runtime_metadata(device: torch.device) -> dict[str, Any]:
     }
 
 
+def _mtp_summary_metadata(
+    model_config: Mapping[str, Any],
+) -> dict[str, bool | int | float]:
+    """Return normalized MTP fields for a pretraining summary."""
+    return {
+        "mtp_enabled": bool(model_config.get("mtp_enabled", False)),
+        "mtp_num_future_tokens": int(model_config.get("mtp_num_future_tokens", 0)),
+        "mtp_loss_weight": float(model_config.get("mtp_loss_weight", 0.0)),
+        "mtp_share_lm_head": bool(model_config.get("mtp_share_lm_head", False)),
+    }
+
+
 def run_pretraining_from_experiment_config(experiment_config_path: str | Path) -> dict[str, Any]:
     """Run a configured baseline pretraining smoke/control job."""
     experiment_wrapper = load_yaml_config(experiment_config_path)
@@ -407,10 +419,7 @@ def run_pretraining_from_experiment_config(experiment_config_path: str | Path) -
         "precision": train_config["precision"],
         "total_parameters": total_parameters,
         "trainable_parameters": trainable_parameters,
-        "mtp_enabled": bool(model_config["model"].get("mtp_enabled", False)),
-        "mtp_num_future_tokens": int(model_config["model"].get("mtp_num_future_tokens", 0)),
-        "mtp_loss_weight": float(model_config["model"].get("mtp_loss_weight", 0.0)),
-        "mtp_share_lm_head": bool(model_config["model"].get("mtp_share_lm_head", True)),
+        **_mtp_summary_metadata(model_config["model"]),
         "activated_parameters": activated_parameter_summary,
         **token_parameter_accounting,
         "routing_stats": routing_stats_summary,

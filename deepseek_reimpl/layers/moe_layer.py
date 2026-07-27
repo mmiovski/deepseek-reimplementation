@@ -42,9 +42,9 @@ class DeepSeekMoELayer(nn.Module):
     - auxiliary load-balancing loss,
     - routing diagnostics from the latest forward pass.
 
-    It is not distributed expert parallelism, not DeepEP, and not a V3
-    auxiliary-loss-free router. It is the ordinary measurable MoE substrate
-    needed before later routing experiments.
+    The layer supports ordinary auxiliary-loss routing and an optional
+    auxiliary-loss-free, selection-bias routing mode. It does not implement
+    distributed expert parallelism, DeepEP, capacity limits, or custom kernels.
     """
 
     def __init__(
@@ -159,6 +159,7 @@ class DeepSeekMoELayer(nn.Module):
 
         self.last_aux_loss: torch.Tensor | None = None
         self.last_routing_stats: MoERoutingStats | None = None
+        self._expert_bias_training_forwards = 0
 
     def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:
         """Apply shared experts and routed sparse experts to hidden states."""
@@ -191,7 +192,9 @@ class DeepSeekMoELayer(nn.Module):
         self.last_routing_stats = stats
 
         if self.training and self.routing_mode == "aux_loss_free_bias":
-            self._update_expert_bias(stats)
+            self._expert_bias_training_forwards += 1
+            if self._expert_bias_training_forwards % self.expert_bias_update_interval == 0:
+                self._update_expert_bias(stats)
 
         return output.reshape(batch_size, seq_len, hidden_dim)
 

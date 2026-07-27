@@ -259,3 +259,32 @@ def test_pretraining_summary_helpers_include_moe_routing_metrics_after_forward()
     assert routing_stats is not None
     assert routing_stats["moe_layers"] == 1
     assert routing_stats["mean_aux_loss"] is not None
+
+
+def test_mtp_summary_metadata_uses_independent_head_defaults() -> None:
+    from deepseek_reimpl.train.pretrain import _mtp_summary_metadata
+
+    assert _mtp_summary_metadata({}) == {
+        "mtp_enabled": False,
+        "mtp_num_future_tokens": 0,
+        "mtp_loss_weight": 0.0,
+        "mtp_share_lm_head": False,
+    }
+
+
+def test_mtp_summary_metadata_preserves_explicit_values() -> None:
+    from deepseek_reimpl.train.pretrain import _mtp_summary_metadata
+
+    assert _mtp_summary_metadata(
+        {
+            "mtp_enabled": True,
+            "mtp_num_future_tokens": 2,
+            "mtp_loss_weight": 0.3,
+            "mtp_share_lm_head": False,
+        }
+    ) == {
+        "mtp_enabled": True,
+        "mtp_num_future_tokens": 2,
+        "mtp_loss_weight": 0.3,
+        "mtp_share_lm_head": False,
+    }

@@ -889,3 +889,32 @@ def test_gpu_smoke_experiment_configs_use_gpu_smoke_train_config() -> None:
     for path in experiment_paths:
         experiment = load_yaml_config(path)["experiment"]
         assert experiment["train_config"] == "configs/train/gpu_smoke.yaml"
+
+
+def test_gpt_config_defaults_to_independent_mtp_heads() -> None:
+    config = GPTConfig(
+        vocab_size=100,
+        block_size=16,
+        n_layers=2,
+        n_heads=4,
+        d_model=32,
+        d_ff=64,
+        mtp_enabled=True,
+        mtp_num_future_tokens=2,
+        mtp_loss_weight=0.5,
+    )
+
+    assert config.mtp_share_lm_head is False
+
+
+def test_gpt_config_rejects_unimplemented_shared_mtp_head() -> None:
+    with pytest.raises(ValueError, match="mtp_share_lm_head=True is not implemented"):
+        GPTConfig(
+            vocab_size=100,
+            block_size=16,
+            n_layers=2,
+            n_heads=4,
+            d_model=32,
+            d_ff=64,
+            mtp_share_lm_head=True,
+        )

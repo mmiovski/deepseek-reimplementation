@@ -721,3 +721,42 @@ def test_gpt_config_rejects_invalid_v3_routing_fields(
 
     with pytest.raises(ValueError, match=match):
         GPTConfig(**base_kwargs)
+
+
+def test_expert_bias_update_interval_controls_training_updates() -> None:
+    import torch
+
+    from deepseek_reimpl.layers.moe_layer import DeepSeekMoELayer
+
+    layer = DeepSeekMoELayer(
+        d_model=4,
+        n_routed_experts=2,
+        n_shared_experts=0,
+        top_k=1,
+        expert_d_ff=8,
+        dropout=0.0,
+        aux_loss_weight=0.0,
+        routing_mode="aux_loss_free_bias",
+        use_expert_bias=True,
+        expert_bias_update_rate=0.1,
+        expert_bias_update_interval=2,
+    )
+    layer.train()
+
+    with torch.no_grad():
+        layer.router.gate.weight.zero_()
+
+    expert_bias = layer.router.expert_bias
+    assert expert_bias is not None
+
+    hidden_states = torch.zeros(1, 4, 4)
+    initial_bias = expert_bias.detach().clone()
+
+    layer(hidden_states)
+    bias_after_first_forward = expert_bias.detach().clone()
+
+    layer(hidden_states)
+    bias_after_second_forward = expert_bias.detach().clone()
+
+    assert torch.equal(bias_after_first_forward, initial_bias)
+    assert not torch.equal(bias_after_second_forward, initial_bias)

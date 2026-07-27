@@ -47,7 +47,7 @@ class GPTConfig:
     mtp_enabled: bool = False
     mtp_num_future_tokens: int = 0
     mtp_loss_weight: float = 0.0
-    mtp_share_lm_head: bool = True
+    mtp_share_lm_head: bool = False
 
     def __post_init__(self) -> None:
         """Validate architectural configuration values."""
@@ -98,6 +98,12 @@ class GPTConfig:
 
         if self.ffn_type == "moe":
             self._validate_moe_config()
+
+        if self.mtp_share_lm_head:
+            msg = (
+                "mtp_share_lm_head=True is not implemented; " "use False for independent MTP heads"
+            )
+            raise ValueError(msg)
 
         if self.mtp_enabled:
             self._validate_mtp_config()
@@ -248,10 +254,6 @@ class GPTConfig:
 
         if self.mtp_loss_weight <= 0.0:
             msg = "mtp_loss_weight must be positive when mtp_enabled is true"
-            raise ValueError(msg)
-
-        if self.mtp_share_lm_head:
-            msg = "mtp_share_lm_head=True is reserved for a later shared-head MTP variant"
             raise ValueError(msg)
 
     @property

@@ -28,9 +28,9 @@ class RouterOutput:
 class TopKRouter(nn.Module):
     """Per-token top-k router over routed experts.
 
-    This router is intentionally small-scale and PyTorch-native. It provides the
-    ordinary auxiliary-loss-based MoE routing substrate needed before later V3
-    auxiliary-loss-free routing experiments.
+    This router is intentionally small-scale and PyTorch-native. It returns
+    unbiased softmax probabilities for expert weighting while optionally applying
+    a non-gradient expert bias only to top-k expert selection.
     """
 
     def __init__(
