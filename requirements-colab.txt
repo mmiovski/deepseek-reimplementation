@@ -1,7 +1,0 @@
--r requirements.txt
-
-torch
-datasets
-tokenizers
-sentencepiece
-accelerate

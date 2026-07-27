@@ -46,12 +46,12 @@ MODEL_LABELS = {
 # Same broad design logic as before:
 # baseline/dense family first, sparse family second, routing/combined variants after.
 MODEL_COLORS = {
-    "dense_121m": "#332288",      # Dense baseline: dark indigo / primary anchor
-    "mla_121m": "#44AA99",        # MLA: teal / dense-attention variant
-    "mtp_121m": "#117733",        # MTP: green / auxiliary-objective variant
-    "moe_220m": "#E69F00",        # MoE: orange / sparse baseline
-    "mla_moe_220m": "#CC6677",    # MLA+MoE: rose / combined mechanism
-    "v3_routing_220m": "#882255", # V3 Routing: wine-purple / routing variant
+    "dense_121m": "#332288",  # Dense baseline: dark indigo / primary anchor
+    "mla_121m": "#44AA99",  # MLA: teal / dense-attention variant
+    "mtp_121m": "#117733",  # MTP: green / auxiliary-objective variant
+    "moe_220m": "#E69F00",  # MoE: orange / sparse baseline
+    "mla_moe_220m": "#CC6677",  # MLA+MoE: rose / combined mechanism
+    "v3_routing_220m": "#882255",  # V3 Routing: wine-purple / routing variant
 }
 
 MODEL_MARKERS = {
