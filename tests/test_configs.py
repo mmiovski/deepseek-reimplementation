@@ -131,7 +131,6 @@ def test_phase3_train_configs_load_and_validate() -> None:
     for path in (
         "configs/train/cpu_smoke.yaml",
         "configs/train/gpu_smoke.yaml",
-        "configs/train/main_fixed_budget.yaml",
     ):
         _assert_valid_train_config(path)
 

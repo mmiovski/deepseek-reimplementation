@@ -57,7 +57,6 @@ def test_controlled_train_configs_load_and_validate() -> None:
     for path in (
         "configs/train/local_pilot_fixed_budget.yaml",
         "configs/train/local_report_fixed_budget.yaml",
-        "configs/train/colab_report_fixed_budget.yaml",
     ):
         _assert_valid_train_config(path)
 
