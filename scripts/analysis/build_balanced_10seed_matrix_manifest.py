@@ -49,9 +49,8 @@ BUDGETS = [
     BudgetSpec("50m", 50_000_000, "configs/train/main_large_50m.yaml"),
 ]
 
-# Existing 25-seed 50M central-model configs used a four-model index scheme.
-# Preserve that naming instead of regenerating duplicates.
-EXISTING_50M_FOUR_MODEL_SLOTS = {
+# Preserve established canonical filenames for the pre-existing 50M runs.
+LEGACY_50M_CANONICAL_SLOTS = {
     "dense_121m": "00",
     "mtp_121m": "01",
     "moe_220m": "02",
@@ -91,8 +90,8 @@ def expected_experiment_name(budget: BudgetSpec, seed: int, model: ModelSpec) ->
     if seed == 1337:
         return f"main_large_{budget.label}_{model.slot}_{model.short_name}"
 
-    if budget.label == "50m" and model.short_name in EXISTING_50M_FOUR_MODEL_SLOTS:
-        slot = EXISTING_50M_FOUR_MODEL_SLOTS[model.short_name]
+    if budget.label == "50m" and model.short_name in LEGACY_50M_CANONICAL_SLOTS:
+        slot = LEGACY_50M_CANONICAL_SLOTS[model.short_name]
         return f"main_large_50m_seed{seed}_{slot}_{model.short_name}"
 
     return f"main_large_{budget.label}_seed{seed}_{model.slot}_{model.short_name}"
@@ -295,6 +294,7 @@ $Index = 0
 
 try {
     foreach ($ExperimentConfig in $Queue) {
+        $ExperimentConfig = [string]$ExperimentConfig
         $Index += 1
         Refresh-LongRunPowerGuard
 

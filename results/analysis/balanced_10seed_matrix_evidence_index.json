@@ -1,0 +1,738 @@
+{
+  "analysis_artifact_count": 38,
+  "analysis_artifact_groups": [
+    {
+      "category": "canonical_matrix_and_audits",
+      "file_count": 9,
+      "files": [
+        {
+          "path": "results/analysis/balanced_10seed_matrix_manifest.csv",
+          "sha256": "3c24b8f949c62e2a65a37a7f405437ba6b521e3d4412ee46e3d139288c6ab357",
+          "size_bytes": 53419
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_manifest.json",
+          "sha256": "5ea004583978c3f7f3c84d5c5f70c8c8bf43d57d5b56ffcdda4dce7f2763b1b0",
+          "size_bytes": 96509
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_generation_summary.json",
+          "sha256": "a8eb5c14e3e1dcf204fde24c82d16438c0ae73403ddbd90ba716ec89ab2c9e1d",
+          "size_bytes": 914
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_completion_audit.json",
+          "sha256": "26e89397b1612408b0f772871b06f6039796c0b83f5e14863b2f3b09f64c03ab",
+          "size_bytes": 1949
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_completion_audit_rows.csv",
+          "sha256": "4b7df0edfecc3f98fe5d22ca6dedf91e4ab5c72951ae9ba916315533d770fc14",
+          "size_bytes": 36542
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_extraction_audit.json",
+          "sha256": "e5c26409979f6f07ebb08604ff2b58667c3e33be8f4a9e1c80de96d1267d33be",
+          "size_bytes": 1712
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_summary_flat.csv",
+          "sha256": "dd26ccbb67f2cfdc813f550606161e926d59bd3788d6d3560744d05e02c41e42",
+          "size_bytes": 1299231
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_summary_flat.json",
+          "sha256": "8b20f348faacd90d97753cadf0950b94e096fc0dc5a5096905d3216dbd6a8c92",
+          "size_bytes": 5633457
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_summary_schema.json",
+          "sha256": "4b7a9f4ff6f27aac6fb166635bab31861877dd0fc101292fbf8c1ccbf98053b0",
+          "size_bytes": 50590
+        }
+      ]
+    },
+    {
+      "category": "descriptive_statistics",
+      "file_count": 5,
+      "files": [
+        {
+          "path": "results/analysis/balanced_10seed_matrix_descriptives_audit.json",
+          "sha256": "04dbece9959d454cd0e1958f2aefd66278968748495c759c99478a8250a415b5",
+          "size_bytes": 3311
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_descriptives_full_precision.csv",
+          "sha256": "9fc3e59f21060693aa817a89b9426e98cba56656aae431912a36fd54a1fce2fb",
+          "size_bytes": 93892
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_descriptives_full_precision.json",
+          "sha256": "568f23e357a6d401807dca590dcf38982256d9e00aeaa199e77f155c1c0dd12b",
+          "size_bytes": 280914
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_metric_availability.csv",
+          "sha256": "ad0883b28e1894a14277d0fc5d84840f87f740f6e2d6881a434fda20b767061d",
+          "size_bytes": 1479
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_metric_availability.json",
+          "sha256": "618416f1518c67dbed39cf0a5183e55554aa6f12e35c0e71357b64894e43f333",
+          "size_bytes": 6059
+        }
+      ]
+    },
+    {
+      "category": "global_tests",
+      "file_count": 5,
+      "files": [
+        {
+          "path": "results/analysis/balanced_10seed_matrix_global_seed_records.csv",
+          "sha256": "e122c95064f66bb24d009871cbb6ac7713aa71150c39e7bb0cf8040bf44d017b",
+          "size_bytes": 116474
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_global_seed_records.json",
+          "sha256": "fdcff36fa24ecf06d6c11acecf115566c9928af1020043c92e0752263a1e7611",
+          "size_bytes": 325217
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_global_tests_audit.json",
+          "sha256": "4b0e051cc7ea4e99c0f5a4f47d7879e27ec9dfbdaed4bf989f9e9f4fea0b1c66",
+          "size_bytes": 2579
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_global_tests_full_precision.csv",
+          "sha256": "8143b8ae491188ed00045bffee7482c87a7c06e519a876cb2ea4882c34740313",
+          "size_bytes": 8206
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_global_tests_full_precision.json",
+          "sha256": "193dcfbe49c1ea0974fb19a1814f2be821ec0e82904b84b2b952f9993e992dd9",
+          "size_bytes": 30030
+        }
+      ]
+    },
+    {
+      "category": "paired_contrasts",
+      "file_count": 5,
+      "files": [
+        {
+          "path": "results/analysis/balanced_10seed_matrix_paired_seed_records.csv",
+          "sha256": "00d0be860fa112bfc422e9cae9bdba13e5d9a11aaf4ab8bdfa91a5cd9fa333e1",
+          "size_bytes": 284482
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_paired_seed_records.json",
+          "sha256": "635fe204ccbd37b9a8e4f9b8863ebabff48b8346cec5936c4801666dae7efb29",
+          "size_bytes": 810157
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_paired_contrasts_audit.json",
+          "sha256": "93eff68331dedb3cd5e76073408ad655ce205d6a362bb017c5efc9307fc91fd5",
+          "size_bytes": 4531
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_paired_contrasts_full_precision.csv",
+          "sha256": "df7a07beaa844f126dd0ca7c209019c67588b02479bdef81688831f56b7b2a16",
+          "size_bytes": 82212
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_paired_contrasts_full_precision.json",
+          "sha256": "b6c36e4871753974ec50c0eb618802778a7809ec6bb4ec7ca91c94bbc6af181d",
+          "size_bytes": 240880
+        }
+      ]
+    },
+    {
+      "category": "budget_trends",
+      "file_count": 7,
+      "files": [
+        {
+          "path": "results/analysis/balanced_10seed_matrix_budget_pair_deltas_full_precision.csv",
+          "sha256": "3316da8fd469e5585b7d212c31c35d05d9a3e77cabd674d1c4e6c8d5dfbba3ca",
+          "size_bytes": 99984
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_budget_pair_deltas_full_precision.json",
+          "sha256": "a624b84da456e2391058bee20383ad9e18b80543a64f37d6e9823e33826f334c",
+          "size_bytes": 399206
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_budget_trend_seed_records.csv",
+          "sha256": "ca326b7ed735e25d61f350cff70b3f7ef69a0793379ba9ccf30a760b75c2980c",
+          "size_bytes": 247454
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_budget_trend_seed_records.json",
+          "sha256": "07c9c14c737c69daa5b5d8208a340ed7317ec2accf4cd7a2b8a8733797718b75",
+          "size_bytes": 721350
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_budget_trends_audit.json",
+          "sha256": "ad4adf04ae249a8aeb95c717fa4c9ab6434aa4572de773a7908bbcb10561f97d",
+          "size_bytes": 3722
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_budget_trends_full_precision.csv",
+          "sha256": "529b85f265b2d4539e887ca7be7db581f8e25034bcd57524310df90544fa23b2",
+          "size_bytes": 42666
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_budget_trends_full_precision.json",
+          "sha256": "e89f5d5cd3a87c4ab487fed54fa0a33491fc6aa16d40d07a368b4e4401f36838",
+          "size_bytes": 178935
+        }
+      ]
+    },
+    {
+      "category": "mechanism_profiles",
+      "file_count": 4,
+      "files": [
+        {
+          "path": "results/analysis/balanced_10seed_matrix_mechanism_profile_metric_map.json",
+          "sha256": "c386d79b3787397357ec8d2a5b7335f30fc5fb45b95f5b45dc1026993c6bc426",
+          "size_bytes": 3864
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_mechanism_profiles.csv",
+          "sha256": "ab3598b42bd5c0b1f6dd915e29354f3c41bafeefc2078e5dfe5c9634e33a3543",
+          "size_bytes": 31843
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_mechanism_profiles.json",
+          "sha256": "c7e242e9d0516029ddf0d58f3a2306f9abe891fc8e5699b040e9f52b5057ee3d",
+          "size_bytes": 132562
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_mechanism_profiles_audit.json",
+          "sha256": "a7f72ec4727b0b45f5678ecb26fc200726a36675a4721ecf0a5fb4c34da5d9c1",
+          "size_bytes": 3334
+        }
+      ]
+    },
+    {
+      "category": "operational_provenance",
+      "file_count": 2,
+      "files": [
+        {
+          "path": "results/analysis/balanced_10seed_matrix_queue.txt",
+          "sha256": "6968df55b856637c770165c86fb3ff09eadc072dead880384a87fc1dea7fc6dc",
+          "size_bytes": 8012
+        },
+        {
+          "path": "results/analysis/balanced_10seed_matrix_queue_progress.jsonl",
+          "sha256": "cbe781239f84b09c151c63974833ce044d122c6e9bc4dda7ef01afbd03dea66f",
+          "size_bytes": 90973
+        }
+      ]
+    },
+    {
+      "category": "data_and_tokenizer_provenance",
+      "file_count": 1,
+      "files": [
+        {
+          "path": "results/analysis/final_data_tokenizer_provenance.json",
+          "sha256": "864fd0d41fd191bb48691e446b391fb3bc2bbf3720a4d21f1c38fc9d6f7c968f",
+          "size_bytes": 5099
+        }
+      ]
+    }
+  ],
+  "artifact_type": "balanced_10seed_matrix_evidence_index",
+  "determinism": {
+    "contains_generation_timestamp": false,
+    "hash_algorithm": "SHA-256",
+    "index_includes_own_hash": false
+  },
+  "excluded_artifacts": [
+    {
+      "path": "results/analysis/balanced_10seed_matrix_inventory.json",
+      "reason": "Removed stale whole-repository inventory that mixed canonical and historical scope."
+    }
+  ],
+  "figure_count": 22,
+  "figures": [
+    {
+      "classification": "diagnostic",
+      "path": "results/figures/balanced_10seed_matrix_redesign/mean_aux_loss_by_budget.png",
+      "producer_script": "scripts/analysis/plot_mean_aux_loss_by_budget.py",
+      "sha256": "587749cb057c073753e2d2f13873f927e08ef26550e4df2c415e9acfb21939fe",
+      "size_bytes": 91617
+    },
+    {
+      "classification": "diagnostic",
+      "path": "results/figures/balanced_10seed_matrix_redesign/mean_expert_load_variance_by_budget.png",
+      "producer_script": "scripts/analysis/plot_mean_expert_load_variance_by_budget.py",
+      "sha256": "27aaf45e7e2ecad99a62f98fb0716db54c30c2c07a759d55467b0ea2ec15386f",
+      "size_bytes": 117555
+    },
+    {
+      "classification": "diagnostic",
+      "path": "results/figures/balanced_10seed_matrix_redesign/mean_routing_entropy_by_budget.png",
+      "producer_script": "scripts/analysis/plot_mean_routing_entropy_by_budget.py",
+      "sha256": "7ea4b4ad3549ba5bad4cca81927fce8af845d3e21428d44a65f55d8ebd7c7c51",
+      "size_bytes": 148835
+    },
+    {
+      "classification": "diagnostic",
+      "path": "results/figures/balanced_10seed_matrix_redesign/mtp_loss_by_budget.png",
+      "producer_script": "scripts/analysis/plot_mtp_loss_by_budget.py",
+      "sha256": "ca20a9f10f68fb2df27a06f0dc4ce7eef62da3764f4bb14def18b8a90f1f8981",
+      "size_bytes": 87009
+    },
+    {
+      "classification": "diagnostic",
+      "path": "results/figures/balanced_10seed_matrix_redesign/peak_memory_gib_by_budget.png",
+      "producer_script": "scripts/analysis/plot_peak_memory_gib_by_budget.py",
+      "sha256": "b11bc5f03820da2fc43b34318021ea0eb727917d727447bb0f41355d1d3b7549",
+      "size_bytes": 84180
+    },
+    {
+      "classification": "diagnostic",
+      "path": "results/figures/balanced_10seed_matrix_redesign/test_loss_by_budget.png",
+      "producer_script": "scripts/analysis/plot_test_loss_by_budget.py",
+      "sha256": "2f3be8e6044dd0d5b4d7bb49259620a4ccb74887f5bbf0012af55ffe945b98cd",
+      "size_bytes": 230485
+    },
+    {
+      "classification": "diagnostic",
+      "path": "results/figures/balanced_10seed_matrix_redesign/test_perplexity_by_budget.png",
+      "producer_script": "scripts/analysis/plot_test_perplexity_by_budget.py",
+      "sha256": "1d9634e286ce17fc0093f78e2527c43595cb34c5722e71d3a82ac357c984dec6",
+      "size_bytes": 227709
+    },
+    {
+      "classification": "diagnostic",
+      "path": "results/figures/balanced_10seed_matrix_redesign/tokens_per_activated_parameter_by_budget.png",
+      "producer_script": "scripts/analysis/plot_tokens_per_activated_parameter_by_budget.py",
+      "sha256": "0a15a2a66f3ebf1445237168d671906695ffe2f034590193aa336148838874ce",
+      "size_bytes": 233174
+    },
+    {
+      "classification": "diagnostic",
+      "path": "results/figures/balanced_10seed_matrix_redesign/tokens_per_total_parameter_by_budget.png",
+      "producer_script": "scripts/analysis/plot_tokens_per_total_parameter_by_budget.py",
+      "sha256": "ae85826ccf2d048949f279cc4312c5fdf3e27f4b4a2f25c7e060806137a8403d",
+      "size_bytes": 239022
+    },
+    {
+      "classification": "diagnostic",
+      "path": "results/figures/balanced_10seed_matrix_redesign/tokens_per_trainable_parameter_by_budget.png",
+      "producer_script": "scripts/analysis/plot_tokens_per_trainable_parameter_by_budget.py",
+      "sha256": "f24745a7d90b7ffde73efde7196a35fde1229ee1fedbdb9179bc6161302a2b8a",
+      "size_bytes": 241711
+    },
+    {
+      "classification": "diagnostic",
+      "path": "results/figures/balanced_10seed_matrix_redesign/train_loss_by_budget.png",
+      "producer_script": "scripts/analysis/plot_train_loss_by_budget.py",
+      "sha256": "09c1f15cea6e320f0f60306883c7dd673815e3c5552571af594e1a95e4bb2a7b",
+      "size_bytes": 166866
+    },
+    {
+      "classification": "diagnostic",
+      "path": "results/figures/balanced_10seed_matrix_redesign/train_tokens_per_second_by_budget.png",
+      "producer_script": "scripts/analysis/plot_train_tokens_per_second_by_budget.py",
+      "sha256": "22ad822d42097ccce64f35f50ac831c9ff2336a19e23412b5bff049bf177c578",
+      "size_bytes": 129484
+    },
+    {
+      "classification": "diagnostic",
+      "path": "results/figures/balanced_10seed_matrix_redesign/validation_loss_by_budget.png",
+      "producer_script": "scripts/analysis/plot_validation_loss_by_budget.py",
+      "sha256": "8040ff1ca2458cebbf0f3b44b2b150cc02165978b989413cc9dd303ebf62c5f7",
+      "size_bytes": 221556
+    },
+    {
+      "classification": "diagnostic",
+      "path": "results/figures/balanced_10seed_matrix_redesign/validation_perplexity_by_budget.png",
+      "producer_script": "scripts/analysis/plot_validation_perplexity_by_budget.py",
+      "sha256": "3ea79c23059946de0e4f4bfab1c78da106cc5eec1d0fddc3c2d04ca3907c9930",
+      "size_bytes": 222745
+    },
+    {
+      "classification": "report_ready",
+      "path": "results/figures/balanced_10seed_matrix_report/report_mtp_optimization_comparison.png",
+      "producer_script": "scripts/analysis/plot_report_mtp_optimization_comparison.py",
+      "sha256": "6c0fdf0b9a3f4a85ab57270bab0facd54ea80ba7a5717ec9b97f26af1437d294",
+      "size_bytes": 103795
+    },
+    {
+      "classification": "report_ready",
+      "path": "results/figures/balanced_10seed_matrix_report/report_paired_test_loss_contrasts_50m.png",
+      "producer_script": "scripts/analysis/plot_report_paired_test_loss_contrasts_50m.py",
+      "sha256": "f1fdb38c11aba6e79907903cb802c98fc547bb0f2548fb4672f6ccd5fa457bab",
+      "size_bytes": 87301
+    },
+    {
+      "classification": "report_ready",
+      "path": "results/figures/balanced_10seed_matrix_report/report_planned_test_loss_contrasts_by_budget.png",
+      "producer_script": "scripts/analysis/plot_report_planned_test_loss_contrasts_by_budget.py",
+      "sha256": "bace7305cb1896c22facfbcbd3920996443f775d64930cdc665c34339170532c",
+      "size_bytes": 103204
+    },
+    {
+      "classification": "report_ready",
+      "path": "results/figures/balanced_10seed_matrix_report/report_quality_throughput_tradeoff_50m.png",
+      "producer_script": "scripts/analysis/plot_report_quality_throughput_tradeoff_50m.py",
+      "sha256": "89d0de513232d51cbce4abdb0e1d5e0498ef84b0ab0e57500b2e195750b5b169",
+      "size_bytes": 80806
+    },
+    {
+      "classification": "report_ready",
+      "path": "results/figures/balanced_10seed_matrix_report/report_routing_behavior_comparison.png",
+      "producer_script": "scripts/analysis/plot_report_routing_behavior_comparison.py",
+      "sha256": "98460b54ac1144ee56343e36e08e16f717dc19b46bf4fc6a928fb51517271c01",
+      "size_bytes": 230239
+    },
+    {
+      "classification": "report_ready",
+      "path": "results/figures/balanced_10seed_matrix_report/report_test_loss_by_budget.png",
+      "producer_script": "scripts/analysis/plot_report_test_loss_by_budget.py",
+      "sha256": "c98a37c54ee8ae9dfe2384dcc06e0d50effbc941d3b46ccc50ca169ee64ec0f5",
+      "size_bytes": 222052
+    },
+    {
+      "classification": "report_ready",
+      "path": "results/figures/balanced_10seed_matrix_report/report_test_loss_vs_tokens_per_activated_parameter.png",
+      "producer_script": "scripts/analysis/plot_report_test_loss_vs_tokens_per_activated_parameter.py",
+      "sha256": "185ae55f9de3bf114cc8655488bc533d6c25cf14bbf88774a69668968c468322",
+      "size_bytes": 228372
+    },
+    {
+      "classification": "report_ready",
+      "path": "results/figures/balanced_10seed_matrix_report/report_total_vs_activated_parameter_exposure_50m.png",
+      "producer_script": "scripts/analysis/plot_report_total_vs_activated_parameter_exposure_50m.py",
+      "sha256": "86e8352b00476ca2ec3e6843a10ebf0f82cbe51ae339f54e8c0053474a449b40",
+      "size_bytes": 92804
+    }
+  ],
+  "intentional_csv_json_pair_count": 12,
+  "intentional_csv_json_pairs": [
+    "balanced_10seed_matrix_budget_pair_deltas_full_precision",
+    "balanced_10seed_matrix_budget_trend_seed_records",
+    "balanced_10seed_matrix_budget_trends_full_precision",
+    "balanced_10seed_matrix_descriptives_full_precision",
+    "balanced_10seed_matrix_global_seed_records",
+    "balanced_10seed_matrix_global_tests_full_precision",
+    "balanced_10seed_matrix_manifest",
+    "balanced_10seed_matrix_mechanism_profiles",
+    "balanced_10seed_matrix_metric_availability",
+    "balanced_10seed_matrix_paired_contrasts_full_precision",
+    "balanced_10seed_matrix_paired_seed_records",
+    "balanced_10seed_matrix_summary_flat"
+  ],
+  "matrix_contract": {
+    "canonical_downstream_input": "results/analysis/balanced_10seed_matrix_summary_flat.csv",
+    "flat_summary_column_count": 895,
+    "flat_summary_row_count": 180,
+    "manifest_column_count": 11,
+    "manifest_path": "results/analysis/balanced_10seed_matrix_manifest.csv",
+    "manifest_row_count": 180,
+    "unique_matrix_key_count": 180
+  },
+  "queue_progress_contract": {
+    "experiment_config_representation": "plain repository-relative string",
+    "record_count": 252,
+    "status_counts": {
+      "completed": 126,
+      "started": 126
+    },
+    "unique_experiment_config_count": 126
+  },
+  "schema_version": 1,
+  "scope": {
+    "budget_count": 3,
+    "budgets": [
+      "10m",
+      "25m",
+      "50m"
+    ],
+    "description": "Canonical balanced efficiency study: 6 models x 3 token budgets x 10 aligned seeds.",
+    "expected_matrix_rows": 180,
+    "model_count": 6,
+    "models": [
+      "dense_121m",
+      "mla_121m",
+      "mtp_121m",
+      "moe_220m",
+      "mla_moe_220m",
+      "v3_routing_220m"
+    ],
+    "seed_count": 10,
+    "seeds": [
+      1337,
+      2027,
+      4441,
+      5501,
+      6173,
+      8191,
+      10007,
+      11213,
+      12721,
+      31415
+    ]
+  },
+  "supporting_script_count": 32,
+  "supporting_scripts": [
+    {
+      "path": "scripts/analysis/analyze_balanced_10seed_matrix_budget_trends.py",
+      "roles": [
+        "budget_trends"
+      ],
+      "sha256": "e9b84259a3fcca11cd635a1133d3ebf6c928d8b5e35c5d2ab967c61ed74977a8",
+      "size_bytes": 26125
+    },
+    {
+      "path": "scripts/analysis/analyze_balanced_10seed_matrix_global_tests.py",
+      "roles": [
+        "global_tests"
+      ],
+      "sha256": "1d7281b122571c4cb0ae519ee35392371f68719969c5af5d982c156681f715b1",
+      "size_bytes": 16729
+    },
+    {
+      "path": "scripts/analysis/analyze_balanced_10seed_matrix_paired_contrasts.py",
+      "roles": [
+        "paired_contrasts"
+      ],
+      "sha256": "788ff101be6fb2fee69ceb949b01efef49edb8900e50a7745fe61017c08aa0b3",
+      "size_bytes": 22300
+    },
+    {
+      "path": "scripts/analysis/build_balanced_10seed_evidence_index.py",
+      "roles": [
+        "evidence_index_builder"
+      ],
+      "sha256": "ad6b13c4e25aa41a065b7f393efca9d3d7141d6135914d5960c9241972c3efce",
+      "size_bytes": 18155
+    },
+    {
+      "path": "scripts/analysis/build_balanced_10seed_matrix_manifest.py",
+      "roles": [
+        "manifest_builder",
+        "queue_script_generator"
+      ],
+      "sha256": "03da500dcbc41ba9a17ac9677a2b883167d520142a91566f3effef47175647ae",
+      "size_bytes": 18054
+    },
+    {
+      "path": "scripts/analysis/build_balanced_10seed_mechanism_profiles.py",
+      "roles": [
+        "mechanism_profiles"
+      ],
+      "sha256": "70c91ded10cd51a3078dbfa651cbac1f0ca4f1f0b89256cd9185b51314d82586",
+      "size_bytes": 17733
+    },
+    {
+      "path": "scripts/analysis/extract_balanced_10seed_matrix_artifacts.py",
+      "roles": [
+        "canonical_extractor"
+      ],
+      "sha256": "84bd568b0e1191d5b386165bd2d60c198a5125cf87c44e3c42726679c075c48d",
+      "size_bytes": 17413
+    },
+    {
+      "path": "scripts/analysis/plot_mean_aux_loss_by_budget.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "704c1bb4d04f31244fff111629c9759ee0341da13ecd14d75cb04208d624763b",
+      "size_bytes": 12160
+    },
+    {
+      "path": "scripts/analysis/plot_mean_expert_load_variance_by_budget.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "0e03cdb9bd3e506ba0beee940884b4b78a09e7e6d9f6566cedadb601bc63cf8a",
+      "size_bytes": 12354
+    },
+    {
+      "path": "scripts/analysis/plot_mean_routing_entropy_by_budget.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "ac66fc03d8eb3eab2b9dd0f6854b303bd390fda6a938ec32c51d68854338fa1e",
+      "size_bytes": 12189
+    },
+    {
+      "path": "scripts/analysis/plot_mtp_loss_by_budget.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "52b41e04e1ac625626252d6dc251b5e5e077232af8b08bff9a6da61c6a52a03f",
+      "size_bytes": 9768
+    },
+    {
+      "path": "scripts/analysis/plot_peak_memory_gib_by_budget.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "4c521c224aae160ca87af5f1bb731a018c6050dc87be6e028cb94a4393a9409e",
+      "size_bytes": 8635
+    },
+    {
+      "path": "scripts/analysis/plot_report_mtp_optimization_comparison.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "0168af37d7312b0a3349cfb14361e0fcec7e6dfaa7770af5f4d25077b6569b99",
+      "size_bytes": 13076
+    },
+    {
+      "path": "scripts/analysis/plot_report_paired_test_loss_contrasts_50m.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "e3b81c308eba2d9211ec248c6805519ef45325eaa807d0305aa69a5e03d1ea32",
+      "size_bytes": 8947
+    },
+    {
+      "path": "scripts/analysis/plot_report_planned_test_loss_contrasts_by_budget.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "9503cc0bc1d2017a92b67b4227ae825cfae68e6274dddded2706c3af4049e322",
+      "size_bytes": 10543
+    },
+    {
+      "path": "scripts/analysis/plot_report_quality_throughput_tradeoff_50m.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "fd0049d75d0b0a7faa0a85620bc9f6c0f6d6608f0c9455c4434880a477cf014e",
+      "size_bytes": 9994
+    },
+    {
+      "path": "scripts/analysis/plot_report_routing_behavior_comparison.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "cc66b9f4003ebb2b97619b3dbc088bfbf78aa20e8998e35fb110934034b5d331",
+      "size_bytes": 11994
+    },
+    {
+      "path": "scripts/analysis/plot_report_test_loss_by_budget.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "cf0fa0c3157e5037b18d8fb8b90645f5dabb9add60668a8d023a346720ab31d6",
+      "size_bytes": 8630
+    },
+    {
+      "path": "scripts/analysis/plot_report_test_loss_vs_tokens_per_activated_parameter.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "45b0816597735e85b02677646387de0912c091d7e3531ddfd6c495f5b8627e94",
+      "size_bytes": 11529
+    },
+    {
+      "path": "scripts/analysis/plot_report_total_vs_activated_parameter_exposure_50m.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "6d2a8ebaa344419316f1167006e6b8d170ed7cff6a104d2ed3d7ee5e87b90a1e",
+      "size_bytes": 8714
+    },
+    {
+      "path": "scripts/analysis/plot_test_loss_by_budget.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "05791704037c09a0b04bb9cfd5dda5d28f701d9194367169e2c7f80abfd200ac",
+      "size_bytes": 12106
+    },
+    {
+      "path": "scripts/analysis/plot_test_perplexity_by_budget.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "7462f52fc6fa56e48f6e8e57e8567feb7fa76d17b5a577fc4987756a3cccd66b",
+      "size_bytes": 12136
+    },
+    {
+      "path": "scripts/analysis/plot_tokens_per_activated_parameter_by_budget.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "5c64b5ffbcfeba472cb137635a832baf45b663846e3612aab44e4371a0720599",
+      "size_bytes": 12235
+    },
+    {
+      "path": "scripts/analysis/plot_tokens_per_total_parameter_by_budget.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "3f637d6fcc3acab7897c0dda05d2812e2a414031e09e3ceb0c9f0eafbba0a274",
+      "size_bytes": 12188
+    },
+    {
+      "path": "scripts/analysis/plot_tokens_per_trainable_parameter_by_budget.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "e5edcfaeb8b5be1a2aa7d12ac1aa5449f5d23d32d6e75b861f2cb9b27e10ed80",
+      "size_bytes": 12236
+    },
+    {
+      "path": "scripts/analysis/plot_train_loss_by_budget.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "a4ad5047a096217bdef7e2c76fd3217b97d8d2c6c664eb251b6f99c0fa13b0e6",
+      "size_bytes": 12114
+    },
+    {
+      "path": "scripts/analysis/plot_train_tokens_per_second_by_budget.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "19ee0ef8a65b1b2c59280509810006f31a3553766873524bcf4b6be1263d0250",
+      "size_bytes": 12183
+    },
+    {
+      "path": "scripts/analysis/plot_validation_loss_by_budget.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "90cfe0baa65525f326bf8d0975112e2764768328425af0b2abf3249dce68e473",
+      "size_bytes": 12136
+    },
+    {
+      "path": "scripts/analysis/plot_validation_perplexity_by_budget.py",
+      "roles": [
+        "figure_producer"
+      ],
+      "sha256": "e4360e67c9378a5c80bc81a52d1e655501509f39dcc453a01a29e82d5c091b5f",
+      "size_bytes": 12166
+    },
+    {
+      "path": "scripts/analysis/summarize_balanced_10seed_matrix_descriptives.py",
+      "roles": [
+        "descriptive_statistics"
+      ],
+      "sha256": "c09ad5ce2309a338a086084a965f2fac57d2673e30d466b1b70da5b1fd90511f",
+      "size_bytes": 13773
+    },
+    {
+      "path": "scripts/analysis/verify_final_data_tokenizer_provenance.py",
+      "roles": [
+        "data_tokenizer_provenance_verifier"
+      ],
+      "sha256": "dd3ab2bafd3bc8cecad5468372310eb92b5cbdaadda4a6bd4af03a6002a44217",
+      "size_bytes": 8840
+    },
+    {
+      "path": "scripts/run_balanced_10seed_matrix_queue.ps1",
+      "roles": [
+        "training_queue_runner"
+      ],
+      "sha256": "80d42cd17458d8e6762010c804b5c686b9ee65c75e99888c351157b0fafe6a31",
+      "size_bytes": 7874
+    }
+  ]
+}

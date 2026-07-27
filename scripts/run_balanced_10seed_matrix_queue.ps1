@@ -116,6 +116,7 @@ $Index = 0
 
 try {
     foreach ($ExperimentConfig in $Queue) {
+        $ExperimentConfig = [string]$ExperimentConfig
         $Index += 1
         Refresh-LongRunPowerGuard
 
