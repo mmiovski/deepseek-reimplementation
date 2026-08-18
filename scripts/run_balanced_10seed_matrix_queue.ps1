@@ -52,7 +52,10 @@ public static class LongRunExecutionState {
 }
 "@
     }
-    $Flags = [uint32]0x80000000 -bor [uint32]0x00000001 -bor [uint32]0x00000040
+    # Windows PowerShell 5.1 parses 0x80000000 as a negative Int32 before a
+    # cast is applied. Convert the complete bit pattern from hexadecimal so
+    # the native call receives the intended unsigned execution-state flags.
+    $Flags = [Convert]::ToUInt32("80000041", 16)
     if ([LongRunExecutionState]::SetThreadExecutionState($Flags) -eq 0) {
         throw "Windows rejected the long-run power guard."
     }
@@ -60,7 +63,8 @@ public static class LongRunExecutionState {
 
 function Clear-PowerGuard {
     if ($null -ne ("LongRunExecutionState" -as [type])) {
-        [LongRunExecutionState]::SetThreadExecutionState([uint32]0x80000000) | Out-Null
+        $ContinuousFlag = [Convert]::ToUInt32("80000000", 16)
+        [LongRunExecutionState]::SetThreadExecutionState($ContinuousFlag) | Out-Null
     }
 }
 
@@ -188,7 +192,7 @@ $ExistingCheckpoints = @(Get-ChildItem `
     -Recurse `
     -ErrorAction SilentlyContinue)
 if ($Queue.Count -eq 180 -and $ExistingCheckpoints.Count -eq 0) {
-    Remove-Item -LiteralPath $ProgressPath -Force -ErrorAction SilentlyContinue
+    [IO.File]::WriteAllBytes($ProgressPath, [byte[]]@())
 }
 
 $CompletedProgressConfigs = [Collections.Generic.HashSet[string]]::new()
