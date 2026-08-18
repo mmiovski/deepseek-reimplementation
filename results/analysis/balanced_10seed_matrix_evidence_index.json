@@ -740,8 +740,8 @@
       "roles": [
         "training_queue_runner"
       ],
-      "sha256": "2c53b4b952f2c1cd9c63cba1ebd463629430ab16ed62c732773eeed7a1fe74d5",
-      "size_bytes": 13028
+      "sha256": "ee18283b58b489811b99e6a18815e15973d556253bdbf7d2f51a7726d17e36d9",
+      "size_bytes": 15250
     }
   ]
 }

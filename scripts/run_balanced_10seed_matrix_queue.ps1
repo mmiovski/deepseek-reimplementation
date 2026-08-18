@@ -8,6 +8,7 @@ Set-Location $ProjectRoot
 $Python = Join-Path $ProjectRoot ".venv\Scripts\python.exe"
 $ProgressPath = Join-Path $ProjectRoot "results\analysis\balanced_10seed_matrix_queue_progress.jsonl"
 $SystemStatePath = Join-Path $ProjectRoot "results\analysis\long_run_system_state.json"
+$TrainingPidPath = Join-Path $ProjectRoot "tmp\long_run_training.pid"
 
 if (-not (Test-Path -LiteralPath $Python -PathType Leaf)) {
     throw "Missing repaired Python environment: $Python"
@@ -149,8 +150,53 @@ function Assert-FreeDiskSpace {
     }
 }
 
+function Wait-TrainingPidMarker {
+    param(
+        [Diagnostics.Process]$LauncherProcess,
+        [string]$MarkerPath,
+        [int]$TimeoutSeconds = 120
+    )
+
+    $Deadline = [DateTime]::UtcNow.AddSeconds($TimeoutSeconds)
+    while (-not (Test-Path -LiteralPath $MarkerPath -PathType Leaf)) {
+        $LauncherProcess.Refresh()
+        if ($LauncherProcess.HasExited) {
+            throw "Training launcher exited before publishing its interpreter PID."
+        }
+        if ([DateTime]::UtcNow -ge $Deadline) {
+            throw "Training interpreter did not publish its PID within $TimeoutSeconds seconds."
+        }
+        Start-Sleep -Milliseconds 250
+    }
+
+    $RawPid = (Get-Content -LiteralPath $MarkerPath -Raw).Trim()
+    $TrainingPid = 0
+    if (-not [int]::TryParse($RawPid, [ref]$TrainingPid) -or $TrainingPid -le 0) {
+        throw "Training interpreter published an invalid PID marker: $RawPid"
+    }
+    if ($null -eq (Get-Process -Id $TrainingPid -ErrorAction SilentlyContinue)) {
+        throw "Training interpreter PID $TrainingPid is no longer active."
+    }
+    return $TrainingPid
+}
+
+function Stop-OwnedProcesses {
+    param([int[]]$OwnedPids)
+
+    foreach ($OwnedProcessId in @($OwnedPids | Select-Object -Unique)) {
+        if ($OwnedProcessId -gt 0 -and $OwnedProcessId -ne $PID) {
+            Stop-Process -Id $OwnedProcessId -Force -ErrorAction SilentlyContinue
+        }
+    }
+}
+
 function Get-CompetingGpuComputeProcesses {
-    param([int]$AllowedPid)
+    param([int[]]$AllowedPids = @())
+
+    $AllowedPidSet = [Collections.Generic.HashSet[int]]::new()
+    foreach ($AllowedProcessId in $AllowedPids) {
+        [void]$AllowedPidSet.Add($AllowedProcessId)
+    }
     $Rows = & nvidia-smi `
         --query-compute-apps=pid,process_name `
         --format=csv,noheader,nounits 2>$null
@@ -162,7 +208,7 @@ function Get-CompetingGpuComputeProcesses {
         if ([string]::IsNullOrWhiteSpace($Row)) { continue }
         $Parts = $Row -split ",", 2
         $PidValue = [int]$Parts[0].Trim()
-        if ($PidValue -ne $AllowedPid) {
+        if (-not $AllowedPidSet.Contains($PidValue)) {
             $Competitors += $Row.Trim()
         }
     }
@@ -252,7 +298,7 @@ Assert-NoCompetingInteractiveApps
 Assert-NoPendingReboot
 Assert-AcPower
 Assert-FreeDiskSpace
-if ((Get-CompetingGpuComputeProcesses -AllowedPid 0).Count -gt 0) {
+if ((Get-CompetingGpuComputeProcesses).Count -gt 0) {
     throw "A competing CUDA compute process is already active."
 }
 
@@ -280,13 +326,25 @@ try {
         }
 
         $Process = $null
+        $TrainingPid = $null
+        Remove-Item -LiteralPath $TrainingPidPath -Force -ErrorAction SilentlyContinue
         try {
             $Process = Start-Process `
                 -FilePath $Python `
-                -ArgumentList @("scripts\train\run_pretrain.py", "--experiment-config", $ExperimentConfig) `
+                -ArgumentList @(
+                    "scripts\train\run_pretrain.py",
+                    "--experiment-config",
+                    $ExperimentConfig,
+                    "--runner-pid-file",
+                    $TrainingPidPath
+                ) `
                 -WorkingDirectory $ProjectRoot `
                 -NoNewWindow `
                 -PassThru
+
+            $TrainingPid = Wait-TrainingPidMarker `
+                -LauncherProcess $Process `
+                -MarkerPath $TrainingPidPath
 
             $MonitorIterations = 0
             while (-not $Process.HasExited) {
@@ -296,7 +354,8 @@ try {
                 Set-PowerGuard
                 Stop-UpdateActivity
                 if ($MonitorIterations % 20 -eq 0) { Assert-AcPower }
-                $Competitors = @(Get-CompetingGpuComputeProcesses -AllowedPid $Process.Id)
+                $OwnedPids = @($Process.Id, $TrainingPid)
+                $Competitors = @(Get-CompetingGpuComputeProcesses -AllowedPids $OwnedPids)
                 if ($Competitors.Count -gt 0) {
                     throw "Competing CUDA process detected: $($Competitors -join '; ')"
                 }
@@ -315,9 +374,10 @@ try {
             }
         } finally {
             if ($null -ne $Process -and -not $Process.HasExited) {
-                Stop-Process -Id $Process.Id -Force -ErrorAction SilentlyContinue
+                Stop-OwnedProcesses -OwnedPids @($TrainingPid, $Process.Id)
                 $Process.WaitForExit()
             }
+            Remove-Item -LiteralPath $TrainingPidPath -Force -ErrorAction SilentlyContinue
         }
 
         & $Python scripts\validation\preflight_primary_matrix.py --require-clean-git
