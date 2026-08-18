@@ -12,6 +12,8 @@ data/raw/*
 data/interim/*
 data/processed/*
 data/tokenized/*
+data/corpus/*
+data/tokens/*
 !data/raw/.gitkeep
 !data/interim/.gitkeep
 !data/processed/.gitkeep
@@ -20,6 +22,7 @@ data/tokenized/*
 # Tokenizer artifacts
 tokenizers/trained/*
 tokenizers/metadata/*
+tokenizers/fineweb_edu_10bt/*
 !tokenizers/trained/.gitkeep
 !tokenizers/metadata/.gitkeep
 
@@ -33,6 +36,10 @@ results/metrics/*
 results/tables/*
 results/figures/*
 results/samples/*
+results/runs/*/logs/*
+results/runs/*/checkpoints/*
+results/analysis/primary_matrix_preflight.json
+results/analysis/long_run_system_state.json
 !results/raw_logs/.gitkeep
 !results/metrics/.gitkeep
 !results/tables/.gitkeep
@@ -43,6 +50,7 @@ results/samples/*
 .DS_Store
 .vscode/
 .idea/
+tmp/
 
 # Build artifacts
 build/

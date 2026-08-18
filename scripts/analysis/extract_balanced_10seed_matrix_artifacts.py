@@ -67,14 +67,10 @@ REQUIRED_CANONICAL_METRICS: dict[str, list[str]] = {
         "eval_test_perplexity",
     ],
     "train_tokens_per_second": [
-        "train_tokens_per_second",
-        "tokens_per_second",
-        "train_tokens_per_sec",
+        "train_step_tokens_per_second",
     ],
     "peak_memory_bytes": [
-        "peak_memory_bytes",
-        "peak_gpu_memory_bytes",
-        "max_memory_bytes",
+        "train_peak_memory_bytes",
     ],
     "total_parameters": [
         "total_parameters",
@@ -121,17 +117,14 @@ OPTIONAL_CANONICAL_METRICS: dict[str, list[str]] = {
         "final_lm_loss",
     ],
     "mean_aux_loss": [
-        "mean_aux_loss",
-        "aux_loss",
-        "final_aux_loss",
+        "routing_stats.mean_aux_loss",
     ],
+    "final_aux_loss": ["final_aux_loss"],
     "mean_expert_load_variance": [
-        "mean_expert_load_variance",
-        "expert_load_variance",
+        "routing_stats.mean_expert_load_variance",
     ],
     "mean_routing_entropy": [
-        "mean_routing_entropy",
-        "routing_entropy",
+        "routing_stats.mean_routing_entropy",
     ],
     "mean_router_probability": [
         "mean_router_probability",
@@ -151,9 +144,11 @@ OPTIONAL_CANONICAL_METRICS: dict[str, list[str]] = {
     "mtp_loss_weight": [
         "mtp_loss_weight",
     ],
-    "mtp_num_future_tokens": [
-        "mtp_num_future_tokens",
+    "mtp_auxiliary_head_count": [
+        "mtp_auxiliary_head_count",
     ],
+    "active_end_to_end_tokens_per_second": ["active_end_to_end_tokens_per_second"],
+    "evaluation_peak_memory_bytes": ["evaluation_peak_memory_bytes"],
 }
 
 
@@ -514,7 +509,7 @@ def main() -> None:
 
     audit = {
         "artifact_type": "balanced_10seed_matrix_extraction_audit",
-        "v1_controlled_design_guardrail": (
+        "controlled_design_guardrail": (
             "Extraction reads only balanced_10seed_matrix_manifest.csv and does "
             "not scan results/metrics broadly."
         ),

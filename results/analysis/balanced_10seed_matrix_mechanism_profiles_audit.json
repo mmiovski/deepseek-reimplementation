@@ -115,5 +115,5 @@
     "tokens_per_trainable_parameter",
     "tokens_per_activated_parameter"
   ],
-  "v1_controlled_design_guardrail": "Mechanism profiles are built only from the balanced 10-seed flat artifact and validated model-by-budget descriptives."
+  "controlled_design_guardrail": "Mechanism profiles are built only from the balanced 10-seed flat artifact and validated model-by-budget descriptives."
 }

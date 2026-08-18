@@ -42,6 +42,40 @@ def test_compute_text_quality_report_summarizes_local_file(tmp_path) -> None:
     assert report["total_mojibake_markers"] >= 1
 
 
+def test_record_manifest_preserves_internal_blank_lines_as_one_document(tmp_path) -> None:
+    import hashlib
+
+    corpus_path = tmp_path / "corpus.txt"
+    manifest_path = tmp_path / "corpus.records.jsonl"
+    first = "first paragraph\n\nsecond paragraph"
+    second = "other document"
+    text = first + "\n\n" + second
+    corpus_path.write_text(text, encoding="utf-8")
+    records = [
+        {
+            "ordinal": 0,
+            "start_char": 0,
+            "end_char": len(first),
+            "text_sha256": hashlib.sha256(first.encode()).hexdigest(),
+        },
+        {
+            "ordinal": 1,
+            "start_char": len(first) + 2,
+            "end_char": len(text),
+            "text_sha256": hashlib.sha256(second.encode()).hexdigest(),
+        },
+    ]
+    manifest_path.write_text("".join(json.dumps(record) + "\n" for record in records))
+
+    report = compute_text_quality_report(
+        corpus_path,
+        record_manifest_path=manifest_path,
+    )
+
+    assert report["documents"] == 2
+    assert report["record_boundaries_verified"] is True
+
+
 def test_audit_text_corpus_cli_writes_json(tmp_path) -> None:
     import subprocess
     import sys

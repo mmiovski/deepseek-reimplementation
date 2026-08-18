@@ -65,10 +65,13 @@ METRIC_GROUPS: dict[str, list[str]] = {
     "optimization": [
         "train_loss",
         "lm_loss",
+        "final_aux_loss",
     ],
     "efficiency": [
         "train_tokens_per_second",
+        "active_end_to_end_tokens_per_second",
         "peak_memory_bytes",
+        "evaluation_peak_memory_bytes",
         "total_parameters",
         "trainable_parameters",
         "activated_parameters_per_token",
@@ -90,7 +93,7 @@ METRIC_GROUPS: dict[str, list[str]] = {
     "mtp": [
         "mtp_loss",
         "mtp_loss_weight",
-        "mtp_num_future_tokens",
+        "mtp_auxiliary_head_count",
     ],
 }
 
@@ -395,7 +398,7 @@ def main() -> None:
     audit = {
         "artifact_type": "balanced_10seed_matrix_descriptives_audit",
         "input_flat_csv": str(INPUT_FLAT_CSV),
-        "v1_controlled_design_guardrail": (
+        "controlled_design_guardrail": (
             "Descriptives are generated only from the balanced 10-seed flat "
             "artifact, which itself reads only the audited manifest."
         ),

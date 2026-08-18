@@ -66,6 +66,11 @@ def test_final_balanced_matrix_contract() -> None:
     assert matrix["manifest_row_count"] == 180
     assert matrix["unique_matrix_key_count"] == 180
     assert matrix["flat_summary_row_count"] == 180
+    with (ROOT / MANIFEST_PATH).open("r", encoding="utf-8-sig", newline="") as file:
+        completed = sum(
+            row["status"] == "complete_existing_summary" for row in csv.DictReader(file)
+        )
+    assert payload["run_summary_count"] == completed
 
 
 def test_all_figures_have_one_named_producer() -> None:
@@ -101,20 +106,29 @@ def test_all_figures_have_one_named_producer() -> None:
 
 def test_progress_history_is_sanitized_and_complete() -> None:
     records = _load_progress()
+    with (ROOT / MANIFEST_PATH).open("r", encoding="utf-8-sig", newline="") as file:
+        manifest_rows = list(csv.DictReader(file))
 
-    assert len(records) == 252
-
-    status_counts = Counter(str(record["status"]) for record in records)
-    config_counts = Counter(str(record["experiment_config"]) for record in records)
-
-    assert status_counts == Counter(
-        {
-            "started": 126,
-            "completed": 126,
-        }
+    manifest_configs = {row["experiment_config"] for row in manifest_rows}
+    completed_manifest_configs = {
+        row["experiment_config"]
+        for row in manifest_rows
+        if row["status"] == "complete_existing_summary"
+    }
+    completed_counts = Counter(
+        str(record["experiment_config"]) for record in records if record["status"] == "completed"
     )
-    assert len(config_counts) == 126
-    assert set(config_counts.values()) == {2}
+    started_configs = {
+        str(record["experiment_config"]) for record in records if record["status"] == "started"
+    }
+
+    assert set(completed_counts) == completed_manifest_configs
+    assert set(completed_counts.values()) <= {1}
+    assert completed_manifest_configs <= started_configs
+    assert all(
+        str(record["status"]) in {"started", "completed", "failed", "aborted"} for record in records
+    )
+    assert all(str(record["experiment_config"]) in manifest_configs for record in records)
 
     for record in records:
         experiment_config = record["experiment_config"]
@@ -141,7 +155,7 @@ def test_stale_inventory_is_removed() -> None:
     assert not (ROOT / STALE_INVENTORY_PATH).exists()
 
 
-def test_legacy_50m_naming_matches_manifest() -> None:
+def test_established_50m_naming_matches_manifest() -> None:
     from scripts.analysis.build_balanced_10seed_matrix_manifest import (
         BUDGETS,
         MODELS,
@@ -191,7 +205,7 @@ def test_legacy_50m_naming_matches_manifest() -> None:
 
     assert "25-seed" not in source
     assert "FOUR_MODEL" not in source
-    assert "LEGACY_50M_CANONICAL_SLOTS" in source
+    assert "ESTABLISHED_50M_CANONICAL_SLOTS" in source
 
 
 def test_index_covers_intended_evidence_contract() -> None:

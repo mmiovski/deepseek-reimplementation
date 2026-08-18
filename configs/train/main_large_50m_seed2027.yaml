@@ -14,6 +14,7 @@ train:
   - 0.95
   grad_clip: 1.0
   num_workers: 0
-  checkpoint_interval: null
+  checkpoint_interval: 5000
   log_interval: 500
   precision: fp32
+  deterministic: true

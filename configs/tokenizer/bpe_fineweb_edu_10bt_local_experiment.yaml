@@ -12,9 +12,9 @@ special_tokens:
 
 training:
   input_text_files:
-    - data/processed/fineweb_edu_10bt/train.txt
+    - data/corpus/fineweb_edu_10bt/train.txt
   max_training_chars: null
 
 artifacts:
-  tokenizer_json: tokenizers/trained/bpe_fineweb_edu_10bt_local_experiment.json
-  metadata_json: tokenizers/metadata/bpe_fineweb_edu_10bt_local_experiment_metadata.json
+  tokenizer_json: tokenizers/fineweb_edu_10bt/tokenizer.json
+  metadata_json: tokenizers/fineweb_edu_10bt/metadata.json

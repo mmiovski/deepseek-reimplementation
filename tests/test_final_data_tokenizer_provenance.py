@@ -59,12 +59,12 @@ def test_missing_local_artifacts_are_optional_by_default(
         require_local_artifacts=True,
     )
 
-    assert optional_summary["artifact_contract_count"] == 10
+    assert optional_summary["artifact_contract_count"] == 13
     assert optional_summary["verified_artifact_count"] == 0
-    assert optional_summary["missing_artifact_count"] == 10
+    assert optional_summary["missing_artifact_count"] == 13
     assert optional_summary["passed"] is True
 
-    assert required_summary["missing_artifact_count"] == 10
+    assert required_summary["missing_artifact_count"] == 13
     assert required_summary["passed"] is False
 
 
@@ -106,7 +106,7 @@ def test_present_artifacts_are_hash_verified(
         require_local_artifacts=True,
     )
 
-    assert matching_summary["verified_artifact_count"] == 10
+    assert matching_summary["verified_artifact_count"] == 13
     assert matching_summary["missing_artifact_count"] == 0
     assert matching_summary["artifact_mismatch_count"] == 0
     assert matching_summary["passed"] is True

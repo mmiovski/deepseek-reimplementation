@@ -132,10 +132,13 @@ PROFILE_METRIC_GROUPS: dict[str, list[str]] = {
     "optimization": [
         "train_loss",
         "lm_loss",
+        "final_aux_loss",
     ],
     "efficiency": [
         "train_tokens_per_second",
+        "active_end_to_end_tokens_per_second",
         "peak_memory_bytes",
+        "evaluation_peak_memory_bytes",
     ],
     "parameterization": [
         "total_parameters",
@@ -159,7 +162,7 @@ PROFILE_METRIC_GROUPS: dict[str, list[str]] = {
     "mtp": [
         "mtp_loss",
         "mtp_loss_weight",
-        "mtp_num_future_tokens",
+        "mtp_auxiliary_head_count",
     ],
 }
 
@@ -495,7 +498,7 @@ def main() -> None:
         "artifact_type": "balanced_10seed_matrix_mechanism_profiles_audit",
         "input_flat_csv": str(INPUT_FLAT_CSV),
         "input_descriptives_csv": str(INPUT_DESCRIPTIVES_CSV),
-        "v1_controlled_design_guardrail": (
+        "controlled_design_guardrail": (
             "Mechanism profiles are built only from the balanced 10-seed flat "
             "artifact and validated model-by-budget descriptives."
         ),

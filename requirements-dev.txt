@@ -1,5 +1,5 @@
 -r requirements.txt
-pytest
-ruff
-black
-mypy
+pytest==9.0.3
+ruff==0.15.15
+black==26.5.1
+mypy==2.1.0

@@ -71,10 +71,13 @@ METRIC_GROUPS = {
     "optimization": [
         "train_loss",
         "lm_loss",
+        "final_aux_loss",
     ],
     "efficiency": [
         "train_tokens_per_second",
+        "active_end_to_end_tokens_per_second",
         "peak_memory_bytes",
+        "evaluation_peak_memory_bytes",
         "total_parameters",
         "trainable_parameters",
         "activated_parameters_per_token",
@@ -96,7 +99,7 @@ METRIC_GROUPS = {
     "mtp": [
         "mtp_loss",
         "mtp_loss_weight",
-        "mtp_num_future_tokens",
+        "mtp_auxiliary_head_count",
     ],
 }
 
@@ -243,7 +246,9 @@ def exact_sign_flip_p_value(values: list[float]) -> float | None:
         signed_values = [
             sign * value for sign, value in zip(signs, nonzero_abs_values, strict=True)
         ]
-        assigned_abs_mean = abs(statistics.fmean(signed_values))
+        # Zeros remain part of the paired sample and therefore remain in the
+        # denominator of every randomization assignment.
+        assigned_abs_mean = abs(sum(signed_values) / len(values))
         assignment_count += 1
 
         if assigned_abs_mean >= observed_abs_mean - 1e-15:
@@ -666,7 +671,7 @@ def main() -> None:
     audit = {
         "artifact_type": "balanced_10seed_matrix_budget_trends_audit",
         "input_flat_csv": str(INPUT_FLAT_CSV),
-        "v1_controlled_design_guardrail": (
+        "controlled_design_guardrail": (
             "Budget trends are generated only from the balanced 10-seed flat "
             "artifact and summarize within-model behavior across token budgets."
         ),

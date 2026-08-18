@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from contextlib import ExitStack
 from dataclasses import dataclass
@@ -22,8 +23,14 @@ if str(PROJECT_ROOT) not in sys.path:
 from datasets import load_dataset  # noqa: E402
 
 from deepseek_reimpl.data.preprocess import keep_text, normalize_text  # noqa: E402
+from deepseek_reimpl.utils.artifacts import (  # noqa: E402
+    atomic_write_json,
+    sha256_file,
+    sha256_text,
+    staged_directory,
+)
 from deepseek_reimpl.utils.config import load_yaml_config  # noqa: E402
-from deepseek_reimpl.utils.paths import ensure_dir, project_path  # noqa: E402
+from deepseek_reimpl.utils.paths import project_path  # noqa: E402
 
 
 @dataclass
@@ -36,6 +43,8 @@ class SplitWriter:
     max_chars: int | None
     examples: int = 0
     chars: int = 0
+    serialized_chars: int = 0
+    serialized_bytes: int = 0
 
     def is_done(self) -> bool:
         """Return whether this split has reached one of its explicit caps."""
@@ -43,15 +52,41 @@ class SplitWriter:
         chars_done = self.max_chars is not None and self.chars >= self.max_chars
         return examples_done or chars_done
 
-    def write(self, text: str, file: TextIO) -> None:
+    def write(self, text: str, file: TextIO, records: TextIO, *, source_index: int) -> None:
         """Append one normalized document to this split."""
-        if self.examples > 0:
-            file.write("\n\n")
+        separator = "\n\n" if self.examples > 0 else ""
+        file.write(separator)
+        start_char = self.serialized_chars + len(separator)
+        start_byte = self.serialized_bytes + len(separator.encode("utf-8"))
+        text_bytes = text.encode("utf-8")
+        end_char = start_char + len(text)
+        end_byte = start_byte + len(text_bytes)
+
+        records.write(
+            json.dumps(
+                {
+                    "schema_version": 1,
+                    "split": self.name,
+                    "ordinal": self.examples,
+                    "source_stream_index": source_index,
+                    "text_sha256": sha256_text(text),
+                    "chars": len(text),
+                    "bytes": len(text_bytes),
+                    "start_char": start_char,
+                    "end_char": end_char,
+                    "start_byte": start_byte,
+                    "end_byte": end_byte,
+                },
+                sort_keys=True,
+            )
+            + "\n"
+        )
         file.write(text)
-        file.write("\n")
 
         self.examples += 1
         self.chars += len(text)
+        self.serialized_chars = end_char
+        self.serialized_bytes = end_byte
 
 
 def _positive_int_or_none(value: int | None, *, name: str) -> int | None:
@@ -86,12 +121,6 @@ def _resolve_path(path_value: str | Path) -> Path:
     return path
 
 
-def _truncate_existing_outputs(split_writers: list[SplitWriter]) -> None:
-    for split in split_writers:
-        ensure_dir(split.path.parent)
-        split.path.write_text("", encoding="utf-8")
-
-
 def _next_unfinished_split(split_writers: list[SplitWriter]) -> SplitWriter | None:
     for split in split_writers:
         if not split.is_done():
@@ -106,6 +135,7 @@ def _build_stream(
         "path": dataset_cfg["hf_dataset_name"],
         "split": splits_cfg["source"],
         "streaming": True,
+        "revision": dataset_cfg["hf_dataset_revision"],
     }
 
     dataset_config_name = dataset_cfg.get("hf_dataset_config_name")
@@ -231,22 +261,44 @@ def main() -> None:
         for split in split_writers:
             _require_split_cap(split)
 
-    _truncate_existing_outputs(split_writers)
-
     stream = _build_stream(
         dataset_cfg=dataset_cfg,
         splits_cfg=splits_cfg,
         stream_cfg=stream_cfg,
     )
 
+    record_path_keys = {
+        "train": "train_records",
+        "validation": "validation_records",
+        "test": "test_records",
+    }
+    publication_paths = [split.path for split in split_writers]
+    publication_paths.extend(_resolve_path(artifacts_cfg[key]) for key in record_path_keys.values())
+    metadata_path = _resolve_path(artifacts_cfg["metadata"])
+    publication_paths.append(metadata_path)
+    publication_parents = {path.parent for path in publication_paths}
+    if len(publication_parents) != 1:
+        raise ValueError("All prepared corpus artifacts must share one directory.")
+    target_dir = publication_parents.pop()
+
     text_field = dataset_cfg["text_field"]
-    with ExitStack() as stack:
+    with staged_directory(target_dir) as stage_dir, ExitStack() as stack:
+        for split in split_writers:
+            split.path = stage_dir / split.path.name
         output_files = {
-            split.name: stack.enter_context(split.path.open("a", encoding="utf-8", newline="\n"))
+            split.name: stack.enter_context(split.path.open("w", encoding="utf-8", newline="\n"))
             for split in split_writers
         }
+        record_paths = {
+            name: stage_dir / Path(artifacts_cfg[key]).name
+            for name, key in record_path_keys.items()
+        }
+        record_files = {
+            name: stack.enter_context(path.open("w", encoding="utf-8", newline="\n"))
+            for name, path in record_paths.items()
+        }
 
-        for record in stream:
+        for source_index, record in enumerate(stream):
             current_split = _next_unfinished_split(split_writers)
             if current_split is None:
                 break
@@ -263,53 +315,63 @@ def main() -> None:
             if not keep_text(text, min_chars=preprocessing_cfg["min_chars"]):
                 continue
 
-            current_split.write(text, output_files[current_split.name])
+            current_split.write(
+                text,
+                output_files[current_split.name],
+                record_files[current_split.name],
+                source_index=source_index,
+            )
 
-    unfinished = [split.name for split in split_writers if not split.is_done()]
-    if unfinished:
-        raise RuntimeError(f"Streaming dataset ended before caps were reached: {unfinished}")
+        for file in [*output_files.values(), *record_files.values()]:
+            file.flush()
+            os.fsync(file.fileno())
 
-    metadata_path = _resolve_path(artifacts_cfg["metadata"])
-    ensure_dir(metadata_path.parent)
+        unfinished = [split.name for split in split_writers if not split.is_done()]
+        if unfinished:
+            raise RuntimeError(f"Streaming dataset ended before caps were reached: {unfinished}")
 
-    metadata = {
-        "data_config": str(args.config),
-        "dataset": {
-            "name": dataset_cfg["name"],
-            "hf_dataset_name": dataset_cfg["hf_dataset_name"],
-            "hf_dataset_config_name": dataset_cfg.get("hf_dataset_config_name"),
-            "source_split": splits_cfg["source"],
-            "text_field": text_field,
-        },
-        "streaming": {
-            "enabled": True,
-            "shuffle": bool(stream_cfg.get("shuffle", False)),
-            "shuffle_seed": stream_cfg.get("shuffle_seed"),
-            "shuffle_buffer_size": stream_cfg.get("shuffle_buffer_size"),
-            "require_explicit_caps": bool(stream_cfg.get("require_explicit_caps", True)),
-        },
-        "preprocessing": preprocessing_cfg,
-        "splits": {
-            split.name: {
-                "text_path": str(split.path.relative_to(project_path())),
-                "examples": split.examples,
-                "chars": split.chars,
-                "max_examples": split.max_examples,
-                "max_chars": split.max_chars,
-                "bytes": split.path.stat().st_size,
-            }
-            for split in split_writers
-        },
-    }
-
-    metadata_path.write_text(json.dumps(metadata, indent=2, sort_keys=True), encoding="utf-8")
+        metadata = {
+            "artifact_type": "prepared_corpus_metadata",
+            "schema_version": 2,
+            "data_config": str(args.config),
+            "data_config_sha256": sha256_file(_resolve_path(args.config)),
+            "dataset": {
+                "name": dataset_cfg["name"],
+                "hf_dataset_name": dataset_cfg["hf_dataset_name"],
+                "hf_dataset_config_name": dataset_cfg.get("hf_dataset_config_name"),
+                "hf_dataset_revision": dataset_cfg["hf_dataset_revision"],
+                "source_split": splits_cfg["source"],
+                "text_field": text_field,
+            },
+            "streaming": {
+                "enabled": True,
+                "shuffle": bool(stream_cfg.get("shuffle", False)),
+                "shuffle_seed": stream_cfg.get("shuffle_seed"),
+                "shuffle_buffer_size": stream_cfg.get("shuffle_buffer_size"),
+                "require_explicit_caps": bool(stream_cfg.get("require_explicit_caps", True)),
+            },
+            "preprocessing": preprocessing_cfg,
+            "splits": {
+                split.name: {
+                    "text_path": str(Path(artifacts_cfg[f"{split.name}_text"])),
+                    "text_sha256": sha256_file(split.path),
+                    "record_manifest_path": str(Path(artifacts_cfg[record_path_keys[split.name]])),
+                    "record_manifest_sha256": sha256_file(record_paths[split.name]),
+                    "examples": split.examples,
+                    "chars": split.chars,
+                    "max_examples": split.max_examples,
+                    "max_chars": split.max_chars,
+                    "bytes": split.serialized_bytes,
+                    "serialized_chars": split.serialized_chars,
+                }
+                for split in split_writers
+            },
+        }
+        atomic_write_json(stage_dir / metadata_path.name, metadata)
 
     for split in split_writers:
-        print(
-            f"Wrote {split.name} text to {split.path} "
-            f"({split.examples} examples, {split.chars} chars)"
-        )
-    print(f"Wrote streaming metadata to {metadata_path}")
+        print(f"Prepared {split.name}: {split.examples} examples, {split.chars} chars")
+    print(f"Published prepared corpus to {target_dir}")
 
 
 if __name__ == "__main__":

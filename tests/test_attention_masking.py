@@ -81,6 +81,37 @@ def test_mla_causal_mask_prevents_future_token_dependence() -> None:
     _assert_no_future_token_dependence(attention, config.d_model)
 
 
+def test_dense_and_mla_attention_use_the_same_dropout_policy() -> None:
+    dense_config = tiny_attention_config()
+    mla_config = tiny_attention_config(attention_type="mla")
+    object.__setattr__(dense_config, "dropout", 0.25)
+    object.__setattr__(mla_config, "dropout", 0.25)
+
+    dense = CausalSelfAttention(dense_config)
+    mla = MLAAttention(mla_config)
+
+    dense_dropouts = [module for module in dense.modules() if isinstance(module, nn.Dropout)]
+    mla_dropouts = [module for module in mla.modules() if isinstance(module, nn.Dropout)]
+
+    assert [module.p for module in dense_dropouts] == [0.25]
+    assert [module.p for module in mla_dropouts] == [0.25]
+    assert not hasattr(mla, "resid_dropout")
+
+
+@pytest.mark.parametrize("attention_type", ["dense", "mla"])
+def test_attention_reuses_nonpersistent_causal_mask(attention_type: str) -> None:
+    config = tiny_attention_config(attention_type=attention_type)
+    attention = build_attention(config)
+    mask = attention.get_buffer("causal_mask")
+    mask_pointer = mask.data_ptr()
+
+    attention(torch.randn(2, 5, config.d_model))
+    attention(torch.randn(1, 3, config.d_model))
+
+    assert attention.get_buffer("causal_mask").data_ptr() == mask_pointer
+    assert "causal_mask" not in attention.state_dict()
+
+
 def test_build_attention_returns_dense_attention() -> None:
     config = tiny_attention_config()
 

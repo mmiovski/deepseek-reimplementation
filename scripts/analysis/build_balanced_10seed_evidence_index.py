@@ -125,10 +125,8 @@ ANALYSIS_GROUPS: tuple[
 )
 
 CORE_SCRIPT_ROLES: dict[str, tuple[str, ...]] = {
-    ("scripts/analysis/" "build_balanced_10seed_matrix_manifest.py"): (
-        "manifest_builder",
-        "queue_script_generator",
-    ),
+    ("scripts/analysis/" "build_balanced_10seed_matrix_manifest.py"): ("manifest_builder",),
+    ("scripts/analysis/" "run_balanced_10seed_pipeline.py"): ("analysis_pipeline_runner",),
     ("scripts/analysis/" "extract_balanced_10seed_matrix_artifacts.py"): ("canonical_extractor",),
     ("scripts/analysis/" "summarize_balanced_10seed_matrix_descriptives.py"): (
         "descriptive_statistics",
@@ -378,6 +376,17 @@ def build_evidence_index(
     if len(manifest_keys) != 180:
         raise RuntimeError("Canonical manifest keys are not unique.")
 
+    flat_keys = {
+        (
+            row["budget"],
+            row["model"],
+            int(row["seed"]),
+        )
+        for row in flat_rows
+    }
+    if len(flat_keys) != 180 or flat_keys != manifest_keys:
+        raise RuntimeError("Flat-summary keys do not exactly match the canonical manifest.")
+
     observed_models = tuple(sorted({row["model"] for row in manifest_rows}))
     observed_budgets = tuple(sorted({row["budget"] for row in manifest_rows}))
     observed_seeds = tuple(sorted({int(row["seed"]) for row in manifest_rows}))
@@ -391,31 +400,52 @@ def build_evidence_index(
     if observed_seeds != tuple(sorted(EXPECTED_SEEDS)):
         raise RuntimeError(f"Unexpected canonical seeds: {observed_seeds}.")
 
+    run_summaries = [
+        _file_record(root, row["summary_path"])
+        for row in manifest_rows
+        if row.get("status") == "complete_existing_summary"
+    ]
+
     progress_records = _read_progress_records(root)
     status_counts = Counter(str(record.get("status")) for record in progress_records)
     config_counts = Counter(str(record["experiment_config"]) for record in progress_records)
-
-    if len(progress_records) != 252:
-        raise RuntimeError("Expected 252 queue progress records.")
-
-    if status_counts != Counter(
-        {
-            "started": 126,
-            "completed": 126,
-        }
-    ):
+    manifest_configs = {row["experiment_config"] for row in manifest_rows}
+    completed_manifest_configs = {
+        row["experiment_config"]
+        for row in manifest_rows
+        if row.get("status") == "complete_existing_summary"
+    }
+    completed_progress_counts = Counter(
+        str(record["experiment_config"])
+        for record in progress_records
+        if record.get("status") == "completed"
+    )
+    started_progress_configs = {
+        str(record["experiment_config"])
+        for record in progress_records
+        if record.get("status") == "started"
+    }
+    allowed_statuses = {"started", "completed", "failed", "aborted"}
+    if set(status_counts) - allowed_statuses:
         raise RuntimeError(f"Unexpected queue statuses: {status_counts}.")
-
-    if len(config_counts) != 126 or set(config_counts.values()) != {2}:
-        raise RuntimeError(
-            "Queue progress does not contain exactly two " "events for each of 126 queued configs."
-        )
+    if set(config_counts) - manifest_configs:
+        raise RuntimeError("Queue progress references a config outside the canonical manifest.")
+    if set(completed_progress_counts) != completed_manifest_configs or any(
+        count != 1 for count in completed_progress_counts.values()
+    ):
+        raise RuntimeError("Queue completion events do not exactly match completed summaries.")
+    if not completed_manifest_configs.issubset(started_progress_configs):
+        raise RuntimeError("A completed run has no corresponding queue start event.")
+    if len(completed_manifest_configs) == len(manifest_rows) and (
+        started_progress_configs != manifest_configs
+    ):
+        raise RuntimeError("The completed matrix lacks a start event for one or more runs.")
 
     serialization_pairs = _serialization_pairs(indexed_paths)
 
     return {
         "artifact_type": ("balanced_10seed_matrix_evidence_index"),
-        "schema_version": 1,
+        "schema_version": 2,
         "scope": {
             "description": (
                 "Canonical balanced efficiency study: "
@@ -440,7 +470,10 @@ def build_evidence_index(
             ),
             "flat_summary_row_count": len(flat_rows),
             "flat_summary_column_count": len(flat_columns),
+            "unique_flat_summary_key_count": len(flat_keys),
         },
+        "run_summary_count": len(run_summaries),
+        "run_summaries": run_summaries,
         "analysis_artifact_count": len(indexed_paths),
         "analysis_artifact_groups": analysis_groups,
         "intentional_csv_json_pair_count": len(serialization_pairs),
@@ -448,6 +481,8 @@ def build_evidence_index(
         "queue_progress_contract": {
             "record_count": len(progress_records),
             "unique_experiment_config_count": len(config_counts),
+            "completed_experiment_config_count": len(completed_progress_counts),
+            "expected_completed_experiment_config_count": len(completed_manifest_configs),
             "status_counts": dict(sorted(status_counts.items())),
             "experiment_config_representation": ("plain repository-relative string"),
         },

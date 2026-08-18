@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import numpy as np
 import pytest
 import torch
 from tokenizers.models import WordLevel
@@ -71,7 +72,30 @@ def test_build_lm_dataloader_from_text_and_tokenizer_artifacts(tmp_path: Path) -
     assert targets.dtype == torch.long
 
 
-def test_pretraining_fixed_log_path_is_reset_between_runs(
+def test_build_lm_dataloader_uses_fixed_corpus_spanning_evaluation_windows(
+    tmp_path: Path,
+) -> None:
+    token_ids_path = tmp_path / "tokens.int32.bin"
+    np.arange(41, dtype=np.int32).tofile(token_ids_path)
+
+    dataloader = _build_lm_dataloader(
+        text_path=tmp_path / "unused.txt",
+        tokenizer_path=tmp_path / "unused.json",
+        token_ids_path=token_ids_path,
+        token_count=41,
+        split_name="validation",
+        block_size=4,
+        batch_size=2,
+        num_workers=0,
+        shuffle=False,
+        fixed_eval_samples=4,
+    )
+
+    starts = [int(input_ids[0].item()) for batch, _ in dataloader for input_ids in batch]
+    assert starts == [0, 12, 24, 36]
+
+
+def test_pretraining_refuses_to_overwrite_completed_run(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     from deepseek_reimpl.train import pretrain
@@ -172,10 +196,18 @@ experiment:
 
     monkeypatch.setattr(pretrain, "project_path", lambda *parts: root.joinpath(*map(str, parts)))
 
-    first_summary = pretrain.run_pretraining_from_experiment_config(experiment_path)
-    second_summary = pretrain.run_pretraining_from_experiment_config(experiment_path)
-
     train_log_path = root / "results" / "raw_logs" / "tiny" / "train_log.jsonl"
+    summary_path = root / "results" / "metrics" / "tiny" / "summary.json"
+    first_summary = pretrain.run_pretraining_from_experiment_config(experiment_path)
+    original_log = train_log_path.read_bytes()
+    original_summary = summary_path.read_bytes()
+
+    with pytest.raises(FileExistsError, match="Refusing to overwrite"):
+        pretrain.run_pretraining_from_experiment_config(experiment_path)
+
+    assert train_log_path.read_bytes() == original_log
+    assert summary_path.read_bytes() == original_summary
+
     lines = train_log_path.read_text(encoding="utf-8").splitlines()
     records = [json.loads(line) for line in lines]
 
@@ -183,17 +215,16 @@ experiment:
     assert [record["record_type"] for record in records] == ["train", "train", "eval"]
     assert records[-1]["split"] == "validation"
 
-    for summary in (first_summary, second_summary):
-        assert summary["experiment_config_path"] == str(experiment_path)
-        assert summary["config_paths"]["model_config"] == str(
-            root / "configs" / "model" / "tiny.yaml"
-        )
-        assert summary["model_config"]["name"] == "baseline_gpt"
-        assert summary["train_config"]["max_steps"] == 2
-        assert summary["tokenizer_artifact"] == "tokenizers/tiny.json"
-        assert summary["runtime"]["device"] == "cpu"
-        assert summary["runtime"]["torch_version"]
-        assert summary["elapsed_seconds"] >= 0.0
+    assert first_summary["experiment_config_path"] == str(experiment_path)
+    assert first_summary["config_paths"]["model_config"] == str(
+        root / "configs" / "model" / "tiny.yaml"
+    )
+    assert first_summary["model_config"]["name"] == "baseline_gpt"
+    assert first_summary["train_config"]["max_steps"] == 2
+    assert first_summary["tokenizer_artifact"] == "tokenizers/tiny.json"
+    assert first_summary["runtime"]["device"] == "cpu"
+    assert first_summary["runtime"]["torch_version"]
+    assert first_summary["elapsed_seconds"] >= 0.0
 
 
 def test_pretraining_summary_helpers_include_dense_activated_metrics() -> None:
@@ -266,7 +297,8 @@ def test_mtp_summary_metadata_uses_independent_head_defaults() -> None:
 
     assert _mtp_summary_metadata({}) == {
         "mtp_enabled": False,
-        "mtp_num_future_tokens": 0,
+        "mtp_horizons": [],
+        "mtp_auxiliary_head_count": 0,
         "mtp_loss_weight": 0.0,
         "mtp_share_lm_head": False,
     }
@@ -278,13 +310,14 @@ def test_mtp_summary_metadata_preserves_explicit_values() -> None:
     assert _mtp_summary_metadata(
         {
             "mtp_enabled": True,
-            "mtp_num_future_tokens": 2,
+            "mtp_horizons": [2, 3],
             "mtp_loss_weight": 0.3,
             "mtp_share_lm_head": False,
         }
     ) == {
         "mtp_enabled": True,
-        "mtp_num_future_tokens": 2,
+        "mtp_horizons": [2, 3],
+        "mtp_auxiliary_head_count": 2,
         "mtp_loss_weight": 0.3,
         "mtp_share_lm_head": False,
     }

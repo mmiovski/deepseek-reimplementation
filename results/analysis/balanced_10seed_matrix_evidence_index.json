@@ -7,18 +7,18 @@
       "files": [
         {
           "path": "results/analysis/balanced_10seed_matrix_manifest.csv",
-          "sha256": "9df8ba461b016e2641c6fca7f99863a9ddb8e957f379df8b67d2897ae29f1c07",
-          "size_bytes": 53797
+          "sha256": "f81653e1da25235fe0d4a454c757dfcef5d65fdda55657dc4ddbf7abbaaba650",
+          "size_bytes": 54540
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_manifest.json",
-          "sha256": "eba558d1178ab128b9c79472ab5e47719d42ab2db46b6e8b830f9c3daef50f1a",
-          "size_bytes": 96887
+          "sha256": "5d561c00caea9e6230b3930e482ea6e08b0531dc64013ad1a9567736a53cf145",
+          "size_bytes": 100845
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_generation_summary.json",
-          "sha256": "677f12a40bff75aacf4533e346db699008e320378bdd830fcf200890e86f149f",
-          "size_bytes": 911
+          "sha256": "b6b8d259ff9ad0a10536d82af71aa8e3642dd6a065d67209ca1716b70980fc0c",
+          "size_bytes": 873
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_completion_audit.json",
@@ -32,8 +32,8 @@
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_extraction_audit.json",
-          "sha256": "e5c26409979f6f07ebb08604ff2b58667c3e33be8f4a9e1c80de96d1267d33be",
-          "size_bytes": 1712
+          "sha256": "a970d01697cc4dd091c88be606ebbf46f45fa69481a69bc920295a7536e6b6cc",
+          "size_bytes": 1708
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_summary_flat.csv",
@@ -58,8 +58,8 @@
       "files": [
         {
           "path": "results/analysis/balanced_10seed_matrix_descriptives_audit.json",
-          "sha256": "04dbece9959d454cd0e1958f2aefd66278968748495c759c99478a8250a415b5",
-          "size_bytes": 3311
+          "sha256": "06c66e889f554d0f09255e96bb276ee23d89c966c83dc524898ac46cadf7b755",
+          "size_bytes": 3307
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_descriptives_full_precision.csv",
@@ -130,8 +130,8 @@
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_paired_contrasts_audit.json",
-          "sha256": "93eff68331dedb3cd5e76073408ad655ce205d6a362bb017c5efc9307fc91fd5",
-          "size_bytes": 4531
+          "sha256": "7e2069fca245a5392c041e288ffbc67a66fc69bb3238ca92490b2368147e4ced",
+          "size_bytes": 4527
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_paired_contrasts_full_precision.csv",
@@ -171,8 +171,8 @@
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_budget_trends_audit.json",
-          "sha256": "ad4adf04ae249a8aeb95c717fa4c9ab6434aa4572de773a7908bbcb10561f97d",
-          "size_bytes": 3722
+          "sha256": "baa4260a5fd5ba71502e5f3d7b65856b6e6fe01e7fda4bd5050ee1362647ecd2",
+          "size_bytes": 3718
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_budget_trends_full_precision.csv",
@@ -207,8 +207,8 @@
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_mechanism_profiles_audit.json",
-          "sha256": "a7f72ec4727b0b45f5678ecb26fc200726a36675a4721ecf0a5fb4c34da5d9c1",
-          "size_bytes": 3334
+          "sha256": "839e325de0854c253d40f708de0725d335e12708413f6d86aac0c2b6f207fd66",
+          "size_bytes": 3330
         }
       ]
     },
@@ -218,13 +218,13 @@
       "files": [
         {
           "path": "results/analysis/balanced_10seed_matrix_queue.txt",
-          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "size_bytes": 0
+          "sha256": "3d0aab239e47897ef10f74ec260bc863fa2569c1d86e6454ea6e87af3f09d58f",
+          "size_bytes": 11100
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_queue_progress.jsonl",
-          "sha256": "cbe781239f84b09c151c63974833ce044d122c6e9bc4dda7ef01afbd03dea66f",
-          "size_bytes": 90973
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "size_bytes": 1
         }
       ]
     },
@@ -234,8 +234,8 @@
       "files": [
         {
           "path": "results/analysis/final_data_tokenizer_provenance.json",
-          "sha256": "864fd0d41fd191bb48691e446b391fb3bc2bbf3720a4d21f1c38fc9d6f7c968f",
-          "size_bytes": 5099
+          "sha256": "369f827ea04af498ea3c267fe9c2cf496db5db51889f891ccd599da16e1af713",
+          "size_bytes": 10291
         }
       ]
     }
@@ -428,21 +428,23 @@
     "canonical_downstream_input": "results/analysis/balanced_10seed_matrix_summary_flat.csv",
     "flat_summary_column_count": 895,
     "flat_summary_row_count": 180,
-    "manifest_column_count": 11,
+    "manifest_column_count": 12,
     "manifest_path": "results/analysis/balanced_10seed_matrix_manifest.csv",
     "manifest_row_count": 180,
+    "unique_flat_summary_key_count": 180,
     "unique_matrix_key_count": 180
   },
   "queue_progress_contract": {
+    "completed_experiment_config_count": 0,
+    "expected_completed_experiment_config_count": 0,
     "experiment_config_representation": "plain repository-relative string",
-    "record_count": 252,
-    "status_counts": {
-      "completed": 126,
-      "started": 126
-    },
-    "unique_experiment_config_count": 126
+    "record_count": 0,
+    "status_counts": {},
+    "unique_experiment_config_count": 0
   },
-  "schema_version": 1,
+  "run_summaries": [],
+  "run_summary_count": 0,
+  "schema_version": 2,
   "scope": {
     "budget_count": 3,
     "budgets": [
@@ -475,64 +477,63 @@
       31415
     ]
   },
-  "supporting_script_count": 32,
+  "supporting_script_count": 33,
   "supporting_scripts": [
     {
       "path": "scripts/analysis/analyze_balanced_10seed_matrix_budget_trends.py",
       "roles": [
         "budget_trends"
       ],
-      "sha256": "e9b84259a3fcca11cd635a1133d3ebf6c928d8b5e35c5d2ab967c61ed74977a8",
-      "size_bytes": 26125
+      "sha256": "f7d82b32664a26007bed35c2f75ff3c06760899181af4ffccb4fd84630c1a6d0",
+      "size_bytes": 26365
     },
     {
       "path": "scripts/analysis/analyze_balanced_10seed_matrix_global_tests.py",
       "roles": [
         "global_tests"
       ],
-      "sha256": "1d7281b122571c4cb0ae519ee35392371f68719969c5af5d982c156681f715b1",
-      "size_bytes": 16729
+      "sha256": "6ecb4b24fc7e92c28dee9ce2ec92d9c2d8a7ba72e75905e27e70b3f864c1ab57",
+      "size_bytes": 17155
     },
     {
       "path": "scripts/analysis/analyze_balanced_10seed_matrix_paired_contrasts.py",
       "roles": [
         "paired_contrasts"
       ],
-      "sha256": "788ff101be6fb2fee69ceb949b01efef49edb8900e50a7745fe61017c08aa0b3",
-      "size_bytes": 22300
+      "sha256": "f6d3bea470795835e64451b85117052e5b10aceba0d6bf5ebd502edc512836ad",
+      "size_bytes": 22435
     },
     {
       "path": "scripts/analysis/build_balanced_10seed_evidence_index.py",
       "roles": [
         "evidence_index_builder"
       ],
-      "sha256": "ad6b13c4e25aa41a065b7f393efca9d3d7141d6135914d5960c9241972c3efce",
-      "size_bytes": 18155
+      "sha256": "48abc392dc4ad03d7a526b2ecee28e8685a4de49f2e0482d8f720981b9c9b21b",
+      "size_bytes": 20030
     },
     {
       "path": "scripts/analysis/build_balanced_10seed_matrix_manifest.py",
       "roles": [
-        "manifest_builder",
-        "queue_script_generator"
+        "manifest_builder"
       ],
-      "sha256": "bd32762a9126293e265fc11f50f5b95c384f1ce0cd3c9f1dc2a2a95fd87069e5",
-      "size_bytes": 18619
+      "sha256": "17078a369810d01f7e43f2b81a1e2e3104be101c817a1397c5c92a38d831a4a2",
+      "size_bytes": 11092
     },
     {
       "path": "scripts/analysis/build_balanced_10seed_mechanism_profiles.py",
       "roles": [
         "mechanism_profiles"
       ],
-      "sha256": "70c91ded10cd51a3078dbfa651cbac1f0ca4f1f0b89256cd9185b51314d82586",
-      "size_bytes": 17733
+      "sha256": "83f1cbedf6d7cbd40c0b889940f57fc8e3b390ea63892132330787f49b7e076e",
+      "size_bytes": 17846
     },
     {
       "path": "scripts/analysis/extract_balanced_10seed_matrix_artifacts.py",
       "roles": [
         "canonical_extractor"
       ],
-      "sha256": "84bd568b0e1191d5b386165bd2d60c198a5125cf87c44e3c42726679c075c48d",
-      "size_bytes": 17413
+      "sha256": "2b93f2d378b592e1da75ca61c482d2831da9b9b7e5600d3f33326c0bf4550823",
+      "size_bytes": 17438
     },
     {
       "path": "scripts/analysis/plot_mean_aux_loss_by_budget.py",
@@ -711,28 +712,36 @@
       "size_bytes": 12166
     },
     {
+      "path": "scripts/analysis/run_balanced_10seed_pipeline.py",
+      "roles": [
+        "analysis_pipeline_runner"
+      ],
+      "sha256": "814a65dfc65932da4e99c7ad4070897ff016bcc4978975083dbf90c8336851bd",
+      "size_bytes": 3133
+    },
+    {
       "path": "scripts/analysis/summarize_balanced_10seed_matrix_descriptives.py",
       "roles": [
         "descriptive_statistics"
       ],
-      "sha256": "c09ad5ce2309a338a086084a965f2fac57d2673e30d466b1b70da5b1fd90511f",
-      "size_bytes": 13773
+      "sha256": "52e2f64242ea174f00274d364769b02136ef95a4804171346957e1425c79906c",
+      "size_bytes": 13879
     },
     {
       "path": "scripts/analysis/verify_final_data_tokenizer_provenance.py",
       "roles": [
         "data_tokenizer_provenance_verifier"
       ],
-      "sha256": "dd3ab2bafd3bc8cecad5468372310eb92b5cbdaadda4a6bd4af03a6002a44217",
-      "size_bytes": 8840
+      "sha256": "2a068c8e8ab94cd02f6603b664e44304fdea464d62c14f5ce6de15da6312635d",
+      "size_bytes": 9252
     },
     {
       "path": "scripts/run_balanced_10seed_matrix_queue.ps1",
       "roles": [
         "training_queue_runner"
       ],
-      "sha256": "80d42cd17458d8e6762010c804b5c686b9ee65c75e99888c351157b0fafe6a31",
-      "size_bytes": 7874
+      "sha256": "ed263d956018d1962ab7c1f1fd9c0541a6a91e26250a39317971b049780d7842",
+      "size_bytes": 12795
     }
   ]
 }

@@ -7,11 +7,18 @@ name = "deepseek-reimplementation"
 version = "0.1.0"
 description = "Controlled larger-local-model study of DeepSeek-inspired MLA, MoE routing, and multi-token prediction under constrained compute."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11,<3.12"
 authors = [
     { name = "Marko Miovski" }
 ]
-dependencies = []
+dependencies = [
+    "numpy==1.26.4",
+    "PyYAML==6.0.3",
+    "matplotlib==3.10.9",
+    "datasets==4.8.5",
+    "tokenizers==0.23.1",
+    "torch==2.6.0",
+]
 
 [tool.setuptools.packages.find]
 where = ["."]
@@ -25,11 +32,11 @@ addopts = "-q"
 
 [tool.black]
 line-length = 100
-target-version = ["py310"]
+target-version = ["py311"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py310"
+target-version = "py311"
 
 [tool.ruff.lint]
 select = [
@@ -42,7 +49,7 @@ select = [
 ignore = []
 
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.11"
 packages = ["deepseek_reimpl"]
 ignore_missing_imports = true
 strict = false

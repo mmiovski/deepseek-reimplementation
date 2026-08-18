@@ -72,8 +72,10 @@ class MLAAttention(nn.Module):
             bias=False,
         )
         self.attn_dropout = nn.Dropout(config.dropout)
-        self.resid_dropout = nn.Dropout(config.dropout)
         self.rope = RotaryEmbedding(self.qk_rope_head_dim)
+
+        causal_mask = torch.tril(torch.ones(config.block_size, config.block_size, dtype=torch.bool))
+        self.register_buffer("causal_mask", causal_mask, persistent=False)
 
     def _split_heads(
         self,
@@ -120,25 +122,23 @@ class MLAAttention(nn.Module):
             self.qk_rope_head_dim,
         ).expand(-1, -1, self.n_heads, -1)
 
+        q_nope = q_nope.transpose(1, 2)
+        q_rope = q_rope.transpose(1, 2)
+        k_nope = k_nope.transpose(1, 2)
+        k_rope = k_rope.transpose(1, 2)
+        value = value.transpose(1, 2)
+
         q_rope, k_rope = self.rope.apply(q_rope, k_rope)
 
         query = torch.cat((q_nope, q_rope), dim=-1)
         key = torch.cat((k_nope, k_rope), dim=-1)
 
-        query = query.transpose(1, 2)
-        key = key.transpose(1, 2)
-        value = value.transpose(1, 2)
-
         attn_scores = torch.matmul(query, key.transpose(-2, -1))
         attn_scores = attn_scores / math.sqrt(self.qk_head_dim)
 
-        causal_mask = torch.ones(
-            seq_len,
-            seq_len,
-            dtype=torch.bool,
-            device=x.device,
-        ).triu(1)
-        attn_scores = attn_scores.masked_fill(causal_mask, float("-inf"))
+        causal_mask = cast(torch.Tensor, self.causal_mask)
+        mask = causal_mask[:seq_len, :seq_len]
+        attn_scores = attn_scores.masked_fill(~mask[None, None, :, :], float("-inf"))
 
         attn_weights = torch.softmax(attn_scores, dim=-1)
         attn_weights = self.attn_dropout(attn_weights)
@@ -147,5 +147,5 @@ class MLAAttention(nn.Module):
         context = context.transpose(1, 2).contiguous()
         context = context.view(batch_size, seq_len, self.n_heads * self.v_head_dim)
 
-        output = self.out_proj(context)
-        return cast(torch.Tensor, self.resid_dropout(output))
+        output: torch.Tensor = self.out_proj(context)
+        return output

@@ -234,7 +234,9 @@ def exact_sign_flip_p_value(differences: list[float]) -> float:
         signed_values = [
             sign * value for sign, value in zip(signs, nonzero_abs_differences, strict=True)
         ]
-        assigned_abs_mean = abs(statistics.fmean(signed_values))
+        # Zeros remain part of the paired sample and therefore remain in the
+        # denominator of every randomization assignment.
+        assigned_abs_mean = abs(sum(signed_values) / len(differences))
         assignment_count += 1
 
         if assigned_abs_mean >= observed_abs_mean - 1e-15:
@@ -587,7 +589,7 @@ def main() -> None:
     audit = {
         "artifact_type": "balanced_10seed_matrix_paired_contrasts_audit",
         "input_flat_csv": str(INPUT_FLAT_CSV),
-        "v1_controlled_design_guardrail": (
+        "controlled_design_guardrail": (
             "Paired contrasts are generated only from the balanced 10-seed flat "
             "artifact and only for pre-specified mechanism contrasts."
         ),

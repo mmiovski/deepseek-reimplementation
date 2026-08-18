@@ -115,5 +115,5 @@
       "8191"
     ]
   },
-  "v1_controlled_design_guardrail": "Descriptives are generated only from the balanced 10-seed flat artifact, which itself reads only the audited manifest."
+  "controlled_design_guardrail": "Descriptives are generated only from the balanced 10-seed flat artifact, which itself reads only the audited manifest."
 }

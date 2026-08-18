@@ -31,7 +31,7 @@ class BaselineGPT(nn.Module):
             MultiTokenPredictionHead(
                 d_model=config.d_model,
                 vocab_size=config.vocab_size,
-                num_future_tokens=config.mtp_num_future_tokens,
+                horizons=config.mtp_horizons,
             )
             if config.mtp_enabled
             else None
@@ -94,6 +94,7 @@ class BaselineGPT(nn.Module):
         return MTPOutput(
             next_token_logits=next_token_logits,
             future_token_logits=future_token_logits,
+            horizons=self.config.mtp_horizons,
         )
 
     def auxiliary_loss(self) -> torch.Tensor | None:

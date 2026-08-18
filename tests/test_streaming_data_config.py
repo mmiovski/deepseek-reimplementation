@@ -20,6 +20,7 @@ def test_fineweb_edu_streaming_config_loads() -> None:
     assert config["dataset"]["source"] == "huggingface_streaming"
     assert config["dataset"]["hf_dataset_name"] == "HuggingFaceFW/fineweb-edu"
     assert config["dataset"]["hf_dataset_config_name"] == "sample-10BT"
+    assert len(config["dataset"]["hf_dataset_revision"]) == 40
     assert config["dataset"]["text_field"] == "text"
 
     assert config["splits"]["source"] == "train"
@@ -32,6 +33,11 @@ def test_fineweb_edu_streaming_config_loads() -> None:
     assert config["streaming"]["shuffle"] is True
     assert config["streaming"]["shuffle_seed"] == 1337
     assert config["streaming"]["shuffle_buffer_size"] > 0
+    assert config["caps"] == {
+        "train_examples": 50000,
+        "validation_examples": 1000,
+        "test_examples": 1000,
+    }
 
     validate_relative_paths(
         config["paths"],
@@ -43,6 +49,9 @@ def test_fineweb_edu_streaming_config_loads() -> None:
             "train_text",
             "validation_text",
             "test_text",
+            "train_records",
+            "validation_records",
+            "test_records",
             "train_token_ids",
             "validation_token_ids",
             "test_token_ids",
@@ -52,15 +61,21 @@ def test_fineweb_edu_streaming_config_loads() -> None:
     )
 
 
-def test_hf_streaming_script_rejects_missing_caps_before_streaming() -> None:
+def test_hf_streaming_script_rejects_missing_caps_before_streaming(tmp_path) -> None:
+    import yaml
+
     script_path = project_path("scripts", "data", "prepare_hf_streaming_text.py")
+    config = load_yaml_config("configs/data/fineweb_edu_10bt.yaml")
+    config.pop("caps")
+    config_path = tmp_path / "missing_caps.yaml"
+    config_path.write_text(yaml.safe_dump(config), encoding="utf-8")
 
     result = subprocess.run(
         [
             sys.executable,
             str(script_path),
             "--config",
-            "configs/data/fineweb_edu_10bt.yaml",
+            str(config_path),
             "--no-shuffle",
         ],
         cwd=project_path(),

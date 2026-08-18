@@ -404,6 +404,10 @@ def test_train_loop_stops_at_max_steps() -> None:
     assert summary.train_tokens == 12
     assert torch.isfinite(torch.tensor(summary.final_train_loss))
     assert summary.peak_memory_bytes is None
+    assert summary.train_step_seconds > 0.0
+    assert summary.train_step_tokens_per_second > 0.0
+    assert summary.train_tokens_per_second == summary.train_step_tokens_per_second
+    assert summary.active_end_to_end_tokens_per_second > 0.0
 
 
 def test_train_loop_stops_at_max_tokens() -> None:
@@ -434,6 +438,47 @@ def test_train_loop_stops_at_max_tokens() -> None:
 
     assert summary.steps == 1
     assert summary.train_tokens == 6
+
+
+def test_train_loop_does_not_fetch_a_batch_after_budget_is_met() -> None:
+    model = TinyLanguageModel()
+    optimizer = build_adamw(
+        model,
+        learning_rate=0.001,
+        weight_decay=0.0,
+        betas=(0.9, 0.95),
+    )
+    batch = (
+        torch.tensor([[0, 1, 2], [1, 2, 3]]),
+        torch.tensor([[1, 2, 3], [2, 3, 4]]),
+    )
+
+    class CountingBatches:
+        def __init__(self) -> None:
+            self.yielded = 0
+
+        def __iter__(self):
+            while True:
+                self.yielded += 1
+                yield batch
+
+    batches = CountingBatches()
+    summary = train_loop(
+        model,
+        batches,
+        optimizer,
+        device=torch.device("cpu"),
+        config=TrainingLoopConfig(
+            max_steps=1,
+            max_tokens=None,
+            eval_interval=None,
+            log_interval=1,
+            eval_batches=1,
+        ),
+    )
+
+    assert summary.steps == 1
+    assert batches.yielded == 1
 
 
 def test_train_loop_validation_eval_path_returns_metrics() -> None:
@@ -690,7 +735,7 @@ def test_train_step_reports_mtp_loss_for_mtp_enabled_model() -> None:
         d_model=32,
         d_ff=64,
         mtp_enabled=True,
-        mtp_num_future_tokens=2,
+        mtp_horizons=(2, 3),
         mtp_loss_weight=0.5,
         mtp_share_lm_head=False,
     )
@@ -708,7 +753,7 @@ def test_train_step_reports_mtp_loss_for_mtp_enabled_model() -> None:
 
     assert metrics.mtp_loss is not None
     assert metrics.mtp_per_horizon_losses is not None
-    assert len(metrics.mtp_per_horizon_losses) == config.mtp_num_future_tokens
+    assert len(metrics.mtp_per_horizon_losses) == len(config.mtp_horizons)
     assert metrics.aux_loss is None
     assert metrics.loss == pytest.approx(
         metrics.lm_loss + config.mtp_loss_weight * metrics.mtp_loss
@@ -724,7 +769,7 @@ def test_train_step_backpropagates_to_mtp_head() -> None:
         d_model=32,
         d_ff=64,
         mtp_enabled=True,
-        mtp_num_future_tokens=2,
+        mtp_horizons=(2, 3),
         mtp_loss_weight=0.5,
         mtp_share_lm_head=False,
     )
@@ -753,7 +798,7 @@ def test_train_loop_summary_reports_final_mtp_metrics() -> None:
         d_model=32,
         d_ff=64,
         mtp_enabled=True,
-        mtp_num_future_tokens=2,
+        mtp_horizons=(2, 3),
         mtp_loss_weight=0.5,
         mtp_share_lm_head=False,
     )
@@ -780,7 +825,7 @@ def test_train_loop_summary_reports_final_mtp_metrics() -> None:
 
     assert summary.final_mtp_loss is not None
     assert summary.final_mtp_per_horizon_losses is not None
-    assert len(summary.final_mtp_per_horizon_losses) == config.mtp_num_future_tokens
+    assert len(summary.final_mtp_per_horizon_losses) == len(config.mtp_horizons)
     assert summary.final_train_loss == pytest.approx(
         summary.final_lm_loss + config.mtp_loss_weight * summary.final_mtp_loss
     )

@@ -45,7 +45,7 @@ class GPTConfig:
     moe_expert_bias_min: float = -1.0
     moe_expert_bias_max: float = 1.0
     mtp_enabled: bool = False
-    mtp_num_future_tokens: int = 0
+    mtp_horizons: tuple[int, ...] = ()
     mtp_loss_weight: float = 0.0
     mtp_share_lm_head: bool = False
 
@@ -108,8 +108,8 @@ class GPTConfig:
         if self.mtp_enabled:
             self._validate_mtp_config()
         else:
-            if self.mtp_num_future_tokens != 0:
-                msg = "mtp_num_future_tokens must be 0 when mtp_enabled is false"
+            if self.mtp_horizons:
+                msg = "mtp_horizons must be empty when mtp_enabled is false"
                 raise ValueError(msg)
             if self.mtp_loss_weight != 0.0:
                 msg = "mtp_loss_weight must be 0.0 when mtp_enabled is false"
@@ -244,12 +244,20 @@ class GPTConfig:
 
     def _validate_mtp_config(self) -> None:
         """Validate multi-token-prediction configuration fields."""
-        if self.mtp_num_future_tokens <= 0:
-            msg = "mtp_num_future_tokens must be positive when mtp_enabled is true"
+        if not self.mtp_horizons:
+            msg = "mtp_horizons must not be empty when mtp_enabled is true"
             raise ValueError(msg)
 
-        if self.mtp_num_future_tokens >= self.block_size:
-            msg = "mtp_num_future_tokens must be smaller than block_size"
+        if any(horizon <= 1 for horizon in self.mtp_horizons):
+            msg = "mtp_horizons must contain only offsets greater than 1"
+            raise ValueError(msg)
+
+        if tuple(sorted(set(self.mtp_horizons))) != self.mtp_horizons:
+            msg = "mtp_horizons must be unique and strictly increasing"
+            raise ValueError(msg)
+
+        if self.mtp_horizons[-1] >= self.block_size:
+            msg = "every MTP horizon must be smaller than block_size"
             raise ValueError(msg)
 
         if self.mtp_loss_weight <= 0.0:
@@ -295,4 +303,6 @@ class GPTConfig:
         """Build GPTConfig from a loaded YAML model config dictionary."""
         model_config = dict(config.get("model", config))
         model_config.pop("name", None)
+        if "mtp_horizons" in model_config:
+            model_config["mtp_horizons"] = tuple(model_config["mtp_horizons"])
         return cls(**model_config)

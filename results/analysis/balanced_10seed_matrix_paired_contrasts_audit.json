@@ -145,5 +145,5 @@
     "train_tokens_per_second",
     "peak_memory_bytes"
   ],
-  "v1_controlled_design_guardrail": "Paired contrasts are generated only from the balanced 10-seed flat artifact and only for pre-specified mechanism contrasts."
+  "controlled_design_guardrail": "Paired contrasts are generated only from the balanced 10-seed flat artifact and only for pre-specified mechanism contrasts."
 }

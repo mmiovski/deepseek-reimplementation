@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
+import time
 from collections.abc import Callable, Iterable
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from typing import Any
 
 import torch
@@ -11,6 +12,7 @@ import torch.nn as nn
 
 from deepseek_reimpl.eval.language_model_eval import EvaluationMetrics, evaluate_language_model
 from deepseek_reimpl.instrumentation.memory import get_peak_memory_bytes, reset_peak_memory
+from deepseek_reimpl.instrumentation.routing_stats import summarize_routing_stats
 from deepseek_reimpl.instrumentation.throughput import ThroughputMeter
 from deepseek_reimpl.train.losses import multi_token_cross_entropy, next_token_cross_entropy
 from deepseek_reimpl.train.train_utils import count_batch_tokens, move_batch_to_device
@@ -39,6 +41,7 @@ class TrainingLoopConfig:
     log_interval: int
     eval_batches: int
     grad_clip: float | None = None
+    checkpoint_interval: int | None = None
 
 
 @dataclass(frozen=True)
@@ -52,14 +55,23 @@ class TrainingSummary:
     train_token_overshoot_ratio: float | None
     final_train_loss: float
     final_lm_loss: float
+    final_aux_loss: float | None
+    final_grad_norm: float | None
     final_mtp_loss: float | None
     final_mtp_per_horizon_losses: tuple[float, ...] | None
+    train_step_seconds: float
+    train_step_tokens_per_second: float
     train_tokens_per_second: float
+    active_end_to_end_tokens_per_second: float
     peak_memory_bytes: int | None
+    train_peak_memory_bytes: int | None
+    evaluation_peak_memory_bytes: int | None
     validation_loss: float | None
     validation_perplexity: float | None
     test_loss: float | None
     test_perplexity: float | None
+    validation_routing_stats: dict[str, object] | None
+    test_routing_stats: dict[str, object] | None
     elapsed_seconds: float
 
 
@@ -133,6 +145,7 @@ def train_step(
         mtp_loss, mtp_per_horizon_losses = multi_token_cross_entropy(
             mtp_output.future_token_logits,
             input_ids,
+            horizons=mtp_output.horizons,
         )
     else:
         logits = model(input_ids)
@@ -183,6 +196,8 @@ def _validate_training_loop_config(config: TrainingLoopConfig) -> None:
 
     if config.eval_batches <= 0:
         raise ValueError(f"eval_batches must be positive, got {config.eval_batches}")
+    if config.checkpoint_interval is not None and config.checkpoint_interval <= 0:
+        raise ValueError("checkpoint_interval must be positive or None")
 
 
 def _repeat_dataloader(dataloader: Iterable[Any]):
@@ -195,6 +210,13 @@ def _repeat_dataloader(dataloader: Iterable[Any]):
         yield from dataloader
 
 
+def _max_peak(current: int | None, device: torch.device) -> int | None:
+    observed = get_peak_memory_bytes(device)
+    if observed is None:
+        return current
+    return observed if current is None else max(current, observed)
+
+
 def train_loop(
     model: nn.Module,
     train_dataloader: Iterable[Any],
@@ -205,6 +227,8 @@ def train_loop(
     validation_dataloader: Iterable[Any] | None = None,
     test_dataloader: Iterable[Any] | None = None,
     log_callback: Callable[[dict[str, Any]], None] | None = None,
+    initial_state: dict[str, Any] | None = None,
+    checkpoint_callback: Callable[[dict[str, Any]], None] | None = None,
 ) -> TrainingSummary:
     """Train a model for a small fixed step/token budget."""
     _validate_training_loop_config(config)
@@ -213,22 +237,37 @@ def train_loop(
     reset_peak_memory(device)
     throughput = ThroughputMeter()
 
-    steps = 0
-    train_tokens = 0
-    final_train_loss = float("nan")
-    final_lm_loss = float("nan")
-    final_mtp_loss: float | None = None
-    final_mtp_per_horizon_losses: tuple[float, ...] | None = None
+    state = initial_state or {}
+    steps = int(state.get("steps", 0))
+    train_tokens = int(state.get("train_tokens", 0))
+    final_train_loss = float(state.get("final_train_loss", float("nan")))
+    final_lm_loss = float(state.get("final_lm_loss", float("nan")))
+    final_aux_loss = state.get("final_aux_loss")
+    final_grad_norm = state.get("final_grad_norm")
+    final_mtp_loss = state.get("final_mtp_loss")
+    final_mtp_per_horizon_losses = state.get("final_mtp_per_horizon_losses")
     validation_metrics: EvaluationMetrics | None = None
     test_metrics: EvaluationMetrics | None = None
-    last_logged_validation_step: int | None = None
+    last_logged_validation_step = state.get("last_logged_validation_step")
+    last_logged_train_step = state.get("last_logged_train_step")
+    train_step_seconds = float(state.get("train_step_seconds", 0.0))
+    active_elapsed_before_resume = float(state.get("active_elapsed_seconds", 0.0))
+    interval_step_seconds = float(state.get("interval_step_seconds", 0.0))
+    interval_step_tokens = int(state.get("interval_step_tokens", 0))
+    train_peak_memory_bytes = state.get("train_peak_memory_bytes")
+    evaluation_peak_memory_bytes = state.get("evaluation_peak_memory_bytes")
 
-    for batch in _repeat_dataloader(train_dataloader):
+    repeated_batches = iter(_repeat_dataloader(train_dataloader))
+    while True:
         if config.max_steps is not None and steps >= config.max_steps:
             break
         if config.max_tokens is not None and train_tokens >= config.max_tokens:
             break
+        batch = next(repeated_batches)
 
+        if device.type == "cuda":
+            torch.cuda.synchronize(device)
+        step_started = time.perf_counter()
         step_metrics = train_step(
             model,
             batch,
@@ -236,19 +275,29 @@ def train_loop(
             device=device,
             grad_clip=config.grad_clip,
         )
+        if device.type == "cuda":
+            torch.cuda.synchronize(device)
+        step_seconds = time.perf_counter() - step_started
+        train_step_seconds += step_seconds
 
         steps += 1
         train_tokens += step_metrics.num_tokens
         final_train_loss = step_metrics.loss
         final_lm_loss = step_metrics.lm_loss
+        final_aux_loss = step_metrics.aux_loss
+        final_grad_norm = step_metrics.grad_norm
         final_mtp_loss = step_metrics.mtp_loss
         final_mtp_per_horizon_losses = step_metrics.mtp_per_horizon_losses
         throughput.update(step_metrics.num_tokens)
+        interval_step_seconds += step_seconds
+        interval_step_tokens += step_metrics.num_tokens
 
         if log_callback is not None and steps % config.log_interval == 0:
             snapshot = throughput.snapshot()
+            routing_summary = summarize_routing_stats(model)
             log_callback(
                 {
+                    "schema_version": 2,
                     "record_type": "train",
                     "step": steps,
                     "train_loss": step_metrics.loss,
@@ -257,77 +306,168 @@ def train_loop(
                     "mtp_loss": step_metrics.mtp_loss,
                     "mtp_per_horizon_losses": step_metrics.mtp_per_horizon_losses,
                     "tokens": train_tokens,
-                    "tokens_per_second": snapshot.tokens_per_second,
+                    "active_end_to_end_tokens_per_second": (
+                        train_tokens / (active_elapsed_before_resume + snapshot.elapsed_seconds)
+                    ),
+                    "cumulative_train_step_seconds": train_step_seconds,
+                    "cumulative_train_step_tokens_per_second": (train_tokens / train_step_seconds),
+                    "interval_train_step_seconds": interval_step_seconds,
+                    "interval_train_step_tokens_per_second": (
+                        interval_step_tokens / interval_step_seconds
+                    ),
+                    "learning_rate": [float(group["lr"]) for group in optimizer.param_groups],
                     "grad_norm": step_metrics.grad_norm,
+                    "routing_stats": (None if routing_summary is None else asdict(routing_summary)),
                 }
             )
+            interval_step_seconds = 0.0
+            interval_step_tokens = 0
+            last_logged_train_step = steps
 
         if (
             validation_dataloader is not None
             and config.eval_interval is not None
             and steps % config.eval_interval == 0
         ):
+            train_peak_memory_bytes = _max_peak(train_peak_memory_bytes, device)
+            reset_peak_memory(device)
             validation_metrics = evaluate_language_model(
                 model,
                 validation_dataloader,
                 device=device,
                 max_batches=config.eval_batches,
             )
+            evaluation_peak_memory_bytes = _max_peak(evaluation_peak_memory_bytes, device)
+            reset_peak_memory(device)
             if log_callback is not None:
                 snapshot = throughput.snapshot()
                 log_callback(
                     {
+                        "schema_version": 2,
                         "record_type": "eval",
                         "split": "validation",
                         "step": steps,
                         "tokens": train_tokens,
                         "elapsed_seconds": snapshot.elapsed_seconds,
-                        "tokens_per_second": snapshot.tokens_per_second,
+                        "active_end_to_end_tokens_per_second": (
+                            train_tokens / (active_elapsed_before_resume + snapshot.elapsed_seconds)
+                        ),
                         "loss": validation_metrics.loss,
                         "perplexity": validation_metrics.perplexity,
                         "num_batches": validation_metrics.num_batches,
                         "num_tokens": validation_metrics.num_tokens,
+                        "routing_stats": validation_metrics.routing_stats,
                     }
                 )
                 last_logged_validation_step = steps
 
+        if (
+            checkpoint_callback is not None
+            and config.checkpoint_interval is not None
+            and steps % config.checkpoint_interval == 0
+        ):
+            train_peak_memory_bytes = _max_peak(train_peak_memory_bytes, device)
+            checkpoint_callback(
+                {
+                    "steps": steps,
+                    "train_tokens": train_tokens,
+                    "final_train_loss": final_train_loss,
+                    "final_lm_loss": final_lm_loss,
+                    "final_aux_loss": final_aux_loss,
+                    "final_grad_norm": final_grad_norm,
+                    "final_mtp_loss": final_mtp_loss,
+                    "final_mtp_per_horizon_losses": final_mtp_per_horizon_losses,
+                    "train_step_seconds": train_step_seconds,
+                    "active_elapsed_seconds": (
+                        active_elapsed_before_resume + throughput.snapshot().elapsed_seconds
+                    ),
+                    "interval_step_seconds": interval_step_seconds,
+                    "interval_step_tokens": interval_step_tokens,
+                    "train_peak_memory_bytes": train_peak_memory_bytes,
+                    "evaluation_peak_memory_bytes": evaluation_peak_memory_bytes,
+                    "last_logged_train_step": last_logged_train_step,
+                    "last_logged_validation_step": last_logged_validation_step,
+                }
+            )
+
     if steps == 0:
         raise ValueError("training loop completed zero steps")
 
+    train_peak_memory_bytes = _max_peak(train_peak_memory_bytes, device)
+    if log_callback is not None and last_logged_train_step != steps:
+        snapshot = throughput.snapshot()
+        routing_summary = summarize_routing_stats(model)
+        log_callback(
+            {
+                "schema_version": 2,
+                "record_type": "train",
+                "phase": "final",
+                "step": steps,
+                "train_loss": final_train_loss,
+                "lm_loss": final_lm_loss,
+                "aux_loss": final_aux_loss,
+                "mtp_loss": final_mtp_loss,
+                "mtp_per_horizon_losses": final_mtp_per_horizon_losses,
+                "tokens": train_tokens,
+                "active_end_to_end_tokens_per_second": (
+                    train_tokens / (active_elapsed_before_resume + snapshot.elapsed_seconds)
+                ),
+                "cumulative_train_step_seconds": train_step_seconds,
+                "cumulative_train_step_tokens_per_second": (train_tokens / train_step_seconds),
+                "interval_train_step_seconds": interval_step_seconds,
+                "interval_train_step_tokens_per_second": (
+                    0.0
+                    if interval_step_seconds <= 0.0
+                    else interval_step_tokens / interval_step_seconds
+                ),
+                "learning_rate": [float(group["lr"]) for group in optimizer.param_groups],
+                "grad_norm": final_grad_norm,
+                "routing_stats": (None if routing_summary is None else asdict(routing_summary)),
+            }
+        )
     if validation_dataloader is not None:
+        reset_peak_memory(device)
         validation_metrics = evaluate_language_model(
             model,
             validation_dataloader,
             device=device,
             max_batches=config.eval_batches,
         )
+        evaluation_peak_memory_bytes = _max_peak(evaluation_peak_memory_bytes, device)
         if log_callback is not None and last_logged_validation_step != steps:
             snapshot = throughput.snapshot()
             log_callback(
                 {
+                    "schema_version": 2,
                     "record_type": "eval",
                     "split": "validation",
                     "phase": "final",
                     "step": steps,
                     "tokens": train_tokens,
                     "elapsed_seconds": snapshot.elapsed_seconds,
-                    "tokens_per_second": snapshot.tokens_per_second,
+                    "active_end_to_end_tokens_per_second": (
+                        train_tokens / (active_elapsed_before_resume + snapshot.elapsed_seconds)
+                    ),
                     "loss": validation_metrics.loss,
                     "perplexity": validation_metrics.perplexity,
                     "num_batches": validation_metrics.num_batches,
                     "num_tokens": validation_metrics.num_tokens,
+                    "routing_stats": validation_metrics.routing_stats,
                 }
             )
 
     if test_dataloader is not None:
+        reset_peak_memory(device)
         test_metrics = evaluate_language_model(
             model,
             test_dataloader,
             device=device,
             max_batches=config.eval_batches,
         )
+        evaluation_peak_memory_bytes = _max_peak(evaluation_peak_memory_bytes, device)
 
     snapshot = throughput.snapshot()
+    active_elapsed_seconds = active_elapsed_before_resume + snapshot.elapsed_seconds
 
     return TrainingSummary(
         steps=steps,
@@ -343,13 +483,36 @@ def train_loop(
         ),
         final_train_loss=final_train_loss,
         final_lm_loss=final_lm_loss,
+        final_aux_loss=final_aux_loss,
+        final_grad_norm=final_grad_norm,
         final_mtp_loss=final_mtp_loss,
         final_mtp_per_horizon_losses=final_mtp_per_horizon_losses,
-        train_tokens_per_second=snapshot.tokens_per_second,
-        peak_memory_bytes=get_peak_memory_bytes(device),
+        train_step_seconds=train_step_seconds,
+        train_step_tokens_per_second=(
+            0.0 if train_step_seconds <= 0.0 else train_tokens / train_step_seconds
+        ),
+        train_tokens_per_second=(
+            0.0 if train_step_seconds <= 0.0 else train_tokens / train_step_seconds
+        ),
+        active_end_to_end_tokens_per_second=(train_tokens / active_elapsed_seconds),
+        peak_memory_bytes=(
+            None
+            if train_peak_memory_bytes is None and evaluation_peak_memory_bytes is None
+            else max(
+                value
+                for value in (train_peak_memory_bytes, evaluation_peak_memory_bytes)
+                if value is not None
+            )
+        ),
+        train_peak_memory_bytes=train_peak_memory_bytes,
+        evaluation_peak_memory_bytes=evaluation_peak_memory_bytes,
         validation_loss=None if validation_metrics is None else validation_metrics.loss,
         validation_perplexity=None if validation_metrics is None else validation_metrics.perplexity,
         test_loss=None if test_metrics is None else test_metrics.loss,
         test_perplexity=None if test_metrics is None else test_metrics.perplexity,
-        elapsed_seconds=snapshot.elapsed_seconds,
+        validation_routing_stats=(
+            None if validation_metrics is None else validation_metrics.routing_stats
+        ),
+        test_routing_stats=None if test_metrics is None else test_metrics.routing_stats,
+        elapsed_seconds=active_elapsed_seconds,
     )

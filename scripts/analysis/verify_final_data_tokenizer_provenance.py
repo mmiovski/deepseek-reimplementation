@@ -69,7 +69,7 @@ def verify_provenance(
     if provenance.get("artifact_type") != ("final_data_tokenizer_provenance"):
         config_errors.append("Unexpected artifact_type.")
 
-    if provenance.get("schema_version") != 1:
+    if provenance.get("schema_version") != 2:
         config_errors.append("Unexpected schema_version.")
 
     data_config_path = str(provenance.get("data_config", ""))
@@ -83,6 +83,12 @@ def verify_provenance(
 
     data_config = _load_yaml(_resolve(root_path, data_config_path))
     tokenizer_config = _load_yaml(_resolve(root_path, tokenizer_config_path))
+    if provenance.get("data_config_sha256") != _sha256(_resolve(root_path, data_config_path)):
+        config_errors.append("Data config SHA-256 does not match provenance.")
+    if provenance.get("tokenizer_config_sha256") != _sha256(
+        _resolve(root_path, tokenizer_config_path)
+    ):
+        config_errors.append("Tokenizer config SHA-256 does not match provenance.")
 
     expected_dataset = provenance.get("dataset")
     observed_dataset = data_config.get("dataset")
@@ -96,6 +102,7 @@ def verify_provenance(
             "source",
             "hf_dataset_name",
             "hf_dataset_config_name",
+            "hf_dataset_revision",
             "text_field",
         )
 

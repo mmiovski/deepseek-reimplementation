@@ -1,102 +1,148 @@
 {
   "artifact_type": "final_data_tokenizer_provenance",
   "artifacts": {
-    "data/processed/fineweb_edu_10bt/streaming_metadata.json": {
-      "sha256": "fa374a63c51e1be2be994d63ee46cd0c32d766efa5fa2d0bd26b65ab24af5184",
-      "size_bytes": 1245
+    "data/corpus/fineweb_edu_10bt/metadata.json": {
+      "sha256": "14c70d329d5b23a226f340a705bbacff8d12a1ecaa635ffe554fa5eb93c3f59f",
+      "size_bytes": 2356
     },
-    "data/processed/fineweb_edu_10bt/test.txt": {
-      "sha256": "2d5278e3ca9cd95be656a5fc664bd764efaaade96e9afec97418030c6dd28cb1",
-      "size_bytes": 4610160
+    "data/corpus/fineweb_edu_10bt/test.records.jsonl": {
+      "sha256": "191f175c518eb4f7dde1f9a315ae002fab89404c84c74ab67220503314cdcc76",
+      "size_bytes": 283844
     },
-    "data/processed/fineweb_edu_10bt/train.txt": {
-      "sha256": "0d1b043d9190427f66b5f0d81946b610cae6dea486762db40bd049f69dc8167e",
-      "size_bytes": 237549212
+    "data/corpus/fineweb_edu_10bt/test.txt": {
+      "sha256": "40a91ea0c8f45b894c1a592bad14672c9c3505ed6c559c7e6a9fef118a766a67",
+      "size_bytes": 4609160
     },
-    "data/processed/fineweb_edu_10bt/validation.txt": {
-      "sha256": "4a19a1cd8c247a16b8717ae81b41f9fb715268efc901a58ec77138375f06a26e",
-      "size_bytes": 4270864
+    "data/corpus/fineweb_edu_10bt/train.records.jsonl": {
+      "sha256": "616b12ad7dfac57ba5dbfcb8972e9ba422eb229369e08d90d3aea105fac6b532",
+      "size_bytes": 14734499
     },
-    "data/tokenized/fineweb_edu_10bt/test.int32.bin": {
-      "sha256": "9a51fcdbbdb408987c469da7f3c001c099854d6c830caaca7ef2a4316c842318",
-      "size_bytes": 4815168
+    "data/corpus/fineweb_edu_10bt/train.txt": {
+      "sha256": "c18837bfefc63c0dc158864d66cb9a86850d1045cdcc4bdce230f5090ac6ec2c",
+      "size_bytes": 237499212
     },
-    "data/tokenized/fineweb_edu_10bt/tokenized_metadata.json": {
-      "sha256": "6d7ecb70eb7d7bc219d2acd4226d1b35cef9eca522cd767e3c06357c92d9f7a0",
-      "size_bytes": 1148
+    "data/corpus/fineweb_edu_10bt/validation.records.jsonl": {
+      "sha256": "3d11863710e084d674fa5f6553bccc90a1250a4cf1dd50bc1e5c1bb87dd952f2",
+      "size_bytes": 288524
     },
-    "data/tokenized/fineweb_edu_10bt/train.int32.bin": {
-      "sha256": "b03ea1ad98dbf6196d0db137c22bd9dcc4b278e9acf25805da5133da1ad1c707",
-      "size_bytes": 244435832
+    "data/corpus/fineweb_edu_10bt/validation.txt": {
+      "sha256": "731259e26a76182009f238241e2dec50ac2d63c1fee4624a64a94f054fe915c8",
+      "size_bytes": 4269864
     },
-    "data/tokenized/fineweb_edu_10bt/validation.int32.bin": {
-      "sha256": "8e78ab7ff1a66254a56f018f566cd2c163ca16afe99fe3cf5025c935931f320c",
-      "size_bytes": 4435904
+    "data/tokens/fineweb_edu_10bt/metadata.json": {
+      "sha256": "4601761393c36c60f2d8806bebb82cb9cf16d8a9962a30c880bb661f545b1d92",
+      "size_bytes": 3262
     },
-    "tokenizers/metadata/bpe_fineweb_edu_10bt_local_experiment_metadata.json": {
-      "sha256": "359eda401f4b7ca19a90e2fad9f3d133c27e7099807b8f6dd1234c308217a7f7",
-      "size_bytes": 614
+    "data/tokens/fineweb_edu_10bt/test.int32.bin": {
+      "sha256": "02056abbd101c86d787947aa6981b4cd0731aa80222e9c9cbac0676dcfded801",
+      "size_bytes": 4639016
     },
-    "tokenizers/trained/bpe_fineweb_edu_10bt_local_experiment.json": {
-      "sha256": "82858c9d4f481eeae1c191e1ed01a0c3e0d82855958c73356de9d28574575afe",
-      "size_bytes": 681785
+    "data/tokens/fineweb_edu_10bt/train.int32.bin": {
+      "sha256": "64e0451e40b4acf9fd2acf7ee42951b202cf6ac91576b9aecf887883959d459d",
+      "size_bytes": 235256152
+    },
+    "data/tokens/fineweb_edu_10bt/validation.int32.bin": {
+      "sha256": "e8ee0406d12357dfdc6ea83a38cda69a11653fab04622d4b919ba54360cc8a50",
+      "size_bytes": 4270140
+    },
+    "tokenizers/fineweb_edu_10bt/metadata.json": {
+      "sha256": "76ef24f2e43beb6dcb26ad9bba08e1ebff5cd307a206fad1b51c6f6058b29aff",
+      "size_bytes": 1431
+    },
+    "tokenizers/fineweb_edu_10bt/tokenizer.json": {
+      "sha256": "ab770a10bcf73f94fef3dc6a9b04f13b1b6ea2e92d02e6ff2b1a3b15222686e0",
+      "size_bytes": 679094
     }
   },
   "corpus": {
-    "document_separator_contract": "The corpus writer emits one trailing newline after the first document and two separator newlines plus one trailing newline before/after each subsequent document.",
-    "split_document_chars": {
-      "test": 4586512,
-      "train": 236219473,
-      "validation": 4250565
+    "artifact_type": "prepared_corpus_metadata",
+    "data_config": "configs\\data\\fineweb_edu_10bt.yaml",
+    "data_config_sha256": "e4404612a715a3e503e86b3f4f11d32219217f9f3ea982a0ae296ea4c83d90b6",
+    "dataset": {
+      "hf_dataset_config_name": "sample-10BT",
+      "hf_dataset_name": "HuggingFaceFW/fineweb-edu",
+      "hf_dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "name": "fineweb_edu_10bt",
+      "source_split": "train",
+      "text_field": "text"
     },
-    "split_examples": {
-      "test": 1000,
-      "train": 50000,
-      "validation": 1000
+    "preprocessing": {
+      "min_chars": 1,
+      "normalize_newlines": true,
+      "strip_whitespace": true
     },
-    "split_file_bytes": {
-      "test": 4610160,
-      "train": 237549212,
-      "validation": 4270864
+    "schema_version": 2,
+    "splits": {
+      "test": {
+        "bytes": 4609160,
+        "chars": 4586512,
+        "examples": 1000,
+        "max_chars": null,
+        "max_examples": 1000,
+        "record_manifest_path": "data\\corpus\\fineweb_edu_10bt\\test.records.jsonl",
+        "record_manifest_sha256": "191f175c518eb4f7dde1f9a315ae002fab89404c84c74ab67220503314cdcc76",
+        "serialized_chars": 4588510,
+        "text_path": "data\\corpus\\fineweb_edu_10bt\\test.txt",
+        "text_sha256": "40a91ea0c8f45b894c1a592bad14672c9c3505ed6c559c7e6a9fef118a766a67"
+      },
+      "train": {
+        "bytes": 237499212,
+        "chars": 236219473,
+        "examples": 50000,
+        "max_chars": null,
+        "max_examples": 50000,
+        "record_manifest_path": "data\\corpus\\fineweb_edu_10bt\\train.records.jsonl",
+        "record_manifest_sha256": "616b12ad7dfac57ba5dbfcb8972e9ba422eb229369e08d90d3aea105fac6b532",
+        "serialized_chars": 236319471,
+        "text_path": "data\\corpus\\fineweb_edu_10bt\\train.txt",
+        "text_sha256": "c18837bfefc63c0dc158864d66cb9a86850d1045cdcc4bdce230f5090ac6ec2c"
+      },
+      "validation": {
+        "bytes": 4269864,
+        "chars": 4250565,
+        "examples": 1000,
+        "max_chars": null,
+        "max_examples": 1000,
+        "record_manifest_path": "data\\corpus\\fineweb_edu_10bt\\validation.records.jsonl",
+        "record_manifest_sha256": "3d11863710e084d674fa5f6553bccc90a1250a4cf1dd50bc1e5c1bb87dd952f2",
+        "serialized_chars": 4252563,
+        "text_path": "data\\corpus\\fineweb_edu_10bt\\validation.txt",
+        "text_sha256": "731259e26a76182009f238241e2dec50ac2d63c1fee4624a64a94f054fe915c8"
+      }
+    },
+    "streaming": {
+      "enabled": true,
+      "require_explicit_caps": true,
+      "shuffle": true,
+      "shuffle_buffer_size": 10000,
+      "shuffle_seed": 1337
     }
   },
   "data_config": "configs/data/fineweb_edu_10bt.yaml",
+  "data_config_sha256": "e4404612a715a3e503e86b3f4f11d32219217f9f3ea982a0ae296ea4c83d90b6",
   "dataset": {
     "hf_dataset_config_name": "sample-10BT",
     "hf_dataset_name": "HuggingFaceFW/fineweb-edu",
+    "hf_dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+    "name": "fineweb_edu_10bt",
     "source": "huggingface_streaming",
-    "source_split": "train",
     "text_field": "text"
   },
-  "notes": [
-    "The tracked data configuration previously listed shuffle seed 42. Retained streaming metadata records that the final corpus was actually generated with shuffle seed 1337.",
-    "Large corpus, token-ID, and tokenizer files remain ignored. Their exact sizes and SHA-256 hashes are retained here.",
-    "The canonical flattened 180-run matrix remains the tracked downstream statistical starting point."
-  ],
   "preprocessing": {
     "min_chars": 1,
     "normalize_newlines": true,
     "strip_whitespace": true
   },
   "regeneration_commands": [
-    ".\\.venv\\Scripts\\python.exe scripts/data/prepare_hf_streaming_text.py --config configs/data/fineweb_edu_10bt.yaml --max-train-examples 50000 --max-validation-examples 1000 --max-test-examples 1000 --shuffle-buffer-size 10000 --shuffle-seed 1337",
-    ".\\.venv\\Scripts\\python.exe scripts/tokenizer/train_tokenizer.py --config configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml",
-    ".\\.venv\\Scripts\\python.exe scripts/data/tokenize_lm_corpus.py --data-config configs/data/fineweb_edu_10bt.yaml --tokenizer-config configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml --batch-lines 2048"
+    "python scripts/data/prepare_hf_streaming_text.py --config configs/data/fineweb_edu_10bt.yaml",
+    "python scripts/tokenizer/train_tokenizer.py --config configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml",
+    "python scripts/data/tokenize_lm_corpus.py --data-config configs/data/fineweb_edu_10bt.yaml --tokenizer-config configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml"
   ],
-  "schema_version": 1,
+  "schema_version": 2,
   "split_caps": {
-    "test": {
-      "max_chars": null,
-      "max_examples": 1000
-    },
-    "train": {
-      "max_chars": null,
-      "max_examples": 50000
-    },
-    "validation": {
-      "max_chars": null,
-      "max_examples": 1000
-    }
+    "test_examples": 1000,
+    "train_examples": 50000,
+    "validation_examples": 1000
   },
   "streaming": {
     "enabled": true,
@@ -105,20 +151,94 @@
     "shuffle_buffer_size": 10000,
     "shuffle_seed": 1337
   },
-  "study_scope": "Canonical balanced 10-seed matrix: 6 models x 3 token budgets x 10 aligned seeds.",
+  "study_scope": "Balanced primary matrix: 6 models x 3 token budgets x 10 aligned seeds.",
   "tokenization": {
-    "batch_lines": 2048,
+    "artifact_type": "tokenized_corpus_metadata",
+    "data_config": "configs\\data\\fineweb_edu_10bt.yaml",
+    "data_config_sha256": "e4404612a715a3e503e86b3f4f11d32219217f9f3ea982a0ae296ea4c83d90b6",
     "dtype": "int32",
-    "split_token_counts": {
-      "test": 1203792,
-      "train": 61108958,
-      "validation": 1108976
-    }
+    "encoding": {
+      "add_special_tokens": false,
+      "batch_lines": 2048,
+      "continuous_stream": true,
+      "encoding_unit": "physical_line"
+    },
+    "schema_version": 2,
+    "special_token_ids": {
+      "bos_token": 1,
+      "eos_token": 2,
+      "pad_token": 0,
+      "unk_token": 3
+    },
+    "splits": {
+      "test": {
+        "dtype": "int32",
+        "num_tokens": 1159754,
+        "record_manifest_path": "data/corpus/fineweb_edu_10bt/test.records.jsonl",
+        "record_manifest_sha256": "191f175c518eb4f7dde1f9a315ae002fab89404c84c74ab67220503314cdcc76",
+        "source_bytes": 4609160,
+        "special_token_counts": {
+          "bos_token": 0,
+          "eos_token": 0,
+          "pad_token": 0,
+          "unk_token": 0
+        },
+        "split": "test",
+        "text_path": "data/corpus/fineweb_edu_10bt/test.txt",
+        "text_sha256": "40a91ea0c8f45b894c1a592bad14672c9c3505ed6c559c7e6a9fef118a766a67",
+        "token_bytes": 4639016,
+        "token_ids_path": "data/tokens/fineweb_edu_10bt/test.int32.bin",
+        "token_ids_sha256": "02056abbd101c86d787947aa6981b4cd0731aa80222e9c9cbac0676dcfded801"
+      },
+      "train": {
+        "dtype": "int32",
+        "num_tokens": 58814038,
+        "record_manifest_path": "data/corpus/fineweb_edu_10bt/train.records.jsonl",
+        "record_manifest_sha256": "616b12ad7dfac57ba5dbfcb8972e9ba422eb229369e08d90d3aea105fac6b532",
+        "source_bytes": 237499212,
+        "special_token_counts": {
+          "bos_token": 0,
+          "eos_token": 0,
+          "pad_token": 0,
+          "unk_token": 0
+        },
+        "split": "train",
+        "text_path": "data/corpus/fineweb_edu_10bt/train.txt",
+        "text_sha256": "c18837bfefc63c0dc158864d66cb9a86850d1045cdcc4bdce230f5090ac6ec2c",
+        "token_bytes": 235256152,
+        "token_ids_path": "data/tokens/fineweb_edu_10bt/train.int32.bin",
+        "token_ids_sha256": "64e0451e40b4acf9fd2acf7ee42951b202cf6ac91576b9aecf887883959d459d"
+      },
+      "validation": {
+        "dtype": "int32",
+        "num_tokens": 1067535,
+        "record_manifest_path": "data/corpus/fineweb_edu_10bt/validation.records.jsonl",
+        "record_manifest_sha256": "3d11863710e084d674fa5f6553bccc90a1250a4cf1dd50bc1e5c1bb87dd952f2",
+        "source_bytes": 4269864,
+        "special_token_counts": {
+          "bos_token": 0,
+          "eos_token": 0,
+          "pad_token": 0,
+          "unk_token": 0
+        },
+        "split": "validation",
+        "text_path": "data/corpus/fineweb_edu_10bt/validation.txt",
+        "text_sha256": "731259e26a76182009f238241e2dec50ac2d63c1fee4624a64a94f054fe915c8",
+        "token_bytes": 4270140,
+        "token_ids_path": "data/tokens/fineweb_edu_10bt/validation.int32.bin",
+        "token_ids_sha256": "e8ee0406d12357dfdc6ea83a38cda69a11653fab04622d4b919ba54360cc8a50"
+      }
+    },
+    "tokenizer_config": "configs\\tokenizer\\bpe_fineweb_edu_10bt_local_experiment.yaml",
+    "tokenizer_config_sha256": "ce0b3dae02a3ad1f393e7b682da7b22730172aa29385d6d166df52608f26ee98",
+    "tokenizer_json": "tokenizers/fineweb_edu_10bt/tokenizer.json",
+    "tokenizer_sha256": "ab770a10bcf73f94fef3dc6a9b04f13b1b6ea2e92d02e6ff2b1a3b15222686e0"
   },
   "tokenizer": {
     "actual_vocab_size": 10000,
+    "byte_alphabet_coverage": true,
     "configured_vocab_size": 10000,
-    "effective_training_chars": 236369471,
+    "effective_training_chars": 236319471,
     "max_training_chars": null,
     "min_frequency": 2,
     "name": "bpe_fineweb_edu_10bt_local_experiment",
@@ -129,7 +249,9 @@
       "unk_token": "<unk>"
     },
     "type": "byte_level_bpe",
+    "vocab_size": 10000,
     "was_capped": false
   },
-  "tokenizer_config": "configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml"
+  "tokenizer_config": "configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml",
+  "tokenizer_config_sha256": "ce0b3dae02a3ad1f393e7b682da7b22730172aa29385d6d166df52608f26ee98"
 }

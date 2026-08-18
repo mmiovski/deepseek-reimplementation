@@ -2,12 +2,25 @@
 
 from __future__ import annotations
 
+import os
 import random
 from collections.abc import Mapping
 from typing import Any
 
 import numpy as np
 import torch
+
+
+def configure_determinism(*, enabled: bool) -> None:
+    """Configure strict deterministic execution before CUDA work starts."""
+    if not enabled:
+        raise ValueError("The primary protocol requires deterministic execution.")
+    os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
+    torch.use_deterministic_algorithms(True, warn_only=False)
+    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cuda.matmul.allow_tf32 = False
+    torch.backends.cudnn.allow_tf32 = False
 
 
 def set_seed(seed: int) -> None:

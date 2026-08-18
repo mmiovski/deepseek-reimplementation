@@ -19,6 +19,12 @@ from deepseek_reimpl.utils.paths import ensure_dir, project_path  # noqa: E402
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
+        "--record-manifests",
+        nargs="+",
+        default=None,
+        help="Record manifests corresponding one-to-one with --inputs.",
+    )
+    parser.add_argument(
         "--inputs",
         nargs="+",
         required=True,
@@ -49,10 +55,16 @@ def main() -> None:
     args = parse_args()
 
     reports: list[dict[str, Any]] = []
-    for input_path in args.inputs:
+    if args.record_manifests is not None and len(args.record_manifests) != len(args.inputs):
+        raise ValueError("--record-manifests must have the same length as --inputs")
+    manifests = args.record_manifests or [None] * len(args.inputs)
+    for input_path, manifest_path in zip(args.inputs, manifests, strict=True):
         report = compute_text_quality_report(
             _resolve_local_path(input_path),
             separator=args.separator,
+            record_manifest_path=(
+                None if manifest_path is None else _resolve_local_path(manifest_path)
+            ),
         )
         reports.append(report)
 

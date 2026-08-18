@@ -40,19 +40,19 @@ def test_gpt_config_accepts_valid_mtp_config() -> None:
         d_model=32,
         d_ff=64,
         mtp_enabled=True,
-        mtp_num_future_tokens=2,
+        mtp_horizons=(2, 3),
         mtp_loss_weight=0.5,
         mtp_share_lm_head=False,
     )
 
     assert config.mtp_enabled is True
-    assert config.mtp_num_future_tokens == 2
+    assert config.mtp_horizons == (2, 3)
     assert config.mtp_loss_weight == 0.5
     assert config.mtp_share_lm_head is False
 
 
 def test_gpt_config_rejects_disabled_mtp_with_future_tokens() -> None:
-    with pytest.raises(ValueError, match="mtp_num_future_tokens must be 0"):
+    with pytest.raises(ValueError, match="mtp_horizons must be empty"):
         GPTConfig(
             vocab_size=100,
             block_size=16,
@@ -60,12 +60,12 @@ def test_gpt_config_rejects_disabled_mtp_with_future_tokens() -> None:
             n_heads=4,
             d_model=32,
             d_ff=64,
-            mtp_num_future_tokens=2,
+            mtp_horizons=(2, 3),
         )
 
 
 def test_gpt_config_rejects_enabled_mtp_without_positive_horizons() -> None:
-    with pytest.raises(ValueError, match="mtp_num_future_tokens must be positive"):
+    with pytest.raises(ValueError, match="mtp_horizons must not be empty"):
         GPTConfig(
             vocab_size=100,
             block_size=16,
@@ -74,7 +74,6 @@ def test_gpt_config_rejects_enabled_mtp_without_positive_horizons() -> None:
             d_model=32,
             d_ff=64,
             mtp_enabled=True,
-            mtp_num_future_tokens=0,
             mtp_loss_weight=0.5,
         )
 
@@ -89,13 +88,13 @@ def test_gpt_config_rejects_enabled_mtp_with_invalid_loss_weight() -> None:
             d_model=32,
             d_ff=64,
             mtp_enabled=True,
-            mtp_num_future_tokens=2,
+            mtp_horizons=(2, 3),
             mtp_loss_weight=0.0,
         )
 
 
 def test_gpt_config_rejects_mtp_horizon_at_or_above_block_size() -> None:
-    with pytest.raises(ValueError, match="mtp_num_future_tokens must be smaller than block_size"):
+    with pytest.raises(ValueError, match="horizon must be smaller than block_size"):
         GPTConfig(
             vocab_size=100,
             block_size=16,
@@ -104,7 +103,25 @@ def test_gpt_config_rejects_mtp_horizon_at_or_above_block_size() -> None:
             d_model=32,
             d_ff=64,
             mtp_enabled=True,
-            mtp_num_future_tokens=16,
+            mtp_horizons=(2, 16),
+            mtp_loss_weight=0.5,
+        )
+
+
+@pytest.mark.parametrize("horizons", [(1, 2), (3, 2), (2, 2)])
+def test_gpt_config_rejects_ambiguous_mtp_horizons(
+    horizons: tuple[int, ...],
+) -> None:
+    with pytest.raises(ValueError, match="mtp_horizons"):
+        GPTConfig(
+            vocab_size=100,
+            block_size=16,
+            n_layers=2,
+            n_heads=4,
+            d_model=32,
+            d_ff=64,
+            mtp_enabled=True,
+            mtp_horizons=horizons,
             mtp_loss_weight=0.5,
         )
 
@@ -118,7 +135,7 @@ def test_gpt_config_defaults_to_independent_mtp_heads() -> None:
         d_model=32,
         d_ff=64,
         mtp_enabled=True,
-        mtp_num_future_tokens=2,
+        mtp_horizons=(2, 3),
         mtp_loss_weight=0.5,
     )
 

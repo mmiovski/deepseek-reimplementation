@@ -13,6 +13,8 @@ model:
   attention_type: dense
   tie_embeddings: true
   mtp_enabled: true
-  mtp_num_future_tokens: 2
+  mtp_horizons:
+    - 2
+    - 3
   mtp_loss_weight: 0.3
   mtp_share_lm_head: false

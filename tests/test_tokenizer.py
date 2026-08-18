@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from tokenizers.pre_tokenizers import ByteLevel
+
 from deepseek_reimpl.tokenizer.load_tokenizer import load_tokenizer
 from deepseek_reimpl.tokenizer.tokenizer_utils import save_tokenizer
 from deepseek_reimpl.tokenizer.train_tokenizer import train_byte_level_bpe_tokenizer
@@ -26,7 +28,7 @@ def test_train_byte_level_bpe_tokenizer_on_tiny_corpus(tmp_path: Path) -> None:
 
     tokenizer, effective_training_chars, was_capped = train_byte_level_bpe_tokenizer(
         input_text_files=[corpus_path],
-        vocab_size=128,
+        vocab_size=512,
         min_frequency=1,
         special_tokens_config=special_tokens,
     )
@@ -36,7 +38,8 @@ def test_train_byte_level_bpe_tokenizer_on_tiny_corpus(tmp_path: Path) -> None:
 
     assert effective_training_chars == len(corpus_path.read_text(encoding="utf-8"))
     assert was_capped is False
-    assert tokenizer.get_vocab_size() <= 128
+    assert tokenizer.get_vocab_size() <= 512
+    assert set(ByteLevel.alphabet()).issubset(tokenizer.get_vocab())
     assert tokenizer.token_to_id("<unk>") is not None
     assert tokenizer.token_to_id("<bos>") is not None
     assert tokenizer.token_to_id("<eos>") is not None
@@ -64,7 +67,7 @@ def test_save_and_load_tokenizer_roundtrip(tmp_path: Path) -> None:
 
     tokenizer, _, _ = train_byte_level_bpe_tokenizer(
         input_text_files=[corpus_path],
-        vocab_size=128,
+        vocab_size=512,
         min_frequency=1,
         special_tokens_config=special_tokens,
     )
@@ -89,13 +92,13 @@ def test_train_byte_level_bpe_tokenizer_respects_character_cap(tmp_path: Path) -
 
     tokenizer, effective_training_chars, was_capped = train_byte_level_bpe_tokenizer(
         input_text_files=[corpus_path],
-        vocab_size=128,
+        vocab_size=512,
         min_frequency=1,
         special_tokens_config=special_tokens,
         max_training_chars=10,
     )
 
-    assert tokenizer.get_vocab_size() <= 128
+    assert tokenizer.get_vocab_size() <= 512
     assert effective_training_chars == 10
     assert was_capped is True
 
@@ -104,8 +107,8 @@ def test_train_tokenizer_from_config_writes_metadata(tmp_path: Path) -> None:
     from deepseek_reimpl.tokenizer.train_tokenizer import train_tokenizer_from_config
 
     corpus_path = tmp_path / "tiny_corpus.txt"
-    tokenizer_path = tmp_path / "tokenizer.json"
-    metadata_path = tmp_path / "metadata.json"
+    tokenizer_path = tmp_path / "tokenizer" / "tokenizer.json"
+    metadata_path = tmp_path / "tokenizer" / "metadata.json"
 
     corpus_path.write_text("alpha beta gamma delta epsilon", encoding="utf-8")
 
@@ -113,7 +116,7 @@ def test_train_tokenizer_from_config_writes_metadata(tmp_path: Path) -> None:
         "tokenizer": {
             "name": "unit_test_bpe",
             "type": "byte_level_bpe",
-            "vocab_size": 128,
+            "vocab_size": 512,
             "min_frequency": 1,
         },
         "special_tokens": {
@@ -142,7 +145,34 @@ def test_train_tokenizer_from_config_writes_metadata(tmp_path: Path) -> None:
     assert metadata["training"]["effective_training_chars"] == len(
         corpus_path.read_text(encoding="utf-8")
     )
-    assert metadata["actual_vocab_size"] <= 128
+    assert metadata["actual_vocab_size"] <= 512
+    assert metadata["schema_version"] == 2
+    assert metadata["byte_alphabet_coverage"] is True
+    assert len(metadata["config_sha256"]) == 64
+    assert len(metadata["tokenizer_json"]["sha256"]) == 64
+
+
+def test_byte_level_tokenizer_roundtrips_representative_unicode_without_unknowns(
+    tmp_path: Path,
+) -> None:
+    corpus_path = tmp_path / "unicode.txt"
+    corpus_path.write_text("ASCII café Ελληνικά 日本語 emoji: 🧪\n", encoding="utf-8")
+    tokenizer, _, _ = train_byte_level_bpe_tokenizer(
+        input_text_files=[corpus_path],
+        vocab_size=512,
+        min_frequency=1,
+        special_tokens_config={
+            "unk_token": "<unk>",
+            "bos_token": "<bos>",
+            "eos_token": "<eos>",
+            "pad_token": "<pad>",
+        },
+    )
+    text = "control\x00 tab\t café Ελληνικά 日本語 🧪"
+    encoding = tokenizer.encode(text, add_special_tokens=False)
+
+    assert tokenizer.token_to_id("<unk>") not in encoding.ids
+    assert tokenizer.decode(encoding.ids) == text
 
 
 def test_train_tokenizer_cli_help_runs_from_script_path() -> None:

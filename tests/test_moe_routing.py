@@ -324,8 +324,38 @@ def test_deepseek_moe_layer_updates_expert_bias_in_train_mode() -> None:
         layer.last_routing_stats.expert_selection_counts.cpu(),
         torch.tensor([4.0, 0.0, 0.0, 0.0]),
     )
-    assert _expert_bias_tensor(layer.router)[0].item() < 0.0
-    assert torch.all(_expert_bias_tensor(layer.router)[1:] > 0.0)
+    assert torch.allclose(
+        _expert_bias_tensor(layer.router),
+        torch.tensor([-0.4, 0.4, 0.4, 0.4]),
+    )
+
+
+def test_deepseek_moe_layer_balanced_load_does_not_move_expert_bias() -> None:
+    layer = DeepSeekMoELayer(
+        d_model=2,
+        n_routed_experts=2,
+        n_shared_experts=0,
+        top_k=1,
+        expert_d_ff=4,
+        aux_loss_weight=0.0,
+        routing_mode="aux_loss_free_bias",
+        use_expert_bias=True,
+        expert_bias_update_rate=0.2,
+    )
+    layer.train()
+
+    with torch.no_grad():
+        layer.router.gate.weight.copy_(torch.tensor([[1.0, 0.0], [-1.0, 0.0]]))
+
+    hidden_states = torch.tensor([[[1.0, 0.0], [-1.0, 0.0]]])
+    layer(hidden_states)
+
+    assert layer.last_routing_stats is not None
+    assert torch.equal(
+        layer.last_routing_stats.expert_selection_counts,
+        torch.tensor([1.0, 1.0]),
+    )
+    assert torch.equal(_expert_bias_tensor(layer.router), torch.zeros(2))
 
 
 def test_deepseek_moe_layer_does_not_update_expert_bias_in_eval_mode() -> None:

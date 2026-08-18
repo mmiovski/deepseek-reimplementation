@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import os
+import tempfile
 from collections.abc import Mapping
 from pathlib import Path
 
@@ -22,7 +24,27 @@ def resolve_tokenizer_artifact_path(path: str | Path) -> Path:
 
 
 def save_tokenizer(tokenizer: Tokenizer, path: str | Path) -> Path:
-    """Save a tokenizer JSON artifact."""
+    """Atomically save a tokenizer JSON artifact."""
     resolved = resolve_tokenizer_artifact_path(path)
-    tokenizer.save(str(resolved))
-    return resolved
+    temporary_path: Path | None = None
+
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="wb",
+            dir=resolved.parent,
+            prefix=f".{resolved.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as file:
+            temporary_path = Path(file.name)
+
+        tokenizer.save(str(temporary_path))
+        with temporary_path.open("r+b") as file:
+            file.flush()
+            os.fsync(file.fileno())
+        os.replace(temporary_path, resolved)
+        temporary_path = None
+        return resolved
+    finally:
+        if temporary_path is not None:
+            temporary_path.unlink(missing_ok=True)

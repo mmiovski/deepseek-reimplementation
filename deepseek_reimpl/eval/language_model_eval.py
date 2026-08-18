@@ -10,6 +10,7 @@ from typing import Any
 import torch
 import torch.nn as nn
 
+from deepseek_reimpl.instrumentation.routing_stats import RoutingStatsAccumulator
 from deepseek_reimpl.train.losses import next_token_cross_entropy
 
 
@@ -21,6 +22,7 @@ class EvaluationMetrics:
     perplexity: float
     num_batches: int
     num_tokens: int
+    routing_stats: dict[str, object] | None = None
 
 
 def _perplexity_from_loss(loss: float) -> float:
@@ -68,6 +70,7 @@ def evaluate_language_model(
     total_loss_times_tokens = 0.0
     total_tokens = 0
     num_batches = 0
+    routing_accumulator = RoutingStatsAccumulator()
 
     try:
         with torch.no_grad():
@@ -80,6 +83,7 @@ def evaluate_language_model(
                 targets = targets.to(device)
 
                 logits = model(input_ids)
+                routing_accumulator.update(model)
                 loss = next_token_cross_entropy(logits, targets)
 
                 batch_tokens = int(targets.numel())
@@ -100,4 +104,5 @@ def evaluate_language_model(
         perplexity=_perplexity_from_loss(average_loss),
         num_batches=num_batches,
         num_tokens=total_tokens,
+        routing_stats=routing_accumulator.summary(),
     )

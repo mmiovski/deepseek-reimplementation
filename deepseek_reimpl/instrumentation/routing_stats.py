@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Any
 
+import torch
 from torch import nn
 
 from deepseek_reimpl.layers.moe_layer import DeepSeekMoELayer
@@ -30,6 +32,101 @@ class RoutingStatsSummary:
     expert_selection_counts: list[list[float]]
     expert_selection_fraction: list[list[float]]
     mean_router_probability: list[list[float]]
+
+
+@dataclass
+class _RoutingLayerAggregate:
+    tokens: int
+    top_k: int
+    n_experts: int
+    aux_loss_weight: float
+    counts: torch.Tensor
+    probability_sum: torch.Tensor
+    entropy_sum: float
+    routing_mode: str
+
+
+class RoutingStatsAccumulator:
+    """Aggregate routing diagnostics across every evaluated batch."""
+
+    def __init__(self) -> None:
+        self._layers: list[_RoutingLayerAggregate] | None = None
+
+    def update(self, model: nn.Module) -> None:
+        modules = [module for module in model.modules() if isinstance(module, DeepSeekMoELayer)]
+        if not modules:
+            return
+        if self._layers is None:
+            self._layers = [
+                _RoutingLayerAggregate(
+                    tokens=0,
+                    top_k=module.top_k,
+                    n_experts=module.n_routed_experts,
+                    aux_loss_weight=module.aux_loss_weight,
+                    counts=torch.zeros(module.n_routed_experts, dtype=torch.float64),
+                    probability_sum=torch.zeros(module.n_routed_experts, dtype=torch.float64),
+                    entropy_sum=0.0,
+                    routing_mode=module.routing_mode,
+                )
+                for module in modules
+            ]
+        if len(modules) != len(self._layers):
+            raise RuntimeError("MoE layer count changed during evaluation")
+        for aggregate, module in zip(self._layers, modules, strict=True):
+            stats = module.last_routing_stats
+            if stats is None:
+                raise RuntimeError("MoE layer did not expose routing statistics")
+            tokens = stats.tokens
+            aggregate.tokens += tokens
+            aggregate.counts += stats.expert_selection_counts.cpu().double()
+            aggregate.probability_sum += stats.mean_router_probability.cpu().double() * tokens
+            aggregate.entropy_sum += float(stats.routing_entropy.item()) * tokens
+
+    def summary(self) -> dict[str, object] | None:
+        if self._layers is None:
+            return None
+        layer_records: list[dict[str, Any]] = []
+        for layer_index, aggregate in enumerate(self._layers):
+            tokens = aggregate.tokens
+            top_k = aggregate.top_k
+            counts = aggregate.counts
+            probability_sum = aggregate.probability_sum
+            fractions = counts / float(tokens * top_k)
+            mean_probability = probability_sum / tokens
+            aggregate_aux_loss = (
+                aggregate.n_experts
+                * float(torch.sum(fractions * mean_probability).item())
+                * aggregate.aux_loss_weight
+            )
+            layer_records.append(
+                {
+                    "layer_index": layer_index,
+                    "tokens": tokens,
+                    "top_k": top_k,
+                    "expert_selection_counts": counts.tolist(),
+                    "expert_selection_fraction": fractions.tolist(),
+                    "expert_load_variance": float(torch.var(fractions, unbiased=False).item()),
+                    "routing_entropy": aggregate.entropy_sum / tokens,
+                    "mean_aux_loss": aggregate_aux_loss,
+                    "mean_router_probability": mean_probability.tolist(),
+                    "routing_mode": aggregate.routing_mode,
+                }
+            )
+        return {
+            "aggregation": "complete_evaluation_sample",
+            "moe_layers": len(layer_records),
+            "layers": layer_records,
+            "mean_routing_entropy": sum(
+                float(record["routing_entropy"]) for record in layer_records
+            )
+            / len(layer_records),
+            "mean_expert_load_variance": sum(
+                float(record["expert_load_variance"]) for record in layer_records
+            )
+            / len(layer_records),
+            "mean_aux_loss": sum(float(record["mean_aux_loss"]) for record in layer_records)
+            / len(layer_records),
+        }
 
 
 def summarize_routing_stats(model: nn.Module) -> RoutingStatsSummary | None:

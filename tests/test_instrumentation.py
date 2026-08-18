@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
 import torch
 import torch.nn as nn
 
@@ -236,6 +237,43 @@ def test_routing_stats_summary_collects_moe_layer_stats_after_forward() -> None:
     assert summary.mean_aux_loss is not None
     assert len(summary.expert_selection_counts) == 2
     assert len(summary.expert_selection_counts[0]) == 4
+
+
+def test_complete_evaluation_routing_aux_loss_uses_aggregate_distribution() -> None:
+    from deepseek_reimpl.instrumentation.routing_stats import RoutingStatsAccumulator
+
+    config = GPTConfig(
+        vocab_size=128,
+        block_size=16,
+        n_layers=1,
+        n_heads=2,
+        d_model=32,
+        d_ff=64,
+        dropout=0.0,
+        ffn_type="moe",
+        n_routed_experts=4,
+        n_shared_experts=1,
+        moe_top_k=2,
+        moe_expert_d_ff=16,
+        moe_aux_loss_weight=0.01,
+    )
+    model = BaselineGPT(config).eval()
+    accumulator = RoutingStatsAccumulator()
+
+    for input_ids in (
+        torch.randint(0, config.vocab_size, (1, 5)),
+        torch.randint(0, config.vocab_size, (3, 5)),
+    ):
+        model(input_ids)
+        accumulator.update(model)
+
+    summary = accumulator.summary()
+    assert summary is not None
+    layer = summary["layers"][0]
+    fractions = torch.tensor(layer["expert_selection_fraction"], dtype=torch.float64)
+    probabilities = torch.tensor(layer["mean_router_probability"], dtype=torch.float64)
+    expected = config.n_routed_experts * torch.sum(fractions * probabilities) * 0.01
+    assert layer["mean_aux_loss"] == pytest.approx(float(expected.item()))
 
 
 def test_routing_stats_summary_reports_aux_loss_mode_without_expert_bias() -> None:

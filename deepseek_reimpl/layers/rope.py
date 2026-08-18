@@ -39,7 +39,7 @@ class RotaryEmbedding:
         )
         positions = torch.arange(seq_len, device=device, dtype=dtype)
         freqs = torch.outer(positions, inv_freq)
-        emb = torch.cat((freqs, freqs), dim=-1)
+        emb = freqs.repeat_interleave(2, dim=-1)
         cos = emb.cos()[None, None, :, :]
         sin = emb.sin()[None, None, :, :]
         return cos, sin

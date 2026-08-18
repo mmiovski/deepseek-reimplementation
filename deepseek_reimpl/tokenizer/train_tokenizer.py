@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import json
 import tempfile
 from pathlib import Path
 from typing import Any
@@ -17,6 +16,12 @@ from deepseek_reimpl.tokenizer.tokenizer_utils import (
     get_special_tokens,
     resolve_tokenizer_artifact_path,
     save_tokenizer,
+)
+from deepseek_reimpl.utils.artifacts import (
+    atomic_write_json,
+    sha256_file,
+    sha256_json,
+    staged_directory,
 )
 from deepseek_reimpl.utils.paths import project_path
 from tokenizers import Tokenizer
@@ -74,23 +79,52 @@ def _write_tokenizer_metadata(
     effective_training_chars: int,
     was_capped: bool,
     vocab_size: int,
+    tokenizer_path: Path,
+    special_tokens_cfg: dict[str, str],
+    full_config: dict[str, Any],
 ) -> Path:
     """Write tokenizer training metadata for reproducibility."""
     resolved = resolve_tokenizer_artifact_path(metadata_path)
+    training_inputs = []
+    for input_path in training_cfg["input_text_files"]:
+        resolved_input = project_path(input_path)
+        training_inputs.append(
+            {
+                "path": str(input_path),
+                "size_bytes": resolved_input.stat().st_size,
+                "sha256": sha256_file(resolved_input),
+            }
+        )
+
     payload = {
+        "artifact_type": "tokenizer_training_metadata",
+        "schema_version": 2,
+        "config_sha256": sha256_json(full_config),
         "tokenizer": tokenizer_cfg,
+        "special_tokens": special_tokens_cfg,
+        "special_token_policy": {
+            "model_input_encoding": "disabled",
+            "post_processor_available_for_interactive_use": True,
+        },
         "training": {
             "input_text_files": training_cfg["input_text_files"],
+            "inputs": training_inputs,
             "max_training_chars": training_cfg.get("max_training_chars"),
             "effective_training_chars": effective_training_chars,
             "was_capped": was_capped,
         },
         "artifacts": artifacts_cfg,
         "actual_vocab_size": vocab_size,
+        "byte_alphabet_size": len(ByteLevel.alphabet()),
+        "byte_alphabet_coverage": True,
+        "tokenizer_json": {
+            "path": str(artifacts_cfg["tokenizer_json"]),
+            "size_bytes": tokenizer_path.stat().st_size,
+            "sha256": sha256_file(tokenizer_path),
+        },
     }
 
-    resolved.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    return resolved
+    return atomic_write_json(resolved, payload)
 
 
 def train_byte_level_bpe_tokenizer(
@@ -123,9 +157,18 @@ def train_byte_level_bpe_tokenizer(
             vocab_size=vocab_size,
             min_frequency=min_frequency,
             special_tokens=get_special_tokens(special_tokens_config),
+            initial_alphabet=ByteLevel.alphabet(),
         )
 
         tokenizer.train(files=[str(training_corpus)], trainer=trainer)
+
+    byte_alphabet = set(ByteLevel.alphabet())
+    missing_alphabet_symbols = sorted(byte_alphabet.difference(tokenizer.get_vocab()))
+    if missing_alphabet_symbols:
+        raise RuntimeError(
+            "Byte-level tokenizer training omitted required alphabet symbols: "
+            f"{len(missing_alphabet_symbols)} missing."
+        )
 
     bos_token = special_tokens_config["bos_token"]
     eos_token = special_tokens_config["eos_token"]
@@ -151,6 +194,14 @@ def train_tokenizer_from_config(config: dict[str, Any]) -> Path:
     training_cfg = config["training"]
     artifacts_cfg = config["artifacts"]
 
+    existing_artifacts = [
+        project_path(path_value) for path_value in artifacts_cfg.values() if Path(path_value).name
+    ]
+    already_present = [path for path in existing_artifacts if path.exists()]
+    if already_present:
+        formatted = ", ".join(str(path) for path in already_present)
+        raise FileExistsError(f"Refusing to overwrite tokenizer artifacts: {formatted}")
+
     tokenizer, effective_training_chars, was_capped = train_byte_level_bpe_tokenizer(
         input_text_files=training_cfg["input_text_files"],
         vocab_size=tokenizer_cfg["vocab_size"],
@@ -159,18 +210,30 @@ def train_tokenizer_from_config(config: dict[str, Any]) -> Path:
         max_training_chars=training_cfg.get("max_training_chars"),
     )
 
-    tokenizer_path = save_tokenizer(tokenizer, artifacts_cfg["tokenizer_json"])
+    artifact_parents = {path.parent.resolve() for path in existing_artifacts}
+    if len(artifact_parents) != 1:
+        raise ValueError("Tokenizer artifacts must share one publication directory")
+    target_dir = artifact_parents.pop()
 
-    metadata_json = artifacts_cfg.get("metadata_json")
-    if metadata_json is not None:
-        _write_tokenizer_metadata(
-            metadata_path=metadata_json,
-            tokenizer_cfg=tokenizer_cfg,
-            training_cfg=training_cfg,
-            artifacts_cfg=artifacts_cfg,
-            effective_training_chars=effective_training_chars,
-            was_capped=was_capped,
-            vocab_size=tokenizer.get_vocab_size(),
+    with staged_directory(target_dir) as stage_dir:
+        tokenizer_path = save_tokenizer(
+            tokenizer,
+            stage_dir / Path(artifacts_cfg["tokenizer_json"]).name,
         )
 
-    return tokenizer_path
+        metadata_json = artifacts_cfg.get("metadata_json")
+        if metadata_json is not None:
+            _write_tokenizer_metadata(
+                metadata_path=stage_dir / Path(metadata_json).name,
+                tokenizer_cfg=tokenizer_cfg,
+                training_cfg=training_cfg,
+                artifacts_cfg=artifacts_cfg,
+                effective_training_chars=effective_training_chars,
+                was_capped=was_capped,
+                vocab_size=tokenizer.get_vocab_size(),
+                tokenizer_path=tokenizer_path,
+                special_tokens_cfg=special_tokens_cfg,
+                full_config=config,
+            )
+
+    return target_dir / Path(artifacts_cfg["tokenizer_json"]).name

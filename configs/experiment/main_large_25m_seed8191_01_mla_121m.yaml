@@ -1,8 +1,13 @@
 experiment:
   name: main_large_25m_seed8191_01_mla_121m
-  output_dir: results/raw_logs/main_large_25m_seed8191_01_mla_121m
-  metrics_dir: results/metrics/main_large_25m_seed8191_01_mla_121m
-  checkpoint_dir: results/checkpoints/main_large_25m_seed8191_01_mla_121m
+  protocol_id: corrected_primary_matrix_2026
+  variant: mla_121m
+  budget: 25m
+  seed: 8191
+  requested_train_tokens: 25000000
+  output_dir: results/runs/main_large_25m_seed8191_01_mla_121m/logs
+  metrics_dir: results/runs/main_large_25m_seed8191_01_mla_121m/metrics
+  checkpoint_dir: results/runs/main_large_25m_seed8191_01_mla_121m/checkpoints
   model_config: configs/model/mla_121m.yaml
   data_config: configs/data/fineweb_edu_10bt.yaml
   tokenizer_config: configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml

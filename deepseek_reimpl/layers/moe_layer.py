@@ -159,7 +159,10 @@ class DeepSeekMoELayer(nn.Module):
 
         self.last_aux_loss: torch.Tensor | None = None
         self.last_routing_stats: MoERoutingStats | None = None
-        self._expert_bias_training_forwards = 0
+        self.register_buffer(
+            "_expert_bias_training_forwards",
+            torch.zeros((), dtype=torch.long),
+        )
 
     def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:
         """Apply shared experts and routed sparse experts to hidden states."""
@@ -192,8 +195,9 @@ class DeepSeekMoELayer(nn.Module):
         self.last_routing_stats = stats
 
         if self.training and self.routing_mode == "aux_loss_free_bias":
-            self._expert_bias_training_forwards += 1
-            if self._expert_bias_training_forwards % self.expert_bias_update_interval == 0:
+            training_forwards = cast(torch.Tensor, self._buffers["_expert_bias_training_forwards"])
+            training_forwards.add_(1)
+            if int(training_forwards.item()) % self.expert_bias_update_interval == 0:
                 self._update_expert_bias(stats)
 
         return output.reshape(batch_size, seq_len, hidden_dim)
@@ -203,7 +207,10 @@ class DeepSeekMoELayer(nn.Module):
         flat_hidden: torch.Tensor,
         router_output: RouterOutput,
     ) -> torch.Tensor:
-        routed_output = torch.zeros_like(flat_hidden)
+        # Each (token, top-k slot) is written exactly once. Summing the fixed
+        # slot axis avoids CUDA index_add atomics, which are incompatible with
+        # the study's strict deterministic-execution contract.
+        slot_outputs = flat_hidden.new_zeros(flat_hidden.shape[0], self.top_k, flat_hidden.shape[1])
 
         for expert_idx, expert in enumerate(self.routed_experts):
             selected = router_output.top_k_indices == expert_idx
@@ -216,9 +223,9 @@ class DeepSeekMoELayer(nn.Module):
             expert_weights = router_output.top_k_weights[token_indices, selected_slots].unsqueeze(
                 -1
             )
-            routed_output.index_add_(0, token_indices, expert_output * expert_weights)
+            slot_outputs[token_indices, selected_slots] = expert_output * expert_weights
 
-        return routed_output
+        return slot_outputs.sum(dim=1)
 
     def _apply_shared_experts(self, flat_hidden: torch.Tensor) -> torch.Tensor:
         if self.n_shared_experts == 0:
@@ -246,7 +253,10 @@ class DeepSeekMoELayer(nn.Module):
         )
 
         with torch.no_grad():
-            expert_bias.add_(self.expert_bias_update_rate * load_error)
+            expert_bias.add_(
+                torch.sign(load_error),
+                alpha=self.expert_bias_update_rate,
+            )
             expert_bias.clamp_(
                 min=self.expert_bias_min,
                 max=self.expert_bias_max,

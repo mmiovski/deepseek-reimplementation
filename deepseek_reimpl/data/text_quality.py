@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+import json
 from collections import Counter
 from pathlib import Path
 from statistics import mean, median
 from typing import Any
+
+from deepseek_reimpl.utils.artifacts import sha256_text
 
 MOJIBAKE_MARKERS = (
     "â€™",
@@ -45,11 +48,45 @@ def count_mojibake_markers(text: str) -> dict[str, int]:
     return {marker: text.count(marker) for marker in MOJIBAKE_MARKERS}
 
 
-def compute_text_quality_report(path: str | Path, *, separator: str = "\n\n") -> dict[str, Any]:
+def _documents_from_record_manifest(text: str, manifest_path: Path) -> list[str]:
+    documents: list[str] = []
+    previous_end = 0
+    for expected_ordinal, line in enumerate(manifest_path.read_text(encoding="utf-8").splitlines()):
+        record = json.loads(line)
+        if record.get("ordinal") != expected_ordinal:
+            raise ValueError(f"Non-contiguous record ordinal in {manifest_path}")
+        start = record.get("start_char")
+        end = record.get("end_char")
+        if (
+            not isinstance(start, int)
+            or not isinstance(end, int)
+            or start < previous_end
+            or end < start
+        ):
+            raise ValueError(f"Invalid record offsets in {manifest_path}")
+        document = text[start:end]
+        if sha256_text(document) != record.get("text_sha256"):
+            raise ValueError(f"Record content hash mismatch in {manifest_path}")
+        documents.append(document)
+        previous_end = end
+    return documents
+
+
+def compute_text_quality_report(
+    path: str | Path,
+    *,
+    separator: str = "\n\n",
+    record_manifest_path: str | Path | None = None,
+) -> dict[str, Any]:
     """Compute a compact local text-quality report for one LM corpus split."""
     resolved_path = Path(path)
     text = resolved_path.read_text(encoding="utf-8")
-    documents = split_lm_documents(text, separator=separator)
+    manifest = None if record_manifest_path is None else Path(record_manifest_path)
+    documents = (
+        split_lm_documents(text, separator=separator)
+        if manifest is None
+        else _documents_from_record_manifest(text, manifest)
+    )
     document_lengths = sorted(len(document) for document in documents)
 
     line_count = text.count("\n") + int(bool(text))
@@ -73,6 +110,8 @@ def compute_text_quality_report(path: str | Path, *, separator: str = "\n\n") ->
 
     return {
         "path": str(resolved_path),
+        "record_manifest_path": None if manifest is None else str(manifest),
+        "record_boundaries_verified": manifest is not None,
         "bytes": resolved_path.stat().st_size,
         "chars": len(text),
         "lines": line_count,

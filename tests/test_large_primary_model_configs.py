@@ -62,7 +62,7 @@ def test_large_primary_dense_style_configs_are_matched() -> None:
     assert mtp["name"] == "mtp_gpt"
     assert mtp["attention_type"] == "dense"
     assert mtp["mtp_enabled"] is True
-    assert mtp["mtp_num_future_tokens"] == 2
+    assert mtp["mtp_horizons"] == [2, 3]
     assert mtp["mtp_loss_weight"] == 0.3
     assert mtp["mtp_share_lm_head"] is False
 

@@ -35,16 +35,19 @@ def next_token_cross_entropy(logits: torch.Tensor, targets: torch.Tensor) -> tor
 def multi_token_cross_entropy(
     future_token_logits: torch.Tensor,
     token_ids: torch.Tensor,
+    *,
+    horizons: tuple[int, ...],
 ) -> tuple[torch.Tensor, tuple[float, ...]]:
     """Compute auxiliary future-token prediction loss.
 
     Args:
         future_token_logits: Tensor with shape
-            (num_future_tokens, batch, sequence, vocab_size). Horizon index 0
-            predicts one token ahead, horizon index 1 predicts two tokens ahead,
-            and so on.
+            (num_auxiliary_horizons, batch, sequence, vocab_size).
         token_ids: Original unshifted input token IDs with shape
             (batch, sequence).
+        horizons: Strictly increasing auxiliary token offsets corresponding to
+            the first logits dimension. Offsets must be greater than 1 because
+            the primary LM head already predicts horizon 1.
 
     Returns:
         A tuple of:
@@ -61,7 +64,7 @@ def multi_token_cross_entropy(
     if token_ids.ndim != 2:
         raise ValueError(f"token_ids must have shape (batch, sequence), got rank {token_ids.ndim}")
 
-    num_future_tokens, batch_size, sequence_length, vocab_size = future_token_logits.shape
+    num_auxiliary_horizons, batch_size, sequence_length, vocab_size = future_token_logits.shape
 
     if token_ids.shape != (batch_size, sequence_length):
         raise ValueError(
@@ -69,15 +72,22 @@ def multi_token_cross_entropy(
             f"got logits {tuple(future_token_logits.shape)} and token_ids {tuple(token_ids.shape)}"
         )
 
-    if num_future_tokens >= sequence_length:
-        raise ValueError("num_future_tokens must be smaller than sequence length")
+    if len(horizons) != num_auxiliary_horizons:
+        raise ValueError("horizons length must match the first future_token_logits dimension")
+    if not horizons:
+        raise ValueError("horizons must not be empty")
+    if any(horizon <= 1 for horizon in horizons):
+        raise ValueError("auxiliary horizons must all be greater than 1")
+    if tuple(sorted(set(horizons))) != horizons:
+        raise ValueError("horizons must be unique and strictly increasing")
+    if horizons[-1] >= sequence_length:
+        raise ValueError("every auxiliary horizon must be smaller than sequence length")
 
     horizon_losses: list[torch.Tensor] = []
 
-    for horizon_index in range(num_future_tokens):
-        shift = horizon_index + 1
-        valid_logits = future_token_logits[horizon_index, :, :-shift, :]
-        valid_targets = token_ids[:, shift:]
+    for head_index, horizon in enumerate(horizons):
+        valid_logits = future_token_logits[head_index, :, :-horizon, :]
+        valid_targets = token_ids[:, horizon:]
 
         horizon_loss = F.cross_entropy(
             valid_logits.reshape(-1, vocab_size),

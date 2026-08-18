@@ -1,8 +1,13 @@
 experiment:
   name: main_large_25m_seed12721_05_v3_routing_220m
-  output_dir: results/raw_logs/main_large_25m_seed12721_05_v3_routing_220m
-  metrics_dir: results/metrics/main_large_25m_seed12721_05_v3_routing_220m
-  checkpoint_dir: results/checkpoints/main_large_25m_seed12721_05_v3_routing_220m
+  protocol_id: corrected_primary_matrix_2026
+  variant: v3_routing_220m
+  budget: 25m
+  seed: 12721
+  requested_train_tokens: 25000000
+  output_dir: results/runs/main_large_25m_seed12721_05_v3_routing_220m/logs
+  metrics_dir: results/runs/main_large_25m_seed12721_05_v3_routing_220m/metrics
+  checkpoint_dir: results/runs/main_large_25m_seed12721_05_v3_routing_220m/checkpoints
   model_config: configs/model/v3_routing_220m.yaml
   data_config: configs/data/fineweb_edu_10bt.yaml
   tokenizer_config: configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml

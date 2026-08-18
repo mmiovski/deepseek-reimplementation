@@ -131,5 +131,5 @@
   "trend_summary_row_count": 156,
   "trends_csv": "results\\analysis\\balanced_10seed_matrix_budget_trends_full_precision.csv",
   "trends_json": "results\\analysis\\balanced_10seed_matrix_budget_trends_full_precision.json",
-  "v1_controlled_design_guardrail": "Budget trends are generated only from the balanced 10-seed flat artifact and summarize within-model behavior across token budgets."
+  "controlled_design_guardrail": "Budget trends are generated only from the balanced 10-seed flat artifact and summarize within-model behavior across token budgets."
 }

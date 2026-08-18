@@ -224,14 +224,24 @@ def friedman_q(matrix: list[list[float]]) -> float:
     model_count = len(matrix[0])
     rank_sums = [0.0 for _ in range(model_count)]
 
+    tie_term = 0.0
     for row in matrix:
         ranks = rank_values(row)
         for model_index, rank in enumerate(ranks):
             rank_sums[model_index] += rank
 
-    return 12.0 / (seed_count * model_count * (model_count + 1)) * sum(
+        value_counts: dict[float, int] = {}
+        for value in row:
+            value_counts[value] = value_counts.get(value, 0) + 1
+        tie_term += sum(count**3 - count for count in value_counts.values())
+
+    uncorrected_q = 12.0 / (seed_count * model_count * (model_count + 1)) * sum(
         rank_sum**2 for rank_sum in rank_sums
     ) - 3.0 * seed_count * (model_count + 1)
+    tie_correction = 1.0 - tie_term / (seed_count * (model_count**3 - model_count))
+    if tie_correction <= 0.0:
+        return 0.0
+    return uncorrected_q / tie_correction
 
 
 def permutation_p_values(

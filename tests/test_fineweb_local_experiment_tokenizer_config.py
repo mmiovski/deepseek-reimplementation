@@ -9,13 +9,7 @@ def test_fineweb_local_experiment_tokenizer_config_is_uncapped() -> None:
     assert config["tokenizer"]["name"] == "bpe_fineweb_edu_10bt_local_experiment"
     assert config["tokenizer"]["type"] == "byte_level_bpe"
     assert config["tokenizer"]["vocab_size"] == 10000
-    assert config["training"]["input_text_files"] == ["data/processed/fineweb_edu_10bt/train.txt"]
+    assert config["training"]["input_text_files"] == ["data/corpus/fineweb_edu_10bt/train.txt"]
     assert config["training"]["max_training_chars"] is None
-    assert (
-        config["artifacts"]["tokenizer_json"]
-        == "tokenizers/trained/bpe_fineweb_edu_10bt_local_experiment.json"
-    )
-    assert (
-        config["artifacts"]["metadata_json"]
-        == "tokenizers/metadata/bpe_fineweb_edu_10bt_local_experiment_metadata.json"
-    )
+    assert config["artifacts"]["tokenizer_json"] == "tokenizers/fineweb_edu_10bt/tokenizer.json"
+    assert config["artifacts"]["metadata_json"] == "tokenizers/fineweb_edu_10bt/metadata.json"

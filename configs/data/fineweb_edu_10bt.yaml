@@ -3,6 +3,7 @@ dataset:
   source: huggingface_streaming
   hf_dataset_name: HuggingFaceFW/fineweb-edu
   hf_dataset_config_name: sample-10BT
+  hf_dataset_revision: 87f09149ef4734204d70ed1d046ddc9ca3f2b8f9
   text_field: text
 
 splits:
@@ -14,8 +15,13 @@ splits:
 paths:
   raw_dir: data/raw/fineweb_edu_10bt
   interim_dir: data/interim/fineweb_edu_10bt
-  processed_dir: data/processed/fineweb_edu_10bt
-  tokenized_dir: data/tokenized/fineweb_edu_10bt
+  processed_dir: data/corpus/fineweb_edu_10bt
+  tokenized_dir: data/tokens/fineweb_edu_10bt
+
+caps:
+  train_examples: 50000
+  validation_examples: 1000
+  test_examples: 1000
 
 streaming:
   enabled: true
@@ -30,11 +36,14 @@ preprocessing:
   min_chars: 1
 
 artifacts:
-  train_text: data/processed/fineweb_edu_10bt/train.txt
-  validation_text: data/processed/fineweb_edu_10bt/validation.txt
-  test_text: data/processed/fineweb_edu_10bt/test.txt
-  train_token_ids: data/tokenized/fineweb_edu_10bt/train.int32.bin
-  validation_token_ids: data/tokenized/fineweb_edu_10bt/validation.int32.bin
-  test_token_ids: data/tokenized/fineweb_edu_10bt/test.int32.bin
-  metadata: data/processed/fineweb_edu_10bt/streaming_metadata.json
-  tokenized_metadata: data/tokenized/fineweb_edu_10bt/tokenized_metadata.json
+  train_text: data/corpus/fineweb_edu_10bt/train.txt
+  validation_text: data/corpus/fineweb_edu_10bt/validation.txt
+  test_text: data/corpus/fineweb_edu_10bt/test.txt
+  train_records: data/corpus/fineweb_edu_10bt/train.records.jsonl
+  validation_records: data/corpus/fineweb_edu_10bt/validation.records.jsonl
+  test_records: data/corpus/fineweb_edu_10bt/test.records.jsonl
+  train_token_ids: data/tokens/fineweb_edu_10bt/train.int32.bin
+  validation_token_ids: data/tokens/fineweb_edu_10bt/validation.int32.bin
+  test_token_ids: data/tokens/fineweb_edu_10bt/test.int32.bin
+  metadata: data/corpus/fineweb_edu_10bt/metadata.json
+  tokenized_metadata: data/tokens/fineweb_edu_10bt/metadata.json
