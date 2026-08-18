@@ -8,6 +8,7 @@ import os
 import platform
 import subprocess
 import sys
+import time
 from collections.abc import Mapping
 from dataclasses import asdict
 from importlib import metadata as importlib_metadata
@@ -45,7 +46,7 @@ from deepseek_reimpl.train.checkpointing import (
 from deepseek_reimpl.train.optim import build_optimizer
 from deepseek_reimpl.train.train_utils import configure_determinism, resolve_device, set_seed
 from deepseek_reimpl.train.trainer import TrainingLoopConfig, TrainingSummary, train_loop
-from deepseek_reimpl.utils.artifacts import sha256_file, sha256_json
+from deepseek_reimpl.utils.artifacts import atomic_write_json, sha256_file, sha256_json
 from deepseek_reimpl.utils.config import load_yaml_config
 from deepseek_reimpl.utils.paths import project_path
 
@@ -522,7 +523,52 @@ def _mtp_summary_metadata(
     }
 
 
-def run_pretraining_from_experiment_config(experiment_config_path: str | Path) -> dict[str, Any]:
+def _archive_incomplete_run_artifacts(
+    *,
+    experiment_name: str,
+    output_dir: Path,
+    metrics_dir: Path,
+    checkpoint_dir: Path,
+) -> Path:
+    """Atomically preserve an unresumable primary run before a clean restart."""
+    resolved_dirs = [output_dir.resolve(), metrics_dir.resolve(), checkpoint_dir.resolve()]
+    run_root = resolved_dirs[0].parent
+    if any(path.parent != run_root for path in resolved_dirs):
+        raise RuntimeError("Incomplete-run recovery requires sibling artifact directories")
+
+    allowed_runs_root = project_path("results", "runs").resolve()
+    if run_root.parent != allowed_runs_root or run_root.name != experiment_name:
+        raise RuntimeError(
+            f"Refusing to recover artifacts outside the primary run namespace: {run_root}"
+        )
+    if not run_root.is_dir():
+        raise FileNotFoundError(f"Incomplete run root is missing: {run_root}")
+
+    archive_parent = project_path("tmp", "interrupted_runs").resolve()
+    archive_parent.mkdir(parents=True, exist_ok=True)
+    archive_path = archive_parent / f"{experiment_name}-{time.time_ns()}-{os.getpid()}"
+    if archive_path.exists():
+        raise FileExistsError(f"Incomplete-run archive target already exists: {archive_path}")
+
+    os.rename(run_root, archive_path)
+    atomic_write_json(
+        archive_path / "recovery.json",
+        {
+            "artifact_type": "incomplete_training_recovery",
+            "schema_version": 1,
+            "experiment_name": experiment_name,
+            "reason": "run artifacts existed without a completed summary or resumable checkpoint",
+            "source_run_root": run_root.relative_to(project_path().resolve()).as_posix(),
+        },
+    )
+    return archive_path
+
+
+def run_pretraining_from_experiment_config(
+    experiment_config_path: str | Path,
+    *,
+    restart_incomplete: bool = False,
+) -> dict[str, Any]:
     """Run a configured baseline pretraining smoke/control job."""
     experiment_wrapper = load_yaml_config(experiment_config_path)
     experiment_config = experiment_wrapper["experiment"]
@@ -612,15 +658,46 @@ def run_pretraining_from_experiment_config(experiment_config_path: str | Path) -
             train_config["max_tokens"]
         ):
             raise ValueError("Experiment budget label does not match requested token budget")
-        run_root = f"results/runs/{experiment_config['name']}"
+        expected_run_root = f"results/runs/{experiment_config['name']}"
         expected_outputs = {
-            "output_dir": f"{run_root}/logs",
-            "metrics_dir": f"{run_root}/metrics",
-            "checkpoint_dir": f"{run_root}/checkpoints",
+            "output_dir": f"{expected_run_root}/logs",
+            "metrics_dir": f"{expected_run_root}/metrics",
+            "checkpoint_dir": f"{expected_run_root}/checkpoints",
         }
         for field, expected_output in expected_outputs.items():
             if str(experiment_config.get(field)).replace("\\", "/") != expected_output:
                 raise ValueError(f"Primary output field {field!r} is outside its run namespace")
+
+    output_dir = project_path(experiment_config["output_dir"])
+    metrics_dir = project_path(experiment_config["metrics_dir"])
+    train_log_path = output_dir / "train_log.jsonl"
+    summary_path = metrics_dir / "summary.json"
+    checkpoint_dir = project_path(experiment_config.get("checkpoint_dir", output_dir))
+    checkpoint_path = checkpoint_dir / "checkpoint.pt"
+
+    if summary_path.exists():
+        raise FileExistsError(f"Refusing to overwrite completed run: {summary_path}")
+
+    if protocol_id == "corrected_primary_matrix_2026":
+        run_root = output_dir.resolve().parent
+        has_incomplete_artifacts = run_root.is_dir() and any(run_root.iterdir())
+    else:
+        run_root = output_dir.resolve()
+        has_incomplete_artifacts = train_log_path.exists()
+    if not checkpoint_path.exists() and has_incomplete_artifacts:
+        if not restart_incomplete:
+            raise FileExistsError(
+                "Run artifacts exist without a resumable checkpoint: "
+                f"{run_root}. Pass restart_incomplete=True only after confirming "
+                "the run is incomplete."
+            )
+        archive_path = _archive_incomplete_run_artifacts(
+            experiment_name=str(experiment_config["name"]),
+            output_dir=output_dir,
+            metrics_dir=metrics_dir,
+            checkpoint_dir=checkpoint_dir,
+        )
+        print(f"Archived incomplete run artifacts before restart: {archive_path}")
 
     configure_determinism(enabled=bool(train_config.get("deterministic", True)))
     set_seed(int(train_config["seed"]))
@@ -755,16 +832,6 @@ def run_pretraining_from_experiment_config(experiment_config_path: str | Path) -
     model.to(device)
     optimizer = build_optimizer(model, train_config)
 
-    output_dir = project_path(experiment_config["output_dir"])
-    metrics_dir = project_path(experiment_config["metrics_dir"])
-    train_log_path = output_dir / "train_log.jsonl"
-    summary_path = metrics_dir / "summary.json"
-    checkpoint_dir = project_path(experiment_config.get("checkpoint_dir", output_dir))
-    checkpoint_path = checkpoint_dir / "checkpoint.pt"
-
-    if summary_path.exists():
-        raise FileExistsError(f"Refusing to overwrite completed run: {summary_path}")
-
     code_fingerprint = _code_fingerprint()
     runtime_metadata = _runtime_metadata(device)
     artifact_fingerprint = {
@@ -812,9 +879,7 @@ def run_pretraining_from_experiment_config(experiment_config_path: str | Path) -
         truncate_jsonl_to_step(train_log_path, max_step=int(initial_state["steps"]))
         del checkpoint
     elif train_log_path.exists():
-        raise FileExistsError(
-            f"Training log exists without a resumable checkpoint: {train_log_path}"
-        )
+        raise RuntimeError("Incomplete-run recovery failed to clear the prior training log")
 
     def log_record(record: dict[str, Any]) -> None:
         append_jsonl(train_log_path, record)

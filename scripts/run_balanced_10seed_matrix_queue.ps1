@@ -9,6 +9,7 @@ $Python = Join-Path $ProjectRoot ".venv\Scripts\python.exe"
 $ProgressPath = Join-Path $ProjectRoot "results\analysis\balanced_10seed_matrix_queue_progress.jsonl"
 $SystemStatePath = Join-Path $ProjectRoot "results\analysis\long_run_system_state.json"
 $TrainingPidPath = Join-Path $ProjectRoot "tmp\long_run_training.pid"
+$TrainingStatusPath = Join-Path $ProjectRoot "tmp\long_run_training_status.json"
 
 if (-not (Test-Path -LiteralPath $Python -PathType Leaf)) {
     throw "Missing repaired Python environment: $Python"
@@ -190,6 +191,29 @@ function Stop-OwnedProcesses {
     }
 }
 
+function Read-TrainingStatus {
+    param(
+        [string]$StatusPath,
+        [int]$ExpectedPid
+    )
+
+    if (-not (Test-Path -LiteralPath $StatusPath -PathType Leaf)) {
+        throw "Training interpreter exited without publishing a completion status."
+    }
+    $Status = Get-Content -LiteralPath $StatusPath -Raw | ConvertFrom-Json
+    $ExitCode = 0
+    $ExitCodeIsValid = [int]::TryParse([string]$Status.exit_code, [ref]$ExitCode)
+    if (
+        [int]$Status.schema_version -ne 1 `
+        -or [int]$Status.pid -ne $ExpectedPid `
+        -or -not $ExitCodeIsValid `
+        -or $ExitCode -notin @(0, 1)
+    ) {
+        throw "Training interpreter published an invalid completion status."
+    }
+    return $ExitCode
+}
+
 function Get-CompetingGpuComputeProcesses {
     param([int[]]$AllowedPids = @())
 
@@ -327,7 +351,9 @@ try {
 
         $Process = $null
         $TrainingPid = $null
+        $TrainingProcess = $null
         Remove-Item -LiteralPath $TrainingPidPath -Force -ErrorAction SilentlyContinue
+        Remove-Item -LiteralPath $TrainingStatusPath -Force -ErrorAction SilentlyContinue
         try {
             $Process = Start-Process `
                 -FilePath $Python `
@@ -336,7 +362,10 @@ try {
                     "--experiment-config",
                     $ExperimentConfig,
                     "--runner-pid-file",
-                    $TrainingPidPath
+                    $TrainingPidPath,
+                    "--restart-incomplete",
+                    "--runner-status-file",
+                    $TrainingStatusPath
                 ) `
                 -WorkingDirectory $ProjectRoot `
                 -NoNewWindow `
@@ -345,11 +374,13 @@ try {
             $TrainingPid = Wait-TrainingPidMarker `
                 -LauncherProcess $Process `
                 -MarkerPath $TrainingPidPath
+            $TrainingProcess = Get-Process -Id $TrainingPid -ErrorAction Stop
 
             $MonitorIterations = 0
-            while (-not $Process.HasExited) {
+            while (-not $TrainingProcess.HasExited) {
                 Start-Sleep -Seconds 30
-                $Process.Refresh()
+                $TrainingProcess.Refresh()
+                if ($TrainingProcess.HasExited) { break }
                 $MonitorIterations += 1
                 Set-PowerGuard
                 Stop-UpdateActivity
@@ -361,23 +392,33 @@ try {
                 }
             }
 
-            if ($Process.ExitCode -ne 0) {
+            $TrainingProcess.WaitForExit()
+            $TrainingProcess.Refresh()
+            $TrainingExitCode = Read-TrainingStatus `
+                -StatusPath $TrainingStatusPath `
+                -ExpectedPid $TrainingPid
+            if ($TrainingExitCode -ne 0) {
                 Write-DurableJsonLine @{
                     timestamp = (Get-Date).ToString("o")
                     queue_index = $QueueIndex
                     queue_total = $Queue.Count
                     experiment_config = $ExperimentConfig
                     status = "failed"
-                    exit_code = $Process.ExitCode
+                    exit_code = $TrainingExitCode
                 }
-                throw "Training failed for $ExperimentConfig with exit code $($Process.ExitCode)."
+                throw "Training failed for $ExperimentConfig with exit code $TrainingExitCode."
             }
         } finally {
-            if ($null -ne $Process -and -not $Process.HasExited) {
+            $TrainingIsActive = $null -ne $TrainingProcess -and -not $TrainingProcess.HasExited
+            $LauncherIsActive = $null -ne $Process -and -not $Process.HasExited
+            if ($TrainingIsActive -or $LauncherIsActive) {
                 Stop-OwnedProcesses -OwnedPids @($TrainingPid, $Process.Id)
-                $Process.WaitForExit()
+                if ($null -ne $Process -and -not $Process.HasExited) {
+                    $Process.WaitForExit()
+                }
             }
             Remove-Item -LiteralPath $TrainingPidPath -Force -ErrorAction SilentlyContinue
+            Remove-Item -LiteralPath $TrainingStatusPath -Force -ErrorAction SilentlyContinue
         }
 
         & $Python scripts\validation\preflight_primary_matrix.py --require-clean-git

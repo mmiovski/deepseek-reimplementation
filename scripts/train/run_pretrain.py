@@ -13,6 +13,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from deepseek_reimpl.train.pretrain import run_pretraining_from_experiment_config  # noqa: E402
+from deepseek_reimpl.utils.artifacts import atomic_write_json  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -25,6 +26,17 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--runner-pid-file",
+        type=Path,
+        default=None,
+        help=argparse.SUPPRESS,
+    )
+    parser.add_argument(
+        "--restart-incomplete",
+        action="store_true",
+        help=argparse.SUPPRESS,
+    )
+    parser.add_argument(
+        "--runner-status-file",
         type=Path,
         default=None,
         help=argparse.SUPPRESS,
@@ -42,10 +54,32 @@ def publish_runner_pid(path: Path | None) -> None:
     temporary_path.replace(path)
 
 
+def publish_runner_status(path: Path | None, *, exit_code: int) -> None:
+    """Publish the real interpreter's terminal status for the PowerShell runner."""
+    if path is None:
+        return
+    atomic_write_json(
+        path,
+        {
+            "schema_version": 1,
+            "pid": os.getpid(),
+            "exit_code": exit_code,
+        },
+    )
+
+
 def main() -> None:
     args = parse_args()
     publish_runner_pid(args.runner_pid_file)
-    summary = run_pretraining_from_experiment_config(args.experiment_config)
+    try:
+        summary = run_pretraining_from_experiment_config(
+            args.experiment_config,
+            restart_incomplete=args.restart_incomplete,
+        )
+    except BaseException:
+        publish_runner_status(args.runner_status_file, exit_code=1)
+        raise
+    publish_runner_status(args.runner_status_file, exit_code=0)
     print(json.dumps(summary, indent=2, sort_keys=True))
 
 

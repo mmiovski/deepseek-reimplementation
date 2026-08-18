@@ -227,6 +227,42 @@ experiment:
     assert first_summary["elapsed_seconds"] >= 0.0
 
 
+def test_incomplete_primary_run_is_archived_before_clean_restart(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from deepseek_reimpl.train import pretrain
+
+    root = tmp_path
+    run_root = root / "results" / "runs" / "interrupted_dense"
+    output_dir = run_root / "logs"
+    metrics_dir = run_root / "metrics"
+    checkpoint_dir = run_root / "checkpoints"
+    output_dir.mkdir(parents=True)
+    metrics_dir.mkdir()
+    checkpoint_dir.mkdir()
+    (output_dir / "train_log.jsonl").write_text('{"step": 1}\n', encoding="utf-8")
+
+    monkeypatch.setattr(pretrain, "project_path", lambda *parts: root.joinpath(*map(str, parts)))
+    archive_path = pretrain._archive_incomplete_run_artifacts(
+        experiment_name="interrupted_dense",
+        output_dir=output_dir,
+        metrics_dir=metrics_dir,
+        checkpoint_dir=checkpoint_dir,
+    )
+
+    assert not run_root.exists()
+    assert archive_path.parent == root / "tmp" / "interrupted_runs"
+    assert (archive_path / "logs" / "train_log.jsonl").is_file()
+    recovery = json.loads((archive_path / "recovery.json").read_text(encoding="utf-8"))
+    assert recovery == {
+        "artifact_type": "incomplete_training_recovery",
+        "experiment_name": "interrupted_dense",
+        "reason": "run artifacts existed without a completed summary or resumable checkpoint",
+        "schema_version": 1,
+        "source_run_root": "results/runs/interrupted_dense",
+    }
+
+
 def test_pretraining_summary_helpers_include_dense_activated_metrics() -> None:
     from deepseek_reimpl.model.baseline_gpt import BaselineGPT
     from deepseek_reimpl.model.config import GPTConfig
