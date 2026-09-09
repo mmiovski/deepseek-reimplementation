@@ -5,8 +5,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 1.0,
       "activated_to_trainable_parameter_ratio_mean": 1.0,
-      "peak_memory_gib_mean": 2.830739974975586,
-      "test_minus_validation_loss_gap_mean": 0.2979371690750119,
+      "peak_memory_gib_mean": 2.8780574798583984,
+      "test_minus_validation_loss_gap_mean": -0.025269707202911995,
       "total_to_activated_parameter_ratio_mean": 1.0
     },
     "mechanism": {
@@ -29,6 +29,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 4011.4462072133424,
+        "ci95_low": 3981.3912876409763,
+        "mean": 3996.4187474271594,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 21.006940257566264
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 2155770368.0,
+        "ci95_low": 2155770368.0,
+        "mean": 2155770368.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -45,13 +61,21 @@
         "non_missing_seed_count": 0,
         "std": null
       },
+      "final_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
       "lm_loss": {
-        "ci95_high": 4.957737918258139,
-        "ci95_low": 4.609135346054605,
-        "mean": 4.783436632156372,
+        "ci95_high": 5.131749645151389,
+        "ci95_low": 4.9087032166345,
+        "mean": 5.0202264308929445,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.2436563967599736
+        "std": 0.15589870361276545
       },
       "mean_aux_loss": {
         "ci95_high": null,
@@ -85,6 +109,14 @@
         "non_missing_seed_count": 0,
         "std": null
       },
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
       "mtp_loss": {
         "ci95_high": null,
         "ci95_low": null,
@@ -101,18 +133,10 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 0.0,
-        "ci95_low": 0.0,
-        "mean": 0.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 3039483904.0,
-        "ci95_low": 3039483904.0,
-        "mean": 3039483904.0,
+        "ci95_high": 3090290688.0,
+        "ci95_low": 3090290688.0,
+        "mean": 3090290688.0,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
         "std": 0.0
@@ -142,20 +166,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 5.220309916317028,
-        "ci95_low": 5.161249289691883,
-        "mean": 5.190779603004455,
+        "ci95_high": 5.008320215392166,
+        "ci95_low": 4.986580033135361,
+        "mean": 4.9974501242637634,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.04128053153166978
+        "std": 0.015195339610131515
       },
       "test_perplexity": {
-        "ci95_high": 185.16121898872862,
-        "ci95_low": 174.33499429234527,
-        "mean": 179.74810664053695,
+        "ci95_high": 149.66242981233364,
+        "ci95_low": 146.43877887290563,
+        "mean": 148.05060434261964,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 7.567009283266153
+        "std": 2.2531766399426614
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.08268510698645128,
@@ -190,20 +214,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 4.957737918258139,
-        "ci95_low": 4.609135346054605,
-        "mean": 4.783436632156372,
+        "ci95_high": 5.131749645151389,
+        "ci95_low": 4.9087032166345,
+        "mean": 5.0202264308929445,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.2436563967599736
+        "std": 0.15589870361276545
       },
       "train_tokens_per_second": {
-        "ci95_high": 4306.7699486044885,
-        "ci95_low": 4250.710883712266,
-        "mean": 4278.740416158377,
+        "ci95_high": 4192.989884819585,
+        "ci95_low": 4173.101918486048,
+        "mean": 4183.045901652817,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 39.1825845432877
+        "std": 13.900729948957308
       },
       "trainable_parameters": {
         "ci95_high": 120945408.0,
@@ -214,20 +238,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 4.952050411624997,
-        "ci95_low": 4.83363445623389,
-        "mean": 4.892842433929443,
+        "ci95_high": 5.0345685327024,
+        "ci95_low": 5.010871130230951,
+        "mean": 5.0227198314666754,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.08276704565633804
+        "std": 0.016563342210202406
       },
       "validation_perplexity": {
-        "ci95_high": 141.5830962396749,
-        "ci95_low": 125.89872328049934,
-        "mean": 133.7409097600871,
+        "ci95_high": 153.64400012809745,
+        "ci95_low": 150.04087753417275,
+        "mean": 151.8424388311351,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 10.962620776191544
+        "std": 2.518409037462729
       }
     },
     "model": "dense_121m"
@@ -238,8 +262,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 1.0,
       "activated_to_trainable_parameter_ratio_mean": 1.0,
-      "peak_memory_gib_mean": 3.266996383666992,
-      "test_minus_validation_loss_gap_mean": 0.34566519069671564,
+      "peak_memory_gib_mean": 3.3092098236083984,
+      "test_minus_validation_loss_gap_mean": -0.021649708271026746,
       "total_to_activated_parameter_ratio_mean": 1.0
     },
     "mechanism": {
@@ -262,6 +286,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 3508.895353879287,
+        "ci95_low": 3487.440076880957,
+        "mean": 3498.167715380122,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 14.996204565719545
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 2471604736.0,
+        "ci95_low": 2471604736.0,
+        "mean": 2471604736.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -278,13 +318,21 @@
         "non_missing_seed_count": 0,
         "std": null
       },
+      "final_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
       "lm_loss": {
-        "ci95_high": 5.191479828270546,
-        "ci95_low": 4.889553783027062,
-        "mean": 5.040516805648804,
+        "ci95_high": 5.174654574750118,
+        "ci95_low": 4.91354694807703,
+        "mean": 5.044100761413574,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.21103175403153357
+        "std": 0.18250164673072947
       },
       "mean_aux_loss": {
         "ci95_high": null,
@@ -318,6 +366,14 @@
         "non_missing_seed_count": 0,
         "std": null
       },
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
       "mtp_loss": {
         "ci95_high": null,
         "ci95_low": null,
@@ -334,18 +390,10 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 0.0,
-        "ci95_low": 0.0,
-        "mean": 0.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 3507910656.0,
-        "ci95_low": 3507910656.0,
-        "mean": 3507910656.0,
+        "ci95_high": 3553236992.0,
+        "ci95_low": 3553236992.0,
+        "mean": 3553236992.0,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
         "std": 0.0
@@ -375,20 +423,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 5.526724212056048,
-        "ci95_low": 5.4354284826461,
-        "mean": 5.481076347351074,
+        "ci95_high": 5.075292369581237,
+        "ci95_low": 5.034973189615235,
+        "mean": 5.055132779598236,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.06381131477886402
+        "std": 0.028181163577579386
       },
       "test_perplexity": {
-        "ci95_high": 251.4452348432092,
-        "ci95_low": 229.64120774344062,
-        "mean": 240.5432212933249,
+        "ci95_high": 160.06082584319932,
+        "ci95_low": 153.70236402498352,
+        "mean": 156.88159493409142,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 15.239964078304567
+        "std": 4.4442583592233795
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.07275097540762261,
@@ -423,20 +471,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 5.191479828270546,
-        "ci95_low": 4.889553783027062,
-        "mean": 5.040516805648804,
+        "ci95_high": 5.174654574750118,
+        "ci95_low": 4.91354694807703,
+        "mean": 5.044100761413574,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.21103175403153357
+        "std": 0.18250164673072947
       },
       "train_tokens_per_second": {
-        "ci95_high": 3702.630395023659,
-        "ci95_low": 3666.1487753528427,
-        "mean": 3684.3895851882507,
+        "ci95_high": 3663.879401709925,
+        "ci95_low": 3646.653754208745,
+        "mean": 3655.266577959335,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 25.498893885868494
+        "std": 12.039897397958436
       },
       "trainable_parameters": {
         "ci95_high": 137460480.0,
@@ -447,20 +495,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 5.187044125276851,
-        "ci95_low": 5.083778188031865,
-        "mean": 5.135411156654358,
+        "ci95_high": 5.099538295268622,
+        "ci95_low": 5.054026680469904,
+        "mean": 5.076782487869263,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.07217791314076713
+        "std": 0.03181042527164432
       },
       "validation_perplexity": {
-        "ci95_high": 179.03213150370814,
-        "ci95_low": 161.628022496876,
-        "mean": 170.33007700029208,
+        "ci95_high": 163.97486012066497,
+        "ci95_low": 156.68617233086894,
+        "mean": 160.33051622576696,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 12.164633389298677
+        "std": 5.094441480291827
       }
     },
     "model": "mla_121m"
@@ -471,8 +519,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 1.0,
       "activated_to_trainable_parameter_ratio_mean": 1.0,
-      "peak_memory_gib_mean": 3.1968302726745605,
-      "test_minus_validation_loss_gap_mean": 0.2961538248062139,
+      "peak_memory_gib_mean": 3.249030590057373,
+      "test_minus_validation_loss_gap_mean": -0.02433573770523001,
       "total_to_activated_parameter_ratio_mean": 1.0
     },
     "mechanism": {
@@ -495,6 +543,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 3489.6404191720394,
+        "ci95_low": 3472.4857050688242,
+        "mean": 3481.063062120432,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 11.990318371479093
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 2407363072.0,
+        "ci95_low": 2407363072.0,
+        "mean": 2407363072.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -511,13 +575,21 @@
         "non_missing_seed_count": 0,
         "std": null
       },
+      "final_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
       "lm_loss": {
-        "ci95_high": 4.947815170196824,
-        "ci95_low": 4.584105453582472,
-        "mean": 4.765960311889648,
+        "ci95_high": 5.112745314085285,
+        "ci95_low": 4.88414856866618,
+        "mean": 4.998446941375732,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.25421556260090505
+        "std": 0.15977810762496603
       },
       "mean_aux_loss": {
         "ci95_high": null,
@@ -551,13 +623,21 @@
         "non_missing_seed_count": 0,
         "std": null
       },
-      "mtp_loss": {
-        "ci95_high": 5.696179382089553,
-        "ci95_low": 5.321254451986374,
-        "mean": 5.5087169170379635,
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 2.0,
+        "ci95_low": 2.0,
+        "mean": 2.0,
         "metric_group": "mtp",
         "non_missing_seed_count": 10,
-        "std": 0.2620544563024291
+        "std": 0.0
+      },
+      "mtp_loss": {
+        "ci95_high": 6.846909402628871,
+        "ci95_low": 6.6604823362627315,
+        "mean": 6.753695869445801,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.1303035343720431
       },
       "mtp_loss_weight": {
         "ci95_high": 0.3,
@@ -567,18 +647,10 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 2.0,
-        "ci95_low": 2.0,
-        "mean": 2.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 3432570368.0,
-        "ci95_low": 3432570368.0,
-        "mean": 3432570368.0,
+        "ci95_high": 3488620032.0,
+        "ci95_low": 3488620032.0,
+        "mean": 3488620032.0,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
         "std": 0.0
@@ -608,20 +680,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 5.225371337281897,
-        "ci95_low": 5.135541451109217,
-        "mean": 5.180456394195557,
+        "ci95_high": 5.012558132200832,
+        "ci95_low": 4.982917016000158,
+        "mean": 4.997737574100495,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.06278676100362918
+        "std": 0.020717711644374304
       },
       "test_perplexity": {
-        "ci95_high": 185.93218209116165,
-        "ci95_low": 170.21918717872072,
-        "mean": 178.07568463494118,
+        "ci95_high": 150.30303660395532,
+        "ci95_low": 145.9097290893808,
+        "mean": 148.10638284666805,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 10.982626142063609
+        "std": 3.070710213333559
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.07336747783330798,
@@ -656,20 +728,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 6.6556943966156465,
-        "ci95_low": 6.181456463217118,
-        "mean": 6.418575429916382,
+        "ci95_high": 7.161492936130724,
+        "ci95_low": 6.88761852550868,
+        "mean": 7.024555730819702,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.3314694591275605
+        "std": 0.19142501340456908
       },
       "train_tokens_per_second": {
-        "ci95_high": 3754.2386354702217,
-        "ci95_low": 3717.514445665072,
-        "mean": 3735.8765405676468,
+        "ci95_high": 3625.422094681127,
+        "ci95_low": 3613.3078333490134,
+        "mean": 3619.36496401507,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 25.668438718885046
+        "std": 8.467284813573219
       },
       "trainable_parameters": {
         "ci95_high": 136305408.0,
@@ -680,20 +752,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 4.940439778911823,
-        "ci95_low": 4.828165359866863,
-        "mean": 4.884302569389343,
+        "ci95_high": 5.037495904435779,
+        "ci95_low": 5.006650719175671,
+        "mean": 5.022073311805725,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.07847440774717546
+        "std": 0.021559297885742765
       },
       "validation_perplexity": {
-        "ci95_high": 139.81107773712958,
-        "ci95_low": 125.30636032833607,
-        "mean": 132.55871903273282,
+        "ci95_high": 154.09261429232274,
+        "ci95_low": 149.42187324236036,
+        "mean": 151.75724376734155,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 10.13809840102052
+        "std": 3.2646228834142463
       }
     },
     "model": "mtp_121m"
@@ -704,8 +776,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 0.3569836280607991,
       "activated_to_trainable_parameter_ratio_mean": 0.3569836280607991,
-      "peak_memory_gib_mean": 4.2918144226074215,
-      "test_minus_validation_loss_gap_mean": 0.28490522193908685,
+      "peak_memory_gib_mean": 4.336396980285644,
+      "test_minus_validation_loss_gap_mean": -0.02650884580612267,
       "total_to_activated_parameter_ratio_mean": 2.8012489128204128
     },
     "mechanism": {
@@ -728,6 +800,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 2103.2554627549935,
+        "ci95_low": 2081.7291369789727,
+        "mean": 2092.492299866983,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 15.045864237066443
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 3799363446.9098554,
+        "ci95_low": 3795058620.2901444,
+        "mean": 3797211033.6,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 3008866.33223889
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -744,29 +832,37 @@
         "non_missing_seed_count": 0,
         "std": null
       },
-      "lm_loss": {
-        "ci95_high": 4.901968747854622,
-        "ci95_low": 4.54367000412902,
-        "mean": 4.722819375991821,
+      "final_aux_loss": {
+        "ci95_high": 0.12254019405975139,
+        "ci95_low": 0.12160385522709097,
+        "mean": 0.12207202464342118,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.2504335533383084
+        "std": 0.0006544557163487522
+      },
+      "lm_loss": {
+        "ci95_high": 5.075483751830174,
+        "ci95_low": 4.837599038544581,
+        "mean": 4.956541395187378,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.1662699495217881
       },
       "mean_aux_loss": {
-        "ci95_high": 0.01044957351229569,
-        "ci95_low": 0.010330333585744296,
-        "mean": 0.010389953549019993,
+        "ci95_high": 0.010065145969934857,
+        "ci95_low": 0.010051554714513357,
+        "mean": 0.010058350342224107,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 8.334296178535907e-05
+        "std": 9.499632497014543e-06
       },
       "mean_expert_load_variance": {
-        "ci95_high": 0.00044219767135440254,
-        "ci95_low": 0.0003603199265584082,
-        "mean": 0.00040125879895640536,
+        "ci95_high": 6.78882224340949e-05,
+        "ci95_low": 5.708362602726815e-05,
+        "mean": 6.248592423068153e-05,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 5.722859744183616e-05
+        "std": 7.55189215126071e-06
       },
       "mean_router_probability": {
         "ci95_high": null,
@@ -777,12 +873,20 @@
         "std": null
       },
       "mean_routing_entropy": {
-        "ci95_high": 1.5819610804260438,
-        "ci95_low": 1.5441586385229562,
-        "mean": 1.5630598594745,
+        "ci95_high": 1.5820634196429288,
+        "ci95_low": 1.5635968869399195,
+        "mean": 1.5728301532914242,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 0.02642208496802707
+        "std": 0.012907216348473834
+      },
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
       },
       "mtp_loss": {
         "ci95_high": null,
@@ -800,21 +904,13 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 0.0,
-        "ci95_low": 0.0,
-        "mean": 0.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 4610257581.68004,
-        "ci95_low": 4606343711.119959,
-        "mean": 4608300646.4,
+        "ci95_high": 4658481004.271295,
+        "ci95_low": 4653860602.128705,
+        "mean": 4656170803.2,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 2735606.8890317637
+        "std": 3229438.4132889044
       },
       "requested_tokens_per_activated_parameter": {
         "ci95_high": 0.12724480189714873,
@@ -841,20 +937,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 5.182614614341648,
-        "ci95_low": 5.087518272544949,
-        "mean": 5.135066443443298,
+        "ci95_high": 4.951597579526954,
+        "ci95_low": 4.935533779573387,
+        "mean": 4.94356567955017,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.06646775966331733
+        "std": 0.011227821958450764
       },
       "test_perplexity": {
-        "ci95_high": 178.01158367976475,
-        "ci95_low": 162.39947898753283,
-        "mean": 170.2055313336488,
+        "ci95_high": 141.40082052951675,
+        "ci95_low": 139.15409310292262,
+        "mean": 140.27745681621968,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 10.912108740631227
+        "std": 1.5703541881673744
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.12724968809754159,
@@ -889,20 +985,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 5.023901459468174,
-        "ci95_low": 4.665782645451259,
-        "mean": 4.844842052459716,
+        "ci95_high": 5.197743669652484,
+        "ci95_low": 4.9594833696846745,
+        "mean": 5.078613519668579,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.25030779114380936
+        "std": 0.16653246651092377
       },
       "train_tokens_per_second": {
-        "ci95_high": 3036.9654008949583,
-        "ci95_low": 3011.0265189186075,
-        "mean": 3023.995959906783,
+        "ci95_high": 2191.5918551819946,
+        "ci95_low": 2169.290924599121,
+        "mean": 2180.4413898905577,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 18.130028354035698
+        "std": 15.58727566429059
       },
       "trainable_parameters": {
         "ci95_high": 220146432.0,
@@ -913,20 +1009,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 4.90393612170224,
-        "ci95_low": 4.796386321306183,
-        "mean": 4.850161221504211,
+        "ci95_high": 4.976490525578666,
+        "ci95_low": 4.96365852513392,
+        "mean": 4.970074525356293,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.07517212701878057
+        "std": 0.00896894986123004
       },
       "validation_perplexity": {
-        "ci95_high": 134.72176788969364,
-        "ci95_low": 121.43528252555353,
-        "mean": 128.07852520762358,
+        "ci95_high": 144.96759122349957,
+        "ci95_low": 143.11808411974172,
+        "mean": 144.04283767162065,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 9.286612915582165
+        "std": 1.2927163268907267
       }
     },
     "model": "moe_220m"
@@ -937,8 +1033,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 0.4018555717452045,
       "activated_to_trainable_parameter_ratio_mean": 0.4018555717452045,
-      "peak_memory_gib_mean": 4.598430061340332,
-      "test_minus_validation_loss_gap_mean": 0.3406687812805176,
+      "peak_memory_gib_mean": 4.64429931640625,
+      "test_minus_validation_loss_gap_mean": -0.024127675056456965,
       "total_to_activated_parameter_ratio_mean": 2.4884562273384314
     },
     "mechanism": {
@@ -961,6 +1057,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 1963.5783551687261,
+        "ci95_low": 1948.9982185224214,
+        "mean": 1956.2882868455738,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 10.190812813143724
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 4097308098.1095467,
+        "ci95_low": 4092564234.6904535,
+        "mean": 4094936166.4,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 3315731.8952391925
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -977,29 +1089,37 @@
         "non_missing_seed_count": 0,
         "std": null
       },
-      "lm_loss": {
-        "ci95_high": 5.175141517096328,
-        "ci95_low": 4.864304741448594,
-        "mean": 5.019723129272461,
+      "final_aux_loss": {
+        "ci95_high": 0.12247477160028085,
+        "ci95_low": 0.1218142168111457,
+        "mean": 0.12214449420571327,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.21725992512354636
+        "std": 0.00046169596158127286
+      },
+      "lm_loss": {
+        "ci95_high": 5.111026133344197,
+        "ci95_low": 4.894878064348674,
+        "mean": 5.0029520988464355,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.15107708277988754
       },
       "mean_aux_loss": {
-        "ci95_high": 0.010377282504820281,
-        "ci95_low": 0.010297610149822181,
-        "mean": 0.010337446327321231,
+        "ci95_high": 0.01006269259930999,
+        "ci95_low": 0.010044417726201701,
+        "mean": 0.010053555162755846,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 5.5687136263825355e-05
+        "std": 1.2773255528967675e-05
       },
       "mean_expert_load_variance": {
-        "ci95_high": 0.0004334162992642776,
-        "ci95_low": 0.0003621249011830067,
-        "mean": 0.00039777060022364215,
+        "ci95_high": 6.414606202314278e-05,
+        "ci95_low": 5.7561541643374703e-05,
+        "mean": 6.085380183325875e-05,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 4.982925130661799e-05
+        "std": 4.602262398655472e-06
       },
       "mean_router_probability": {
         "ci95_high": null,
@@ -1010,12 +1130,20 @@
         "std": null
       },
       "mean_routing_entropy": {
-        "ci95_high": 1.677055557947284,
-        "ci95_low": 1.6282247698496521,
-        "mean": 1.652640163898468,
+        "ci95_high": 1.4995501592717402,
+        "ci95_low": 1.4675814828711917,
+        "mean": 1.483565821071466,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 0.03413036743708281
+        "std": 0.022344564045257087
+      },
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
       },
       "mtp_loss": {
         "ci95_high": null,
@@ -1033,21 +1161,13 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 0.0,
-        "ci95_low": 0.0,
-        "mean": 0.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 4938975511.85303,
-        "ci95_low": 4936077851.346971,
-        "mean": 4937526681.6,
+        "ci95_high": 4989721208.587585,
+        "ci95_low": 4983835629.812414,
+        "mean": 4986778419.2,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 2025325.0384163691
+        "std": 4113735.903153207
       },
       "requested_tokens_per_activated_parameter": {
         "ci95_high": 0.1051483314894522,
@@ -1074,20 +1194,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 5.488946457452821,
-        "ci95_low": 5.411850236349059,
-        "mean": 5.45039834690094,
+        "ci95_high": 5.013896631708183,
+        "ci95_low": 4.981128982076608,
+        "mean": 4.997512806892395,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.05388654283074334
+        "std": 0.022903007826520275
       },
       "test_perplexity": {
-        "ci95_high": 241.90097597971078,
-        "ci95_low": 224.39885210189942,
-        "mean": 233.1499140408051,
+        "ci95_high": 150.50981420873416,
+        "ci95_low": 145.6491347618088,
+        "mean": 148.07947448527148,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 12.233141060199488
+        "std": 3.3973806686418166
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.10515236918538137,
@@ -1122,20 +1242,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 5.296873167494681,
-        "ci95_low": 4.986184999009225,
-        "mean": 5.141529083251953,
+        "ci95_high": 5.2330284562231055,
+        "ci95_low": 5.017164662825967,
+        "mean": 5.125096559524536,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.2171560558793665
+        "std": 0.15087838783753227
       },
       "train_tokens_per_second": {
-        "ci95_high": 2729.3691315328056,
-        "ci95_low": 2709.3994375520556,
-        "mean": 2719.3842845424306,
+        "ci95_high": 2047.3830079714273,
+        "ci95_low": 2032.5291382900898,
+        "mean": 2039.9560731307586,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 13.9578536354226
+        "std": 10.382139011825329
       },
       "trainable_parameters": {
         "ci95_high": 236661504.0,
@@ -1146,20 +1266,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 5.164722760608092,
-        "ci95_low": 5.054736370632752,
-        "mean": 5.109729565620422,
+        "ci95_high": 5.038415616297492,
+        "ci95_low": 5.004865347600212,
+        "mean": 5.021640481948852,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.07687518570110208
+        "std": 0.02345002083442792
       },
       "validation_perplexity": {
-        "ci95_high": 175.24134766169664,
-        "ci95_low": 156.89421020166475,
-        "mean": 166.0677789316807,
+        "ci95_high": 154.24596684741095,
+        "ci95_low": 149.1489644444855,
+        "mean": 151.69746564594823,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 12.82376482799225
+        "std": 3.562559025091323
       }
     },
     "model": "mla_moe_220m"
@@ -1170,8 +1290,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 0.3569836280607991,
       "activated_to_trainable_parameter_ratio_mean": 0.3569836280607991,
-      "peak_memory_gib_mean": 4.300116443634034,
-      "test_minus_validation_loss_gap_mean": 0.28053966808319064,
+      "peak_memory_gib_mean": 4.335570335388184,
+      "test_minus_validation_loss_gap_mean": -0.027873629570007274,
       "total_to_activated_parameter_ratio_mean": 2.8012489128204128
     },
     "mechanism": {
@@ -1194,6 +1314,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 2144.4108711550894,
+        "ci95_low": 1977.8885068618379,
+        "mean": 2061.1496890084636,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 116.39110694787351
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 3798816482.464172,
+        "ci95_low": 3793778359.1358285,
+        "mean": 3796297420.8,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 3521405.389688005
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -1210,13 +1346,21 @@
         "non_missing_seed_count": 0,
         "std": null
       },
-      "lm_loss": {
-        "ci95_high": 4.9324865208935655,
-        "ci95_low": 4.568455900065906,
-        "mean": 4.750471210479736,
+      "final_aux_loss": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.2544398591797431
+        "std": 0.0
+      },
+      "lm_loss": {
+        "ci95_high": 5.077423935007433,
+        "ci95_low": 4.846796436238906,
+        "mean": 4.962110185623169,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.16119750634225188
       },
       "mean_aux_loss": {
         "ci95_high": 0.0,
@@ -1227,12 +1371,12 @@
         "std": 0.0
       },
       "mean_expert_load_variance": {
-        "ci95_high": 0.0008037337643717872,
-        "ci95_low": 0.0006601424241765721,
-        "mean": 0.0007319380942741796,
+        "ci95_high": 8.679082511359914e-05,
+        "ci95_low": 6.512526076540886e-05,
+        "mean": 7.5958042939504e-05,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 0.00010036342628440009
+        "std": 1.5143185288286503e-05
       },
       "mean_router_probability": {
         "ci95_high": null,
@@ -1243,12 +1387,20 @@
         "std": null
       },
       "mean_routing_entropy": {
-        "ci95_high": 1.4452177025623363,
-        "ci95_low": 1.4022578956934573,
-        "mean": 1.4237377991278968,
+        "ci95_high": 1.3190846720006313,
+        "ci95_low": 1.2931612243387853,
+        "mean": 1.3061229481697083,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 0.030026834515334486
+        "std": 0.018119240512067387
+      },
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
       },
       "mtp_loss": {
         "ci95_high": null,
@@ -1266,21 +1418,13 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 0.0,
-        "ci95_low": 0.0,
-        "mean": 0.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 4619610358.717049,
-        "ci95_low": 4614819388.482952,
-        "mean": 4617214873.6,
+        "ci95_high": 4657826205.194541,
+        "ci95_low": 4652740194.805459,
+        "mean": 4655283200.0,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 3348657.2885720166
+        "std": 3554876.1371839666
       },
       "requested_tokens_per_activated_parameter": {
         "ci95_high": 0.12724480189714873,
@@ -1307,20 +1451,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 5.2181733523255165,
-        "ci95_low": 5.102238146697921,
-        "mean": 5.160205749511719,
+        "ci95_high": 4.960507833532156,
+        "ci95_low": 4.942515701242624,
+        "mean": 4.95151176738739,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.08103312113358005
+        "std": 0.012575633323602217
       },
       "test_perplexity": {
-        "ci95_high": 184.90374479646414,
-        "ci95_low": 164.53168767843664,
-        "mean": 174.7177162374504,
+        "ci95_high": 142.66344876386998,
+        "ci95_low": 140.13369839106045,
+        "mean": 141.3985735774652,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 14.239086076131436
+        "std": 1.7681735870298778
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.12724968809754159,
@@ -1355,20 +1499,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 4.9324865208935655,
-        "ci95_low": 4.568455900065906,
-        "mean": 4.750471210479736,
+        "ci95_high": 5.077423935007433,
+        "ci95_low": 4.846796436238906,
+        "mean": 4.962110185623169,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.2544398591797431
+        "std": 0.16119750634225188
       },
       "train_tokens_per_second": {
-        "ci95_high": 3063.002028343508,
-        "ci95_low": 3036.000465895054,
-        "mean": 3049.501247119281,
+        "ci95_high": 2232.527166343091,
+        "ci95_low": 2062.172325036446,
+        "mean": 2147.3497456897685,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 18.87279078720787
+        "std": 119.06982367060492
       },
       "trainable_parameters": {
         "ci95_high": 220146432.0,
@@ -1379,20 +1523,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 4.935166372766863,
-        "ci95_low": 4.824165790090193,
-        "mean": 4.879666081428528,
+        "ci95_high": 4.989413953047413,
+        "ci95_low": 4.969356840867381,
+        "mean": 4.979385396957397,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.07758405751941533
+        "std": 0.014018954743522914
       },
       "validation_perplexity": {
-        "ci95_high": 139.2211809377534,
-        "ci95_low": 124.66317831895005,
-        "mean": 131.9421796283517,
+        "ci95_high": 146.85840878083837,
+        "ci95_low": 143.93733560042295,
+        "mean": 145.39787219063066,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 10.1753421946894
+        "std": 2.0416893693964413
       }
     },
     "model": "v3_routing_220m"
@@ -1403,8 +1547,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 1.0,
       "activated_to_trainable_parameter_ratio_mean": 1.0,
-      "peak_memory_gib_mean": 2.830739974975586,
-      "test_minus_validation_loss_gap_mean": 0.2111630433400471,
+      "peak_memory_gib_mean": 2.8780574798583984,
+      "test_minus_validation_loss_gap_mean": -0.03678927826881484,
       "total_to_activated_parameter_ratio_mean": 1.0
     },
     "mechanism": {
@@ -1427,6 +1571,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 4110.592437632287,
+        "ci95_low": 4093.711955347855,
+        "mean": 4102.152196490071,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 11.798643546995695
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 2155770368.0,
+        "ci95_low": 2155770368.0,
+        "mean": 2155770368.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -1443,13 +1603,21 @@
         "non_missing_seed_count": 0,
         "std": null
       },
+      "final_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
       "lm_loss": {
-        "ci95_high": 4.50239735617063,
-        "ci95_low": 4.287749852996851,
-        "mean": 4.39507360458374,
+        "ci95_high": 4.758722149729873,
+        "ci95_low": 4.479416239857529,
+        "mean": 4.619069194793701,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.1500282595915907
+        "std": 0.19522136960460273
       },
       "mean_aux_loss": {
         "ci95_high": null,
@@ -1483,6 +1651,14 @@
         "non_missing_seed_count": 0,
         "std": null
       },
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
       "mtp_loss": {
         "ci95_high": null,
         "ci95_low": null,
@@ -1499,18 +1675,10 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 0.0,
-        "ci95_low": 0.0,
-        "mean": 0.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 3039483904.0,
-        "ci95_low": 3039483904.0,
-        "mean": 3039483904.0,
+        "ci95_high": 3090290688.0,
+        "ci95_low": 3090290688.0,
+        "mean": 3090290688.0,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
         "std": 0.0
@@ -1540,20 +1708,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 4.786274234669674,
-        "ci95_low": 4.67190569442782,
-        "mean": 4.729089964548747,
+        "ci95_high": 4.567784925369559,
+        "ci95_low": 4.552270220370949,
+        "mean": 4.560027572870254,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.07993809753577513
+        "std": 0.01084403104905481
       },
       "test_perplexity": {
-        "ci95_high": 120.1005119708395,
-        "ci95_low": 106.94217787665755,
-        "mean": 113.52134492374853,
+        "ci95_high": 96.33864717315848,
+        "ci95_low": 94.84375365396065,
+        "mean": 95.59120041355956,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 9.19704135424558
+        "std": 1.044858522199651
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.20671276746612816,
@@ -1588,20 +1756,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 4.50239735617063,
-        "ci95_low": 4.287749852996851,
-        "mean": 4.39507360458374,
+        "ci95_high": 4.758722149729873,
+        "ci95_low": 4.479416239857529,
+        "mean": 4.619069194793701,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.1500282595915907
+        "std": 0.19522136960460273
       },
       "train_tokens_per_second": {
-        "ci95_high": 4349.8668847749495,
-        "ci95_low": 4334.513632253952,
-        "mean": 4342.190258514451,
+        "ci95_high": 4197.025001176719,
+        "ci95_low": 4178.731140944631,
+        "mean": 4187.878071060675,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 10.731183548548854
+        "std": 12.786526613402419
       },
       "trainable_parameters": {
         "ci95_high": 120945408.0,
@@ -1612,20 +1780,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 4.552767906330238,
-        "ci95_low": 4.4830859360871615,
-        "mean": 4.5179269212087,
+        "ci95_high": 4.60394249689602,
+        "ci95_low": 4.589691205382118,
+        "mean": 4.596816851139069,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.04870433881552292
+        "std": 0.009960965914578087
       },
       "validation_perplexity": {
-        "ci95_high": 94.96904482452928,
-        "ci95_low": 88.51870675868358,
-        "mean": 91.74387579160643,
+        "ci95_high": 99.88444992707905,
+        "ci95_low": 98.46074051263967,
+        "mean": 99.17259521985936,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 4.508475428259416
+        "std": 0.9951042637545773
       }
     },
     "model": "dense_121m"
@@ -1636,8 +1804,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 1.0,
       "activated_to_trainable_parameter_ratio_mean": 1.0,
-      "peak_memory_gib_mean": 3.266996383666992,
-      "test_minus_validation_loss_gap_mean": 0.20779171498616567,
+      "peak_memory_gib_mean": 3.3092098236083984,
+      "test_minus_validation_loss_gap_mean": -0.03740285348892236,
       "total_to_activated_parameter_ratio_mean": 1.0
     },
     "mechanism": {
@@ -1660,6 +1828,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 3591.2346409006077,
+        "ci95_low": 3568.5407786479464,
+        "mean": 3579.887709774277,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 15.861915963782018
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 2471604736.0,
+        "ci95_low": 2471604736.0,
+        "mean": 2471604736.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -1676,13 +1860,21 @@
         "non_missing_seed_count": 0,
         "std": null
       },
+      "final_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
       "lm_loss": {
-        "ci95_high": 4.811395425842325,
-        "ci95_low": 4.574388246490439,
-        "mean": 4.692891836166382,
+        "ci95_high": 4.806068801281105,
+        "ci95_low": 4.548534107807029,
+        "mean": 4.677301454544067,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.16565659559565407
+        "std": 0.18000433862530624
       },
       "mean_aux_loss": {
         "ci95_high": null,
@@ -1716,6 +1908,14 @@
         "non_missing_seed_count": 0,
         "std": null
       },
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
       "mtp_loss": {
         "ci95_high": null,
         "ci95_low": null,
@@ -1732,18 +1932,10 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 0.0,
-        "ci95_low": 0.0,
-        "mean": 0.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 3507910656.0,
-        "ci95_low": 3507910656.0,
-        "mean": 3507910656.0,
+        "ci95_high": 3553236992.0,
+        "ci95_low": 3553236992.0,
+        "mean": 3553236992.0,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
         "std": 0.0
@@ -1773,20 +1965,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 5.058356511943216,
-        "ci95_low": 4.954159386443421,
-        "mean": 5.006257949193318,
+        "ci95_high": 4.615172691267495,
+        "ci95_low": 4.593758903581137,
+        "mean": 4.604465797424316,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.07282876885143451
+        "std": 0.014967205536264919
       },
       "test_perplexity": {
-        "ci95_high": 157.5369036692294,
-        "ci95_low": 141.86815509261794,
-        "mean": 149.70252938092366,
+        "ci95_high": 101.01057935628394,
+        "ci95_low": 98.8687516665615,
+        "mean": 99.93966551142272,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 10.951700085810216
+        "std": 1.4970343278299572
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.18187743851905652,
@@ -1821,20 +2013,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 4.811395425842325,
-        "ci95_low": 4.574388246490439,
-        "mean": 4.692891836166382,
+        "ci95_high": 4.806068801281105,
+        "ci95_low": 4.548534107807029,
+        "mean": 4.677301454544067,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.16565659559565407
+        "std": 0.18000433862530624
       },
       "train_tokens_per_second": {
-        "ci95_high": 3733.565154051015,
-        "ci95_low": 3717.433415281342,
-        "mean": 3725.4992846661785,
+        "ci95_high": 3664.9989269734892,
+        "ci95_low": 3642.4008695011876,
+        "mean": 3653.6998982373384,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 11.275307916536727
+        "std": 15.794953039706941
       },
       "trainable_parameters": {
         "ci95_high": 137460480.0,
@@ -1845,20 +2037,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 4.833960581953224,
-        "ci95_low": 4.762971886461082,
-        "mean": 4.798466234207153,
+        "ci95_high": 4.653499713257768,
+        "ci95_low": 4.6302375885687095,
+        "mean": 4.6418686509132385,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.0496176767858367
+        "std": 0.016259104018910737
       },
       "validation_perplexity": {
-        "ci95_high": 125.81040887375833,
-        "ci95_low": 117.10858018546993,
-        "mean": 121.45949452961413,
+        "ci95_high": 104.96196639056156,
+        "ci95_low": 102.53881527935114,
+        "mean": 103.75039083495635,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 6.082158860758462
+        "std": 1.6936658408181198
       }
     },
     "model": "mla_121m"
@@ -1869,8 +2061,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 1.0,
       "activated_to_trainable_parameter_ratio_mean": 1.0,
-      "peak_memory_gib_mean": 3.1968302726745605,
-      "test_minus_validation_loss_gap_mean": 0.19567571830749486,
+      "peak_memory_gib_mean": 3.249030590057373,
+      "test_minus_validation_loss_gap_mean": -0.0365990233421325,
       "total_to_activated_parameter_ratio_mean": 1.0
     },
     "mechanism": {
@@ -1893,6 +2085,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 3558.72622355161,
+        "ci95_low": 3537.7036168150125,
+        "mean": 3548.2149201833113,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 14.693788905696062
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 2407363072.0,
+        "ci95_low": 2407363072.0,
+        "mean": 2407363072.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -1909,13 +2117,21 @@
         "non_missing_seed_count": 0,
         "std": null
       },
+      "final_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
       "lm_loss": {
-        "ci95_high": 4.496482125619673,
-        "ci95_low": 4.269047316213824,
-        "mean": 4.382764720916748,
+        "ci95_high": 4.740905055903093,
+        "ci95_low": 4.484386291600568,
+        "mean": 4.612645673751831,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.1589659703522372
+        "std": 0.1792942530979992
       },
       "mean_aux_loss": {
         "ci95_high": null,
@@ -1949,13 +2165,21 @@
         "non_missing_seed_count": 0,
         "std": null
       },
-      "mtp_loss": {
-        "ci95_high": 5.376099793623358,
-        "ci95_low": 5.145788557817071,
-        "mean": 5.260944175720215,
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 2.0,
+        "ci95_low": 2.0,
+        "mean": 2.0,
         "metric_group": "mtp",
         "non_missing_seed_count": 10,
-        "std": 0.16097645377422032
+        "std": 0.0
+      },
+      "mtp_loss": {
+        "ci95_high": 6.708759396604016,
+        "ci95_low": 6.51555033392577,
+        "mean": 6.612154865264893,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.1350438229298754
       },
       "mtp_loss_weight": {
         "ci95_high": 0.3,
@@ -1965,18 +2189,10 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 2.0,
-        "ci95_low": 2.0,
-        "mean": 2.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 3432570368.0,
-        "ci95_low": 3432570368.0,
-        "mean": 3432570368.0,
+        "ci95_high": 3488620032.0,
+        "ci95_low": 3488620032.0,
+        "mean": 3488620032.0,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
         "std": 0.0
@@ -2006,20 +2222,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 4.743249822027443,
-        "ci95_low": 4.644951844486635,
-        "mean": 4.694100833257039,
+        "ci95_high": 4.559924098103457,
+        "ci95_low": 4.541945120722838,
+        "mean": 4.550934609413147,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.06870554874277378
+        "std": 0.012566438676283499
       },
       "test_perplexity": {
-        "ci95_high": 115.04505634411358,
-        "ci95_low": 104.02787462545238,
-        "mean": 109.53646548478298,
+        "ci95_high": 95.57721314996644,
+        "ci95_low": 93.87801654727409,
+        "mean": 94.72761484862026,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 7.700479038495244
+        "std": 1.187656530993924
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.18341869458326995,
@@ -2054,20 +2270,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 6.109024882868722,
-        "ci95_low": 5.813071178837822,
-        "mean": 5.961048030853272,
+        "ci95_high": 6.7471832686239335,
+        "ci95_low": 6.445401055259124,
+        "mean": 6.596292161941529,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.2068573753662213
+        "std": 0.21093122248044543
       },
       "train_tokens_per_second": {
-        "ci95_high": 3781.7008226231965,
-        "ci95_low": 3763.991183799776,
-        "mean": 3772.8460032114863,
+        "ci95_high": 3623.4648707817214,
+        "ci95_low": 3603.8783786149925,
+        "mean": 3613.671624698357,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 12.378184005812988
+        "std": 13.690014036173778
       },
       "trainable_parameters": {
         "ci95_high": 136305408.0,
@@ -2078,20 +2294,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 4.525089877334554,
-        "ci95_low": 4.471760352564535,
-        "mean": 4.498425114949544,
+        "ci95_high": 4.596372520789542,
+        "ci95_low": 4.578694744721018,
+        "mean": 4.58753363275528,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.03727476755047511
+        "std": 0.01235591347579422
       },
       "validation_perplexity": {
-        "ci95_high": 92.27230386848662,
-        "ci95_low": 87.58928195228548,
-        "mean": 89.93079291038605,
+        "ci95_high": 99.1222430115141,
+        "ci95_low": 97.39481962577402,
+        "mean": 98.25853131864406,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 3.2732066170279177
+        "std": 1.2073856919294323
       }
     },
     "model": "mtp_121m"
@@ -2102,8 +2318,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 0.3569836280607991,
       "activated_to_trainable_parameter_ratio_mean": 0.3569836280607991,
-      "peak_memory_gib_mean": 4.2918144226074215,
-      "test_minus_validation_loss_gap_mean": 0.2251674620310462,
+      "peak_memory_gib_mean": 4.336396980285644,
+      "test_minus_validation_loss_gap_mean": -0.035916493177413855,
       "total_to_activated_parameter_ratio_mean": 2.8012489128204128
     },
     "mechanism": {
@@ -2126,6 +2342,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 2144.147265444167,
+        "ci95_low": 2133.9486626678854,
+        "mean": 2139.047964056026,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 7.128331809910078
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 3799363446.9098554,
+        "ci95_low": 3795058620.2901444,
+        "mean": 3797211033.6,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 3008866.33223889
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -2142,29 +2374,37 @@
         "non_missing_seed_count": 0,
         "std": null
       },
-      "lm_loss": {
-        "ci95_high": 4.482804787314533,
-        "ci95_low": 4.270213687264324,
-        "mean": 4.3765092372894285,
+      "final_aux_loss": {
+        "ci95_high": 0.12220305609683299,
+        "ci95_low": 0.12152932775040365,
+        "mean": 0.12186619192361832,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.1485909329183886
+        "std": 0.0004709036432186282
+      },
+      "lm_loss": {
+        "ci95_high": 4.757216528475381,
+        "ci95_low": 4.488696977078818,
+        "mean": 4.6229567527771,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.18768222488814973
       },
       "mean_aux_loss": {
-        "ci95_high": 0.010344855010194616,
-        "ci95_low": 0.010269781415355169,
-        "mean": 0.010307318212774893,
+        "ci95_high": 0.010042881607324862,
+        "ci95_low": 0.01002945237955231,
+        "mean": 0.010036166993438586,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 5.247282455425368e-05
+        "std": 9.3863829794668e-06
       },
       "mean_expert_load_variance": {
-        "ci95_high": 0.00043740290430016756,
-        "ci95_low": 0.00035911117765769884,
-        "mean": 0.0003982570409789332,
+        "ci95_high": 5.399359871353429e-05,
+        "ci95_low": 4.3896202152910616e-05,
+        "mean": 4.8944900433222454e-05,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 5.472214358384865e-05
+        "std": 7.057593542888876e-06
       },
       "mean_router_probability": {
         "ci95_high": null,
@@ -2175,12 +2415,20 @@
         "std": null
       },
       "mean_routing_entropy": {
-        "ci95_high": 1.7698827750482353,
-        "ci95_low": 1.7401442461214272,
-        "mean": 1.7550135105848312,
+        "ci95_high": 1.761825293420122,
+        "ci95_low": 1.7417053292608604,
+        "mean": 1.7517653113404912,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 0.02078579844504898
+        "std": 0.014062885247797897
+      },
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
       },
       "mtp_loss": {
         "ci95_high": null,
@@ -2198,21 +2446,13 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 0.0,
-        "ci95_low": 0.0,
-        "mean": 0.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 4610257581.68004,
-        "ci95_low": 4606343711.119959,
-        "mean": 4608300646.4,
+        "ci95_high": 4658481004.271295,
+        "ci95_low": 4653860602.128705,
+        "mean": 4656170803.2,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 2735606.8890317637
+        "std": 3229438.4132889044
       },
       "requested_tokens_per_activated_parameter": {
         "ci95_high": 0.3181120047428718,
@@ -2239,20 +2479,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 4.756839588815477,
-        "ci95_low": 4.655878588979934,
-        "mean": 4.706359088897705,
+        "ci95_high": 4.5454181194796455,
+        "ci95_low": 4.5307391151890855,
+        "mean": 4.5380786173343655,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.07056687298007085
+        "std": 0.010259916531464
       },
       "test_perplexity": {
-        "ci95_high": 116.49134998745443,
-        "ci95_low": 105.30198723113033,
-        "mean": 110.89666860929238,
+        "ci95_high": 94.20333897258101,
+        "ci95_low": 92.827448090064,
+        "mean": 93.5153935313225,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 7.820825285403729
+        "std": 0.9616814145974261
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.31812422024385395,
@@ -2287,20 +2527,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 4.604447198727643,
-        "ci95_low": 4.391625284335101,
-        "mean": 4.498036241531372,
+        "ci95_high": 4.879244818795941,
+        "ci95_low": 4.610401139150836,
+        "mean": 4.744822978973389,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.1487522610193775
+        "std": 0.18790877491223165
       },
       "train_tokens_per_second": {
-        "ci95_high": 3060.2761068203254,
-        "ci95_low": 3043.9309000777694,
-        "mean": 3052.1035034490474,
+        "ci95_high": 2184.4076087390777,
+        "ci95_low": 2174.144868255712,
+        "mean": 2179.276238497395,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 11.424511741303773
+        "std": 7.173160975988702
       },
       "trainable_parameters": {
         "ci95_high": 220146432.0,
@@ -2311,20 +2551,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 4.512414812000252,
-        "ci95_low": 4.449968441733066,
-        "mean": 4.481191626866659,
+        "ci95_high": 4.5844562117000525,
+        "ci95_low": 4.563534009323506,
+        "mean": 4.573995110511779,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.043647003158536764
+        "std": 0.014623611097096915
       },
       "validation_perplexity": {
-        "ci95_high": 91.20252459444495,
-        "ci95_low": 85.62970215276815,
-        "mean": 88.41611337360655,
+        "ci95_high": 97.95529877257839,
+        "ci95_low": 95.92454475408242,
+        "mean": 96.9399217633304,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 3.8951342996095146
+        "std": 1.4193991849367933
       }
     },
     "model": "moe_220m"
@@ -2335,8 +2575,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 0.4018555717452045,
       "activated_to_trainable_parameter_ratio_mean": 0.4018555717452045,
-      "peak_memory_gib_mean": 4.598430061340332,
-      "test_minus_validation_loss_gap_mean": 0.21862693150838197,
+      "peak_memory_gib_mean": 4.64429931640625,
+      "test_minus_validation_loss_gap_mean": -0.03472757482528621,
       "total_to_activated_parameter_ratio_mean": 2.4884562273384314
     },
     "mechanism": {
@@ -2359,6 +2599,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 2008.0850475754976,
+        "ci95_low": 1994.8856911116525,
+        "mean": 2001.485369343575,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 9.22571401353052
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 4097479924.2796617,
+        "ci95_low": 4093257483.7203383,
+        "mean": 4095368704.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 2951282.446697518
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -2375,29 +2631,37 @@
         "non_missing_seed_count": 0,
         "std": null
       },
-      "lm_loss": {
-        "ci95_high": 4.791198256301373,
-        "ci95_low": 4.562964341354878,
-        "mean": 4.677081298828125,
+      "final_aux_loss": {
+        "ci95_high": 0.12226645513177684,
+        "ci95_low": 0.12140021012424657,
+        "mean": 0.1218333326280117,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.15952450661154802
+        "std": 0.0006054635108168729
+      },
+      "lm_loss": {
+        "ci95_high": 4.794600047965592,
+        "ci95_low": 4.514573249916487,
+        "mean": 4.65458664894104,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.19572523569631328
       },
       "mean_aux_loss": {
-        "ci95_high": 0.010283568736053753,
-        "ci95_low": 0.010221054527399694,
-        "mean": 0.010252311631726723,
+        "ci95_high": 0.010039822301802866,
+        "ci95_low": 0.010029922051838459,
+        "mean": 0.010034872176820663,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 4.369441892142911e-05
+        "std": 6.919797573788412e-06
       },
       "mean_expert_load_variance": {
-        "ci95_high": 0.00038704618191852885,
-        "ci95_low": 0.00032960760814688836,
-        "mean": 0.0003583268950327086,
+        "ci95_high": 5.3245492616577293e-05,
+        "ci95_low": 4.5177927574233864e-05,
+        "mean": 4.921171009540558e-05,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 4.0146794763346136e-05
+        "std": 5.63883914114216e-06
       },
       "mean_router_probability": {
         "ci95_high": null,
@@ -2408,12 +2672,20 @@
         "std": null
       },
       "mean_routing_entropy": {
-        "ci95_high": 1.7898251285579903,
-        "ci95_low": 1.7507262388440863,
-        "mean": 1.7702756837010383,
+        "ci95_high": 1.6577919091061148,
+        "ci95_low": 1.633811454238952,
+        "mean": 1.6458016816725334,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 0.027328239504335144
+        "std": 0.01676118219284569
+      },
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
       },
       "mtp_loss": {
         "ci95_high": null,
@@ -2431,21 +2703,13 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 0.0,
-        "ci95_low": 0.0,
-        "mean": 0.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 4938975511.85303,
-        "ci95_low": 4936077851.346971,
-        "mean": 4937526681.6,
+        "ci95_high": 4989721208.587585,
+        "ci95_low": 4983835629.812414,
+        "mean": 4986778419.2,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 2025325.0384163691
+        "std": 4113735.903153207
       },
       "requested_tokens_per_activated_parameter": {
         "ci95_high": 0.2628708287236305,
@@ -2472,20 +2736,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 5.049517736094443,
-        "ci95_low": 4.925615343434365,
-        "mean": 4.987566539764404,
+        "ci95_high": 4.59022478441442,
+        "ci95_low": 4.570650864084116,
+        "mean": 4.580437824249268,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.08660180088363634
+        "std": 0.01368122692842284
       },
       "test_perplexity": {
-        "ci95_high": 155.9698241819263,
-        "ci95_low": 138.16400413866694,
-        "mean": 147.06691416029662,
+        "ci95_high": 98.52508879813654,
+        "ci95_low": 96.60559733790832,
+        "mean": 97.56534306802243,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 12.445410042941464
+        "std": 1.3416320191053444
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.26288092296345345,
@@ -2520,20 +2784,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 4.9123186880440155,
-        "ci95_low": 4.684275836339529,
-        "mean": 4.798297262191772,
+        "ci95_high": 4.91669181870397,
+        "ci95_low": 4.636147937307993,
+        "mean": 4.7764198780059814,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.15939096261384716
+        "std": 0.19608665203448503
       },
       "train_tokens_per_second": {
-        "ci95_high": 2744.6985125334,
-        "ci95_low": 2733.2344920648343,
-        "mean": 2738.966502299117,
+        "ci95_high": 2046.5988679275924,
+        "ci95_low": 2034.3481392243443,
+        "mean": 2040.4735035759684,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 8.0127977888885
+        "std": 8.562668928829908
       },
       "trainable_parameters": {
         "ci95_high": 236661504.0,
@@ -2544,20 +2808,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 4.800208446553135,
-        "ci95_low": 4.737670769958909,
-        "mean": 4.768939608256022,
+        "ci95_high": 4.6227798924718035,
+        "ci95_low": 4.6075509056773045,
+        "mean": 4.615165399074554,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.043710821880548506
+        "std": 0.01064432779482354
       },
       "validation_perplexity": {
-        "ci95_high": 121.56789695522194,
-        "ci95_low": 114.22272656608824,
-        "mean": 117.89531176065509,
+        "ci95_high": 101.78328990838443,
+        "ci95_low": 100.23611587850272,
+        "mean": 101.00970289344357,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 5.133920094999872
+        "std": 1.0814000794620755
       }
     },
     "model": "mla_moe_220m"
@@ -2568,8 +2832,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 0.3569836280607991,
       "activated_to_trainable_parameter_ratio_mean": 0.3569836280607991,
-      "peak_memory_gib_mean": 4.300116443634034,
-      "test_minus_validation_loss_gap_mean": 0.21317553615570084,
+      "peak_memory_gib_mean": 4.3357728004455565,
+      "test_minus_validation_loss_gap_mean": -0.03693331837654057,
       "total_to_activated_parameter_ratio_mean": 2.8012489128204128
     },
     "mechanism": {
@@ -2592,6 +2856,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 2146.566626003154,
+        "ci95_low": 2133.844926088377,
+        "mean": 2140.2057760457656,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 8.891855106812793
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 3798816482.464172,
+        "ci95_low": 3793778359.1358285,
+        "mean": 3796297420.8,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 3521405.389688005
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -2608,13 +2888,21 @@
         "non_missing_seed_count": 0,
         "std": null
       },
-      "lm_loss": {
-        "ci95_high": 4.467848665168382,
-        "ci95_low": 4.2666700535511,
-        "mean": 4.367259359359741,
+      "final_aux_loss": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.14061415353877937
+        "std": 0.0
+      },
+      "lm_loss": {
+        "ci95_high": 4.734120757343673,
+        "ci95_low": 4.471422760722733,
+        "mean": 4.602771759033203,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.18361323867498638
       },
       "mean_aux_loss": {
         "ci95_high": 0.0,
@@ -2625,12 +2913,12 @@
         "std": 0.0
       },
       "mean_expert_load_variance": {
-        "ci95_high": 0.0007380271410177279,
-        "ci95_low": 0.0005956883768128414,
-        "mean": 0.0006668577589152846,
+        "ci95_high": 6.0300674853074466e-05,
+        "ci95_low": 4.353032368685015e-05,
+        "mean": 5.191549926996231e-05,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 9.948793603617185e-05
+        "std": 1.1721667203235315e-05
       },
       "mean_router_probability": {
         "ci95_high": null,
@@ -2641,12 +2929,20 @@
         "std": null
       },
       "mean_routing_entropy": {
-        "ci95_high": 1.7000062213738698,
-        "ci95_low": 1.6679690434138041,
-        "mean": 1.683987632393837,
+        "ci95_high": 1.5905395276381713,
+        "ci95_low": 1.5653771103983976,
+        "mean": 1.5779583190182844,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 0.02239244333386626
+        "std": 0.017587316925575195
+      },
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
       },
       "mtp_loss": {
         "ci95_high": null,
@@ -2664,21 +2960,13 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 0.0,
-        "ci95_low": 0.0,
-        "mean": 0.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 4619610358.717049,
-        "ci95_low": 4614819388.482952,
-        "mean": 4617214873.6,
+        "ci95_high": 4658108949.639998,
+        "ci95_low": 4652892240.760001,
+        "mean": 4655500595.2,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 3348657.2885720166
+        "std": 3646228.083204304
       },
       "requested_tokens_per_activated_parameter": {
         "ci95_high": 0.3181120047428718,
@@ -2705,20 +2993,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 4.772872836130327,
-        "ci95_low": 4.647207304301395,
-        "mean": 4.710040070215861,
+        "ci95_high": 4.5422670669568355,
+        "ci95_low": 4.535616480349226,
+        "mean": 4.538941773653031,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.08783415018660952
+        "std": 0.004648439507796491
       },
       "test_perplexity": {
-        "ci95_high": 118.55800051111353,
-        "ci95_low": 104.33557587072721,
-        "mean": 111.44678819092037,
+        "ci95_high": 93.90378908392813,
+        "ci95_low": 93.28144379993927,
+        "mean": 93.5926164419337,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 9.940789361254346
+        "std": 0.4349893590250171
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.31812422024385395,
@@ -2753,20 +3041,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 4.467848665168382,
-        "ci95_low": 4.2666700535511,
-        "mean": 4.367259359359741,
+        "ci95_high": 4.734120757343673,
+        "ci95_low": 4.471422760722733,
+        "mean": 4.602771759033203,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.14061415353877937
+        "std": 0.18361323867498638
       },
       "train_tokens_per_second": {
-        "ci95_high": 3071.956154996644,
-        "ci95_low": 3062.9517006204032,
-        "mean": 3067.4539278085235,
+        "ci95_high": 2186.7015740418096,
+        "ci95_low": 2173.6028565683578,
+        "mean": 2180.1522153050837,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 6.293679631323772
+        "std": 9.155372209631366
       },
       "trainable_parameters": {
         "ci95_high": 220146432.0,
@@ -2777,20 +3065,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 4.527893260380271,
-        "ci95_low": 4.465835807740049,
-        "mean": 4.49686453406016,
+        "ci95_high": 4.580805919343902,
+        "ci95_low": 4.570944264715241,
+        "mean": 4.575875092029571,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.0433751684815191
+        "std": 0.006892821294238323
       },
       "validation_perplexity": {
-        "ci95_high": 92.51734898537084,
-        "ci95_low": 87.10239601993415,
-        "mean": 89.8098725026525,
+        "ci95_high": 97.59431098866357,
+        "ci95_low": 96.63581337214224,
+        "mean": 97.1150621804029,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 3.784791144377163
+        "std": 0.669943638305264
       }
     },
     "model": "v3_routing_220m"
@@ -2801,8 +3089,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 1.0,
       "activated_to_trainable_parameter_ratio_mean": 1.0,
-      "peak_memory_gib_mean": 2.830739974975586,
-      "test_minus_validation_loss_gap_mean": 0.1669626007080076,
+      "peak_memory_gib_mean": 2.8780574798583984,
+      "test_minus_validation_loss_gap_mean": -0.038374535560608436,
       "total_to_activated_parameter_ratio_mean": 1.0
     },
     "mechanism": {
@@ -2825,6 +3113,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 4148.479913516792,
+        "ci95_low": 4140.978537655599,
+        "mean": 4144.729225586196,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 5.24310019150849
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 2155770368.0,
+        "ci95_low": 2155770368.0,
+        "mean": 2155770368.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -2841,13 +3145,21 @@
         "non_missing_seed_count": 0,
         "std": null
       },
+      "final_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
       "lm_loss": {
-        "ci95_high": 4.4534910581740865,
-        "ci95_low": 4.047119245704697,
-        "mean": 4.250305151939392,
+        "ci95_high": 4.688449236861227,
+        "ci95_low": 4.392590191849711,
+        "mean": 4.540519714355469,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.28403431146601127
+        "std": 0.20679121327384725
       },
       "mean_aux_loss": {
         "ci95_high": null,
@@ -2881,6 +3193,14 @@
         "non_missing_seed_count": 0,
         "std": null
       },
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
       "mtp_loss": {
         "ci95_high": null,
         "ci95_low": null,
@@ -2897,18 +3217,10 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 0.0,
-        "ci95_low": 0.0,
-        "mean": 0.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 3039483904.0,
-        "ci95_low": 3039483904.0,
-        "mean": 3039483904.0,
+        "ci95_high": 3090290688.0,
+        "ci95_low": 3090290688.0,
+        "mean": 3090290688.0,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
         "std": 0.0
@@ -2938,20 +3250,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 4.521088915308502,
-        "ci95_low": 4.443395260373567,
-        "mean": 4.482242087841034,
+        "ci95_high": 4.3836584016612,
+        "ci95_low": 4.374191678828912,
+        "mean": 4.378925040245056,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.054304120284879326
+        "std": 0.006616783002662383
       },
       "test_perplexity": {
-        "ci95_high": 92.04660588866703,
-        "ci95_low": 85.05611149732427,
-        "mean": 88.55135869299565,
+        "ci95_high": 80.13121842369836,
+        "ci95_low": 79.37643719128997,
+        "mean": 79.75382780749416,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 4.886018666468451
+        "std": 0.5275557041022199
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.41341706830241953,
@@ -2986,20 +3298,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 4.4534910581740865,
-        "ci95_low": 4.047119245704697,
-        "mean": 4.250305151939392,
+        "ci95_high": 4.688449236861227,
+        "ci95_low": 4.392590191849711,
+        "mean": 4.540519714355469,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.28403431146601127
+        "std": 0.20679121327384725
       },
       "train_tokens_per_second": {
-        "ci95_high": 4366.657548750769,
-        "ci95_low": 4305.420573609037,
-        "mean": 4336.039061179903,
+        "ci95_high": 4200.966743046278,
+        "ci95_low": 4192.875566932169,
+        "mean": 4196.921154989223,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 42.80169425371493
+        "std": 5.655342142349277
       },
       "trainable_parameters": {
         "ci95_high": 120945408.0,
@@ -3010,20 +3322,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 4.349902019831542,
-        "ci95_low": 4.280656954434511,
-        "mean": 4.315279487133027,
+        "ci95_high": 4.421484939309213,
+        "ci95_low": 4.413114212302116,
+        "mean": 4.417299575805664,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.0483989633851539
+        "std": 0.005850734743345872
       },
       "validation_perplexity": {
-        "ci95_high": 77.486066740599,
-        "ci95_low": 72.33999169607517,
-        "mean": 74.91302921833709,
+        "ci95_high": 83.22049145153389,
+        "ci95_low": 82.52644820006944,
+        "mean": 82.87346982580166,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 3.596858436469052
+        "std": 0.4851027827432977
       }
     },
     "model": "dense_121m"
@@ -3034,8 +3346,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 1.0,
       "activated_to_trainable_parameter_ratio_mean": 1.0,
-      "peak_memory_gib_mean": 3.266996383666992,
-      "test_minus_validation_loss_gap_mean": 0.15156349945068293,
+      "peak_memory_gib_mean": 3.3092098236083984,
+      "test_minus_validation_loss_gap_mean": -0.03750896453857422,
       "total_to_activated_parameter_ratio_mean": 1.0
     },
     "mechanism": {
@@ -3058,6 +3370,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 3616.9057545434175,
+        "ci95_low": 3608.4469685667023,
+        "mean": 3612.67636155506,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 5.912283719028133
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 2471604736.0,
+        "ci95_low": 2471604736.0,
+        "mean": 2471604736.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -3074,13 +3402,21 @@
         "non_missing_seed_count": 0,
         "std": null
       },
+      "final_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
       "lm_loss": {
-        "ci95_high": 4.654570934102911,
-        "ci95_low": 4.282538631631952,
-        "mean": 4.4685547828674315,
+        "ci95_high": 4.731459124850129,
+        "ci95_low": 4.461912743283415,
+        "mean": 4.596685934066772,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.2600326490002638
+        "std": 0.18839992968809424
       },
       "mean_aux_loss": {
         "ci95_high": null,
@@ -3114,6 +3450,14 @@
         "non_missing_seed_count": 0,
         "std": null
       },
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
       "mtp_loss": {
         "ci95_high": null,
         "ci95_low": null,
@@ -3130,18 +3474,10 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 0.0,
-        "ci95_low": 0.0,
-        "mean": 0.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 3507910656.0,
-        "ci95_low": 3507910656.0,
-        "mean": 3507910656.0,
+        "ci95_high": 3553236992.0,
+        "ci95_low": 3553236992.0,
+        "mean": 3553236992.0,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
         "std": 0.0
@@ -3171,20 +3507,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 4.726394102168423,
-        "ci95_low": 4.617448321270602,
-        "mean": 4.671921211719512,
+        "ci95_high": 4.435590583583384,
+        "ci95_low": 4.420346431950064,
+        "mean": 4.427968507766724,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.07614785010899447
+        "std": 0.010654927286276284
       },
       "test_perplexity": {
-        "ci95_high": 113.1137889697655,
-        "ci95_low": 101.2562612209901,
-        "mean": 107.1850250953778,
+        "ci95_high": 84.40505875098548,
+        "ci95_low": 83.12567859498232,
+        "mean": 83.7653686729839,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 8.287840412322469
+        "std": 0.8942250681843419
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.3637474276242888,
@@ -3219,20 +3555,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 4.654570934102911,
-        "ci95_low": 4.282538631631952,
-        "mean": 4.4685547828674315,
+        "ci95_high": 4.731459124850129,
+        "ci95_low": 4.461912743283415,
+        "mean": 4.596685934066772,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.2600326490002638
+        "std": 0.18839992968809424
       },
       "train_tokens_per_second": {
-        "ci95_high": 3742.6749945300317,
-        "ci95_low": 3724.921063173102,
-        "mean": 3733.798028851567,
+        "ci95_high": 3663.008729832529,
+        "ci95_low": 3656.3013663034963,
+        "mean": 3659.6550480680125,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 12.40914235201808
+        "std": 4.68812383945696
       },
       "trainable_parameters": {
         "ci95_high": 137460480.0,
@@ -3243,20 +3579,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 4.5709097017316545,
-        "ci95_low": 4.469805722806004,
-        "mean": 4.520357712268829,
+        "ci95_high": 4.47415493955773,
+        "ci95_low": 4.456800005052866,
+        "mean": 4.465477472305298,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.07066680847305075
+        "std": 0.012130262782431706
       },
       "validation_perplexity": {
-        "ci95_high": 96.78463592013279,
-        "ci95_low": 87.36871145769507,
-        "mean": 92.07667368891393,
+        "ci95_high": 87.72424103580802,
+        "ci95_low": 86.21237222229924,
+        "mean": 86.96830662905363,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 6.581277390409365
+        "std": 1.0567234347836219
       }
     },
     "model": "mla_121m"
@@ -3267,8 +3603,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 1.0,
       "activated_to_trainable_parameter_ratio_mean": 1.0,
-      "peak_memory_gib_mean": 3.1968302726745605,
-      "test_minus_validation_loss_gap_mean": 0.18146834683418245,
+      "peak_memory_gib_mean": 3.249030590057373,
+      "test_minus_validation_loss_gap_mean": -0.035768480539322134,
       "total_to_activated_parameter_ratio_mean": 1.0
     },
     "mechanism": {
@@ -3291,6 +3627,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 3597.3945790836756,
+        "ci95_low": 3583.2324039963382,
+        "mean": 3590.313491540007,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 9.898677827453596
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 2407363072.0,
+        "ci95_low": 2407363072.0,
+        "mean": 2407363072.0,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 0.0
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -3307,13 +3659,21 @@
         "non_missing_seed_count": 0,
         "std": null
       },
+      "final_aux_loss": {
+        "ci95_high": null,
+        "ci95_low": null,
+        "mean": null,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 0,
+        "std": null
+      },
       "lm_loss": {
-        "ci95_high": 4.439416144355259,
-        "ci95_low": 4.030180336967983,
-        "mean": 4.234798240661621,
+        "ci95_high": 4.667443094591031,
+        "ci95_low": 4.3819850822888515,
+        "mean": 4.524714088439941,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.2860361058808368
+        "std": 0.1995213926970213
       },
       "mean_aux_loss": {
         "ci95_high": null,
@@ -3347,13 +3707,21 @@
         "non_missing_seed_count": 0,
         "std": null
       },
-      "mtp_loss": {
-        "ci95_high": 5.326741059805712,
-        "ci95_low": 4.953743902657668,
-        "mean": 5.14024248123169,
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 2.0,
+        "ci95_low": 2.0,
+        "mean": 2.0,
         "metric_group": "mtp",
         "non_missing_seed_count": 10,
-        "std": 0.26070703591751765
+        "std": 0.0
+      },
+      "mtp_loss": {
+        "ci95_high": 6.736697764020629,
+        "ci95_low": 6.4946539930289315,
+        "mean": 6.6156758785247805,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.1691769304088788
       },
       "mtp_loss_weight": {
         "ci95_high": 0.3,
@@ -3363,18 +3731,10 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 2.0,
-        "ci95_low": 2.0,
-        "mean": 2.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 3432570368.0,
-        "ci95_low": 3432570368.0,
-        "mean": 3432570368.0,
+        "ci95_high": 3488620032.0,
+        "ci95_low": 3488620032.0,
+        "mean": 3488620032.0,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
         "std": 0.0
@@ -3404,20 +3764,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 4.487706023055928,
-        "ci95_low": 4.425550340812785,
-        "mean": 4.456628181934357,
+        "ci95_high": 4.37090265611093,
+        "ci95_low": 4.357114595857453,
+        "mean": 4.364008625984192,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.04344382623969792
+        "std": 0.009637189589381744
       },
       "test_perplexity": {
-        "ci95_high": 88.91397143657925,
-        "ci95_low": 83.62394695816268,
-        "mean": 86.26895919737096,
+        "ci95_high": 79.11864325800575,
+        "ci95_low": 78.03087733081448,
+        "mean": 78.57476029441011,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 3.6974721529893833
+        "std": 0.7602959572626203
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.3668298766252914,
@@ -3452,20 +3812,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 6.036395572786549,
-        "ci95_low": 5.517346359128735,
-        "mean": 5.776870965957642,
+        "ci95_high": 6.686810329626148,
+        "ci95_low": 6.332023498346263,
+        "mean": 6.509416913986206,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.36279038430938626
+        "std": 0.2479788957984884
       },
       "train_tokens_per_second": {
-        "ci95_high": 3795.280348675302,
-        "ci95_low": 3742.5576611232163,
-        "mean": 3768.919004899259,
+        "ci95_high": 3637.7154753714467,
+        "ci95_low": 3626.6104339100157,
+        "mean": 3632.162954640731,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 36.850617582197955
+        "std": 7.761888764213081
       },
       "trainable_parameters": {
         "ci95_high": 136305408.0,
@@ -3476,20 +3836,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 4.306865811918431,
-        "ci95_low": 4.243453858281917,
-        "mean": 4.275159835100174,
+        "ci95_high": 4.407383765460722,
+        "ci95_low": 4.392170447586306,
+        "mean": 4.399777106523514,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.04432189939654918
+        "std": 0.010633375974861714
       },
       "validation_perplexity": {
-        "ci95_high": 74.16842587807758,
-        "ci95_low": 69.7394637573507,
-        "mean": 71.95394481771415,
+        "ci95_high": 82.0590153308193,
+        "ci95_low": 80.81472712190856,
+        "mean": 81.43687122636393,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 3.095631064628686
+        "std": 0.8696974884542732
       }
     },
     "model": "mtp_121m"
@@ -3500,8 +3860,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 0.3569836280607991,
       "activated_to_trainable_parameter_ratio_mean": 0.3569836280607991,
-      "peak_memory_gib_mean": 4.2918144226074215,
-      "test_minus_validation_loss_gap_mean": 0.18113623833656334,
+      "peak_memory_gib_mean": 4.336397266387939,
+      "test_minus_validation_loss_gap_mean": -0.03463467288017252,
       "total_to_activated_parameter_ratio_mean": 2.8012489128204128
     },
     "mechanism": {
@@ -3524,6 +3884,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 2170.459375548608,
+        "ci95_low": 2153.5239027346247,
+        "mean": 2161.9916391416164,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 11.83707927683447
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 3799363446.9098554,
+        "ci95_low": 3795058620.2901444,
+        "mean": 3797211033.6,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 3008866.33223889
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -3540,29 +3916,37 @@
         "non_missing_seed_count": 0,
         "std": null
       },
-      "lm_loss": {
-        "ci95_high": 4.417705096893382,
-        "ci95_low": 4.005040607757497,
-        "mean": 4.2113728523254395,
+      "final_aux_loss": {
+        "ci95_high": 0.12142484303228945,
+        "ci95_low": 0.12093902115113644,
+        "mean": 0.12118193209171295,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.288432589174756
+        "std": 0.00033956608030929184
+      },
+      "lm_loss": {
+        "ci95_high": 4.6598940478096145,
+        "ci95_low": 4.362786520885455,
+        "mean": 4.5113402843475345,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.20766384195909177
       },
       "mean_aux_loss": {
-        "ci95_high": 0.010292146731206521,
-        "ci95_low": 0.010239620549565807,
-        "mean": 0.010265883640386164,
+        "ci95_high": 0.010036865837390588,
+        "ci95_low": 0.010023904542721255,
+        "mean": 0.010030385190055922,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 3.6713269420925815e-05
+        "std": 9.059320292764991e-06
       },
       "mean_expert_load_variance": {
-        "ci95_high": 0.0004400872382577419,
-        "ci95_low": 0.0003684332104662212,
-        "mean": 0.00040426022436198156,
+        "ci95_high": 5.318171065211653e-05,
+        "ci95_low": 4.228571142262526e-05,
+        "mean": 4.7733711037370894e-05,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 5.0082711996822014e-05
+        "std": 7.6157783190630716e-06
       },
       "mean_router_probability": {
         "ci95_high": null,
@@ -3573,12 +3957,20 @@
         "std": null
       },
       "mean_routing_entropy": {
-        "ci95_high": 1.9628090423121536,
-        "ci95_low": 1.939090408705226,
-        "mean": 1.9509497255086898,
+        "ci95_high": 1.9798222584413616,
+        "ci95_low": 1.9577881937536468,
+        "mean": 1.9688052260975042,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 0.016578181750649203
+        "std": 0.015400749265413401
+      },
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
       },
       "mtp_loss": {
         "ci95_high": null,
@@ -3596,21 +3988,13 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 0.0,
-        "ci95_low": 0.0,
-        "mean": 0.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 4610257581.68004,
-        "ci95_low": 4606343711.119959,
-        "mean": 4608300646.4,
+        "ci95_high": 4658481257.316589,
+        "ci95_low": 4653860963.48341,
+        "mean": 4656171110.4,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 2735606.8890317637
+        "std": 3229362.710232029
       },
       "requested_tokens_per_activated_parameter": {
         "ci95_high": 0.6362240094857436,
@@ -3637,20 +4021,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 4.487957553258165,
-        "ci95_low": 4.4250007201526325,
-        "mean": 4.456479136705399,
+        "ci95_high": 4.3574890529461445,
+        "ci95_low": 4.346201666181511,
+        "mean": 4.351845359563828,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.04400379208033125
+        "std": 0.007889339342858495
       },
       "test_perplexity": {
-        "ci95_high": 88.97632932178281,
-        "ci95_low": 83.54107296734351,
-        "mean": 86.25870114456316,
+        "ci95_high": 78.06201943790559,
+        "ci95_low": 77.18547111079384,
+        "mean": 77.62374527434972,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 3.79898223475014
+        "std": 0.6126650346266957
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.6362354106199937,
@@ -3685,20 +4069,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 4.539112967419578,
-        "ci95_low": 4.126776009631203,
-        "mean": 4.33294448852539,
+        "ci95_high": 4.780950571952851,
+        "ci95_low": 4.484093926490753,
+        "mean": 4.632522249221802,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.2882036605485092
+        "std": 0.20748848790856533
       },
       "train_tokens_per_second": {
-        "ci95_high": 3119.3389625857253,
-        "ci95_low": 2905.6429736078308,
-        "mean": 3012.490968096778,
+        "ci95_high": 2195.4466161317505,
+        "ci95_low": 2178.1938495603645,
+        "mean": 2186.8202328460575,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 149.36319702773838
+        "std": 12.058852321004633
       },
       "trainable_parameters": {
         "ci95_high": 220146432.0,
@@ -3709,20 +4093,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 4.30927523441576,
-        "ci95_low": 4.241410562321911,
-        "mean": 4.2753428983688355,
+        "ci95_high": 4.39088504273414,
+        "ci95_low": 4.3820750221538605,
+        "mean": 4.386480032444,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.047434134995509594
+        "std": 0.0061577797788554545
       },
       "validation_perplexity": {
-        "ci95_high": 74.39406822494907,
-        "ci95_low": 69.5601274610814,
-        "mean": 71.97709784301523,
+        "ci95_high": 80.71338251891842,
+        "ci95_low": 80.00349737876573,
+        "mean": 80.35843994884208,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 3.3786916178790394
+        "std": 0.49617549942249317
       }
     },
     "model": "moe_220m"
@@ -3733,8 +4117,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 0.4018555717452045,
       "activated_to_trainable_parameter_ratio_mean": 0.4018555717452045,
-      "peak_memory_gib_mean": 4.598430061340332,
-      "test_minus_validation_loss_gap_mean": 0.13970146131515548,
+      "peak_memory_gib_mean": 4.64429931640625,
+      "test_minus_validation_loss_gap_mean": -0.03634719491005001,
       "total_to_activated_parameter_ratio_mean": 2.4884562273384314
     },
     "mechanism": {
@@ -3757,6 +4141,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 2031.5931076277052,
+        "ci95_low": 2015.6666089004912,
+        "mean": 2023.6298582640982,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 11.131855018584325
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 4097308098.1095467,
+        "ci95_low": 4092564234.6904535,
+        "mean": 4094936166.4,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 3315731.8952391925
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -3773,29 +4173,37 @@
         "non_missing_seed_count": 0,
         "std": null
       },
-      "lm_loss": {
-        "ci95_high": 4.655982207740257,
-        "ci95_low": 4.264513683830788,
-        "mean": 4.460247945785523,
+      "final_aux_loss": {
+        "ci95_high": 0.12156262080469138,
+        "ci95_low": 0.12111999113759989,
+        "mean": 0.12134130597114563,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.27361763103984194
+        "std": 0.0003093768043673874
+      },
+      "lm_loss": {
+        "ci95_high": 4.68683563646804,
+        "ci95_low": 4.418844829230202,
+        "mean": 4.552840232849121,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.18731265820449516
       },
       "mean_aux_loss": {
-        "ci95_high": 0.010244018011000833,
-        "ci95_low": 0.01019916484670631,
-        "mean": 0.010221591428853571,
+        "ci95_high": 0.010035388916029874,
+        "ci95_low": 0.01002782926885123,
+        "mean": 0.010031609092440552,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 3.1350200103819565e-05
+        "std": 5.283829033968592e-06
       },
       "mean_expert_load_variance": {
-        "ci95_high": 0.0004537712938728657,
-        "ci95_low": 0.000363064000978275,
-        "mean": 0.00040841764742557035,
+        "ci95_high": 5.720164954464391e-05,
+        "ci95_low": 4.466412306029842e-05,
+        "mean": 5.0932886302471166e-05,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 6.340002601484952e-05
+        "std": 8.763126755343527e-06
       },
       "mean_router_probability": {
         "ci95_high": null,
@@ -3806,12 +4214,20 @@
         "std": null
       },
       "mean_routing_entropy": {
-        "ci95_high": 1.986420018220472,
-        "ci95_low": 1.956107077256314,
-        "mean": 1.971263547738393,
+        "ci95_high": 1.9103054203426373,
+        "ci95_low": 1.8826051781539586,
+        "mean": 1.896455299248298,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 0.021187284774858817
+        "std": 0.019361134252134597
+      },
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
       },
       "mtp_loss": {
         "ci95_high": null,
@@ -3829,21 +4245,13 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 0.0,
-        "ci95_low": 0.0,
-        "mean": 0.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 4938975511.85303,
-        "ci95_low": 4936077851.346971,
-        "mean": 4937526681.6,
+        "ci95_high": 4989721208.587585,
+        "ci95_low": 4983835629.812414,
+        "mean": 4986778419.2,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 2025325.0384163691
+        "std": 4113735.903153207
       },
       "requested_tokens_per_activated_parameter": {
         "ci95_high": 0.525741657447261,
@@ -3870,20 +4278,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 4.687369388965386,
-        "ci95_low": 4.592778222652657,
-        "mean": 4.640073805809021,
+        "ci95_high": 4.402030985680602,
+        "ci95_low": 4.391137493761994,
+        "mean": 4.396584239721298,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.06611466634740212
+        "std": 0.00761402582959767
       },
       "test_perplexity": {
-        "ci95_high": 108.72924415465901,
-        "ci95_low": 98.78600818489188,
-        "mean": 103.75762616977545,
+        "ci95_high": 81.61753532126377,
+        "ci95_low": 80.73295422731942,
+        "mean": 81.1752447742916,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 6.949842719786618
+        "std": 0.6182795514963422
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.5257510787377624,
@@ -3918,20 +4326,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 4.777185956471415,
-        "ci95_low": 4.385858114726094,
-        "mean": 4.581522035598755,
+        "ci95_high": 4.808218081101256,
+        "ci95_low": 4.540144936934633,
+        "mean": 4.674181509017944,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.27351930098740457
+        "std": 0.18737020774941412
       },
       "train_tokens_per_second": {
-        "ci95_high": 2747.4789242130196,
-        "ci95_low": 2739.616930840704,
-        "mean": 2743.5479275268617,
+        "ci95_high": 2055.2218608137305,
+        "ci95_low": 2039.7348239214502,
+        "mean": 2047.4783423675904,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 5.4951544515017
+        "std": 10.824692376218426
       },
       "trainable_parameters": {
         "ci95_high": 236661504.0,
@@ -3942,20 +4350,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 4.536596538880863,
-        "ci95_low": 4.464148150106869,
-        "mean": 4.500372344493866,
+        "ci95_high": 4.436713220312931,
+        "ci95_low": 4.429149648949765,
+        "mean": 4.432931434631348,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.05063793203863851
+        "std": 0.005286571849819969
       },
       "validation_perplexity": {
-        "ci95_high": 93.41338633902949,
-        "ci95_low": 86.89556519569864,
-        "mean": 90.15447576736406,
+        "ci95_high": 84.49779311119364,
+        "ci95_low": 83.8599614525176,
+        "mean": 84.17887728185562,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 4.5556428470147265
+        "std": 0.44581358855180286
       }
     },
     "model": "mla_moe_220m"
@@ -3966,8 +4374,8 @@
     "derived": {
       "activated_to_total_parameter_ratio_mean": 0.3569836280607991,
       "activated_to_trainable_parameter_ratio_mean": 0.3569836280607991,
-      "peak_memory_gib_mean": 4.300116443634034,
-      "test_minus_validation_loss_gap_mean": 0.19122074079513496,
+      "peak_memory_gib_mean": 4.335933971405029,
+      "test_minus_validation_loss_gap_mean": -0.03655509281158498,
       "total_to_activated_parameter_ratio_mean": 2.8012489128204128
     },
     "mechanism": {
@@ -3990,6 +4398,22 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
+      "active_end_to_end_tokens_per_second": {
+        "ci95_high": 2170.0902677059535,
+        "ci95_low": 2158.4352620183313,
+        "mean": 2164.2627648621424,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 8.14628725230675
+      },
+      "evaluation_peak_memory_bytes": {
+        "ci95_high": 3798938231.8679266,
+        "ci95_low": 3794632481.732074,
+        "mean": 3796785356.8,
+        "metric_group": "efficiency",
+        "non_missing_seed_count": 10,
+        "std": 3009511.8255125256
+      },
       "expert_bias_mean": {
         "ci95_high": null,
         "ci95_low": null,
@@ -4006,13 +4430,21 @@
         "non_missing_seed_count": 0,
         "std": null
       },
-      "lm_loss": {
-        "ci95_high": 4.432189933627632,
-        "ci95_low": 4.030550010830376,
-        "mean": 4.231369972229004,
+      "final_aux_loss": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.28072694864281195
+        "std": 0.0
+      },
+      "lm_loss": {
+        "ci95_high": 4.655854428032127,
+        "ci95_low": 4.383711707374367,
+        "mean": 4.519783067703247,
+        "metric_group": "optimization",
+        "non_missing_seed_count": 10,
+        "std": 0.190214645579868
       },
       "mean_aux_loss": {
         "ci95_high": 0.0,
@@ -4023,12 +4455,12 @@
         "std": 0.0
       },
       "mean_expert_load_variance": {
-        "ci95_high": 0.00069303662185129,
-        "ci95_low": 0.0006228438503966644,
-        "mean": 0.0006579402361239772,
+        "ci95_high": 6.31487650836382e-05,
+        "ci95_low": 4.4696563300337365e-05,
+        "mean": 5.3922664191987776e-05,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 4.9061364243878064e-05
+        "std": 1.289719972628893e-05
       },
       "mean_router_probability": {
         "ci95_high": null,
@@ -4039,12 +4471,20 @@
         "std": null
       },
       "mean_routing_entropy": {
-        "ci95_high": 1.9365268582666204,
-        "ci95_low": 1.8950524673298708,
-        "mean": 1.9157896627982456,
+        "ci95_high": 1.872377844537308,
+        "ci95_low": 1.847329434548805,
+        "mean": 1.8598536395430565,
         "metric_group": "routing",
         "non_missing_seed_count": 10,
-        "std": 0.028988600369714755
+        "std": 0.017507631351617748
+      },
+      "mtp_auxiliary_head_count": {
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "metric_group": "mtp",
+        "non_missing_seed_count": 10,
+        "std": 0.0
       },
       "mtp_loss": {
         "ci95_high": null,
@@ -4062,21 +4502,13 @@
         "non_missing_seed_count": 10,
         "std": 0.0
       },
-      "mtp_num_future_tokens": {
-        "ci95_high": 0.0,
-        "ci95_low": 0.0,
-        "mean": 0.0,
-        "metric_group": "mtp",
-        "non_missing_seed_count": 10,
-        "std": 0.0
-      },
       "peak_memory_bytes": {
-        "ci95_high": 4619610358.717049,
-        "ci95_low": 4614819388.482952,
-        "mean": 4617214873.6,
+        "ci95_high": 4658190022.803908,
+        "ci95_low": 4653157279.596091,
+        "mean": 4655673651.2,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 3348657.2885720166
+        "std": 3517644.9447394265
       },
       "requested_tokens_per_activated_parameter": {
         "ci95_high": 0.6362240094857436,
@@ -4103,20 +4535,20 @@
         "std": 0.0
       },
       "test_loss": {
-        "ci95_high": 4.525697808705331,
-        "ci95_low": 4.42683206180477,
-        "mean": 4.476264935255051,
+        "ci95_high": 4.3600249731851815,
+        "ci95_low": 4.349657805173278,
+        "mean": 4.35484138917923,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.06910239216109255
+        "std": 0.007246150785458652
       },
       "test_perplexity": {
-        "ci95_high": 92.41864711140502,
-        "ci95_low": 83.76911176835486,
-        "mean": 88.09387943987994,
+        "ci95_high": 78.25927833621817,
+        "ci95_low": 77.45334867153052,
+        "mean": 77.85631350387435,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 6.045608332761115
+        "std": 0.5633059931213472
       },
       "tokens_per_activated_parameter": {
         "ci95_high": 0.6362354106199937,
@@ -4151,20 +4583,20 @@
         "std": 0.0
       },
       "train_loss": {
-        "ci95_high": 4.432189933627632,
-        "ci95_low": 4.030550010830376,
-        "mean": 4.231369972229004,
+        "ci95_high": 4.655854428032127,
+        "ci95_low": 4.383711707374367,
+        "mean": 4.519783067703247,
         "metric_group": "optimization",
         "non_missing_seed_count": 10,
-        "std": 0.28072694864281195
+        "std": 0.190214645579868
       },
       "train_tokens_per_second": {
-        "ci95_high": 3086.396909183249,
-        "ci95_low": 3054.176797629659,
-        "mean": 3070.286853406454,
+        "ci95_high": 2194.828060789057,
+        "ci95_low": 2182.599109409822,
+        "mean": 2188.7135850994396,
         "metric_group": "efficiency",
         "non_missing_seed_count": 10,
-        "std": 22.520305099092838
+        "std": 8.54744762892208
       },
       "trainable_parameters": {
         "ci95_high": 220146432.0,
@@ -4175,20 +4607,20 @@
         "std": 0.0
       },
       "validation_loss": {
-        "ci95_high": 4.317948169157374,
-        "ci95_low": 4.252140219762458,
-        "mean": 4.285044194459916,
+        "ci95_high": 4.396242732058901,
+        "ci95_low": 4.386550231922729,
+        "mean": 4.391396481990815,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 0.04599658495453118
+        "std": 0.006774590456538941
       },
       "validation_perplexity": {
-        "ci95_high": 75.09564506032764,
-        "ci95_low": 70.2552518829935,
-        "mean": 72.67544847166057,
+        "ci95_high": 81.14852947106378,
+        "ci95_low": 80.36104073445317,
+        "mean": 80.75478510275848,
         "metric_group": "quality",
         "non_missing_seed_count": 10,
-        "std": 3.3832015439122913
+        "std": 0.5504166731723941
       }
     },
     "model": "v3_routing_220m"

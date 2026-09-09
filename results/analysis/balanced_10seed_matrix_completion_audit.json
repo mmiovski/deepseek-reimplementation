@@ -38,10 +38,10 @@
   "missing_summary_count": 0,
   "missing_summary_rows": [],
   "progress_path": "results/analysis/balanced_10seed_matrix_queue_progress.jsonl",
-  "progress_record_count": 252,
+  "progress_record_count": 360,
   "progress_status_counts": {
-    "completed": 126,
-    "started": 126
+    "completed": 180,
+    "started": 180
   },
   "queue_done_or_skipped_count": 0,
   "queue_entries": 0,

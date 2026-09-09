@@ -3,27 +3,31 @@
   "audit_json": "results\\analysis\\balanced_10seed_matrix_descriptives_audit.json",
   "bad_group_seed_count_count": 0,
   "bad_group_seed_counts": [],
-  "descriptive_row_count": 468,
+  "controlled_design_guardrail": "Descriptives are generated only from the balanced 10-seed flat artifact, which itself reads only the audited manifest.",
+  "descriptive_row_count": 522,
   "descriptives_csv": "results\\analysis\\balanced_10seed_matrix_descriptives_full_precision.csv",
   "descriptives_json": "results\\analysis\\balanced_10seed_matrix_descriptives_full_precision.json",
   "descriptives_passed": true,
   "input_flat_csv": "results\\analysis\\balanced_10seed_matrix_summary_flat.csv",
   "metric_availability_csv": "results\\analysis\\balanced_10seed_matrix_metric_availability.csv",
   "metric_availability_json": "results\\analysis\\balanced_10seed_matrix_metric_availability.json",
-  "metric_availability_row_count": 26,
-  "metric_count": 26,
+  "metric_availability_row_count": 29,
+  "metric_count": 29,
   "metrics": [
     "activated_parameters_per_token",
+    "active_end_to_end_tokens_per_second",
+    "evaluation_peak_memory_bytes",
     "expert_bias_mean",
     "expert_bias_std",
+    "final_aux_loss",
     "lm_loss",
     "mean_aux_loss",
     "mean_expert_load_variance",
     "mean_router_probability",
     "mean_routing_entropy",
+    "mtp_auxiliary_head_count",
     "mtp_loss",
     "mtp_loss_weight",
-    "mtp_num_future_tokens",
     "peak_memory_bytes",
     "requested_tokens_per_activated_parameter",
     "requested_tokens_per_total_parameter",
@@ -114,6 +118,5 @@
       "6173",
       "8191"
     ]
-  },
-  "controlled_design_guardrail": "Descriptives are generated only from the balanced 10-seed flat artifact, which itself reads only the audited manifest."
+  }
 }

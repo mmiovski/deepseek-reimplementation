@@ -77,16 +77,19 @@
   "profile_metric_groups": {
     "efficiency": [
       "train_tokens_per_second",
-      "peak_memory_bytes"
+      "active_end_to_end_tokens_per_second",
+      "peak_memory_bytes",
+      "evaluation_peak_memory_bytes"
     ],
     "mtp": [
       "mtp_loss",
       "mtp_loss_weight",
-      "mtp_num_future_tokens"
+      "mtp_auxiliary_head_count"
     ],
     "optimization": [
       "train_loss",
-      "lm_loss"
+      "lm_loss",
+      "final_aux_loss"
     ],
     "parameterization": [
       "total_parameters",

@@ -1,6 +1,7 @@
 {
   "artifact_type": "balanced_10seed_matrix_extraction_audit",
   "audit_json": "results\\analysis\\balanced_10seed_matrix_extraction_audit.json",
+  "controlled_design_guardrail": "Extraction reads only balanced_10seed_matrix_manifest.csv and does not scan results/metrics broadly.",
   "expected_output_rows": 180,
   "extraction_passed": true,
   "flat_csv": "results\\analysis\\balanced_10seed_matrix_summary_flat.csv",
@@ -54,6 +55,5 @@
     ]
   },
   "summary_parse_error_count": 0,
-  "summary_parse_errors": [],
-  "controlled_design_guardrail": "Extraction reads only balanced_10seed_matrix_manifest.csv and does not scan results/metrics broadly."
+  "summary_parse_errors": []
 }

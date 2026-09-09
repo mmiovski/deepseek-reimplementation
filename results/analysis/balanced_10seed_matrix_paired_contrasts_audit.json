@@ -7,6 +7,7 @@
   "contrast_row_count": 168,
   "contrasts_csv": "results\\analysis\\balanced_10seed_matrix_paired_contrasts_full_precision.csv",
   "contrasts_json": "results\\analysis\\balanced_10seed_matrix_paired_contrasts_full_precision.json",
+  "controlled_design_guardrail": "Paired contrasts are generated only from the balanced 10-seed flat artifact and only for pre-specified mechanism contrasts.",
   "expected_contrast_rows": 168,
   "expected_seed_record_rows": 1680,
   "input_flat_csv": "results\\analysis\\balanced_10seed_matrix_summary_flat.csv",
@@ -144,6 +145,5 @@
     "lm_loss",
     "train_tokens_per_second",
     "peak_memory_bytes"
-  ],
-  "controlled_design_guardrail": "Paired contrasts are generated only from the balanced 10-seed flat artifact and only for pre-specified mechanism contrasts."
+  ]
 }
