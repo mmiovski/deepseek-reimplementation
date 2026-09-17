@@ -10,7 +10,7 @@ seeds, and six model families, for 180 runs in total.
 
 ## Report
 
-The finalized [project report](reports/DS_proj_report.pdf) presents the complete
+The [project report](reports/DS_proj_report.pdf) presents the complete
 180-run study, including its methodology, results, systems measurements,
 limitations, and conclusions.
 
