@@ -1,6 +1,6 @@
 experiment:
   name: main_large_25m_seed2027_02_mtp_121m
-  protocol_id: corrected_primary_matrix_2026
+  protocol_id: primary_matrix_2026
   variant: mtp_121m
   budget: 25m
   seed: 2027

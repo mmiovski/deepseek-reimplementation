@@ -1,6 +1,6 @@
 experiment:
   name: main_large_25m_seed10007_05_v3_routing_220m
-  protocol_id: corrected_primary_matrix_2026
+  protocol_id: primary_matrix_2026
   variant: v3_routing_220m
   budget: 25m
   seed: 10007

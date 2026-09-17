@@ -1034,7 +1034,7 @@
   "mtp_share_lm_head": false,
   "peak_memory_bytes": 4984268800,
   "precision": "fp32",
-  "protocol_id": "corrected_primary_matrix_2026",
+  "protocol_id": "primary_matrix_2026",
   "requested_epoch_equivalent": 0.17002743460668351,
   "requested_tokens_per_activated_parameter": 0.1051483314894522,
   "requested_tokens_per_total_parameter": 0.0422544428687481,
@@ -2437,7 +2437,7 @@
       "model_config": "configs/model/mla_moe_220m.yaml",
       "name": "main_large_10m_seed5501_04_mla_moe_220m",
       "output_dir": "results/runs/main_large_10m_seed5501_04_mla_moe_220m/logs",
-      "protocol_id": "corrected_primary_matrix_2026",
+      "protocol_id": "primary_matrix_2026",
       "requested_train_tokens": 10000000,
       "seed": 5501,
       "tokenizer_config": "configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml",
@@ -2480,7 +2480,7 @@
         "vocab_size": 10000
       }
     },
-    "protocol_id": "corrected_primary_matrix_2026",
+    "protocol_id": "primary_matrix_2026",
     "tokenizer_config": {
       "artifacts": {
         "metadata_json": "tokenizers/fineweb_edu_10bt/metadata.json",

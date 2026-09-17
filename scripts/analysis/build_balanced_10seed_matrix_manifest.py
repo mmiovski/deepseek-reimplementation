@@ -147,7 +147,7 @@ def experiment_config_text(
         [
             "experiment:",
             f"  name: {name}",
-            "  protocol_id: corrected_primary_matrix_2026",
+            "  protocol_id: primary_matrix_2026",
             f"  variant: {model.short_name}",
             f"  budget: {budget.label}",
             f"  seed: {seed}",

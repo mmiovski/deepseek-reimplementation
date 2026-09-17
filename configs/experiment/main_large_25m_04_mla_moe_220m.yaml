@@ -1,6 +1,6 @@
 experiment:
   name: main_large_25m_04_mla_moe_220m
-  protocol_id: corrected_primary_matrix_2026
+  protocol_id: primary_matrix_2026
   variant: mla_moe_220m
   budget: 25m
   seed: 1337

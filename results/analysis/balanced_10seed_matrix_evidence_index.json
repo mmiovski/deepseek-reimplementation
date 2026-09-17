@@ -7,8 +7,8 @@
       "files": [
         {
           "path": "results/analysis/balanced_10seed_matrix_manifest.csv",
-          "sha256": "1b3893edf44ddfeff2a13c504070efb9c7ddfb62916326dde9757e0dd74f8145",
-          "size_bytes": 55080
+          "sha256": "e12a04f56d5e782b7db09d7409d2ddd26efe45d6fb52c465add511445b1c7586",
+          "size_bytes": 54899
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_manifest.json",
@@ -22,33 +22,33 @@
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_completion_audit.json",
-          "sha256": "dffed83dbe2f30ba1e9dc220b755d3648dbef30d53d423fcc43896d4e53f6fca",
-          "size_bytes": 1939
+          "sha256": "bbda0b6e89bde79c286d3f5ba4e31d3e1f61b209d1d1978a241ee704083d94c7",
+          "size_bytes": 1889
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_completion_audit_rows.csv",
-          "sha256": "d9f0943948431627f457967823f20035c82a349f31b28f1583dfd1727df05ccf",
-          "size_bytes": 37442
+          "sha256": "c6774a0f45bd65d7fd1ba3c2283d7c5023ac1b50e95fe6680278384fb3570205",
+          "size_bytes": 37261
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_extraction_audit.json",
-          "sha256": "a09dc515ed685af3a12b78f26dac2eeef8150409b3157c5fa5a4331881b21b99",
-          "size_bytes": 1709
+          "sha256": "603915e48769377f7ca313ce6670747a9cdfdb33fcfa3e1f7983fe826d891657",
+          "size_bytes": 1650
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_summary_flat.csv",
-          "sha256": "5a9e1188dd8246395a66a05cdd3f9b5db95093e106fc86896b9a7d51202f7f18",
-          "size_bytes": 5565457
+          "sha256": "9526011498ebb9e6e56c1bdbc1c69075c37b80a8e7569e2789864cddb89776cc",
+          "size_bytes": 5559876
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_summary_flat.json",
-          "sha256": "4583fc23c912f0c3cbf7be1c640969118ccfb0c009cb6d1e49d5033415c59789",
-          "size_bytes": 31205991
+          "sha256": "ffa26ddebc08052dbd7ddbdd545c6254cf6f57d26a01d0da7f974ec112852e3a",
+          "size_bytes": 30783469
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_summary_schema.json",
-          "sha256": "a27bcb8bcfd61604ef8662500b30ae5c51835db7213ef7c390562c99cac97ac6",
-          "size_bytes": 227118
+          "sha256": "c5c74ebe6fc4be6ce0cd96efa112bda012c4744f928266528087ff7e2d9482db",
+          "size_bytes": 223383
         }
       ]
     },
@@ -58,28 +58,28 @@
       "files": [
         {
           "path": "results/analysis/balanced_10seed_matrix_descriptives_audit.json",
-          "sha256": "8101695670b3fd90e030ce1a1e17242adf83cc0273464bcc390f1bc5dc79e32e",
-          "size_bytes": 3415
+          "sha256": "28b8fdf00257f49964167b469525ea42dcaac7a7addee8b1ce3d514f59dada51",
+          "size_bytes": 3293
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_descriptives_full_precision.csv",
-          "sha256": "df2b03887ffaba5a64c3d4dec685280091786cc76eb660eaa86d3c355f5d772c",
-          "size_bytes": 105969
+          "sha256": "591372f080dc448733ddfae88f7649ca9f9bbb94e71184452d573a45111c5bd8",
+          "size_bytes": 105446
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_descriptives_full_precision.json",
-          "sha256": "d610fa0c2e7c9cff7dae039eedec0785bee9b2205ab5ad14949361f5fe757e3b",
-          "size_bytes": 314501
+          "sha256": "8edfb1fff451bf12af55472f0ab769eb5a04451e29a49df5fb448d7a58f43495",
+          "size_bytes": 303015
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_metric_availability.csv",
-          "sha256": "002d9ca5907173b22aee97dbeaf963c975b2ebe37ad2dc332d82a91eb66b8262",
-          "size_bytes": 1664
+          "sha256": "4288db1b98dfafafebd7581f5b7f2005b649e4677a92e93cc03b7c0908ee2100",
+          "size_bytes": 1634
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_metric_availability.json",
-          "sha256": "e641e8c7e6eb7da9702c4c0b53ae9f1488b61977b34ee20e1a6d85cb336cda47",
-          "size_bytes": 6784
+          "sha256": "0faff0bb0c9f8ea1b3285dcf580e3b77579abe202ac405bbfce6093de9fa641d",
+          "size_bytes": 6521
         }
       ]
     },
@@ -89,28 +89,28 @@
       "files": [
         {
           "path": "results/analysis/balanced_10seed_matrix_global_seed_records.csv",
-          "sha256": "081d1995e5f38cafe9e3a9ece31380259ac9b4cea0427853f47d82232cf77a64",
-          "size_bytes": 116416
+          "sha256": "8ad343f8b64f8798787823c5ecc8e5dd29fd9d9a6fbf69b725b6936840885844",
+          "size_bytes": 114975
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_global_seed_records.json",
-          "sha256": "6bfa445d3d06fda00f81f3f6f5b2d5838268986d60b7d796d2673a15d264ab11",
-          "size_bytes": 325159
+          "sha256": "5b254a87dd430b72c9a46c4dad9e0c67f30624789986fc9ce95c3c2854cc38ca",
+          "size_bytes": 312197
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_global_tests_audit.json",
-          "sha256": "4b0e051cc7ea4e99c0f5a4f47d7879e27ec9dfbdaed4bf989f9e9f4fea0b1c66",
-          "size_bytes": 2579
+          "sha256": "3ce2d7e192dc9994d6e68a803f5247abd919b511efc4226720618eb343a4ab5f",
+          "size_bytes": 2482
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_global_tests_full_precision.csv",
-          "sha256": "bc6c26727843e854f3d6642e5b15ef67f18d68dcd1fda96419d3ce8b930db3ba",
-          "size_bytes": 8283
+          "sha256": "3555f7077f90de0853d11f8bdb9adf78a866eee094c5acbb9a1c10b577949423",
+          "size_bytes": 8258
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_global_tests_full_precision.json",
-          "sha256": "0b11f0edd4cd20822a1c3b7c1ca1f6bd6b8a4c1ac4cde083695df803ecfb3706",
-          "size_bytes": 30107
+          "sha256": "22f996e0e76f99d3c5537f7dc887ed0ad64d0805065e66a2120f5125e806106e",
+          "size_bytes": 29385
         }
       ]
     },
@@ -120,28 +120,28 @@
       "files": [
         {
           "path": "results/analysis/balanced_10seed_matrix_paired_seed_records.csv",
-          "sha256": "79909baf764da4ed7f84e34cc951db6cb04966c8919895b1e0d4328d4d12a206",
-          "size_bytes": 284810
+          "sha256": "7d0facf67fa277499a7b49b8a09d401672b225a6e07c737ed9ad6d26a4283c1c",
+          "size_bytes": 283129
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_paired_seed_records.json",
-          "sha256": "3604192fe4388a091e78e0fe299e4989e4de6ab2ceb46d9ccad2d83c20d645e9",
-          "size_bytes": 810485
+          "sha256": "1d987e60b3f7975743b5fd55c395c24a2da6f7b361111d2837085d9aa1e85deb",
+          "size_bytes": 785283
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_paired_contrasts_audit.json",
-          "sha256": "f2c1a558ccfe860a809c556c9f1decce2b2acee98e78c399cc1efa3f3f8bb825",
-          "size_bytes": 4528
+          "sha256": "41e3f2debf5b962ed24c4c7fcb7afb4e5f8815517c704fe4133c1091dd6f83a9",
+          "size_bytes": 4379
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_paired_contrasts_full_precision.csv",
-          "sha256": "0c1edf246963b44ec4e9eb4c5879594c1093056726a756b249a86c8ac9880ac4",
-          "size_bytes": 82800
+          "sha256": "7a1cf5c46e144ff11d693605d2c92918748604b0d26999f80d4957dc7a9a67b8",
+          "size_bytes": 82631
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_paired_contrasts_full_precision.json",
-          "sha256": "0b1ce478c41334cc2e0b13de7a452d98a3231d2230b5c40b7e108017ac11449b",
-          "size_bytes": 241468
+          "sha256": "67280701019be7afd14e77ca6db0908e97bcb62f4c06d2928a538dd0251b8db0",
+          "size_bytes": 235586
         }
       ]
     },
@@ -151,38 +151,38 @@
       "files": [
         {
           "path": "results/analysis/balanced_10seed_matrix_budget_pair_deltas_full_precision.csv",
-          "sha256": "f8f4e29c6976d6fd707efefdefc70a0d389214930d2c3338e553f03f596b681d",
-          "size_bytes": 112442
+          "sha256": "289eefbae590c44dc1f8bbbb187c9aa70f44195cf9cc16b53f1af299fdf08c62",
+          "size_bytes": 111919
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_budget_pair_deltas_full_precision.json",
-          "sha256": "7029d3d08a48279836883e06df67c2c974b6547e6c69d30504c7470e7de613da",
-          "size_bytes": 446320
+          "sha256": "b99f415d9aa595e6bc4e55b77d550a79cc7468f412868426ffa497196ec94809",
+          "size_bytes": 433268
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_budget_trend_seed_records.csv",
-          "sha256": "05df9a37b0f39c06c578a6c9542596ee186c83d1ff4edcc3fe8a245bb89770a1",
-          "size_bytes": 277146
+          "sha256": "d8492684b84c482f6ddec00df1421e3b6582cdf98db4294ceae64d41b53bdd6c",
+          "size_bytes": 275755
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_budget_trend_seed_records.json",
-          "sha256": "26882375f05816963a091118f9f779ee7f0db8af0b64bfe07d61e9fa92efe9d3",
-          "size_bytes": 808382
+          "sha256": "2539ba4a745370524531bc41aaa8e7089f390421ebc0cc35ae5dcb11035415eb",
+          "size_bytes": 784750
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_budget_trends_audit.json",
-          "sha256": "61c83cf2819337807d502794d34fdb3ae0c97d1377fd8165549d4899fdaacfc2",
-          "size_bytes": 3827
+          "sha256": "9e458a8d5a1287eeb755b46da3581b66e062dff2eaeba68306fe934513accc7f",
+          "size_bytes": 3689
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_budget_trends_full_precision.csv",
-          "sha256": "6573e048a07f9389f8eadddb02a59e4263da4513cb3399a4900573a4bc6d4779",
-          "size_bytes": 48082
+          "sha256": "ae3af8f62156abf7419a97cb5abecab1b9b9cda646f5db81bc316bf9d0a8f2c7",
+          "size_bytes": 47907
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_budget_trends_full_precision.json",
-          "sha256": "b6e86fe0c5088f1ccfedc3f57b24e7edb29659916729e7c7b3400c89e340a65c",
-          "size_bytes": 200155
+          "sha256": "4029214fe10d5ba9efd89d8451977917aae97ab6aa31e231a8de418af647c48b",
+          "size_bytes": 195281
         }
       ]
     },
@@ -192,23 +192,23 @@
       "files": [
         {
           "path": "results/analysis/balanced_10seed_matrix_mechanism_profile_metric_map.json",
-          "sha256": "20447d476ace67c009ffacca3e297dd946410d3770e0bc51f628bcdfdca70eb8",
-          "size_bytes": 3977
+          "sha256": "65b5f1787c20e7c99c5b1088ff9b7ab71cb721d96d574d08b5da9935a4bceec0",
+          "size_bytes": 3843
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_mechanism_profiles.csv",
-          "sha256": "d51f0c4cdcddd8ee1bebaba0ac3898fbeb799cca40585b6a72972069bc23ef02",
-          "size_bytes": 35569
+          "sha256": "fc5f005abee953816aa96d49d2e51a37e494947c887229ff38313efea3f581f1",
+          "size_bytes": 35550
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_mechanism_profiles.json",
-          "sha256": "afc68f2a627efadf39d9c109bc3731cf166b140b2fa1bdae6efb970d8a55f238",
-          "size_bytes": 146883
+          "sha256": "dd66dcab74ccfc3a91283777e61664d21998d0364ac73422ddd21d8e8f438387",
+          "size_bytes": 142255
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_mechanism_profiles_audit.json",
-          "sha256": "3ba2fd3bc8be5331566ff2c2f630d153d22655164170b6454665f2e9200bae2b",
-          "size_bytes": 3438
+          "sha256": "aaa14eae3d09b2268915922498a03f4dc3c10eeca6029ef0065251edbfd458c3",
+          "size_bytes": 3316
         }
       ]
     },
@@ -223,8 +223,8 @@
         },
         {
           "path": "results/analysis/balanced_10seed_matrix_queue_progress.jsonl",
-          "sha256": "b63fb10e2f786fac19987dc9a3801fdf52d003bdcaebb8b94cf5f84f83bb824e",
-          "size_bytes": 72960
+          "sha256": "687054b479442d54990216fc92d608b38d22704aa663069a5ac41467f0ed86f5",
+          "size_bytes": 72600
         }
       ]
     },
@@ -265,8 +265,8 @@
       "classification": "diagnostic",
       "path": "results/figures/balanced_10seed_matrix_redesign/mean_expert_load_variance_by_budget.png",
       "producer_script": "scripts/analysis/plot_mean_expert_load_variance_by_budget.py",
-      "sha256": "55515020424b6291e99fc1b4750cf8f7a83071073f44b187043f1df84055ca49",
-      "size_bytes": 85371
+      "sha256": "db996fbc2f1603dca3860d296c787ccb42f6bc28e0cecff37c5c9a6bb8a22ddf",
+      "size_bytes": 136993
     },
     {
       "classification": "diagnostic",
@@ -384,8 +384,8 @@
       "classification": "report_ready",
       "path": "results/figures/balanced_10seed_matrix_report/report_routing_behavior_comparison.png",
       "producer_script": "scripts/analysis/plot_report_routing_behavior_comparison.py",
-      "sha256": "15ffc51169ceb05f4c7ae5091d90ef45c29385d3aa1ea9fbff8ee37df4c3a522",
-      "size_bytes": 222130
+      "sha256": "500ab7e98e246e6264f8cca955adfc554cfc972517f78ce9b7a6ceea5c19aea6",
+      "size_bytes": 264075
     },
     {
       "classification": "report_ready",
@@ -448,903 +448,903 @@
   "run_summaries": [
     {
       "path": "results/runs/main_large_10m_00_dense_121m/metrics/summary.json",
-      "sha256": "4616cbeccdec8567b010acad49082e24a5717cfd9d4b259ef94624e79f73f90f",
-      "size_bytes": 32429
+      "sha256": "4b75a90054df59bf50da98bdf728ff8004b139201598bc45a1ffe2308dc37c65",
+      "size_bytes": 32399
     },
     {
       "path": "results/runs/main_large_10m_01_mla_121m/metrics/summary.json",
-      "sha256": "9f6103301af122ca3213b9cd613d4455b1eb499b2ff21aee7feda46bf7055679",
-      "size_bytes": 32636
+      "sha256": "8218e4162ba9f07489cd19c89b129edacbbe979226355b61be8d2f787debd31d",
+      "size_bytes": 32606
     },
     {
       "path": "results/runs/main_large_10m_02_mtp_121m/metrics/summary.json",
-      "sha256": "76c9bf02e414e7f9f927c4796243ea828b1ddade9b570418974fea18e97a3368",
-      "size_bytes": 32753
-    },
-    {
-      "path": "results/runs/main_large_10m_03_moe_220m/metrics/summary.json",
-      "sha256": "639efed90e889af3ed669437417404cb1f0c6d309a2c7c79a8ee83d7e53cdbde",
-      "size_bytes": 94028
-    },
-    {
-      "path": "results/runs/main_large_10m_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "ae8e3d1c6e9c0db14b83248355e4f6435a9389f3df8e37d1a37c20c7415849e4",
-      "size_bytes": 94323
-    },
-    {
-      "path": "results/runs/main_large_10m_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "6a78d70b68f298563f9c1c0cf355b54cae465cd55815439f73b93e57cf860005",
-      "size_bytes": 98867
-    },
-    {
-      "path": "results/runs/main_large_10m_seed2027_01_mla_121m/metrics/summary.json",
-      "sha256": "aa0a1097d23252ace7bec34d99a5dd284f40f967ee813a0147b7272cd3cc0053",
-      "size_bytes": 32717
-    },
-    {
-      "path": "results/runs/main_large_10m_seed2027_02_mtp_121m/metrics/summary.json",
-      "sha256": "c080af9d388c40f851e1afafe2230d8b009e372e82243a77b9668f8d74c482d8",
-      "size_bytes": 32836
-    },
-    {
-      "path": "results/runs/main_large_10m_seed2027_03_moe_220m/metrics/summary.json",
-      "sha256": "4b75db6a41c37607ff83b064755a9e98fba55a44e6fa0288137df9d31e6caf91",
-      "size_bytes": 94035
-    },
-    {
-      "path": "results/runs/main_large_10m_seed2027_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "16f00376f97bdbc740969c6aad5b41b741aee737ffc9d8ae8f132a28efa57455",
-      "size_bytes": 94329
-    },
-    {
-      "path": "results/runs/main_large_10m_seed2027_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "b7eede83242be3e50450b72959ab9ecf3933f8bcedba3cdcb589f93aebf0e657",
-      "size_bytes": 98789
-    },
-    {
-      "path": "results/runs/main_large_10m_seed2027_00_dense_121m/metrics/summary.json",
-      "sha256": "60d361f8a430fef9190ae422b1a389685c6cd2728ca9b3627a81f9c193a2599e",
-      "size_bytes": 32500
-    },
-    {
-      "path": "results/runs/main_large_10m_seed31415_02_mtp_121m/metrics/summary.json",
-      "sha256": "b8fe5c5e2636e324a869d9c7abce2369e53ac805ad806c92edd67a11dc613b96",
-      "size_bytes": 32849
-    },
-    {
-      "path": "results/runs/main_large_10m_seed31415_03_moe_220m/metrics/summary.json",
-      "sha256": "76409c00604d1ddb28007f63969f32aaa6583bcd940aed19599b52c4215b20f9",
-      "size_bytes": 94119
-    },
-    {
-      "path": "results/runs/main_large_10m_seed31415_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "f35ca813a075332e53b68ca8294ac54d7538728ddc5db670ad603240dd3e8cfe",
-      "size_bytes": 94420
-    },
-    {
-      "path": "results/runs/main_large_10m_seed31415_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "bcc497293fbf60f72bd9cfb1d5db48c087d6fe2897d91ad0a3ee150ac919df75",
-      "size_bytes": 98919
-    },
-    {
-      "path": "results/runs/main_large_10m_seed31415_00_dense_121m/metrics/summary.json",
-      "sha256": "cab2541c8cc3c2ad4d0ff13c441a7e1c83b36eab50986bd1ba40b15b053af4e3",
-      "size_bytes": 32525
-    },
-    {
-      "path": "results/runs/main_large_10m_seed31415_01_mla_121m/metrics/summary.json",
-      "sha256": "c03b4ab054456cae0c2e564f4edfa495604870cad141bba3e0f47e8898e85016",
-      "size_bytes": 32730
-    },
-    {
-      "path": "results/runs/main_large_10m_seed4441_03_moe_220m/metrics/summary.json",
-      "sha256": "f66de29ccb578335a8a49211f651952a736de8b29536cc9d08f3209e99088042",
-      "size_bytes": 94092
-    },
-    {
-      "path": "results/runs/main_large_10m_seed4441_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "0dab745844766c35697767c2a3dd357cda52d9e8ac3296c21242034f40bbc20f",
-      "size_bytes": 94395
-    },
-    {
-      "path": "results/runs/main_large_10m_seed4441_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "4c475733ccce940a0edd01ab2f017d449a3d90f1a3dd4e090d5b892dd4d876bd",
-      "size_bytes": 98872
-    },
-    {
-      "path": "results/runs/main_large_10m_seed4441_00_dense_121m/metrics/summary.json",
-      "sha256": "eba952e08bfd0c7e0ddd0e4a1ee65065791739d5152fc2247d747f1144f845ad",
-      "size_bytes": 32512
-    },
-    {
-      "path": "results/runs/main_large_10m_seed4441_01_mla_121m/metrics/summary.json",
-      "sha256": "7bab2344c5c1e7839a2ff37fd031d28b17fc44230c144fe27371fcf235aee4f8",
-      "size_bytes": 32719
-    },
-    {
-      "path": "results/runs/main_large_10m_seed4441_02_mtp_121m/metrics/summary.json",
-      "sha256": "4bab6cdef6ae1003326499178c8e1d3605ecd3d27bb8988f2924c9991d5c8767",
-      "size_bytes": 32837
-    },
-    {
-      "path": "results/runs/main_large_10m_seed5501_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "9a8e30c21100db7666357b60fd196f2c9a2509977f4a1a2f2650bda2bd2ce7ac",
-      "size_bytes": 94479
-    },
-    {
-      "path": "results/runs/main_large_10m_seed5501_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "6925a97a8a612859202aef402b850f9eadf99e66951d3c033da2a931d4b562cf",
-      "size_bytes": 98962
-    },
-    {
-      "path": "results/runs/main_large_10m_seed5501_00_dense_121m/metrics/summary.json",
-      "sha256": "c6538b2c76af9da8f9199bddd486053a8b7c279b8fc6e45b554e9a21b6ed9d0a",
-      "size_bytes": 32511
-    },
-    {
-      "path": "results/runs/main_large_10m_seed5501_01_mla_121m/metrics/summary.json",
-      "sha256": "a8030fb6c99b7439da0ec122ffdb7546a92f61b7126b24fb30c65b091d16df78",
-      "size_bytes": 32717
-    },
-    {
-      "path": "results/runs/main_large_10m_seed5501_02_mtp_121m/metrics/summary.json",
-      "sha256": "82f714cb506b4cc9c27e5315ff7ee74888ba4378601b3bc1fc281f1833d123f3",
-      "size_bytes": 32835
-    },
-    {
-      "path": "results/runs/main_large_10m_seed5501_03_moe_220m/metrics/summary.json",
-      "sha256": "c2c940d3eb41798f05549d6731cbe1140f7bbc634f46c76b759aee6c94e7a093",
-      "size_bytes": 94120
-    },
-    {
-      "path": "results/runs/main_large_10m_seed6173_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "29f9f1bb064ae9de6fc8ff3970496d97683a83e51c93374a179426d7cfa4bf28",
-      "size_bytes": 98809
-    },
-    {
-      "path": "results/runs/main_large_10m_seed6173_00_dense_121m/metrics/summary.json",
-      "sha256": "35fb515bd2c220ce89ac41616e033a0fcfdc242c2366c6e28b9955eee002e0ca",
-      "size_bytes": 32501
-    },
-    {
-      "path": "results/runs/main_large_10m_seed6173_01_mla_121m/metrics/summary.json",
-      "sha256": "c0e34d2f66eb4dacc2e9e0371e2d9645d355945a966bfbb11685e781abeb2456",
-      "size_bytes": 32719
-    },
-    {
-      "path": "results/runs/main_large_10m_seed6173_02_mtp_121m/metrics/summary.json",
-      "sha256": "891ca89f9a2a10da065fc4b0f1dcdf3efc911dfba8fbc01cb35bca3ee93c9dbc",
-      "size_bytes": 32835
-    },
-    {
-      "path": "results/runs/main_large_10m_seed6173_03_moe_220m/metrics/summary.json",
-      "sha256": "6f8a4d7848fe9ebde846e6dfdb53d10830fc2f98bd7ad71f6c350a633ad14bd8",
-      "size_bytes": 94145
-    },
-    {
-      "path": "results/runs/main_large_10m_seed6173_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "f9324e3c05f40afb13158932aa3a3257e865cac421b1b2f25c412bcd3be30e9b",
-      "size_bytes": 94393
-    },
-    {
-      "path": "results/runs/main_large_10m_seed8191_00_dense_121m/metrics/summary.json",
-      "sha256": "649279bf8c2e4d7f5575fd4fb58cdba8b0defd7a39a56ae4e575f3d8a116467d",
-      "size_bytes": 32511
-    },
-    {
-      "path": "results/runs/main_large_10m_seed8191_01_mla_121m/metrics/summary.json",
-      "sha256": "70c3d3f6668822c5b0938b28cd0fc2f4e9b759ec58251c4f2a93455d32b74e30",
-      "size_bytes": 32719
-    },
-    {
-      "path": "results/runs/main_large_10m_seed8191_02_mtp_121m/metrics/summary.json",
-      "sha256": "d21de47a144677d41c0185b7017b091322b6eab35bcc81b7a9925475f098786d",
-      "size_bytes": 32838
-    },
-    {
-      "path": "results/runs/main_large_10m_seed8191_03_moe_220m/metrics/summary.json",
-      "sha256": "845bc0e9988fd92e81b8afff99e03e275949af281126becab22a963a339c00b0",
-      "size_bytes": 94077
-    },
-    {
-      "path": "results/runs/main_large_10m_seed8191_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "e2e8af9f28dcd6ea2df6a2fad5a5487320397ee7fd136d49c381dedaac21b0d5",
-      "size_bytes": 94442
-    },
-    {
-      "path": "results/runs/main_large_10m_seed8191_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "16be3a564888c6e5d4149c61e6060e1c384c34646df4f91fe58a1b7487c1fd94",
-      "size_bytes": 98838
-    },
-    {
-      "path": "results/runs/main_large_10m_seed10007_01_mla_121m/metrics/summary.json",
-      "sha256": "3e631438afd79b791adb65502124bd7fbd7edfc84bfa348c628e72bf8f76ad56",
-      "size_bytes": 32734
-    },
-    {
-      "path": "results/runs/main_large_10m_seed10007_02_mtp_121m/metrics/summary.json",
-      "sha256": "a3b4009897c3cd24d882787c9be1dc6c71199aca311a5fd4ef9e4fca39088ffa",
-      "size_bytes": 32853
-    },
-    {
-      "path": "results/runs/main_large_10m_seed10007_03_moe_220m/metrics/summary.json",
-      "sha256": "81b58b9cd44946d7936949a039c6a8b12f8473526cb0e6f30c0915f7405bb9bb",
-      "size_bytes": 94048
-    },
-    {
-      "path": "results/runs/main_large_10m_seed10007_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "530b0c2dfbf1657e45b6ff2b5085afbb26970a9ce42bd7a16c924540507df95b",
-      "size_bytes": 94399
-    },
-    {
-      "path": "results/runs/main_large_10m_seed10007_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "5fbf71705ad62575226cd8219c9178a61aae04b1aa407e2f6f533de05915b0a4",
-      "size_bytes": 98889
-    },
-    {
-      "path": "results/runs/main_large_10m_seed10007_00_dense_121m/metrics/summary.json",
-      "sha256": "82273b9d7fa3d7642c3742263c066a274adaafade76e6b1064861fe07aa872de",
-      "size_bytes": 32525
-    },
-    {
-      "path": "results/runs/main_large_10m_seed11213_02_mtp_121m/metrics/summary.json",
-      "sha256": "ac640985a3219dd554c9182bba9d344c348233d2519a3fa88712be28691b83bb",
-      "size_bytes": 32849
-    },
-    {
-      "path": "results/runs/main_large_10m_seed11213_03_moe_220m/metrics/summary.json",
-      "sha256": "eb1378346a92b34c4b6ffa22ace421188a15441b135de4451150d90934669187",
-      "size_bytes": 94140
-    },
-    {
-      "path": "results/runs/main_large_10m_seed11213_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "23cde0dcc94d539fad36a4dee3c2abc35d435e06efe99880fe72eefcdba593ce",
-      "size_bytes": 94421
-    },
-    {
-      "path": "results/runs/main_large_10m_seed11213_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "a54a1378bb2b2f9bb03291034776fc02da5b8c1a657329d7a4a1460f491b7dc8",
-      "size_bytes": 98881
-    },
-    {
-      "path": "results/runs/main_large_10m_seed11213_00_dense_121m/metrics/summary.json",
-      "sha256": "f511e70ccb9cc9489a63b5e67ac53a9f6af6d6626745d8983947c7e3e3109188",
-      "size_bytes": 32521
-    },
-    {
-      "path": "results/runs/main_large_10m_seed11213_01_mla_121m/metrics/summary.json",
-      "sha256": "84bd58b86e60a1e4a982c866e94360a9e18e631a7ff13c57168df1507f62a7e2",
-      "size_bytes": 32728
-    },
-    {
-      "path": "results/runs/main_large_10m_seed12721_03_moe_220m/metrics/summary.json",
-      "sha256": "b69e8fe78c3a651be01795771c64771095e33b86b6624a990c4a282cda18312a",
-      "size_bytes": 94091
-    },
-    {
-      "path": "results/runs/main_large_10m_seed12721_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "da1bdcde92179eedb7a668064f5b8d7503c8265c1ddc2a50043e61331fd48db2",
-      "size_bytes": 94372
-    },
-    {
-      "path": "results/runs/main_large_10m_seed12721_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "354fb947cb0d632274f7d6c4d8ae78aa804d3e734d9590bb057288408e2d6aa3",
-      "size_bytes": 98932
-    },
-    {
-      "path": "results/runs/main_large_10m_seed12721_00_dense_121m/metrics/summary.json",
-      "sha256": "3ea4ad15844cf8b5ad0399dd0f145b1d45c827e2877d7fd72775b6232b158ade",
-      "size_bytes": 32526
-    },
-    {
-      "path": "results/runs/main_large_10m_seed12721_01_mla_121m/metrics/summary.json",
-      "sha256": "a809bde486ce93ee76e71ce95a7fffee4b9c7a46a38861cda15bb0cd24383c46",
-      "size_bytes": 32732
-    },
-    {
-      "path": "results/runs/main_large_10m_seed12721_02_mtp_121m/metrics/summary.json",
-      "sha256": "5fd74a3845c2687419ef645a36ab0be40534d61ec6d79b00b52c1c9fe96a70f6",
-      "size_bytes": 32856
-    },
-    {
-      "path": "results/runs/main_large_25m_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "c4df4bbca4ce21b7f5d1bf05751c25b20f933469dd27c7098044aa6e3a4bdb4b",
-      "size_bytes": 94332
-    },
-    {
-      "path": "results/runs/main_large_25m_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "907c1f4e7ef02e0d986f94d7cda96f1377dafa27dc18a030cb80334b74e980ca",
-      "size_bytes": 98684
-    },
-    {
-      "path": "results/runs/main_large_25m_00_dense_121m/metrics/summary.json",
-      "sha256": "604bb786ce95f2ac55b3e1f5374bc44d5c4b7265741f0e858c2be78229008f50",
-      "size_bytes": 32426
-    },
-    {
-      "path": "results/runs/main_large_25m_01_mla_121m/metrics/summary.json",
-      "sha256": "0557d75a61d11c246d2c51f8753fb1fb165365634b38efaa18a8c49c9c23e300",
-      "size_bytes": 32633
-    },
-    {
-      "path": "results/runs/main_large_25m_02_mtp_121m/metrics/summary.json",
-      "sha256": "5ceeb70002ed7e7da0764b3e56bcd4c5ea2813bb972ce7f964cad82e84e2d9f1",
-      "size_bytes": 32755
-    },
-    {
-      "path": "results/runs/main_large_25m_03_moe_220m/metrics/summary.json",
-      "sha256": "df18a16b581423e088dd3d207df350087f401024e6480bfc2da962e56038b147",
-      "size_bytes": 94106
-    },
-    {
-      "path": "results/runs/main_large_25m_seed2027_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "b0ddd5dcdf40524d3fa2ddf06870877a572dea7fd145fa30c763e8c0a947e2c6",
-      "size_bytes": 98620
-    },
-    {
-      "path": "results/runs/main_large_25m_seed2027_00_dense_121m/metrics/summary.json",
-      "sha256": "59b87d37c98ed91a5a26a5c8b4595949ae203cd2d604b5d499b58bad9e4d281f",
-      "size_bytes": 32508
-    },
-    {
-      "path": "results/runs/main_large_25m_seed2027_01_mla_121m/metrics/summary.json",
-      "sha256": "f0c2e7fc2e4fd9c5e1295e55d6a07ec2f61df9056c6f17a12bcc902a80350d2e",
-      "size_bytes": 32708
-    },
-    {
-      "path": "results/runs/main_large_25m_seed2027_02_mtp_121m/metrics/summary.json",
-      "sha256": "a07ad1b33ae2da8b2b857593c89c77cf8921b163783a36f8fefeb7969471013b",
-      "size_bytes": 32832
-    },
-    {
-      "path": "results/runs/main_large_25m_seed2027_03_moe_220m/metrics/summary.json",
-      "sha256": "1715f46c4cc373b22ebee306a82b144e5979f2d3ed9b64472c913bf7e5895065",
-      "size_bytes": 94106
-    },
-    {
-      "path": "results/runs/main_large_25m_seed2027_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "68a5723ed99063e739e1c9f0c94fe8eb3905b61e7f2409233d3a0b897a9a410d",
-      "size_bytes": 94408
-    },
-    {
-      "path": "results/runs/main_large_25m_seed31415_00_dense_121m/metrics/summary.json",
-      "sha256": "c030e24412079857bc1f15939ad2a8697f39577c2c24cde088eb887144790fb9",
-      "size_bytes": 32517
-    },
-    {
-      "path": "results/runs/main_large_25m_seed31415_01_mla_121m/metrics/summary.json",
-      "sha256": "6f87ef1cdbd107582cbef705f93e2f0cb9ae437606304eb7850ad38c66a2e3f8",
-      "size_bytes": 32724
-    },
-    {
-      "path": "results/runs/main_large_25m_seed31415_02_mtp_121m/metrics/summary.json",
-      "sha256": "0ad71a34e712a013ca164b0cc05413395ed1aba25ba5e51eb7e0b461b1e233fe",
-      "size_bytes": 32847
-    },
-    {
-      "path": "results/runs/main_large_25m_seed31415_03_moe_220m/metrics/summary.json",
-      "sha256": "20c736ad09eb822736cce612778dac7a89596b96a4990bdebd72bedf3d9532ce",
-      "size_bytes": 94160
-    },
-    {
-      "path": "results/runs/main_large_25m_seed31415_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "d86c94a32eb06326904f740ec865899ba6d94064989910ab176ef60ea63ed07c",
-      "size_bytes": 94375
-    },
-    {
-      "path": "results/runs/main_large_25m_seed31415_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "2bd679ae4e2687e3e5b28c101981c65e7aeb107c4a5ecccb52ce03cc2342664a",
-      "size_bytes": 98652
-    },
-    {
-      "path": "results/runs/main_large_25m_seed4441_01_mla_121m/metrics/summary.json",
-      "sha256": "a02b4a11ba04c30e0a866073b06945a58383423b55cdf604932246bd9ba5a723",
-      "size_bytes": 32712
-    },
-    {
-      "path": "results/runs/main_large_25m_seed4441_02_mtp_121m/metrics/summary.json",
-      "sha256": "9afba0b980c5c62ba52a73b359cf37ad68455db59625e927a006a669069f5ae4",
-      "size_bytes": 32833
-    },
-    {
-      "path": "results/runs/main_large_25m_seed4441_03_moe_220m/metrics/summary.json",
-      "sha256": "0a6a3f943e306802d13778e059cf4d4a187fd85a9a5dcc27b8a2628497a56a6a",
-      "size_bytes": 94119
-    },
-    {
-      "path": "results/runs/main_large_25m_seed4441_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "8e076d5099c2827108aadd26bf901b56e6006adb3dae39d8faa1336d8fda7185",
-      "size_bytes": 94427
-    },
-    {
-      "path": "results/runs/main_large_25m_seed4441_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "7be89621ae906fbefeddb3beb82922a3305735221a51ad12ed4030dce2c06fa0",
-      "size_bytes": 98639
-    },
-    {
-      "path": "results/runs/main_large_25m_seed4441_00_dense_121m/metrics/summary.json",
-      "sha256": "009e1d94c177de18b3034b5f27d931c471823399b5cdf3f50277814cf0f9b2de",
-      "size_bytes": 32509
-    },
-    {
-      "path": "results/runs/main_large_25m_seed5501_02_mtp_121m/metrics/summary.json",
-      "sha256": "23dd381bb7749607c59e02f1d918e2861810beca0aa4c53eba4b58a874533550",
-      "size_bytes": 32835
-    },
-    {
-      "path": "results/runs/main_large_25m_seed5501_03_moe_220m/metrics/summary.json",
-      "sha256": "af964c1f7339056d93e8b2dda744d6c837c773409e692605bb422c94b4d4aaad",
-      "size_bytes": 94045
-    },
-    {
-      "path": "results/runs/main_large_25m_seed5501_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "4e8f17613e84906b5a223585ddb283971cf277b3967be6b336f3f3f269c07d9f",
-      "size_bytes": 94458
-    },
-    {
-      "path": "results/runs/main_large_25m_seed5501_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "dff8d7ba66f0d72a3afcd6ac947db367c93d6d29aedecbc1bf32de99590e9b2e",
-      "size_bytes": 98774
-    },
-    {
-      "path": "results/runs/main_large_25m_seed5501_00_dense_121m/metrics/summary.json",
-      "sha256": "68399b06c7748ff4e73fc13d95e5c59bbc075e57013ec23861487924dfc88939",
-      "size_bytes": 32508
-    },
-    {
-      "path": "results/runs/main_large_25m_seed5501_01_mla_121m/metrics/summary.json",
-      "sha256": "47e06536898c577349b4fb4d7015cf95aab5b4611a3f644680d00f1d8ab52dac",
-      "size_bytes": 32713
-    },
-    {
-      "path": "results/runs/main_large_25m_seed6173_03_moe_220m/metrics/summary.json",
-      "sha256": "ee22a97f7c0d1003d66d71d0b4841f693b0b52a51927ed01d16af446a5e99766",
-      "size_bytes": 93999
-    },
-    {
-      "path": "results/runs/main_large_25m_seed6173_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "fb5596d590a9f540b6563c47479b8e73450d6eb45d0c99aba65ba01a3b4afc04",
-      "size_bytes": 94388
-    },
-    {
-      "path": "results/runs/main_large_25m_seed6173_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "ba6b465c3fcefc89d7421b62de16f44456525e46516c0be37e356bf8b9a90cce",
-      "size_bytes": 98686
-    },
-    {
-      "path": "results/runs/main_large_25m_seed6173_00_dense_121m/metrics/summary.json",
-      "sha256": "80f5355551e9f785fe7f32466bae36c3d2106e4bb21e89f48049b4f6fd57da37",
-      "size_bytes": 32508
-    },
-    {
-      "path": "results/runs/main_large_25m_seed6173_01_mla_121m/metrics/summary.json",
-      "sha256": "9b798fac52c70b427ecb84efa4568cfb1ca0c914b24192b83c4de91930f5f8f6",
-      "size_bytes": 32713
-    },
-    {
-      "path": "results/runs/main_large_25m_seed6173_02_mtp_121m/metrics/summary.json",
-      "sha256": "1ce215e9a31944af6a62d9950a9a99b9f6fc813596b86a9fba2294114d0b182d",
-      "size_bytes": 32836
-    },
-    {
-      "path": "results/runs/main_large_25m_seed8191_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "ca5871385db342224f8f3404b3f54db6924a1ea5c951959861b5106170091926",
-      "size_bytes": 94449
-    },
-    {
-      "path": "results/runs/main_large_25m_seed8191_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "48aa0ea0726c21e2535af7ec6989056b156f2b7ea756f2102457804dc65080d3",
-      "size_bytes": 98755
-    },
-    {
-      "path": "results/runs/main_large_25m_seed8191_00_dense_121m/metrics/summary.json",
-      "sha256": "2033792650defeb31723acd4661d6d6008c4121549f939b21aa0e25afab0b69a",
-      "size_bytes": 32507
-    },
-    {
-      "path": "results/runs/main_large_25m_seed8191_01_mla_121m/metrics/summary.json",
-      "sha256": "157e92f11675cb73f44c597ff64ac46dc16c6f995458008b55ace14b27c9cab9",
-      "size_bytes": 32717
-    },
-    {
-      "path": "results/runs/main_large_25m_seed8191_02_mtp_121m/metrics/summary.json",
-      "sha256": "500084e5c3abad5179a738dff81a632568dff0ab11e0836b7e9161dc0747acfb",
-      "size_bytes": 32833
-    },
-    {
-      "path": "results/runs/main_large_25m_seed8191_03_moe_220m/metrics/summary.json",
-      "sha256": "6415e50e8c91ccaad4df36fbdcd95271d26bb10c91e4dafcc20e4a4eec5b4d1a",
-      "size_bytes": 94122
-    },
-    {
-      "path": "results/runs/main_large_25m_seed10007_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "6e7f6e4e16d740d8daafe5c632345991afad7c7255e5f9b320d75c30f23f94a5",
-      "size_bytes": 98594
-    },
-    {
-      "path": "results/runs/main_large_25m_seed10007_00_dense_121m/metrics/summary.json",
-      "sha256": "11a22c59336dfcbb89e8275b7c1438a0f6b9e134354ea48160dfe2ea9dc95b54",
-      "size_bytes": 32519
-    },
-    {
-      "path": "results/runs/main_large_25m_seed10007_01_mla_121m/metrics/summary.json",
-      "sha256": "586290ba93f78d25c8688e5de5614de7429f03f9c4c6def6e8c206e41ff87de6",
-      "size_bytes": 32727
-    },
-    {
-      "path": "results/runs/main_large_25m_seed10007_02_mtp_121m/metrics/summary.json",
-      "sha256": "37121326062a4be277fde08238f95bb3d6ed27b3c07f9d41373b92ee443fbe08",
-      "size_bytes": 32847
-    },
-    {
-      "path": "results/runs/main_large_25m_seed10007_03_moe_220m/metrics/summary.json",
-      "sha256": "8a0cc62dc8bc0e00558f9e3f302134c9c9eafdc46260cdd3a519301258eefc14",
-      "size_bytes": 94127
-    },
-    {
-      "path": "results/runs/main_large_25m_seed10007_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "491d36f4637273e3e03e981e314b7f04dcd4cd6cb8ffa4d4f1328b0757e48d56",
-      "size_bytes": 94523
-    },
-    {
-      "path": "results/runs/main_large_25m_seed11213_00_dense_121m/metrics/summary.json",
-      "sha256": "9e9e37b9fb9ee223ad9fb80e7f9a8db3509a93fd30bc44a711776cf7dfb30179",
-      "size_bytes": 32519
-    },
-    {
-      "path": "results/runs/main_large_25m_seed11213_01_mla_121m/metrics/summary.json",
-      "sha256": "6bb89ae0e6e40c07a787024ec18651de33d75f726a8de8318145f6de354f74f7",
+      "sha256": "b033a74e5e8fc2056e1bfc529fd2e07ab57757798d700520c978d75fcb0ef38d",
       "size_bytes": 32723
     },
     {
-      "path": "results/runs/main_large_25m_seed11213_02_mtp_121m/metrics/summary.json",
-      "sha256": "db5d9794f7d6eab7f5715e7a659c7972f081569a8490e1a9a9f79eaabdcce6cb",
-      "size_bytes": 32842
+      "path": "results/runs/main_large_10m_03_moe_220m/metrics/summary.json",
+      "sha256": "e2c370d13b214ad0194c9d690544495703e7b7e62a3ccc7d03eb7f2003adb9c7",
+      "size_bytes": 93998
     },
     {
-      "path": "results/runs/main_large_25m_seed11213_03_moe_220m/metrics/summary.json",
-      "sha256": "2141f040e79c2efccb982be0b108a3ff605d383cfad02bb25aae549055bfc786",
-      "size_bytes": 94107
+      "path": "results/runs/main_large_10m_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "eabd08ff4b266307cf67bb39245b40769f72046de4b9d33b5dd9aa6be38cd25d",
+      "size_bytes": 94293
     },
     {
-      "path": "results/runs/main_large_25m_seed11213_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "191f8e841cc056fb3b983c4634094804a0bcff6cf0bf6b4d398e6a80e2291f39",
-      "size_bytes": 94402
+      "path": "results/runs/main_large_10m_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "854414915f15f96d38beba9099f2338c667da885c55f62c46092f2e3f9977c39",
+      "size_bytes": 98837
     },
     {
-      "path": "results/runs/main_large_25m_seed11213_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "6121d33311db0f099cbe30fb55fdb52f293d6c2896b020e99d70d61f22252287",
-      "size_bytes": 98658
+      "path": "results/runs/main_large_10m_seed2027_01_mla_121m/metrics/summary.json",
+      "sha256": "6a40c418bdfbd40781b697bb734814b402e46cdacf4634dcfa05731a79c1b4ca",
+      "size_bytes": 32687
     },
     {
-      "path": "results/runs/main_large_25m_seed12721_01_mla_121m/metrics/summary.json",
-      "sha256": "7b266ae634e4148215bbc1846c38a7890c760c8ed8838c83003bf54b61aabd10",
-      "size_bytes": 32729
+      "path": "results/runs/main_large_10m_seed2027_02_mtp_121m/metrics/summary.json",
+      "sha256": "d132f1124c1a0a73848e1ff453b8d2251f8650b474479892bb1d69c60a7b463d",
+      "size_bytes": 32806
     },
     {
-      "path": "results/runs/main_large_25m_seed12721_02_mtp_121m/metrics/summary.json",
-      "sha256": "5e9fd9d0f815fa53ce01518c2d2ce951516498603619a4d29078bfb42bb8dccf",
-      "size_bytes": 32849
+      "path": "results/runs/main_large_10m_seed2027_03_moe_220m/metrics/summary.json",
+      "sha256": "ac42118f5d4c45bc9b79b3d4955e2a45f629bc334e763624593002cf920c765a",
+      "size_bytes": 94005
     },
     {
-      "path": "results/runs/main_large_25m_seed12721_03_moe_220m/metrics/summary.json",
-      "sha256": "44dc4133513f3459b2dfb48d32d4b87714c3dc6cd50c1db8d8751003ac0ae5e8",
-      "size_bytes": 94140
+      "path": "results/runs/main_large_10m_seed2027_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "6c6d902d773e6dcd710ee1290d6ced6959f7bbc01dec7089189ae735aaee7c59",
+      "size_bytes": 94299
     },
     {
-      "path": "results/runs/main_large_25m_seed12721_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "6057fc04d3a8135b9d7eb2baf8a8c75ce66d827980c0c2136b6295b160a3738d",
-      "size_bytes": 94398
+      "path": "results/runs/main_large_10m_seed2027_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "0add9523dbd7d8098f30a0387387a36d79e5e2a5b21de2a1055c4e55622cb0ce",
+      "size_bytes": 98759
     },
     {
-      "path": "results/runs/main_large_25m_seed12721_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "10e1cf2192ad60a27dd6b3894b3969cf9d4c66fd82f042af09dff603a1256f24",
-      "size_bytes": 98658
+      "path": "results/runs/main_large_10m_seed2027_00_dense_121m/metrics/summary.json",
+      "sha256": "b19311e886c02ef33aecb46cea7cdadf299e54c70c932bbd00a8eda9b123755b",
+      "size_bytes": 32470
     },
     {
-      "path": "results/runs/main_large_25m_seed12721_00_dense_121m/metrics/summary.json",
-      "sha256": "53ec501637fb9961fca79dd6789f4ae0fc6bf3b3529296a44668b066cdb1f9a8",
-      "size_bytes": 32524
+      "path": "results/runs/main_large_10m_seed31415_02_mtp_121m/metrics/summary.json",
+      "sha256": "ebe4cb2441f62cae45eb3ad2a57db34e506e8e5ae25432dcf3146b4bc68a7fec",
+      "size_bytes": 32819
     },
     {
-      "path": "results/runs/main_large_50m_02_mtp_121m/metrics/summary.json",
-      "sha256": "15b3db51c1a2e9a95bb906b99ae7d9a190454a5d14d82a4b76a0bc398997be77",
-      "size_bytes": 32755
+      "path": "results/runs/main_large_10m_seed31415_03_moe_220m/metrics/summary.json",
+      "sha256": "202e7de2e401714ebdd16d3c5e9ebd5d08306cfd97d835d687fcc72aae050a2e",
+      "size_bytes": 94089
     },
     {
-      "path": "results/runs/main_large_50m_03_moe_220m/metrics/summary.json",
-      "sha256": "390b98e737f8f64337a0181b4664fbc51e94e5e643f7f18d49c906ab6a31c788",
-      "size_bytes": 94033
+      "path": "results/runs/main_large_10m_seed31415_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "55007cebabb03c6bb0db6a34494ce9a0746bba8a567d7770c2544cd10ea17c00",
+      "size_bytes": 94390
     },
     {
-      "path": "results/runs/main_large_50m_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "c2f230313278c78aa305a786c676a1aa63072880927a7d57399a13e3f0ede028",
-      "size_bytes": 94310
+      "path": "results/runs/main_large_10m_seed31415_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "429036058578067bd20af3d14c773735e0d1474ded07dc5092523c1afb16df55",
+      "size_bytes": 98889
     },
     {
-      "path": "results/runs/main_large_50m_05_v3_routing_220m/metrics/summary.json",
-      "sha256": "7398a57f447fa39f7ab874bca6f8d2d14a810ada444a1827ac9f536e8fb6d463",
-      "size_bytes": 98424
+      "path": "results/runs/main_large_10m_seed31415_00_dense_121m/metrics/summary.json",
+      "sha256": "e7585b354ac3055e8952228c60562f9fac9535f532c2ef1925772a42341f7d94",
+      "size_bytes": 32495
     },
     {
-      "path": "results/runs/main_large_50m_00_dense_121m/metrics/summary.json",
-      "sha256": "a5c150b9ca7c7365786428a967479c0e6898e9c260a75dda90c74fafbc2f7386",
-      "size_bytes": 32430
+      "path": "results/runs/main_large_10m_seed31415_01_mla_121m/metrics/summary.json",
+      "sha256": "7dcff5d2031fc6bd9c8d60e093a03c11129cb8e31b64a7a50a1d61787a59f2d1",
+      "size_bytes": 32700
     },
     {
-      "path": "results/runs/main_large_50m_01_mla_121m/metrics/summary.json",
-      "sha256": "1c0e826b539911b025490119a394cc78dae4ee86d990b1d829d150b239e0bfc5",
-      "size_bytes": 32632
+      "path": "results/runs/main_large_10m_seed4441_03_moe_220m/metrics/summary.json",
+      "sha256": "7c0e94862aaa5009b73b722300e41da150708480391c98d87b44a92512c6cf55",
+      "size_bytes": 94062
     },
     {
-      "path": "results/runs/main_large_50m_seed2027_02_moe_220m/metrics/summary.json",
-      "sha256": "cd834d89dad6edf9d457d7cc9c449eca5cab6cde068955ddd9427e52f40835a5",
-      "size_bytes": 94111
+      "path": "results/runs/main_large_10m_seed4441_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "578c5779c2c0b71066815542041957d34d3e9daa1a934ad2cd6c0c4d50ebe12a",
+      "size_bytes": 94365
     },
     {
-      "path": "results/runs/main_large_50m_seed2027_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "419a314ef1a5e7f2b5214c856828c83918fb6b2362c0831ad91373c9625a45cd",
-      "size_bytes": 94437
+      "path": "results/runs/main_large_10m_seed4441_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "529d70d14fd63a556746724c877b325899dfee157af9dcd51dfad77e33a44ef1",
+      "size_bytes": 98842
     },
     {
-      "path": "results/runs/main_large_50m_seed2027_03_v3_routing_220m/metrics/summary.json",
-      "sha256": "66b9335fce95c11aa043b6f80da7dc77817a93a33b7d221723b24c1bf86ca367",
-      "size_bytes": 98514
+      "path": "results/runs/main_large_10m_seed4441_00_dense_121m/metrics/summary.json",
+      "sha256": "b92c169908d85cd79cf44e1553c34bacd301b396ef1ea1ec4027885357b3ab69",
+      "size_bytes": 32482
     },
     {
-      "path": "results/runs/main_large_50m_seed2027_00_dense_121m/metrics/summary.json",
-      "sha256": "8a00f98c373836ef3fa60ce5bf418c6f1e8b5ed918ae50b065281122b7e30931",
-      "size_bytes": 32509
+      "path": "results/runs/main_large_10m_seed4441_01_mla_121m/metrics/summary.json",
+      "sha256": "8350d3706222ae5e798bea21ae10f113eadd1ec81ec21b1f1e201a4cb5f468e5",
+      "size_bytes": 32689
     },
     {
-      "path": "results/runs/main_large_50m_seed2027_01_mla_121m/metrics/summary.json",
-      "sha256": "436487c45d9c532e9a34ba8bb82e6d6bfefe700008e47847b95ec29ef50859db",
-      "size_bytes": 32709
+      "path": "results/runs/main_large_10m_seed4441_02_mtp_121m/metrics/summary.json",
+      "sha256": "de1501e71c44da19f7b8ec9729f07c4333703ae4bebfd92fff2aae334ceb011c",
+      "size_bytes": 32807
     },
     {
-      "path": "results/runs/main_large_50m_seed2027_01_mtp_121m/metrics/summary.json",
-      "sha256": "11eb7fe02a23af46e7faf4f7524cfd6d83ef15e7ad616a8aeaedb3306a050125",
-      "size_bytes": 32828
+      "path": "results/runs/main_large_10m_seed5501_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "c62b0eeaed5055debd08a2a1320fa58bd417dcefd7ed32a42a3cd21480fde85d",
+      "size_bytes": 94449
     },
     {
-      "path": "results/runs/main_large_50m_seed31415_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "7d0482f31f277f738caee4a5e141979c4009512eea34cc437cb3186aef6dacec",
-      "size_bytes": 94314
+      "path": "results/runs/main_large_10m_seed5501_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "d96026462e49bb3ba9a65b14dde1df43cba840b1cef239829406cfb02c6eb4f7",
+      "size_bytes": 98932
     },
     {
-      "path": "results/runs/main_large_50m_seed31415_03_v3_routing_220m/metrics/summary.json",
-      "sha256": "c123f1fe15128fbe4b7c17f37b9c8ed46e67bda884135fa2dad42ba89d5ab846",
-      "size_bytes": 98491
+      "path": "results/runs/main_large_10m_seed5501_00_dense_121m/metrics/summary.json",
+      "sha256": "168e49829c346c1104aa54ccbcbd2e49ca2ec150744e518b59705978490af9dd",
+      "size_bytes": 32481
     },
     {
-      "path": "results/runs/main_large_50m_seed31415_00_dense_121m/metrics/summary.json",
-      "sha256": "4b29cd48e2e934f6d76744ee73557e4051146af3e8297431371d70791015df2f",
-      "size_bytes": 32525
+      "path": "results/runs/main_large_10m_seed5501_01_mla_121m/metrics/summary.json",
+      "sha256": "dbb927dc92b8bfb294d44ba0ef52ce0ffef5743191b366211ba4676fce5e95b9",
+      "size_bytes": 32687
     },
     {
-      "path": "results/runs/main_large_50m_seed31415_01_mla_121m/metrics/summary.json",
-      "sha256": "cb73b3ca0895b63573f0cc035bf7ceb80442133dc4524b20b5baa099a1528afe",
-      "size_bytes": 32721
+      "path": "results/runs/main_large_10m_seed5501_02_mtp_121m/metrics/summary.json",
+      "sha256": "b22e441fc23a4ea9d7e5bb66efd188f739b1dc76b8d4b4c57f0e4bf5764cbd48",
+      "size_bytes": 32805
     },
     {
-      "path": "results/runs/main_large_50m_seed31415_01_mtp_121m/metrics/summary.json",
-      "sha256": "b42653004b068a05c3ad44d99daa45b9f95ddc2da0590718bc1474f0a35e57a9",
-      "size_bytes": 32843
+      "path": "results/runs/main_large_10m_seed5501_03_moe_220m/metrics/summary.json",
+      "sha256": "6c870f76331ae52bb5d2da5998b9adb4be99acb83367e37080896196722b543a",
+      "size_bytes": 94090
     },
     {
-      "path": "results/runs/main_large_50m_seed31415_02_moe_220m/metrics/summary.json",
-      "sha256": "763fbc1e50195fecc2623e57b1fe3fd6234a65a34f21972396611ce93bdd0ff2",
-      "size_bytes": 94059
+      "path": "results/runs/main_large_10m_seed6173_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "9d99b2687fe1f283d0206843e437228b12302d6990ff249f737e86549f53e736",
+      "size_bytes": 98779
     },
     {
-      "path": "results/runs/main_large_50m_seed4441_03_v3_routing_220m/metrics/summary.json",
-      "sha256": "526ecc61f947f8d9c43b316acd3d1377f9a9d53e8a20e15eaa95135d6351bd2a",
-      "size_bytes": 98526
+      "path": "results/runs/main_large_10m_seed6173_00_dense_121m/metrics/summary.json",
+      "sha256": "2c8d0ea6ea786cc1602996938619edb47d7d0b858925b27dbaf94b70395750a0",
+      "size_bytes": 32471
     },
     {
-      "path": "results/runs/main_large_50m_seed4441_00_dense_121m/metrics/summary.json",
-      "sha256": "849316348b40978fdeed462885b5edf93939c6507f3219f6f89056fbf232d1a6",
-      "size_bytes": 32511
+      "path": "results/runs/main_large_10m_seed6173_01_mla_121m/metrics/summary.json",
+      "sha256": "8c89f37eb7e0c259c8a332b77f461821f5682da7514b6411b3cde80a2d0aa3d4",
+      "size_bytes": 32689
     },
     {
-      "path": "results/runs/main_large_50m_seed4441_01_mla_121m/metrics/summary.json",
-      "sha256": "59b17d600108281ff3b9739e6a22f469d4f99d8a2bd562749f77876158cb9705",
-      "size_bytes": 32711
+      "path": "results/runs/main_large_10m_seed6173_02_mtp_121m/metrics/summary.json",
+      "sha256": "2352028a903b3a82872b6597c7462e536b900e9d1eb77fffa3b8f8848f68d30a",
+      "size_bytes": 32805
     },
     {
-      "path": "results/runs/main_large_50m_seed4441_01_mtp_121m/metrics/summary.json",
-      "sha256": "439f586fd1be334bf76b38b6ad74b58aed1c7dd7bb4d861415df307317557211",
-      "size_bytes": 32830
+      "path": "results/runs/main_large_10m_seed6173_03_moe_220m/metrics/summary.json",
+      "sha256": "efbf108a4c4dbff86336545b65b7e1bd4343836b356925f246eefbdf28424f74",
+      "size_bytes": 94115
     },
     {
-      "path": "results/runs/main_large_50m_seed4441_02_moe_220m/metrics/summary.json",
-      "sha256": "aa9bd79d8817ee2245314fb10de0546a3c3c1b3e71acd5839b86d6728971b726",
-      "size_bytes": 94068
+      "path": "results/runs/main_large_10m_seed6173_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "85ac1dcb51b76d6174e5a85250867ac25d4412e630f80d68a81c58a78e5515df",
+      "size_bytes": 94363
     },
     {
-      "path": "results/runs/main_large_50m_seed4441_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "f9736748c09b527075b875b418652c9a3074afe64c903148b1a90aa9017866dc",
-      "size_bytes": 94364
+      "path": "results/runs/main_large_10m_seed8191_00_dense_121m/metrics/summary.json",
+      "sha256": "4efcca77311a8185ebf143ebfcbbc499effae7331a9fbd1dc181cf01ad94aa23",
+      "size_bytes": 32481
     },
     {
-      "path": "results/runs/main_large_50m_seed5501_00_dense_121m/metrics/summary.json",
-      "sha256": "62c29a48e05b9232f4749eedea1d30d6caf393f35d8515a3c532885f35850c77",
-      "size_bytes": 32508
+      "path": "results/runs/main_large_10m_seed8191_01_mla_121m/metrics/summary.json",
+      "sha256": "13f48d97612f976fd1912168d542956d1f111519a3b3355557327116969f219e",
+      "size_bytes": 32689
     },
     {
-      "path": "results/runs/main_large_50m_seed5501_01_mla_121m/metrics/summary.json",
-      "sha256": "762c072b5845bf9a53608fb54ea287d4046e290e86fb2af1057131f417dbc2cc",
-      "size_bytes": 32708
+      "path": "results/runs/main_large_10m_seed8191_02_mtp_121m/metrics/summary.json",
+      "sha256": "6967cbf70069a5dbfa6cd3ffd65de24888f33950063fdc6bbe58992d6f4a0146",
+      "size_bytes": 32808
     },
     {
-      "path": "results/runs/main_large_50m_seed5501_01_mtp_121m/metrics/summary.json",
-      "sha256": "424e1cdb33607cd0ab454a01150de36d39a20ca1d1c5d8168832bb6874e03aff",
-      "size_bytes": 32831
+      "path": "results/runs/main_large_10m_seed8191_03_moe_220m/metrics/summary.json",
+      "sha256": "246b0da64880d20bbcbb3770cfff8f13f9d73c2f1e94e40758f3b7d2be963078",
+      "size_bytes": 94047
     },
     {
-      "path": "results/runs/main_large_50m_seed5501_02_moe_220m/metrics/summary.json",
-      "sha256": "03fbc57daffa8f68d436a97402c614d52f627512ba3b3a419f5161864b6d4a55",
-      "size_bytes": 94107
+      "path": "results/runs/main_large_10m_seed8191_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "9a1fc72ea23483d100be6660db43a88f62092cf4ee8e394c1b14c7794a3b1083",
+      "size_bytes": 94412
     },
     {
-      "path": "results/runs/main_large_50m_seed5501_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "14b0a5c0d04d53d133d7b31198248efa1d64d1262030141f90341d90f04dc976",
-      "size_bytes": 94294
+      "path": "results/runs/main_large_10m_seed8191_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "c2b372eeee5fe35b2583988dfbb8c03e02aaadfb59e265159adbb212747ef9f0",
+      "size_bytes": 98808
     },
     {
-      "path": "results/runs/main_large_50m_seed5501_03_v3_routing_220m/metrics/summary.json",
-      "sha256": "48d141d3bb9822c09551a286bd9033b581d35bf8aeb31c6b3116ec557025c19b",
-      "size_bytes": 98488
-    },
-    {
-      "path": "results/runs/main_large_50m_seed6173_01_mla_121m/metrics/summary.json",
-      "sha256": "0a74505116f1f88d2d59254cc989260d0a5a24069be316b858104ef3414e7726",
+      "path": "results/runs/main_large_10m_seed10007_01_mla_121m/metrics/summary.json",
+      "sha256": "89b5df63a303854c60b6c3454ede7b7982f2e249cc90f4cd09a146b03facd562",
       "size_bytes": 32704
     },
     {
-      "path": "results/runs/main_large_50m_seed6173_01_mtp_121m/metrics/summary.json",
-      "sha256": "9fc20984dcf9c1c817c1b20ffa051e106a1045775dae59115a97dc833099ecbc",
-      "size_bytes": 32832
+      "path": "results/runs/main_large_10m_seed10007_02_mtp_121m/metrics/summary.json",
+      "sha256": "96337dc252ad16ee45ad46d43307af973082274ca55a5acfa0cd8e1788d05ca9",
+      "size_bytes": 32823
     },
     {
-      "path": "results/runs/main_large_50m_seed6173_02_moe_220m/metrics/summary.json",
-      "sha256": "a3eeaadc8366ae390194d32cdd135a540add3a7bc4e3b13fb4fb258b4f78ca4a",
-      "size_bytes": 94009
+      "path": "results/runs/main_large_10m_seed10007_03_moe_220m/metrics/summary.json",
+      "sha256": "e811fd52cd73dbca6c8c9800a8b59350592f7a27c296254d37959cea02af24ca",
+      "size_bytes": 94018
     },
     {
-      "path": "results/runs/main_large_50m_seed6173_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "713e81bf5b1ee811a613ab783293ab2914a5040525d208b3db3505e8a37710c7",
-      "size_bytes": 94376
+      "path": "results/runs/main_large_10m_seed10007_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "b659b0114bc420ef17504b6303dbb151aadf60b0b055e225d6ec88658573a622",
+      "size_bytes": 94369
     },
     {
-      "path": "results/runs/main_large_50m_seed6173_03_v3_routing_220m/metrics/summary.json",
-      "sha256": "ab58185202939df23340d97f3a0c52c7750732b2ffc656bccca61a25fe9ef0e5",
-      "size_bytes": 98511
+      "path": "results/runs/main_large_10m_seed10007_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "8643077fe5d5f0622ebdf26c784b1c56a3b299b6d88cfa8e7b0f6ca1a1381970",
+      "size_bytes": 98859
     },
     {
-      "path": "results/runs/main_large_50m_seed6173_00_dense_121m/metrics/summary.json",
-      "sha256": "2d275c6d515f30b5859dacabddbe2b4ffc9ea9b41ad28438273f7e1219f8fcc4",
-      "size_bytes": 32510
+      "path": "results/runs/main_large_10m_seed10007_00_dense_121m/metrics/summary.json",
+      "sha256": "ea096ea1da2ebc0b742a3cd213971a47374541a5b550b1c9d291fe615972c967",
+      "size_bytes": 32495
     },
     {
-      "path": "results/runs/main_large_50m_seed8191_01_mtp_121m/metrics/summary.json",
-      "sha256": "63c037bc4c84932196a3e9ee2c38b1e7397593aecc34681fc032b1fded27874d",
-      "size_bytes": 32833
+      "path": "results/runs/main_large_10m_seed11213_02_mtp_121m/metrics/summary.json",
+      "sha256": "3dd2017f859d074418f14764e95d6bec00a0316d7a8c34a35eefacf138d3d167",
+      "size_bytes": 32819
     },
     {
-      "path": "results/runs/main_large_50m_seed8191_02_moe_220m/metrics/summary.json",
-      "sha256": "b7d45abb96bfce5a197de400e4103cd2f147308a0f5333d6f246ed32444e6b16",
-      "size_bytes": 94151
+      "path": "results/runs/main_large_10m_seed11213_03_moe_220m/metrics/summary.json",
+      "sha256": "1b48b1bb84332b84c78fb3fca2e281d0ec3685ac660e91d8bdc467515ae874b7",
+      "size_bytes": 94110
     },
     {
-      "path": "results/runs/main_large_50m_seed8191_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "bd0969f627f6280a08f2f24cb14ada1ade00fc85ab16bf439cafd4ce6faa3426",
-      "size_bytes": 94413
+      "path": "results/runs/main_large_10m_seed11213_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "a62387c28bc37ddfd5c10d1d85b6a33079c936ee8877ec3c367fba6c2f258939",
+      "size_bytes": 94391
     },
     {
-      "path": "results/runs/main_large_50m_seed8191_03_v3_routing_220m/metrics/summary.json",
-      "sha256": "350eba4528842dc46cf8bbf56e3815eb8b0c6b1121cdc8f2e2dfdff1642aca7d",
-      "size_bytes": 98438
+      "path": "results/runs/main_large_10m_seed11213_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "6b9b98e977200f5faef6759dfe93ad3270137048b2a32aa638234fc98d35ba45",
+      "size_bytes": 98851
     },
     {
-      "path": "results/runs/main_large_50m_seed8191_00_dense_121m/metrics/summary.json",
-      "sha256": "3c4a1000f824bf01745d81517d494b0496de8d76ee2d2b6a38c45524e86a1a4d",
-      "size_bytes": 32505
+      "path": "results/runs/main_large_10m_seed11213_00_dense_121m/metrics/summary.json",
+      "sha256": "e2f0394d39dd400bbbd33c9a29f3609f25135af731768776ecc920cf93c6ec0e",
+      "size_bytes": 32491
     },
     {
-      "path": "results/runs/main_large_50m_seed8191_01_mla_121m/metrics/summary.json",
-      "sha256": "73429db17f8a7a1051fef317cb266c3e12d0803d8dbbe00081534785711b9a46",
-      "size_bytes": 32710
+      "path": "results/runs/main_large_10m_seed11213_01_mla_121m/metrics/summary.json",
+      "sha256": "4b42a676666aaacdb6f4cb800752f4ba8f53b24512dddcb64caaf969900b8339",
+      "size_bytes": 32698
     },
     {
-      "path": "results/runs/main_large_50m_seed10007_02_moe_220m/metrics/summary.json",
-      "sha256": "30b1bae00231c29bd38e4ffd6b07729778c5bc8d7aa123f9c90aa265bcab417a",
-      "size_bytes": 94086
+      "path": "results/runs/main_large_10m_seed12721_03_moe_220m/metrics/summary.json",
+      "sha256": "e534c5e4d10ba2a63f81c7c4cf897c876b7bd109607efc03687a200724c35d08",
+      "size_bytes": 94061
     },
     {
-      "path": "results/runs/main_large_50m_seed10007_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "ef63ac19d293414dc42b12a477494b20b0919239a24fc094c48770f1f1081621",
-      "size_bytes": 94397
+      "path": "results/runs/main_large_10m_seed12721_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "8d1622ff2eb4e26f5a21b22ec87d8f80426fe7307ca05e43eebeebb3f69241f2",
+      "size_bytes": 94342
     },
     {
-      "path": "results/runs/main_large_50m_seed10007_03_v3_routing_220m/metrics/summary.json",
-      "sha256": "473a4a1ce2ed5e30a0e0d4dba31d71c7623d2c9acee9a1e776ad75db82220096",
-      "size_bytes": 98491
+      "path": "results/runs/main_large_10m_seed12721_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "96c46150e242e8d7319eb09658abf0cf3eb201f8ec4e8febe4280a2fde563f59",
+      "size_bytes": 98902
     },
     {
-      "path": "results/runs/main_large_50m_seed10007_00_dense_121m/metrics/summary.json",
-      "sha256": "c88892392810b3e10c4340fa3131b06cff109d7c29e19ad5e1778fab985dc344",
-      "size_bytes": 32523
+      "path": "results/runs/main_large_10m_seed12721_00_dense_121m/metrics/summary.json",
+      "sha256": "bf20dc0235ca4bd2497224a7ef2f883f7f8d7e7ef5932bc76452eed9b433e94b",
+      "size_bytes": 32496
     },
     {
-      "path": "results/runs/main_large_50m_seed10007_01_mla_121m/metrics/summary.json",
-      "sha256": "ed7b67b4a8df5fd8565760e8d985f3e09ad1520848e2ceb88e65094dfe143ba8",
+      "path": "results/runs/main_large_10m_seed12721_01_mla_121m/metrics/summary.json",
+      "sha256": "3abc05420435d1fec5b5b16d8032d315400cc7f18d8dcd077cf165cc27acef17",
+      "size_bytes": 32702
+    },
+    {
+      "path": "results/runs/main_large_10m_seed12721_02_mtp_121m/metrics/summary.json",
+      "sha256": "7612abc23bc93fbb0eeb60abd08d19d9f8e4aecb1ad40b6752db0ac3b93d396a",
+      "size_bytes": 32826
+    },
+    {
+      "path": "results/runs/main_large_25m_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "0aee385d7318439ca1266d79dd1b1fadeb7fe28ea71dc124f5cef585625c7267",
+      "size_bytes": 94302
+    },
+    {
+      "path": "results/runs/main_large_25m_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "c1f048a71fcdbcd9c5e8e5232618aecb64ca7975b8dc285abeabb8ae0a39118c",
+      "size_bytes": 98654
+    },
+    {
+      "path": "results/runs/main_large_25m_00_dense_121m/metrics/summary.json",
+      "sha256": "78f10faaff57a02f36276a8b5db0b42cf8e59f9595d2fb4d48a087984edb6e19",
+      "size_bytes": 32396
+    },
+    {
+      "path": "results/runs/main_large_25m_01_mla_121m/metrics/summary.json",
+      "sha256": "d680ee71be50f9ba44099150ce0a0923036d4a3bc02409364dd7e82a3e72221e",
+      "size_bytes": 32603
+    },
+    {
+      "path": "results/runs/main_large_25m_02_mtp_121m/metrics/summary.json",
+      "sha256": "283e0af55005bd8d58150bf3476fac2c7053a8db47814891cc70a493464acaf1",
       "size_bytes": 32725
     },
     {
+      "path": "results/runs/main_large_25m_03_moe_220m/metrics/summary.json",
+      "sha256": "1998da192340f9e632239413f1dd5c16ae8815c88d4279c967a22f1e41e744e2",
+      "size_bytes": 94076
+    },
+    {
+      "path": "results/runs/main_large_25m_seed2027_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "4d89843bf9e905486b8eec01e8fbf9b7b7fd878dcade08a8da29e117ac904371",
+      "size_bytes": 98590
+    },
+    {
+      "path": "results/runs/main_large_25m_seed2027_00_dense_121m/metrics/summary.json",
+      "sha256": "c09b4e5fc7b3a9ff07aa974e9858618655b3addfe2284f0e7401cdad3523a617",
+      "size_bytes": 32478
+    },
+    {
+      "path": "results/runs/main_large_25m_seed2027_01_mla_121m/metrics/summary.json",
+      "sha256": "2ca95a674c7897d87525fb2787543ffbc4cefe2582884a154523fa59d562203e",
+      "size_bytes": 32678
+    },
+    {
+      "path": "results/runs/main_large_25m_seed2027_02_mtp_121m/metrics/summary.json",
+      "sha256": "5a601e0cb31523e2846cb0128bc7c9ee75d5e7ea7753d091bc5f63f03abe81f8",
+      "size_bytes": 32802
+    },
+    {
+      "path": "results/runs/main_large_25m_seed2027_03_moe_220m/metrics/summary.json",
+      "sha256": "e663723f64314dc68250b46439b585bbf853f822210bd88ef217f45acb63f7e3",
+      "size_bytes": 94076
+    },
+    {
+      "path": "results/runs/main_large_25m_seed2027_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "5e4819995fdbfdb47f75c48f2a2908fe71330b4964bb402a0186f4048411dd39",
+      "size_bytes": 94378
+    },
+    {
+      "path": "results/runs/main_large_25m_seed31415_00_dense_121m/metrics/summary.json",
+      "sha256": "bd7a4722de2cc2893fcbd1db202679e7f84cd55dec12d82f33e362e61f6baf60",
+      "size_bytes": 32487
+    },
+    {
+      "path": "results/runs/main_large_25m_seed31415_01_mla_121m/metrics/summary.json",
+      "sha256": "5a95ce067fbc66e86999b435b775d90e04bafd5690e61268ffc47d2549b74787",
+      "size_bytes": 32694
+    },
+    {
+      "path": "results/runs/main_large_25m_seed31415_02_mtp_121m/metrics/summary.json",
+      "sha256": "634ec626fe7eafb042c9b2958071c9968782039fd0f5e91185bc9c16fa34f466",
+      "size_bytes": 32817
+    },
+    {
+      "path": "results/runs/main_large_25m_seed31415_03_moe_220m/metrics/summary.json",
+      "sha256": "5356dfde2ef761a20798103004afc920d12023c9a0192b1aaf5cc6bbad55321e",
+      "size_bytes": 94130
+    },
+    {
+      "path": "results/runs/main_large_25m_seed31415_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "4f5bca6f1efea41599cbc9060c1c7d5fabb5602d448199a540f6e1fed693fb15",
+      "size_bytes": 94345
+    },
+    {
+      "path": "results/runs/main_large_25m_seed31415_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "76b6df7ed9992c7500532e875c680e800d53701ad2916261aa41f8f620cc2985",
+      "size_bytes": 98622
+    },
+    {
+      "path": "results/runs/main_large_25m_seed4441_01_mla_121m/metrics/summary.json",
+      "sha256": "de733be53f7997f1d0d51994533e11bb12461b05f1822fd1c38101cc4beac52b",
+      "size_bytes": 32682
+    },
+    {
+      "path": "results/runs/main_large_25m_seed4441_02_mtp_121m/metrics/summary.json",
+      "sha256": "27737612dce33a6b62d7a65d82e89a8bfd877e2046e5b0271fe16d357cdf6d49",
+      "size_bytes": 32803
+    },
+    {
+      "path": "results/runs/main_large_25m_seed4441_03_moe_220m/metrics/summary.json",
+      "sha256": "ea0fcbe0ddfdd0b84ab4c0d3758c6d037d4e0a4d2b81746e7a43e2e600ecbad3",
+      "size_bytes": 94089
+    },
+    {
+      "path": "results/runs/main_large_25m_seed4441_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "5a8669620dff9e162086b64ff82b0e034a26ac3925d234f484778b39abf0bec5",
+      "size_bytes": 94397
+    },
+    {
+      "path": "results/runs/main_large_25m_seed4441_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "5c43a01b61236d695f1e7ce4a2c1b5035f8c3903eda6f31c67dd1ef949acfe87",
+      "size_bytes": 98609
+    },
+    {
+      "path": "results/runs/main_large_25m_seed4441_00_dense_121m/metrics/summary.json",
+      "sha256": "28191cecdf4745293c6d414cf67b2ce28a3aa323290f726cd33cccf244d4cbb3",
+      "size_bytes": 32479
+    },
+    {
+      "path": "results/runs/main_large_25m_seed5501_02_mtp_121m/metrics/summary.json",
+      "sha256": "56e3a4b81262abc2cd689c9c1072d4d84478b202cf9f73f152f5711aa651c603",
+      "size_bytes": 32805
+    },
+    {
+      "path": "results/runs/main_large_25m_seed5501_03_moe_220m/metrics/summary.json",
+      "sha256": "5741fb280cee93ce94b0a090d68d209e47c13748cbc5eb411d32db282c9118f3",
+      "size_bytes": 94015
+    },
+    {
+      "path": "results/runs/main_large_25m_seed5501_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "61712d62b85d0030d98a73fe1b2926d6035c397660707f7c1f3251cb1ad17702",
+      "size_bytes": 94428
+    },
+    {
+      "path": "results/runs/main_large_25m_seed5501_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "27e355388da3df2377e342dcbee1bab2d548f7090e626231afb66f30d7e33abf",
+      "size_bytes": 98744
+    },
+    {
+      "path": "results/runs/main_large_25m_seed5501_00_dense_121m/metrics/summary.json",
+      "sha256": "7dc04b73a3213d2baeb4071578be8777e2b8e77ac21772cd04bba50b1bf15ca2",
+      "size_bytes": 32478
+    },
+    {
+      "path": "results/runs/main_large_25m_seed5501_01_mla_121m/metrics/summary.json",
+      "sha256": "4b87fd4cb2d8c95b9ca144ce1b85d07e2916b622a57c9f13da97048fac0eff47",
+      "size_bytes": 32683
+    },
+    {
+      "path": "results/runs/main_large_25m_seed6173_03_moe_220m/metrics/summary.json",
+      "sha256": "aedf6405c4554ce13b0805e5761027b777f348993e5ea799ba276035f01b372f",
+      "size_bytes": 93969
+    },
+    {
+      "path": "results/runs/main_large_25m_seed6173_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "4d5e7e9dcedba93fbb59889712e08af17078acbf635270b0bbc44957d19f259a",
+      "size_bytes": 94358
+    },
+    {
+      "path": "results/runs/main_large_25m_seed6173_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "2d4b863a6926f3989ec4e6697a41023827fb5d4350cc0672c4ac7287b86bd803",
+      "size_bytes": 98656
+    },
+    {
+      "path": "results/runs/main_large_25m_seed6173_00_dense_121m/metrics/summary.json",
+      "sha256": "ba3fd9fcf112ddbf6072611b330e41635cf489b1b6fce0bcc373215905702e51",
+      "size_bytes": 32478
+    },
+    {
+      "path": "results/runs/main_large_25m_seed6173_01_mla_121m/metrics/summary.json",
+      "sha256": "6c45aef0d536299d25017129b8ccd4c742cbca9a3ca48c74c1b082afb9e23f74",
+      "size_bytes": 32683
+    },
+    {
+      "path": "results/runs/main_large_25m_seed6173_02_mtp_121m/metrics/summary.json",
+      "sha256": "95cb11221f940acb1266f4d9d4e2e2fc8f1cc819c6357681ba2e7775b6992fc3",
+      "size_bytes": 32806
+    },
+    {
+      "path": "results/runs/main_large_25m_seed8191_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "bbcfc7030387c281d7edc5cfd5e4c573c777eede11be10056598b96c5636b192",
+      "size_bytes": 94419
+    },
+    {
+      "path": "results/runs/main_large_25m_seed8191_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "03951de4dae88990924d3953db878922bf9f4f64aea48d81991e99cca7627734",
+      "size_bytes": 98725
+    },
+    {
+      "path": "results/runs/main_large_25m_seed8191_00_dense_121m/metrics/summary.json",
+      "sha256": "ba1cfa4f5dfabb5526f9d4e5bc752177f2e53db3d2e2e7c3aab62c3be0c193b8",
+      "size_bytes": 32477
+    },
+    {
+      "path": "results/runs/main_large_25m_seed8191_01_mla_121m/metrics/summary.json",
+      "sha256": "8818d6962e1803c48201af33218222987b65dbaae2638da333f6b3bcffeb3b86",
+      "size_bytes": 32687
+    },
+    {
+      "path": "results/runs/main_large_25m_seed8191_02_mtp_121m/metrics/summary.json",
+      "sha256": "1a49981bd24430afdd44e1ab683985fa5b7e08965bee33401e5aacf77d8ba3ba",
+      "size_bytes": 32803
+    },
+    {
+      "path": "results/runs/main_large_25m_seed8191_03_moe_220m/metrics/summary.json",
+      "sha256": "2604cd24742bacc2bfebcaf4fb3380e2465f7b1809d3a893d9f48d128d6c880b",
+      "size_bytes": 94092
+    },
+    {
+      "path": "results/runs/main_large_25m_seed10007_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "149d70de38f08b3cc13db96a98ac124d8c264154b775bc66934673ee62643977",
+      "size_bytes": 98564
+    },
+    {
+      "path": "results/runs/main_large_25m_seed10007_00_dense_121m/metrics/summary.json",
+      "sha256": "c309de42002d15f9cf75b2fd31bd91111f5307bd0459b0dc928ab0154ea15f6e",
+      "size_bytes": 32489
+    },
+    {
+      "path": "results/runs/main_large_25m_seed10007_01_mla_121m/metrics/summary.json",
+      "sha256": "d3cb46b7607059bc1febae3b9a7ef00dd7b685f78d20726a316a695e485b3e75",
+      "size_bytes": 32697
+    },
+    {
+      "path": "results/runs/main_large_25m_seed10007_02_mtp_121m/metrics/summary.json",
+      "sha256": "0f8f747c8968e88ae7f0ab76a221790c6542b22872f39beafb6b7591024d70c2",
+      "size_bytes": 32817
+    },
+    {
+      "path": "results/runs/main_large_25m_seed10007_03_moe_220m/metrics/summary.json",
+      "sha256": "21025c0545c1d52ccf1a2a48cd5e834f130251836c04b4be9808c9920a503ac3",
+      "size_bytes": 94097
+    },
+    {
+      "path": "results/runs/main_large_25m_seed10007_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "48754e8f17d2053dd73fe5a0ee63a2ffaa0ac96fa4af6d5feb3d0a0315a89ef4",
+      "size_bytes": 94493
+    },
+    {
+      "path": "results/runs/main_large_25m_seed11213_00_dense_121m/metrics/summary.json",
+      "sha256": "a40e0c475e9f1a3443bdeb4cb30c03bad173314360a434b41dccfd92fa5cf0e4",
+      "size_bytes": 32489
+    },
+    {
+      "path": "results/runs/main_large_25m_seed11213_01_mla_121m/metrics/summary.json",
+      "sha256": "58f68bbf24ed4150a4f981750841506387ea10370a55d87b77ddbc215666ee62",
+      "size_bytes": 32693
+    },
+    {
+      "path": "results/runs/main_large_25m_seed11213_02_mtp_121m/metrics/summary.json",
+      "sha256": "3162098c2539a27329dd654200734f0f1c8262a8fe9702d096a4a66015a0818f",
+      "size_bytes": 32812
+    },
+    {
+      "path": "results/runs/main_large_25m_seed11213_03_moe_220m/metrics/summary.json",
+      "sha256": "6f4a6663d88c4bdfddf1369e31767fd0ecc16675230370d327dab29cd4f59b0c",
+      "size_bytes": 94077
+    },
+    {
+      "path": "results/runs/main_large_25m_seed11213_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "b1d9d52867d28d7841c2bb0e00e714c7df88546e36d919e867cd007d4d0551fd",
+      "size_bytes": 94372
+    },
+    {
+      "path": "results/runs/main_large_25m_seed11213_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "73f5ad48859bc460ccc49b3748bf76076b4448593ccca26ffa92630688d101c5",
+      "size_bytes": 98628
+    },
+    {
+      "path": "results/runs/main_large_25m_seed12721_01_mla_121m/metrics/summary.json",
+      "sha256": "79dee2d8ed35b0d828e9bc2330d9c3e154870dc886a2dea3c563a2a82b9074b5",
+      "size_bytes": 32699
+    },
+    {
+      "path": "results/runs/main_large_25m_seed12721_02_mtp_121m/metrics/summary.json",
+      "sha256": "08ecb745e17d0e7bf996a832fec3d3e6815d304fae7aa9888b5ebf815fdeb31b",
+      "size_bytes": 32819
+    },
+    {
+      "path": "results/runs/main_large_25m_seed12721_03_moe_220m/metrics/summary.json",
+      "sha256": "35727160e4a893854028b623a9299a9a8a0b0dfabc35782f84452134d20082ce",
+      "size_bytes": 94110
+    },
+    {
+      "path": "results/runs/main_large_25m_seed12721_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "66f2fcc581490ea3230c89916b2fa43f032d4095e330930e17e0161b2e452635",
+      "size_bytes": 94368
+    },
+    {
+      "path": "results/runs/main_large_25m_seed12721_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "5e67f417d5dd6269b904c0b39d308b78818109a2a32f1220e3d18217d0fa715e",
+      "size_bytes": 98628
+    },
+    {
+      "path": "results/runs/main_large_25m_seed12721_00_dense_121m/metrics/summary.json",
+      "sha256": "d0d3e992cd4a8aa898ee12fda5d56de4579511a7748c6325af5f061a9af9a78c",
+      "size_bytes": 32494
+    },
+    {
+      "path": "results/runs/main_large_50m_02_mtp_121m/metrics/summary.json",
+      "sha256": "7d77b342a5118df85f9edda219817245c63934a618ec5563a324a20417fa7b66",
+      "size_bytes": 32725
+    },
+    {
+      "path": "results/runs/main_large_50m_03_moe_220m/metrics/summary.json",
+      "sha256": "eec95cb04c6229fbfa0766cddaf986acb0520eb9ba7fbf9ae01ef800756b2e82",
+      "size_bytes": 94003
+    },
+    {
+      "path": "results/runs/main_large_50m_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "45d3fc7f48dfe15803c07a765daa61be81f399d49cbbc22ab1e3e061d65b51b6",
+      "size_bytes": 94280
+    },
+    {
+      "path": "results/runs/main_large_50m_05_v3_routing_220m/metrics/summary.json",
+      "sha256": "c025543c18f3a8f995246ba3809b859014ff780ecff5343625e9be3010e98df4",
+      "size_bytes": 98394
+    },
+    {
+      "path": "results/runs/main_large_50m_00_dense_121m/metrics/summary.json",
+      "sha256": "c2a5ce40e0e1fb26465389d204771c7dc406de9d737d3cc048a20deb4cc4bbdd",
+      "size_bytes": 32400
+    },
+    {
+      "path": "results/runs/main_large_50m_01_mla_121m/metrics/summary.json",
+      "sha256": "6052586dc4a1eebba0d2fe893716f005a96b6e70876cb35d9b0e4e1b067962ea",
+      "size_bytes": 32602
+    },
+    {
+      "path": "results/runs/main_large_50m_seed2027_02_moe_220m/metrics/summary.json",
+      "sha256": "9bfb9a1789c1362b0f6ae1cfa5d01c46db7a17af57c1ac0c0b6e38e52d52eea9",
+      "size_bytes": 94081
+    },
+    {
+      "path": "results/runs/main_large_50m_seed2027_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "529eedd4187dfbdf14bcc60db6894236af82cb908b9f859fe073c5f1e39d7e10",
+      "size_bytes": 94407
+    },
+    {
+      "path": "results/runs/main_large_50m_seed2027_03_v3_routing_220m/metrics/summary.json",
+      "sha256": "bd9e625c76fd250154598e84969bfb40f0ad5c5e434523b1b9d46a87466d4f72",
+      "size_bytes": 98484
+    },
+    {
+      "path": "results/runs/main_large_50m_seed2027_00_dense_121m/metrics/summary.json",
+      "sha256": "6945ea5dd6ea50d1c9d979d8f75e7172d0c5b307e541c1f3a469309b60750d33",
+      "size_bytes": 32479
+    },
+    {
+      "path": "results/runs/main_large_50m_seed2027_01_mla_121m/metrics/summary.json",
+      "sha256": "cff18a7c2bdb253c2ef627a5d5085f033f6aed12a81108ae88f5d7f06e6f2edd",
+      "size_bytes": 32679
+    },
+    {
+      "path": "results/runs/main_large_50m_seed2027_01_mtp_121m/metrics/summary.json",
+      "sha256": "a13034f7415954653e9643f5c4e7ea34efc355bc0950d96154c84aa249e09439",
+      "size_bytes": 32798
+    },
+    {
+      "path": "results/runs/main_large_50m_seed31415_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "9759292154ea8412e7b125ca783c739580ccb566fbc551d1daad88e9cf0bbbe4",
+      "size_bytes": 94284
+    },
+    {
+      "path": "results/runs/main_large_50m_seed31415_03_v3_routing_220m/metrics/summary.json",
+      "sha256": "c133a67919fabe5ac0e6d1ad6f6c3d305bfacb1bae4b9785edcada3af1cc3498",
+      "size_bytes": 98461
+    },
+    {
+      "path": "results/runs/main_large_50m_seed31415_00_dense_121m/metrics/summary.json",
+      "sha256": "9b04049a1fd69ff0e23f25c4d7174e76edc132c3b695662e8987f4a120de0cd6",
+      "size_bytes": 32495
+    },
+    {
+      "path": "results/runs/main_large_50m_seed31415_01_mla_121m/metrics/summary.json",
+      "sha256": "6535b0e359740e80c13bdbbfe8c93883a9b84a6723fc0d57f22c7a7fb2eebe8c",
+      "size_bytes": 32691
+    },
+    {
+      "path": "results/runs/main_large_50m_seed31415_01_mtp_121m/metrics/summary.json",
+      "sha256": "bd9aaf675f9ef1e0359ef4c2d5c479390992c00a856023605abc4c8c2d6b1e26",
+      "size_bytes": 32813
+    },
+    {
+      "path": "results/runs/main_large_50m_seed31415_02_moe_220m/metrics/summary.json",
+      "sha256": "03cd47036bdd7717903bdf40f4aeb176913d2c473bb441ef9bebd2d6ba6eba79",
+      "size_bytes": 94029
+    },
+    {
+      "path": "results/runs/main_large_50m_seed4441_03_v3_routing_220m/metrics/summary.json",
+      "sha256": "dae9ac9151e1cde25f58b2a45e1e0fcff41ca2b32ff29cecd62392a98063d7d4",
+      "size_bytes": 98496
+    },
+    {
+      "path": "results/runs/main_large_50m_seed4441_00_dense_121m/metrics/summary.json",
+      "sha256": "444bcdaa81cc3c6d4e1e7950130ad8df0e79519ce1752ce2187d1eaa03b3c856",
+      "size_bytes": 32481
+    },
+    {
+      "path": "results/runs/main_large_50m_seed4441_01_mla_121m/metrics/summary.json",
+      "sha256": "2c547c638d03ec1444c46abd07efefa07fee43da693f1f7f8cc6e028e58f169c",
+      "size_bytes": 32681
+    },
+    {
+      "path": "results/runs/main_large_50m_seed4441_01_mtp_121m/metrics/summary.json",
+      "sha256": "6f91094dfe7177df47aee9814bf5c2cd2701a4e49182b78bf4046fb73ae7f9e3",
+      "size_bytes": 32800
+    },
+    {
+      "path": "results/runs/main_large_50m_seed4441_02_moe_220m/metrics/summary.json",
+      "sha256": "ae7ec93264976afe7db39f275282ec9b222af9c2fbf24f8b1943de86b3942fec",
+      "size_bytes": 94038
+    },
+    {
+      "path": "results/runs/main_large_50m_seed4441_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "9042baea00729963160507b436dcf0270241c5264447747fcfc3115697c2e888",
+      "size_bytes": 94334
+    },
+    {
+      "path": "results/runs/main_large_50m_seed5501_00_dense_121m/metrics/summary.json",
+      "sha256": "c20b7702b0e005abd50853c68f9a78ad6bcb30d23fb862e0bed583205cfa4db9",
+      "size_bytes": 32478
+    },
+    {
+      "path": "results/runs/main_large_50m_seed5501_01_mla_121m/metrics/summary.json",
+      "sha256": "d65522de9bf79521ebb38061572fc104cf58548a07b0a16c762475e9c1998c02",
+      "size_bytes": 32678
+    },
+    {
+      "path": "results/runs/main_large_50m_seed5501_01_mtp_121m/metrics/summary.json",
+      "sha256": "f34c9be895c92f8c34a430e878bd4eb4017363bd99fc8160b01003b373a34a7d",
+      "size_bytes": 32801
+    },
+    {
+      "path": "results/runs/main_large_50m_seed5501_02_moe_220m/metrics/summary.json",
+      "sha256": "b9eb51a7a77ac2af8909f02ad4a7e6ff0ee32e42fba8b7b189b45c0951f63569",
+      "size_bytes": 94077
+    },
+    {
+      "path": "results/runs/main_large_50m_seed5501_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "740246d520137f68061850acccb6dab7feb15f01d1efc6310568a8850361d1e6",
+      "size_bytes": 94264
+    },
+    {
+      "path": "results/runs/main_large_50m_seed5501_03_v3_routing_220m/metrics/summary.json",
+      "sha256": "d06b216c253bd1e4651b6d818e916a56807af943456b18354da373fb8878b6b1",
+      "size_bytes": 98458
+    },
+    {
+      "path": "results/runs/main_large_50m_seed6173_01_mla_121m/metrics/summary.json",
+      "sha256": "fa7ed65c11f54ef96e76014148719a769cede4c2755cf469d07838613259eb87",
+      "size_bytes": 32674
+    },
+    {
+      "path": "results/runs/main_large_50m_seed6173_01_mtp_121m/metrics/summary.json",
+      "sha256": "2964d821afe54faee6e1f10b6b85b15818b50ce9134bda01474caa99aeea433d",
+      "size_bytes": 32802
+    },
+    {
+      "path": "results/runs/main_large_50m_seed6173_02_moe_220m/metrics/summary.json",
+      "sha256": "453135e6b7d73d87070863e1b2b7bdd02c63594b36316db2ed8803970f7f2211",
+      "size_bytes": 93979
+    },
+    {
+      "path": "results/runs/main_large_50m_seed6173_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "f6580b0ec3112d7e6d923288ba5556e7739a0c41060295415e180a55e64120dc",
+      "size_bytes": 94346
+    },
+    {
+      "path": "results/runs/main_large_50m_seed6173_03_v3_routing_220m/metrics/summary.json",
+      "sha256": "3974dbd7f836b321e94a279dd57324c9b749d6fd37ce67c4f8877fa8ed94aeb0",
+      "size_bytes": 98481
+    },
+    {
+      "path": "results/runs/main_large_50m_seed6173_00_dense_121m/metrics/summary.json",
+      "sha256": "e1f6d7e7aa0b06d0ce7cdd8b834bced22917d03332172b7d28f1b779ec824fd9",
+      "size_bytes": 32480
+    },
+    {
+      "path": "results/runs/main_large_50m_seed8191_01_mtp_121m/metrics/summary.json",
+      "sha256": "8db0fcc8adf3d407c99db287701ad1b2c646ff38b6b8bb81449d8002b1d9d1f2",
+      "size_bytes": 32803
+    },
+    {
+      "path": "results/runs/main_large_50m_seed8191_02_moe_220m/metrics/summary.json",
+      "sha256": "2b0e05d93548fefb1bb7b61e3af643605266a7057fe833492b6c2d183f426286",
+      "size_bytes": 94121
+    },
+    {
+      "path": "results/runs/main_large_50m_seed8191_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "025472a195a30fe8f1f254060bf6219f9091f54867b3412fe0f508d0ca0027fc",
+      "size_bytes": 94383
+    },
+    {
+      "path": "results/runs/main_large_50m_seed8191_03_v3_routing_220m/metrics/summary.json",
+      "sha256": "0df0be0844fa9f8f5adc58e31c215a645007f944fc33670d88b7b8148c0ef7e8",
+      "size_bytes": 98408
+    },
+    {
+      "path": "results/runs/main_large_50m_seed8191_00_dense_121m/metrics/summary.json",
+      "sha256": "3b22026714cff06d1ae63a61d8a66cf8b95b9d2b9a79428bbc260a52bc7dacc9",
+      "size_bytes": 32475
+    },
+    {
+      "path": "results/runs/main_large_50m_seed8191_01_mla_121m/metrics/summary.json",
+      "sha256": "9085a80dbb0e2e0d6fa657d0f2932386402eb3605904c254c37b9aecc8b3a0c0",
+      "size_bytes": 32680
+    },
+    {
+      "path": "results/runs/main_large_50m_seed10007_02_moe_220m/metrics/summary.json",
+      "sha256": "ec5e5f5b2f81f305f66d8523e47385ed39901f899acbfcf03443df6dda8e18c4",
+      "size_bytes": 94056
+    },
+    {
+      "path": "results/runs/main_large_50m_seed10007_04_mla_moe_220m/metrics/summary.json",
+      "sha256": "5859bb258398433bb613debcf65b548e59c9f9ab143fea2dfafd6a03a95fe615",
+      "size_bytes": 94367
+    },
+    {
+      "path": "results/runs/main_large_50m_seed10007_03_v3_routing_220m/metrics/summary.json",
+      "sha256": "9a25b5ddaf2d9b610076b4f733cc32d1b4b22d11eb8aa923e78b409da64dcc34",
+      "size_bytes": 98461
+    },
+    {
+      "path": "results/runs/main_large_50m_seed10007_00_dense_121m/metrics/summary.json",
+      "sha256": "21475e03d3a56f7051ffe2b16de580998f1d8c1050fa32cb47a1c1bafde5176f",
+      "size_bytes": 32493
+    },
+    {
+      "path": "results/runs/main_large_50m_seed10007_01_mla_121m/metrics/summary.json",
+      "sha256": "f79667785ebf15ca7883c664d9831569d2a9212d1b2007d46ad6815168c50d4c",
+      "size_bytes": 32695
+    },
+    {
       "path": "results/runs/main_large_50m_seed10007_01_mtp_121m/metrics/summary.json",
-      "sha256": "bb2a3fa1f54707ff0151fbe8b3fc3f9e805adbd432927674c46f9004a234eba5",
-      "size_bytes": 32844
+      "sha256": "02e8d6c83c8022fae0c55d8b1961c4867438e8c1f09dfec57f1c31b1474862d8",
+      "size_bytes": 32814
     },
     {
       "path": "results/runs/main_large_50m_seed11213_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "896b696d067e20f7f42d5a9d6df03793118e5aba7c6f2d004131ac83014ed217",
-      "size_bytes": 94351
+      "sha256": "57d9b4eaeb197f490bd7ccc3ab6b5591218f726b3aeb551ddc401ee0a537bd5e",
+      "size_bytes": 94321
     },
     {
       "path": "results/runs/main_large_50m_seed11213_03_v3_routing_220m/metrics/summary.json",
-      "sha256": "acf3c34aa7abfe1e661bb759cdae29ece528455b3a9b521700585af71310aed3",
-      "size_bytes": 98519
+      "sha256": "86eeb6b93509a142b3cf11a7840aa2bb0e9b9d18f9f983bac20440e576110b57",
+      "size_bytes": 98489
     },
     {
       "path": "results/runs/main_large_50m_seed11213_00_dense_121m/metrics/summary.json",
-      "sha256": "3d80dd77801bc68d63ced35f14ea0f50c4e85d3d2a169417d327e31309614aad",
-      "size_bytes": 32523
+      "sha256": "36196c907cdfc6a411eb9abff55b0cb1a8b9505547702c1f501bfb9b5ce5c8a3",
+      "size_bytes": 32493
     },
     {
       "path": "results/runs/main_large_50m_seed11213_01_mla_121m/metrics/summary.json",
-      "sha256": "278b574632f7525b12eb4376eb8c7a82241e060a5e0a5e72c149cf81498b2286",
-      "size_bytes": 32722
+      "sha256": "505b7b1d6d3e7507e7e9ae017e982304411fb87a488a636296af26350202069c",
+      "size_bytes": 32692
     },
     {
       "path": "results/runs/main_large_50m_seed11213_01_mtp_121m/metrics/summary.json",
-      "sha256": "f8e21e029ec6e30fd45464fd73589837cfcd20873a31ad39083ce8d634788b13",
-      "size_bytes": 32848
+      "sha256": "22a23358d0747a3e4b8b2728c9ddeb647a53466f4c690830201a9751d60c2102",
+      "size_bytes": 32818
     },
     {
       "path": "results/runs/main_large_50m_seed11213_02_moe_220m/metrics/summary.json",
-      "sha256": "b3a2cab280fd1e45d8b1d8f447955d6900f545b4525d47063525b31f963e9d70",
-      "size_bytes": 94109
+      "sha256": "4f810dda315b9fa04654b849416efc7834cf951e18a9a9118bc3bf700d3057d6",
+      "size_bytes": 94079
     },
     {
       "path": "results/runs/main_large_50m_seed12721_03_v3_routing_220m/metrics/summary.json",
-      "sha256": "c620d4ef2db9d28fe7b82f42631cecfae92bdfbe6520781e5953e57af19d38ee",
-      "size_bytes": 98520
+      "sha256": "cc6b89d532ad68496d0e8cfcf8a4a0d230f2149060f4cf9d7b33d4c2fd0f5554",
+      "size_bytes": 98490
     },
     {
       "path": "results/runs/main_large_50m_seed12721_00_dense_121m/metrics/summary.json",
-      "sha256": "3d85a541ada753d4f9a7757d1cc97fada98e4f3e1c1148434a4e62a58214e627",
-      "size_bytes": 32525
+      "sha256": "fbd23508834c2cddd66f62feb5d3540b9bf47c032ac6f7b5549315e7ea0e51a2",
+      "size_bytes": 32495
     },
     {
       "path": "results/runs/main_large_50m_seed12721_01_mla_121m/metrics/summary.json",
-      "sha256": "a1b11a3bd432d15a3c7b49873884429e9cc32514ccb0b444ef4fd91a1af6a04e",
-      "size_bytes": 32724
+      "sha256": "ef01ec228ad34c191d3980c1f437e259ccda606ec4d63303a7a3b01a0321a4bc",
+      "size_bytes": 32694
     },
     {
       "path": "results/runs/main_large_50m_seed12721_01_mtp_121m/metrics/summary.json",
-      "sha256": "17b0833b1a6af031b45b02b4aa28e42b79a61214f7281a1270e9bb0e8118eaf8",
-      "size_bytes": 32845
+      "sha256": "c369d9d54c9a33a889e1d84da643e9e56f701a48a694b66459df591674820baa",
+      "size_bytes": 32815
     },
     {
       "path": "results/runs/main_large_50m_seed12721_02_moe_220m/metrics/summary.json",
-      "sha256": "d6b5a8cbb46453496986602cd3754ea53f6a118cd12be02eab5c61dd4f8b8f37",
-      "size_bytes": 94116
+      "sha256": "5773a9f6716629f745bfb4a51d897bf7d4f2fad76064d1b9642e64e4e6aacda4",
+      "size_bytes": 94086
     },
     {
       "path": "results/runs/main_large_50m_seed12721_04_mla_moe_220m/metrics/summary.json",
-      "sha256": "644a0b92162874c177506817a25257e4d9e341899203141bf397cf258864ab0a",
-      "size_bytes": 94429
+      "sha256": "e4e0a2dd977237ff23aac4b91380f6111662a59026e9fae54aec63e158ea08ef",
+      "size_bytes": 94399
     }
   ],
   "run_summary_count": 180,
@@ -1388,24 +1388,24 @@
       "roles": [
         "budget_trends"
       ],
-      "sha256": "f7d82b32664a26007bed35c2f75ff3c06760899181af4ffccb4fd84630c1a6d0",
-      "size_bytes": 26365
+      "sha256": "43703beb659e074eb75d5400d09f176dd09fb3721299adc2afb99fdd554313ef",
+      "size_bytes": 25668
     },
     {
       "path": "scripts/analysis/analyze_balanced_10seed_matrix_global_tests.py",
       "roles": [
         "global_tests"
       ],
-      "sha256": "6ecb4b24fc7e92c28dee9ce2ec92d9c2d8a7ba72e75905e27e70b3f864c1ab57",
-      "size_bytes": 17155
+      "sha256": "2aeabf82ef0aa25ab8d43c3f5b10dca33537e72b16b33f7151591d17fe7a7952",
+      "size_bytes": 16656
     },
     {
       "path": "scripts/analysis/analyze_balanced_10seed_matrix_paired_contrasts.py",
       "roles": [
         "paired_contrasts"
       ],
-      "sha256": "f6d3bea470795835e64451b85117052e5b10aceba0d6bf5ebd502edc512836ad",
-      "size_bytes": 22435
+      "sha256": "1c513e3d0b84060cdff5feb6d0aea99d65fd0bff613ebc4706ba58a1f02542a6",
+      "size_bytes": 21815
     },
     {
       "path": "scripts/analysis/build_balanced_10seed_evidence_index.py",
@@ -1420,8 +1420,8 @@
       "roles": [
         "manifest_builder"
       ],
-      "sha256": "17078a369810d01f7e43f2b81a1e2e3104be101c817a1397c5c92a38d831a4a2",
-      "size_bytes": 11092
+      "sha256": "3a7531c218c4a734973e6b553649ed45ca30c726561242ed6f959244b4ab51de",
+      "size_bytes": 11082
     },
     {
       "path": "scripts/analysis/build_balanced_10seed_mechanism_profiles.py",
@@ -1452,7 +1452,7 @@
       "roles": [
         "figure_producer"
       ],
-      "sha256": "0e03cdb9bd3e506ba0beee940884b4b78a09e7e6d9f6566cedadb601bc63cf8a",
+      "sha256": "12baa846557318725c6694cc3a17b59f1cce93f84109d7bb4ae3270e64b30273",
       "size_bytes": 12354
     },
     {
@@ -1516,7 +1516,7 @@
       "roles": [
         "figure_producer"
       ],
-      "sha256": "cc66b9f4003ebb2b97619b3dbc088bfbf78aa20e8998e35fb110934034b5d331",
+      "sha256": "fd049a6dadb11a3390713cdd8e500efea7e65135ad23c1f4ffc5069ce1aa6f3f",
       "size_bytes": 11994
     },
     {
@@ -1628,8 +1628,8 @@
       "roles": [
         "descriptive_statistics"
       ],
-      "sha256": "52e2f64242ea174f00274d364769b02136ef95a4804171346957e1425c79906c",
-      "size_bytes": 13879
+      "sha256": "300abb9ff15e4035bc62cd84ee973558553bf28a4d014c463796838e28506765",
+      "size_bytes": 13458
     },
     {
       "path": "scripts/analysis/verify_final_data_tokenizer_provenance.py",

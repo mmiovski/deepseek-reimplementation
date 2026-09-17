@@ -40,7 +40,7 @@ def test_primary_manifest_configs_match_every_identity() -> None:
             "experiment"
         ]
         train = yaml.safe_load(Path(row["train_config"]).read_text(encoding="utf-8"))["train"]
-        assert experiment["protocol_id"] == "corrected_primary_matrix_2026"
+        assert experiment["protocol_id"] == "primary_matrix_2026"
         assert experiment["name"] == row["experiment_name"]
         assert experiment["variant"] == row["model"]
         assert experiment["budget"] == row["budget"]

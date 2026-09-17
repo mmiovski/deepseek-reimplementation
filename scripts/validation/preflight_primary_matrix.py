@@ -31,7 +31,7 @@ from scripts.analysis.verify_final_data_tokenizer_provenance import (  # noqa: E
 
 MANIFEST = Path("results/analysis/balanced_10seed_matrix_manifest.json")
 OUTPUT = Path("results/analysis/primary_matrix_preflight.json")
-PROTOCOL_ID = "corrected_primary_matrix_2026"
+PROTOCOL_ID = "primary_matrix_2026"
 EXPECTED_MODELS = {
     "dense_121m",
     "mla_121m",

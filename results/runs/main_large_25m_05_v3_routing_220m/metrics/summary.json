@@ -1030,7 +1030,7 @@
   "mtp_share_lm_head": false,
   "peak_memory_bytes": 4655881216,
   "precision": "fp32",
-  "protocol_id": "corrected_primary_matrix_2026",
+  "protocol_id": "primary_matrix_2026",
   "requested_epoch_equivalent": 0.4250685865167088,
   "requested_tokens_per_activated_parameter": 0.3181120047428718,
   "requested_tokens_per_total_parameter": 0.11356077758280453,
@@ -2589,7 +2589,7 @@
       "model_config": "configs/model/v3_routing_220m.yaml",
       "name": "main_large_25m_05_v3_routing_220m",
       "output_dir": "results/runs/main_large_25m_05_v3_routing_220m/logs",
-      "protocol_id": "corrected_primary_matrix_2026",
+      "protocol_id": "primary_matrix_2026",
       "requested_train_tokens": 25000000,
       "seed": 1337,
       "tokenizer_config": "configs/tokenizer/bpe_fineweb_edu_10bt_local_experiment.yaml",
@@ -2628,7 +2628,7 @@
         "vocab_size": 10000
       }
     },
-    "protocol_id": "corrected_primary_matrix_2026",
+    "protocol_id": "primary_matrix_2026",
     "tokenizer_config": {
       "artifacts": {
         "metadata_json": "tokenizers/fineweb_edu_10bt/metadata.json",

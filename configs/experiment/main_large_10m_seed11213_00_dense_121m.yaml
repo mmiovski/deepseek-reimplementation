@@ -1,6 +1,6 @@
 experiment:
   name: main_large_10m_seed11213_00_dense_121m
-  protocol_id: corrected_primary_matrix_2026
+  protocol_id: primary_matrix_2026
   variant: dense_121m
   budget: 10m
   seed: 11213

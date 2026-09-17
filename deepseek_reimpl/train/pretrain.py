@@ -582,7 +582,7 @@ def run_pretraining_from_experiment_config(
     GPTConfig.from_dict(model_config)
 
     protocol_id = str(experiment_config.get("protocol_id", "unversioned"))
-    if protocol_id == "corrected_primary_matrix_2026":
+    if protocol_id == "primary_matrix_2026":
         _require_exact_keys(
             experiment_config,
             {
@@ -678,7 +678,7 @@ def run_pretraining_from_experiment_config(
     if summary_path.exists():
         raise FileExistsError(f"Refusing to overwrite completed run: {summary_path}")
 
-    if protocol_id == "corrected_primary_matrix_2026":
+    if protocol_id == "primary_matrix_2026":
         run_root = output_dir.resolve().parent
         has_incomplete_artifacts = run_root.is_dir() and any(run_root.iterdir())
     else:
