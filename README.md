@@ -5,7 +5,7 @@ language-model variants: Dense, Multi-head Latent Attention (MLA), multi-token
 prediction (MTP), mixture-of-experts (MoE), MLA+MoE, and a V3-style
 auxiliary-loss-free expert-bias routing analogue.
 
-The corrected primary matrix is complete: three fixed token budgets, ten aligned
+The primary matrix is complete: three fixed token budgets, ten aligned
 seeds, and six model families, for 180 runs in total.
 
 ## Report
@@ -179,7 +179,7 @@ allocation are recorded separately.
 .\.venv\Scripts\python.exe -m pytest
 ```
 
-The completed corrected matrix passes the full 291-test suite. Before the evidence
+The completed matrix passes the full 291-test suite. Before the evidence
 commit was created, the complete preflight validated all 180 summaries against the
 exact recorded training commit, environment, configurations, data, tokenizer, and
 training logs. All extraction, descriptive, global-test, paired-contrast,
