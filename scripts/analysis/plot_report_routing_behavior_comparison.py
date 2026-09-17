@@ -355,7 +355,7 @@ def plot_panel(
     )
 
     if y_label == "Expert Load Variance":
-        ax.set_ylim(0.00025, 0.00085)
+        ax.set_ylim(0.00004, 0.00009)
 
     ax.set_xlim(-0.20, 2.20)
     ax.set_xticks([BUDGET_TO_X[budget] for budget in BUDGET_ORDER])

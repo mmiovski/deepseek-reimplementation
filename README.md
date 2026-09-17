@@ -8,13 +8,11 @@ auxiliary-loss-free expert-bias routing analogue.
 The corrected primary matrix is complete: three fixed token budgets, ten aligned
 seeds, and six model families, for 180 runs in total.
 
-## Report status
+## Report
 
-The existing [project report](reports/DS_proj_report.pdf) predates the corrected
-180-run matrix and is retained temporarily for historical context. It is not the
-authoritative interpretation of the current results. A replacement report is
-planned; until then, use the regenerated artifacts under `results/analysis/` and
-`results/figures/`.
+The finalized [project report](reports/DS_proj_report.pdf) presents the complete
+180-run study, including its methodology, results, systems measurements,
+limitations, and conclusions.
 
 ## Study design
 

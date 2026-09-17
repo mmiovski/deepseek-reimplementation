@@ -85,7 +85,7 @@ ERRORBAR_LINE_WIDTH = 0.95
 ERRORBAR_CAP_SIZE = 3.6
 
 Y_PAD_FRACTION = 0.035
-MANUAL_Y_LIMITS: tuple[float, float] | None = (0.00025, 0.00085)
+MANUAL_Y_LIMITS: tuple[float, float] | None = (0.00004, 0.00009)
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
